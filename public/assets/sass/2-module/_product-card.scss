@@ -1,0 +1,68 @@
+.product-card {
+    border-radius: 2px;
+    box-shadow: 0 5px 10px rgba($dark, 0.15);
+    transition: all 0.3s ease;
+    &:hover {
+        box-shadow: 0 10px 15px rgba($dark, 0.2);
+        .product-card__add {
+            color: $white;
+            background: $primary;
+            box-shadow: 0 10px 15px rgba($dark, 0.2);
+            .product-card__add-icon {
+                color: $white;
+            }
+        }
+    }
+    &__body {
+        position: relative;
+        padding-left: 20px;
+        padding-right: 20px;
+        padding-top: 12px;
+        padding-bottom: 15px;
+    }
+    &__add {
+        display: flex;
+        width: 50px;
+        height: 50px;
+        border-radius: 100%;
+        position: absolute;
+        top: -25px;
+        right: 30px;
+        background: $white;
+        box-shadow: 0 5px 15px rgba($dark, 0.15);
+        transition: all 0.3s ease;
+        font-size: 35px;
+        line-height: 1;
+        &:hover {
+            color: $white;
+            background: $primary;
+            box-shadow: 0 10px 25px rgba($dark, 0.2);
+            .product-card__add-icon {
+                color: $white;
+            }
+        }
+        &-icon {
+            margin: auto;
+            color: $heading-text;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            .la-plus {
+                font-size: 24px;
+            }
+        }
+    }
+    &__sub-title {
+        font-size: 13px;
+        font-weight: 700;
+    }
+    &__title {
+        display: block;
+        font-family: $heading-font;
+        font-size: 24px;
+        font-weight: 700;
+        color: $heading-text;
+    }
+}
