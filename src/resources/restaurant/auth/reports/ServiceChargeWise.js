@@ -24,8 +24,8 @@ import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Chart from "react-apexcharts";
 import Moment from "react-moment";
-import Select from "react-select";
-import makeAnimated from "react-select/animated";
+// import Select from "react-select";
+// import makeAnimated from "react-select/animated";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
@@ -37,7 +37,7 @@ import { SettingsContext } from "../../../../contexts/Settings";
 
 const ServiceChargeWise = () => {
   const { t } = useTranslation();
-  const history = useHistory();
+  // const history = useHistory();
   //getting context values here
   let { loading, setLoading, dataPaginating, generalSettings } =
     useContext(SettingsContext);
@@ -86,7 +86,7 @@ const ServiceChargeWise = () => {
     setTimeout(() => {
       setLoading(false);
     }, 500);
-  }, []);
+  }, [setLoading]);
 
   //get ServiceChargeWise reports filter
   const getServiceChargeWiseSelected = () => {
@@ -179,39 +179,39 @@ const ServiceChargeWise = () => {
                   )}
                 {/* show this if order settle is not true, if true show payment input field */}
                 {!checkOrderDetails.settle ? (
-                  <div class="col-12 filtr-item">
-                    <div class="fk-order-token t-bg-white">
-                      <div class="fk-order-token__body">
-                        <div class="fk-addons-table">
-                          <div class="fk-addons-table__head text-center">
+                  <div className="col-12 filtr-item">
+                    <div className="fk-order-token t-bg-white">
+                      <div className="fk-order-token__body">
+                        <div className="fk-addons-table">
+                          <div className="fk-addons-table__head text-center">
                             {_t(t("Filter"))}order token: #
                             {checkOrderDetails.item &&
                               checkOrderDetails.item.token.id}
                           </div>
-                          <div class="fk-addons-table__info">
-                            <div class="row g-0">
-                              <div class="col-2 text-center border-right">
-                                <span class="fk-addons-table__info-text text-capitalize">
+                          <div className="fk-addons-table__info">
+                            <div className="row g-0">
+                              <div className="col-2 text-center border-right">
+                                <span className="fk-addons-table__info-text text-capitalize">
                                   {_t(t("S/L"))}
                                 </span>
                               </div>
-                              <div class="col-3 text-center border-right">
-                                <span class="fk-addons-table__info-text text-capitalize">
+                              <div className="col-3 text-center border-right">
+                                <span className="fk-addons-table__info-text text-capitalize">
                                   {_t(t("food"))}
                                 </span>
                               </div>
-                              <div class="col-4 text-left pl-2 border-right">
-                                <span class="fk-addons-table__info-text text-capitalize">
+                              <div className="col-4 text-left pl-2 border-right">
+                                <span className="fk-addons-table__info-text text-capitalize">
                                   {_t(t("Additional Info"))}
                                 </span>
                               </div>
-                              <div class="col-2 text-center border-right">
-                                <span class="fk-addons-table__info-text text-capitalize">
+                              <div className="col-2 text-center border-right">
+                                <span className="fk-addons-table__info-text text-capitalize">
                                   {_t(t("QTY"))}
                                 </span>
                               </div>
-                              <div class="col-1 text-center">
-                                <span class="fk-addons-table__info-text text-capitalize">
+                              <div className="col-1 text-center">
+                                <span className="fk-addons-table__info-text text-capitalize">
                                   {_t(t("Status"))}
                                 </span>
                               </div>
@@ -221,23 +221,23 @@ const ServiceChargeWise = () => {
                             checkOrderDetails.item.orderedItems.map(
                               (thisItem, indexThisItem) => {
                                 return (
-                                  <div class="fk-addons-table__body-row">
-                                    <div class="row g-0">
-                                      <div class="col-2 text-center border-right d-flex">
-                                        <span class="fk-addons-table__info-text text-capitalize m-auto">
+                                  <div className="fk-addons-table__body-row">
+                                    <div className="row g-0">
+                                      <div className="col-2 text-center border-right d-flex">
+                                        <span className="fk-addons-table__info-text text-capitalize m-auto">
                                           {indexThisItem + 1}
                                         </span>
                                       </div>
-                                      <div class="col-3 text-center border-right d-flex">
-                                        <span class="fk-addons-table__info-text text-capitalize m-auto">
+                                      <div className="col-3 text-center border-right d-flex">
+                                        <span className="fk-addons-table__info-text text-capitalize m-auto">
                                           {thisItem.food_item} (
                                           {thisItem.food_group})
                                         </span>
                                       </div>
-                                      <div class="col-4 text-center border-right t-pl-10 t-pr-10">
+                                      <div className="col-4 text-center border-right t-pl-10 t-pr-10">
                                         {thisItem.variation !== null && (
-                                          <span class="fk-addons-table__info-text text-capitalize d-block text-left t-pt-5">
-                                            <span class="font-weight-bold mr-1">
+                                          <span className="fk-addons-table__info-text text-capitalize d-block text-left t-pt-5">
+                                            <span className="font-weight-bold mr-1">
                                               {_t(t("variation"))}:
                                             </span>
                                             {thisItem.variation}
@@ -245,8 +245,8 @@ const ServiceChargeWise = () => {
                                         )}
 
                                         {thisItem.properties !== null && (
-                                          <span class="fk-addons-table__info-text text-capitalize d-block text-left t-pb-5">
-                                            <span class="font-weight-bold mr-1">
+                                          <span className="fk-addons-table__info-text text-capitalize d-block text-left t-pb-5">
+                                            <span className="font-weight-bold mr-1">
                                               {_t(t("properties"))}:
                                             </span>
                                             {JSON.parse(
@@ -285,15 +285,15 @@ const ServiceChargeWise = () => {
                                           </span>
                                         )}
                                       </div>
-                                      <div class="col-2 text-center border-right d-flex">
-                                        <span class="fk-addons-table__info-text text-capitalize m-auto">
+                                      <div className="col-2 text-center border-right d-flex">
+                                        <span className="fk-addons-table__info-text text-capitalize m-auto">
                                           {thisItem.quantity}
                                         </span>
                                       </div>
 
-                                      <div class="col-1 text-center d-flex">
-                                        <label class="mx-checkbox mx-checkbox--empty m-auto">
-                                          <span class="mx-checkbox__text text-capitalize t-text-heading fk-addons-table__body-text">
+                                      <div className="col-1 text-center d-flex">
+                                        <label className="mx-checkbox mx-checkbox--empty m-auto">
+                                          <span className="mx-checkbox__text text-capitalize t-text-heading fk-addons-table__body-text">
                                             {parseInt(thisItem.is_cooking) ===
                                             1 ? (
                                               [
@@ -704,7 +704,7 @@ const ServiceChargeWise = () => {
                           </div>
                           <div className="col-5 col-md-4 t-mb-15 mb-md-0 d-none d-md-block text-right">
                             <button
-                              className="btn btn-block btn-primary text-uppercase sm-text py-2"
+                              className="btn btn-block btn-secondary rounded-pill text-uppercase sm-text py-2"
                               onClick={getServiceChargeWiseSelected}
                             >
                               {_t(t("Generate Report"))}
@@ -713,7 +713,7 @@ const ServiceChargeWise = () => {
 
                           <div className="col-5 col-md-8 t-mb-15 mb-md-0 d-block d-md-none">
                             <button
-                              className="btn btn-block btn-primary text-uppercase sm-text"
+                              className="btn btn-block btn-secondary rounded-pill text-uppercase sm-text"
                               onClick={getServiceChargeWiseSelected}
                             >
                               {_t(t("Generate Report"))}
@@ -858,14 +858,14 @@ const ServiceChargeWise = () => {
                                                 {item.branch_name || "-"}
                                               </td>
 
-                                              <td class="xsm-text text-capitalize align-middle text-center">
+                                              <td className="xsm-text text-capitalize align-middle text-center">
                                                 {parseInt(item.is_cancelled) ===
                                                 0 ? (
                                                   [
                                                     parseInt(item.is_ready) ===
                                                     0 ? (
                                                       <span
-                                                        class="btn btn-transparent btn-secondary xsm-text text-capitalize"
+                                                        className="btn btn-transparent btn-secondary xsm-text text-capitalize"
                                                         onClick={() => {
                                                           setCheckOrderDetails({
                                                             ...checkOrderDetails,
@@ -882,7 +882,7 @@ const ServiceChargeWise = () => {
                                                       </span>
                                                     ) : (
                                                       <span
-                                                        class="btn btn-transparent btn-success xsm-text text-capitalize px-4"
+                                                        className="btn btn-transparent btn-success xsm-text text-capitalize px-4"
                                                         onClick={() => {
                                                           setCheckOrderDetails({
                                                             ...checkOrderDetails,
@@ -901,7 +901,7 @@ const ServiceChargeWise = () => {
                                                   ]
                                                 ) : (
                                                   <span
-                                                    class="btn btn-transparent btn-primary xsm-text text-capitalize px-3"
+                                                    className="btn btn-transparent btn-primary xsm-text text-capitalize px-3"
                                                     onClick={() => {
                                                       setCheckOrderDetails({
                                                         ...checkOrderDetails,

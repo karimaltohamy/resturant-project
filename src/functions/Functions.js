@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { NavLink } from "react-router-dom";
 
 //axios and base url
@@ -9,6 +9,7 @@ import { BASE_URL } from "../../src/BaseUrl";
 import ReactPaginate from "react-paginate";
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 import Cookies from "universal-cookie";
+
 //importing ends
 const cookies = new Cookies();
 
@@ -161,8 +162,8 @@ const restaurantMenuLink = (
   redirectTo
 ) => {
   return (
-    <div className="col-md-4 col-lg-3 t-mb-15">
-      <NavLink to={redirectTo} className="t-link product-card t-bg-white w-100">
+    <div className="col-md-4 col-lg-3 mb-3" style={{ height: "350px" }}>
+      <NavLink to={redirectTo} className="t-link product-card w-100">
         <div className="product-card__head w-100 text-center">
           <img src={img} alt={imgAlt} className="img-fluid" />
         </div>
@@ -287,7 +288,7 @@ const pagination = (data, customFunction) => {
         )
       }
       pageLinkClassName={
-        "t-link t-pt-5 t-pb-5 t-pl-10 t-pr-10 paginav__link paginav__link--light border text-capitalize sm-text"
+        "t-link t-pt-5 t-pb-5 t-pl-10 t-pr-10 btn-se btn-secondary paginav__link paginav__link--light border text-capitalize sm-text"
       }
       previousClassName={
         "t-link t-pt-5 t-pb-5 t-pl-10 t-pr-10 paginav__link paginav__link--light border text-capitalize sm-text"
@@ -389,7 +390,7 @@ const paginationOrderHistory = (data, customFunction) => {
         )
       }
       pageLinkClassName={
-        "t-link t-pt-5 t-pb-5 t-pl-10 t-pr-10 paginav__link paginav__link--light border text-capitalize sm-text"
+        "t-link t-pt-5 t-pb-5 t-pl-10 t-pr-10 btn-secondary paginav__link paginav__link--light border text-capitalize sm-text"
       }
       previousClassName={
         "t-link t-pt-5 t-pb-5 t-pl-10 t-pr-10 paginav__link paginav__link--light border text-capitalize sm-text"

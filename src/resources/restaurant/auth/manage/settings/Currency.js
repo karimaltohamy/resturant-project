@@ -311,7 +311,7 @@ const Currency = () => {
             <p className="text-center">{_t(t("You want to delete this?"))}</p>
             <div className="d-flex justify-content-center">
               <button
-                className="btn btn-primary"
+                className="btn btn-secondary"
                 onClick={() => {
                   handleDeleteCurrency(code);
                   onClose();
@@ -620,7 +620,7 @@ const Currency = () => {
                             <div className="row gx-3 align-items-center">
                               {/* Search languages */}
                               <div className="col-md-9 t-mb-15 mb-md-0">
-                                <div className="input-group">
+                                <div className="input-group rounded-pill overflow-hidden">
                                   <div className="form-file">
                                     <input
                                       type="text"
@@ -630,7 +630,7 @@ const Currency = () => {
                                     />
                                   </div>
                                   <button
-                                    className="btn btn-primary"
+                                    className="btn btn-secondary"
                                     type="button"
                                   >
                                     <i
@@ -645,7 +645,7 @@ const Currency = () => {
                               <div className="col-md-3 text-md-right">
                                 <button
                                   type="button"
-                                  className="btn btn-primary xsm-text text-uppercase btn-lg btn-block"
+                                  className="btn btn-secondary rounded-pill xsm-text text-uppercase btn-lg btn-block"
                                   data-toggle="modal"
                                   data-target="#addCurrency"
                                   onClick={() => {

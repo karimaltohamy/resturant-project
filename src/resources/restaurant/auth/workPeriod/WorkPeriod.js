@@ -255,8 +255,9 @@ const WorkPeriod = () => {
     var hours = Math.floor(minutes / 60);
     minutes = Math.floor(minutes % 60);
     var seconds = ((millis % 60000) / 1000).toFixed(0);
-    return `${hours} ${_t(t("hr"))} - ${minutes} ${_t(t("min"))} - ${seconds < 10 ? "0" : ""
-      }${seconds} ${_t(t("sec"))}`;
+    return `${hours} ${_t(t("hr"))} - ${minutes} ${_t(t("min"))} - ${
+      seconds < 10 ? "0" : ""
+    }${seconds} ${_t(t("sec"))}`;
   };
 
   //end confirmation modal of workPeriod
@@ -407,8 +408,8 @@ const WorkPeriod = () => {
                       </ul>
                     </div>
                     <div className="col-md-6 col-lg-5">
-                      <div className="input-group">
-                        <button className="btn btn-primary" type="button">
+                      <div className="input-group rounded-pill overflow-hidden">
+                        <button className="btn btn-secondary" type="button">
                           <i className="fa fa-search" aria-hidden="true"></i>
                         </button>
                         <div className="form-file">
@@ -426,7 +427,7 @@ const WorkPeriod = () => {
                     <div className="col-md-6 col-lg-7 t-mb-15 mb-md-0">
                       <div className="row gx-2 align-items-center">
                         {authUserInfo.details !== null &&
-                          authUserInfo.details.user_type !== "staff" ? (
+                        authUserInfo.details.user_type !== "staff" ? (
                           <>
                             <div className="col-md-7 t-mb-15 mb-md-0 mt-3 mt-md-0">
                               <Select
@@ -448,7 +449,7 @@ const WorkPeriod = () => {
                                 <li className="fk-sort__list mb-0 flex-grow-1">
                                   <button
                                     onClick={handleSaveNewWorkPeriod}
-                                    className="w-100 btn btn-secondary sm-text text-uppercase"
+                                    className="w-100 btn btn-secondary rounded-pill sm-text text-uppercase"
                                   >
                                     {_t(t("start work period"))}
                                   </button>
@@ -462,7 +463,7 @@ const WorkPeriod = () => {
                               <li className="fk-sort__list mb-0 flex-grow-1">
                                 <button
                                   onClick={handleSaveNewWorkPeriod}
-                                  className="w-100 btn btn-secondary sm-text text-uppercase"
+                                  className="w-100 btn btn-secondary rounded-pill sm-text text-uppercase"
                                 >
                                   {_t(t("start work period"))}
                                 </button>
@@ -509,12 +510,14 @@ const WorkPeriod = () => {
                               >
                                 {_t(t("Started at"))}
                               </th>
-                              {showManageStock ? <th
-                                scope="col"
-                                className="sm-text align-middle text-center border-1 border"
-                              >
-                                {_t(t("Stock"))}
-                              </th> : null}
+                              {showManageStock ? (
+                                <th
+                                  scope="col"
+                                  className="sm-text align-middle text-center border-1 border"
+                                >
+                                  {_t(t("Stock"))}
+                                </th>
+                              ) : null}
                               <th
                                 scope="col"
                                 className="sm-text align-middle text-center border-1 border"
@@ -539,128 +542,19 @@ const WorkPeriod = () => {
                           <tbody className="align-middle">
                             {!searchedWorkPeriod.searched
                               ? [
-                                workPeriodList && [
-                                  workPeriodList.data.length === 0 ? (
-                                    <tr className="align-middle">
-                                      <td
-                                        scope="row"
-                                        colSpan="8"
-                                        className="xsm-text align-middle text-center"
-                                      >
-                                        {_t(t("No data available"))}
-                                      </td>
-                                    </tr>
-                                  ) : (
-                                    workPeriodList.data.map((item, index) => {
-                                      return (
-                                        <tr
-                                          className="align-middle"
-                                          key={index}
+                                  workPeriodList && [
+                                    workPeriodList.data.length === 0 ? (
+                                      <tr className="align-middle">
+                                        <td
+                                          scope="row"
+                                          colSpan="8"
+                                          className="xsm-text align-middle text-center"
                                         >
-                                          <th
-                                            scope="row"
-                                            className="xsm-text text-capitalize align-middle text-center"
-                                          >
-                                            {index +
-                                              1 +
-                                              (workPeriodList.current_page -
-                                                1) *
-                                              workPeriodList.per_page}
-                                          </th>
-
-                                          <td className="xsm-text align-middle text-center text-secondary">
-                                            {item.branch_name}
-                                          </td>
-
-                                          <td className="xsm-text align-middle text-center">
-                                            {item.started_by}
-                                          </td>
-
-                                          <td className="xsm-text align-middle text-center">
-                                            {item.date}
-                                          </td>
-
-                                          <td className="xsm-text align-middle text-center text-green">
-                                            <Moment format="LT">
-                                              {new Date(item.created_at)}
-                                            </Moment>
-                                          </td>
-
-                                          {/* show if manage stock is enable */}
-                                          {showManageStock ? <td className="xsm-text align-middle text-center">
-                                            <NavLink
-                                              className={`btn xxsm-text ${item.ended_at === null
-                                                ? "btn-secondary"
-                                                : "btn-success"
-                                                } btn-sm p-1`}
-                                              to={
-                                                `/dashboard/closing-stock/` +
-                                                item.started_at
-                                              }
-                                            >
-                                              {_t(t("Closing Stock"))}
-                                            </NavLink>
-                                          </td> : null}
-
-
-                                          <td className="xsm-text align-middle text-center text-primary">
-                                            {item.ended_at ? (
-                                              <Moment format="LT">
-                                                {new Date(item.updated_at)}
-                                              </Moment>
-                                            ) : (
-                                              "-"
-                                            )}
-                                          </td>
-
-                                          <td className="xsm-text align-middle text-center">
-                                            {item.ended_at ? (
-                                              item.ended_by
-                                            ) : (
-                                              <button
-                                                className="btn btn-primary btn-sm py-0 px-4"
-                                                onClick={() => {
-                                                  handleDeleteConfirmation(
-                                                    item.id
-                                                  );
-                                                }}
-                                              >
-                                                {_t(t("End"))}
-                                              </button>
-                                            )}
-                                          </td>
-                                          <td className="xsm-text align-middle text-center">
-                                            {item.ended_at
-                                              ? millisToMinutesAndHours(
-                                                parseInt(
-                                                  item.ended_at -
-                                                  item.started_at
-                                                )
-                                              )
-                                              : "-"}
-                                          </td>
-                                        </tr>
-                                      );
-                                    })
-                                  ),
-                                ],
-                              ]
-                              : [
-                                /* searched data, logic === haveData*/
-                                searchedWorkPeriod && [
-                                  searchedWorkPeriod.list.length === 0 ? (
-                                    <tr className="align-middle">
-                                      <td
-                                        scope="row"
-                                        colSpan="9"
-                                        className="xsm-text align-middle text-center"
-                                      >
-                                        {_t(t("No data available"))}
-                                      </td>
-                                    </tr>
-                                  ) : (
-                                    searchedWorkPeriod.list.map(
-                                      (item, index) => {
+                                          {_t(t("No data available"))}
+                                        </td>
+                                      </tr>
+                                    ) : (
+                                      workPeriodList.data.map((item, index) => {
                                         return (
                                           <tr
                                             className="align-middle"
@@ -674,7 +568,7 @@ const WorkPeriod = () => {
                                                 1 +
                                                 (workPeriodList.current_page -
                                                   1) *
-                                                workPeriodList.per_page}
+                                                  workPeriodList.per_page}
                                             </th>
 
                                             <td className="xsm-text align-middle text-center text-secondary">
@@ -689,28 +583,32 @@ const WorkPeriod = () => {
                                               {item.date}
                                             </td>
 
-                                            <td className="xsm-text align-middle text-center">
+                                            <td className="xsm-text align-middle text-center text-green">
                                               <Moment format="LT">
                                                 {new Date(item.created_at)}
                                               </Moment>
                                             </td>
-                                            {/* 
-                                            <td className="xsm-text align-middle text-center">
-                                              <NavLink
-                                                className={`btn xxsm-text ${item.ended_at === null
-                                                    ? "btn-secondary"
-                                                    : "btn-success"
-                                                  } btn-sm p-1`}
-                                                to={
-                                                  `/dashboard/closing-stock/` +
-                                                  item.started_at
-                                                }
-                                              >
-                                                {_t(t("Closing Stock"))}
-                                              </NavLink>
-                                            </td> */}
 
-                                            <td className="xsm-text align-middle text-center">
+                                            {/* show if manage stock is enable */}
+                                            {showManageStock ? (
+                                              <td className="xsm-text align-middle text-center">
+                                                <NavLink
+                                                  className={`btn xxsm-text ${
+                                                    item.ended_at === null
+                                                      ? "btn-secondary"
+                                                      : "btn-success"
+                                                  } btn-sm p-1`}
+                                                  to={
+                                                    `/dashboard/closing-stock/` +
+                                                    item.started_at
+                                                  }
+                                                >
+                                                  {_t(t("Closing Stock"))}
+                                                </NavLink>
+                                              </td>
+                                            ) : null}
+
+                                            <td className="xsm-text align-middle text-center text-primary">
                                               {item.ended_at ? (
                                                 <Moment format="LT">
                                                   {new Date(item.updated_at)}
@@ -736,24 +634,131 @@ const WorkPeriod = () => {
                                                 </button>
                                               )}
                                             </td>
-
                                             <td className="xsm-text align-middle text-center">
                                               {item.ended_at
                                                 ? millisToMinutesAndHours(
-                                                  parseInt(
-                                                    item.ended_at -
-                                                    item.started_at
+                                                    parseInt(
+                                                      item.ended_at -
+                                                        item.started_at
+                                                    )
                                                   )
-                                                )
                                                 : "-"}
                                             </td>
                                           </tr>
                                         );
-                                      }
-                                    )
-                                  ),
-                                ],
-                              ]}
+                                      })
+                                    ),
+                                  ],
+                                ]
+                              : [
+                                  /* searched data, logic === haveData*/
+                                  searchedWorkPeriod && [
+                                    searchedWorkPeriod.list.length === 0 ? (
+                                      <tr className="align-middle">
+                                        <td
+                                          scope="row"
+                                          colSpan="9"
+                                          className="xsm-text align-middle text-center"
+                                        >
+                                          {_t(t("No data available"))}
+                                        </td>
+                                      </tr>
+                                    ) : (
+                                      searchedWorkPeriod.list.map(
+                                        (item, index) => {
+                                          return (
+                                            <tr
+                                              className="align-middle"
+                                              key={index}
+                                            >
+                                              <th
+                                                scope="row"
+                                                className="xsm-text text-capitalize align-middle text-center"
+                                              >
+                                                {index +
+                                                  1 +
+                                                  (workPeriodList.current_page -
+                                                    1) *
+                                                    workPeriodList.per_page}
+                                              </th>
+
+                                              <td className="xsm-text align-middle text-center text-secondary">
+                                                {item.branch_name}
+                                              </td>
+
+                                              <td className="xsm-text align-middle text-center">
+                                                {item.started_by}
+                                              </td>
+
+                                              <td className="xsm-text align-middle text-center">
+                                                {item.date}
+                                              </td>
+
+                                              <td className="xsm-text align-middle text-center">
+                                                <Moment format="LT">
+                                                  {new Date(item.created_at)}
+                                                </Moment>
+                                              </td>
+                                              {/* 
+                                            <td className="xsm-text align-middle text-center">
+                                              <NavLink
+                                                className={`btn xxsm-text ${item.ended_at === null
+                                                    ? "btn-secondary"
+                                                    : "btn-success"
+                                                  } btn-sm p-1`}
+                                                to={
+                                                  `/dashboard/closing-stock/` +
+                                                  item.started_at
+                                                }
+                                              >
+                                                {_t(t("Closing Stock"))}
+                                              </NavLink>
+                                            </td> */}
+
+                                              <td className="xsm-text align-middle text-center">
+                                                {item.ended_at ? (
+                                                  <Moment format="LT">
+                                                    {new Date(item.updated_at)}
+                                                  </Moment>
+                                                ) : (
+                                                  "-"
+                                                )}
+                                              </td>
+
+                                              <td className="xsm-text align-middle text-center">
+                                                {item.ended_at ? (
+                                                  item.ended_by
+                                                ) : (
+                                                  <button
+                                                    className="btn btn-primary btn-sm py-0 px-4"
+                                                    onClick={() => {
+                                                      handleDeleteConfirmation(
+                                                        item.id
+                                                      );
+                                                    }}
+                                                  >
+                                                    {_t(t("End"))}
+                                                  </button>
+                                                )}
+                                              </td>
+
+                                              <td className="xsm-text align-middle text-center">
+                                                {item.ended_at
+                                                  ? millisToMinutesAndHours(
+                                                      parseInt(
+                                                        item.ended_at -
+                                                          item.started_at
+                                                      )
+                                                    )
+                                                  : "-"}
+                                              </td>
+                                            </tr>
+                                          );
+                                        }
+                                      )
+                                    ),
+                                  ],
+                                ]}
                           </tbody>
                         </table>
                       </div>
@@ -765,67 +770,67 @@ const WorkPeriod = () => {
               {newWorkPeriod.uploading === true || loading === true
                 ? paginationLoading()
                 : [
-                  // logic === !searched
-                  !searchedWorkPeriod.searched ? (
-                    <div key="fragment4">
+                    // logic === !searched
+                    !searchedWorkPeriod.searched ? (
+                      <div key="fragment4">
+                        <div className="t-bg-white mt-1 t-pt-5 t-pb-5">
+                          <div className="row align-items-center t-pl-15 t-pr-15">
+                            <div className="col-md-7 t-mb-15 mb-md-0">
+                              {/* pagination function */}
+                              {pagination(
+                                workPeriodList,
+                                setPaginatedWorkPeriod
+                              )}
+                            </div>
+                            <div className="col-md-5">
+                              <ul className="t-list d-flex justify-content-md-end align-items-center">
+                                <li className="t-list__item">
+                                  <span className="d-inline-block sm-text">
+                                    {showingData(workPeriodList)}
+                                  </span>
+                                </li>
+                              </ul>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    ) : (
+                      // if searched
                       <div className="t-bg-white mt-1 t-pt-5 t-pb-5">
                         <div className="row align-items-center t-pl-15 t-pr-15">
                           <div className="col-md-7 t-mb-15 mb-md-0">
-                            {/* pagination function */}
-                            {pagination(
-                              workPeriodList,
-                              setPaginatedWorkPeriod
-                            )}
+                            <ul className="t-list d-flex">
+                              <li className="t-list__item no-pagination-style">
+                                <button
+                                  className="btn btn-primary btn-sm"
+                                  onClick={() =>
+                                    setSearchedWorkPeriod({
+                                      ...searchedWorkPeriod,
+                                      searched: false,
+                                    })
+                                  }
+                                >
+                                  {_t(t("Clear Search"))}
+                                </button>
+                              </li>
+                            </ul>
                           </div>
                           <div className="col-md-5">
                             <ul className="t-list d-flex justify-content-md-end align-items-center">
                               <li className="t-list__item">
                                 <span className="d-inline-block sm-text">
-                                  {showingData(workPeriodList)}
+                                  {searchedShowingData(
+                                    searchedWorkPeriod,
+                                    workPeriodForSearch
+                                  )}
                                 </span>
                               </li>
                             </ul>
                           </div>
                         </div>
                       </div>
-                    </div>
-                  ) : (
-                    // if searched
-                    <div className="t-bg-white mt-1 t-pt-5 t-pb-5">
-                      <div className="row align-items-center t-pl-15 t-pr-15">
-                        <div className="col-md-7 t-mb-15 mb-md-0">
-                          <ul className="t-list d-flex">
-                            <li className="t-list__item no-pagination-style">
-                              <button
-                                className="btn btn-primary btn-sm"
-                                onClick={() =>
-                                  setSearchedWorkPeriod({
-                                    ...searchedWorkPeriod,
-                                    searched: false,
-                                  })
-                                }
-                              >
-                                {_t(t("Clear Search"))}
-                              </button>
-                            </li>
-                          </ul>
-                        </div>
-                        <div className="col-md-5">
-                          <ul className="t-list d-flex justify-content-md-end align-items-center">
-                            <li className="t-list__item">
-                              <span className="d-inline-block sm-text">
-                                {searchedShowingData(
-                                  searchedWorkPeriod,
-                                  workPeriodForSearch
-                                )}
-                              </span>
-                            </li>
-                          </ul>
-                        </div>
-                      </div>
-                    </div>
-                  ),
-                ]}
+                    ),
+                  ]}
             </div>
           </div>
         </div>

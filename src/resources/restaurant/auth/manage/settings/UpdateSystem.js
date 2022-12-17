@@ -62,7 +62,7 @@ const UpdateSystem = () => {
             </p>
             <div className="d-flex justify-content-center">
               <button
-                className="btn btn-primary"
+                className="btn btn-secondary"
                 onClick={() => {
                   handleSubmit();
                   onClose();

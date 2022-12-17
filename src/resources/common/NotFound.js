@@ -5,11 +5,7 @@ import { NavLink, useHistory, useParams } from "react-router-dom";
 import $ from "jquery";
 
 //functions
-import {
-  _t,
-  getCookie,
-  getSystemSettings,
-} from "../../functions/Functions";
+import { _t, getCookie, getSystemSettings } from "../../functions/Functions";
 import { useTranslation } from "react-i18next";
 
 //axios and base url
@@ -159,23 +155,23 @@ const NotFound = () => {
       <Helmet>
         <title>{_t(t("404"))}</title>
       </Helmet>
-      <main class="fk-page-404">
-        <div class="fk-page-404__img mt-auto">
-          <div class="container">
-            <div class="row">
-              <div class="col-12 text-center">
-                <img src="/assets/img/404.png" class="img-fluid" />
+      <main className="fk-page-404">
+        <div className="fk-page-404__img mt-auto">
+          <div className="container">
+            <div className="row">
+              <div className="col-12 text-center">
+                <img src="/assets/img/404.png" className="img-fluid" />
               </div>
             </div>
           </div>
         </div>
-        <div class="fk-page-404__return-home t-mt-30 mb-auto">
-          <div class="container">
-            <div class="row">
-              <div class="col-12 text-center">
+        <div className="fk-page-404__return-home t-mt-30 mb-auto">
+          <div className="container">
+            <div className="row">
+              <div className="col-12 text-center">
                 <NavLink
                   to="/"
-                  class="t-link t-pt-8 t-pb-8 t-pl-12 t-pr-12 btn btn-primary xsm-text text-uppercase text-center"
+                  className="t-link t-pt-8 t-pb-8 t-pl-12 t-pr-12 btn btn-primary xsm-text text-uppercase text-center"
                 >
                   go to homepage
                 </NavLink>

@@ -242,7 +242,7 @@ const Pos = () => {
             order.play();
           }
         })
-        .catch((err) => { });
+        .catch((err) => {});
     }, 30000);
   }, [authUserInfo, generalSettings, foodForSearch, foodGroupForSearch]);
 
@@ -281,7 +281,8 @@ const Pos = () => {
     // if manage is stock is enable
     if (showManageStock) {
       if (
-        handleGetStock(tempFoodItem.id) > handleAlreadyOrderedQty(tempFoodItem.id)
+        handleGetStock(tempFoodItem.id) >
+        handleAlreadyOrderedQty(tempFoodItem.id)
       ) {
         let oldOrderItems = [];
         let newOrderItem = null;
@@ -369,9 +370,13 @@ const Pos = () => {
         //set order unique food groups
         let newSelectedGroup = [];
         oldOrderItems.map((eachOrderGroup) => {
-          let theGroup = foodGroupForSearch.find((grpFilter, grpFilterIndex) => {
-            return grpFilter.id === parseInt(eachOrderGroup.item.food_group_id);
-          });
+          let theGroup = foodGroupForSearch.find(
+            (grpFilter, grpFilterIndex) => {
+              return (
+                grpFilter.id === parseInt(eachOrderGroup.item.food_group_id)
+              );
+            }
+          );
 
           if (!newSelectedGroup.includes(parseInt(theGroup.id))) {
             newSelectedGroup.push(parseInt(theGroup.id));
@@ -394,8 +399,7 @@ const Pos = () => {
           let beep = document.getElementById("myAudio");
           beep.play();
         }
-      }
-      else {
+      } else {
         toast.error(`${_t(t("Stock Out"))}`, {
           position: "bottom-center",
           autoClose: 10000,
@@ -518,7 +522,6 @@ const Pos = () => {
         beep.play();
       }
     }
-
   };
 
   //set order item's variation on change of variation
@@ -732,7 +735,6 @@ const Pos = () => {
                   quantity: newOrderItem.quantity + 1,
                 };
               }
-
             } else {
               //if qty !==1 decrease
               if (newOrderItem.quantity !== 1) {
@@ -2012,8 +2014,8 @@ const Pos = () => {
                     <p className="mb-0 sm-text fk-print-text text-center text-capitalize">
                       {_t(t("call"))}:{" "}
                       {orderDetails &&
-                        orderDetails.branch !== null &&
-                        orderDetails.branch.phn_no
+                      orderDetails.branch !== null &&
+                      orderDetails.branch.phn_no
                         ? orderDetails.branch.phn_no
                         : ""}
                     </p>
@@ -2088,8 +2090,8 @@ const Pos = () => {
                                       1 &&
                                       printItem.variation &&
                                       "(" +
-                                      printItem.variation.variation_name +
-                                      ")"}
+                                        printItem.variation.variation_name +
+                                        ")"}
                                   </span>
                                 </div>
 
@@ -2097,7 +2099,7 @@ const Pos = () => {
                                 {printItem.properties &&
                                   printItem.properties.length > 0 &&
                                   selectedPropertyGroup[printItemIndex] !==
-                                  undefined &&
+                                    undefined &&
                                   selectedPropertyGroup[printItemIndex].map(
                                     (thisIsGroup) => {
                                       let theGroup =
@@ -2122,7 +2124,7 @@ const Pos = () => {
                                                     -{printItem.quantity}
                                                     {propertyName.quantity > 1
                                                       ? "*" +
-                                                      propertyName.quantity
+                                                        propertyName.quantity
                                                       : ""}{" "}
                                                     {propertyName.item.name}
                                                     <br />
@@ -2148,7 +2150,7 @@ const Pos = () => {
                                 {printItem.properties &&
                                   printItem.properties.length > 0 &&
                                   selectedPropertyGroup[printItemIndex] !==
-                                  undefined &&
+                                    undefined &&
                                   selectedPropertyGroup[printItemIndex].map(
                                     (
                                       thisIsGroup,
@@ -2164,28 +2166,29 @@ const Pos = () => {
                                       return (
                                         <div
                                           className="d-block"
-                                          className={`text-capitalize xsm-text ${thisIsGroupPaddingTopIndex === 0
-                                            ? [
-                                              parseInt(
-                                                printItem.item.has_variation
-                                              ) === 1
-                                                ? [
-                                                  printItem.properties &&
-                                                    printItem.properties
-                                                      .length > 0
-                                                    ? "addonPadding35"
-                                                    : "addonPadding24",
+                                          className={`text-capitalize xsm-text ${
+                                            thisIsGroupPaddingTopIndex === 0
+                                              ? [
+                                                  parseInt(
+                                                    printItem.item.has_variation
+                                                  ) === 1
+                                                    ? [
+                                                        printItem.properties &&
+                                                        printItem.properties
+                                                          .length > 0
+                                                          ? "addonPadding35"
+                                                          : "addonPadding24",
+                                                      ]
+                                                    : [
+                                                        printItem.properties &&
+                                                        printItem.properties
+                                                          .length > 0
+                                                          ? "addonPadding24"
+                                                          : "",
+                                                      ],
                                                 ]
-                                                : [
-                                                  printItem.properties &&
-                                                    printItem.properties
-                                                      .length > 0
-                                                    ? "addonPadding24"
-                                                    : "",
-                                                ],
-                                            ]
-                                            : ""
-                                            }`}
+                                              : ""
+                                          }`}
                                         >
                                           {printItem.properties.map(
                                             (propertyName, propertyIndex) => {
@@ -2199,9 +2202,9 @@ const Pos = () => {
                                                   <span>
                                                     {formatPrice(
                                                       printItem.quantity *
-                                                      propertyName.quantity *
-                                                      propertyName.item
-                                                        .extra_price
+                                                        propertyName.quantity *
+                                                        propertyName.item
+                                                          .extra_price
                                                     )}
                                                     <br />
                                                   </span>
@@ -2239,7 +2242,7 @@ const Pos = () => {
                       <table className="table mb-0 table-borderless">
                         <tbody>
                           {getSystemSettings(generalSettings, "vat_system") ===
-                            "igst" ? (
+                          "igst" ? (
                             <tr>
                               <th className="fk-print-text xsm-text">
                                 <span className="d-block xsm-text">
@@ -2251,8 +2254,10 @@ const Pos = () => {
                                 {formatPrice(theVat)}
                               </td>
                             </tr>
-                          ) : getSystemSettings(generalSettings, "vat_system") ===
-                            "cgst" ? (
+                          ) : getSystemSettings(
+                              generalSettings,
+                              "vat_system"
+                            ) === "cgst" ? (
                             <>
                               <tr>
                                 <th className="fk-print-text xsm-text">
@@ -2265,13 +2270,13 @@ const Pos = () => {
                                 <td className="fk-print-text xsm-text text-capitalize text-right">
                                   {formatPrice(
                                     theSubTotal *
-                                    (parseFloat(
-                                      getSystemSettings(
-                                        generalSettings,
-                                        "cgst"
-                                      )
-                                    ) /
-                                      100)
+                                      (parseFloat(
+                                        getSystemSettings(
+                                          generalSettings,
+                                          "cgst"
+                                        )
+                                      ) /
+                                        100)
                                   )}
                                 </td>
                               </tr>
@@ -2286,13 +2291,13 @@ const Pos = () => {
                                 <td className="fk-print-text xsm-text text-capitalize text-right">
                                   {formatPrice(
                                     theSubTotal *
-                                    (parseFloat(
-                                      getSystemSettings(
-                                        generalSettings,
-                                        "sgst"
-                                      )
-                                    ) /
-                                      100)
+                                      (parseFloat(
+                                        getSystemSettings(
+                                          generalSettings,
+                                          "sgst"
+                                        )
+                                      ) /
+                                        100)
                                   )}
                                 </td>
                               </tr>
@@ -2316,101 +2321,101 @@ const Pos = () => {
 
                     {getSystemSettings(generalSettings, "sDiscount") ===
                       "flat" && (
-                        <>
-                          {orderDetails.serviceCharge > 0 && (
-                            <table className="table mb-0 table-borderless">
-                              <tbody>
-                                <tr>
-                                  <th className="fk-print-text xsm-text text-capitalize">
-                                    <span className="d-block">
-                                      {_t(t("S.Charge"))}
-                                    </span>
-                                  </th>
+                      <>
+                        {orderDetails.serviceCharge > 0 && (
+                          <table className="table mb-0 table-borderless">
+                            <tbody>
+                              <tr>
+                                <th className="fk-print-text xsm-text text-capitalize">
+                                  <span className="d-block">
+                                    {_t(t("S.Charge"))}
+                                  </span>
+                                </th>
 
-                                  {orderDetails && (
-                                    <td className="fk-print-text xsm-text text-capitalize text-right">
-                                      {formatPrice(orderDetails.serviceCharge)}
-                                    </td>
-                                  )}
-                                </tr>
-                              </tbody>
-                            </table>
-                          )}
+                                {orderDetails && (
+                                  <td className="fk-print-text xsm-text text-capitalize text-right">
+                                    {formatPrice(orderDetails.serviceCharge)}
+                                  </td>
+                                )}
+                              </tr>
+                            </tbody>
+                          </table>
+                        )}
 
-                          {orderDetails.discount > 0 && (
-                            <table className="table mb-0 table-borderless">
-                              <tbody>
-                                <tr>
-                                  <th className="fk-print-text xsm-text text-capitalize">
-                                    <span className="d-block">
-                                      {_t(t("discount"))}
-                                    </span>
-                                  </th>
-                                  {orderDetails && (
-                                    <td className="fk-print-text xsm-text text-capitalize text-right">
-                                      {formatPrice(orderDetails.discount)}
-                                    </td>
-                                  )}
-                                </tr>
-                              </tbody>
-                            </table>
-                          )}
-                        </>
-                      )}
+                        {orderDetails.discount > 0 && (
+                          <table className="table mb-0 table-borderless">
+                            <tbody>
+                              <tr>
+                                <th className="fk-print-text xsm-text text-capitalize">
+                                  <span className="d-block">
+                                    {_t(t("discount"))}
+                                  </span>
+                                </th>
+                                {orderDetails && (
+                                  <td className="fk-print-text xsm-text text-capitalize text-right">
+                                    {formatPrice(orderDetails.discount)}
+                                  </td>
+                                )}
+                              </tr>
+                            </tbody>
+                          </table>
+                        )}
+                      </>
+                    )}
 
                     {getSystemSettings(generalSettings, "sDiscount") ===
                       "percentage" && (
-                        <>
-                          {orderDetails.serviceCharge > 0 && (
-                            <table className="table mb-0 table-borderless">
-                              <tbody>
-                                <tr>
-                                  <th className="fk-print-text xsm-text text-capitalize">
-                                    <span className="d-block">
-                                      {_t(t("S.Charge"))}
-                                      {orderDetails &&
-                                        "(" + orderDetails.serviceCharge + "%)"}
-                                    </span>
-                                  </th>
+                      <>
+                        {orderDetails.serviceCharge > 0 && (
+                          <table className="table mb-0 table-borderless">
+                            <tbody>
+                              <tr>
+                                <th className="fk-print-text xsm-text text-capitalize">
+                                  <span className="d-block">
+                                    {_t(t("S.Charge"))}
+                                    {orderDetails &&
+                                      "(" + orderDetails.serviceCharge + "%)"}
+                                  </span>
+                                </th>
 
-                                  {orderDetails && (
-                                    <td className="fk-print-text xsm-text text-capitalize text-right">
-                                      {formatPrice(
-                                        theSubTotal *
+                                {orderDetails && (
+                                  <td className="fk-print-text xsm-text text-capitalize text-right">
+                                    {formatPrice(
+                                      theSubTotal *
                                         (orderDetails.serviceCharge / 100)
-                                      )}
-                                    </td>
-                                  )}
-                                </tr>
-                              </tbody>
-                            </table>
-                          )}
+                                    )}
+                                  </td>
+                                )}
+                              </tr>
+                            </tbody>
+                          </table>
+                        )}
 
-                          {orderDetails.discount > 0 && (
-                            <table className="table mb-0 table-borderless">
-                              <tbody>
-                                <tr>
-                                  <th className="fk-print-text xsm-text text-capitalize">
-                                    <span className="d-block">
-                                      {_t(t("discount"))}
-                                      {orderDetails &&
-                                        "(" + orderDetails.discount + "%)"}
-                                    </span>
-                                  </th>
-                                  {orderDetails && (
-                                    <td className="fk-print-text xsm-text text-capitalize text-right">
-                                      {formatPrice(
-                                        theSubTotal *
+                        {orderDetails.discount > 0 && (
+                          <table className="table mb-0 table-borderless">
+                            <tbody>
+                              <tr>
+                                <th className="fk-print-text xsm-text text-capitalize">
+                                  <span className="d-block">
+                                    {_t(t("discount"))}
+                                    {orderDetails &&
+                                      "(" + orderDetails.discount + "%)"}
+                                  </span>
+                                </th>
+                                {orderDetails && (
+                                  <td className="fk-print-text xsm-text text-capitalize text-right">
+                                    {formatPrice(
+                                      theSubTotal *
                                         (orderDetails.discount / 100)
-                                      )}
-                                    </td>
-                                  )}
-                                </tr>
-                              </tbody>
-                            </table>
-                          )}
-                        </>
-                      )}
+                                    )}
+                                  </td>
+                                )}
+                              </tr>
+                            </tbody>
+                          </table>
+                        )}
+                      </>
+                    )}
 
                     <div className="myBorder"></div>
                     <table className="table mb-0 table-borderless">
@@ -2486,10 +2491,11 @@ const Pos = () => {
                                 <tr>
                                   <td className="text-center">
                                     <div
-                                      className={`${grpIndex === 0
-                                        ? "myBorder"
-                                        : "myBorderBottom"
-                                        } lg-text fk-print-text--bold fk-print-text`}
+                                      className={`${
+                                        grpIndex === 0
+                                          ? "myBorder"
+                                          : "myBorderBottom"
+                                      } lg-text fk-print-text--bold fk-print-text`}
                                     >
                                       {theGrp.name}
                                     </div>
@@ -2529,7 +2535,7 @@ const Pos = () => {
                                             {printItem.properties &&
                                               printItem.properties.length > 0 &&
                                               selectedPropertyGroup[
-                                              printItemIndex
+                                                printItemIndex
                                               ] !== undefined &&
                                               selectedPropertyGroup[
                                                 printItemIndex
@@ -2568,8 +2574,8 @@ const Pos = () => {
                                                                 {propertyName.quantity >
                                                                   1 &&
                                                                   "(" +
-                                                                  propertyName.quantity +
-                                                                  ")"}
+                                                                    propertyName.quantity +
+                                                                    ")"}
                                                               </span>
                                                               {printItem
                                                                 .properties
@@ -2802,18 +2808,18 @@ const Pos = () => {
                                           {parseInt(
                                             eachItem.allow_multi_quantity
                                           ) === 1 && (
-                                              <span
-                                                className="fk-qty__icon fk-qty__deduct"
-                                                onClick={() => {
-                                                  handlePropertyQty(
-                                                    eachItem,
-                                                    "-"
-                                                  );
-                                                }}
-                                              >
-                                                <i className="las la-minus"></i>
-                                              </span>
-                                            )}
+                                            <span
+                                              className="fk-qty__icon fk-qty__deduct"
+                                              onClick={() => {
+                                                handlePropertyQty(
+                                                  eachItem,
+                                                  "-"
+                                                );
+                                              }}
+                                            >
+                                              <i className="las la-minus"></i>
+                                            </span>
+                                          )}
                                           {parseInt(
                                             eachItem.allow_multi_quantity
                                           ) === 1 ? (
@@ -2831,18 +2837,18 @@ const Pos = () => {
                                           {parseInt(
                                             eachItem.allow_multi_quantity
                                           ) === 1 && (
-                                              <span
-                                                className="fk-qty__icon fk-qty__add"
-                                                onClick={() => {
-                                                  handlePropertyQty(
-                                                    eachItem,
-                                                    "+"
-                                                  );
-                                                }}
-                                              >
-                                                <i className="las la-plus"></i>
-                                              </span>
-                                            )}
+                                            <span
+                                              className="fk-qty__icon fk-qty__add"
+                                              onClick={() => {
+                                                handlePropertyQty(
+                                                  eachItem,
+                                                  "+"
+                                                );
+                                              }}
+                                            >
+                                              <i className="las la-plus"></i>
+                                            </span>
+                                          )}
                                         </div>
                                       </div>
                                       <div className="col text-right">
@@ -2924,8 +2930,9 @@ const Pos = () => {
                     return (
                       <>
                         <li
-                          className={`addons-list__item px-1 ${orderListItemIndex === activeItemInOrder && "active"
-                            }`}
+                          className={`addons-list__item px-1 ${
+                            orderListItemIndex === activeItemInOrder && "active"
+                          }`}
                         >
                           <div
                             className="d-flex align-items-center justify-content-between"
@@ -2969,12 +2976,12 @@ const Pos = () => {
                                 selectedItem: selectedItemTemp,
                                 variations:
                                   selectedItemTemp &&
-                                    parseInt(selectedItemTemp.has_variation) === 1
+                                  parseInt(selectedItemTemp.has_variation) === 1
                                     ? selectedItemTemp.variations
                                     : null,
                                 properties:
                                   selectedItemTemp &&
-                                    parseInt(selectedItemTemp.has_property) === 1
+                                  parseInt(selectedItemTemp.has_property) === 1
                                     ? selectedItemTemp.properties
                                     : null,
                               });
@@ -2985,9 +2992,10 @@ const Pos = () => {
                           >
                             <div className="col">
                               <span
-                                className={`t-text-heading sm-text text-capitalize d-block ${orderListItemIndex === activeItemInOrder &&
+                                className={`t-text-heading sm-text text-capitalize d-block ${
+                                  orderListItemIndex === activeItemInOrder &&
                                   "text-white"
-                                  }`}
+                                }`}
                               >
                                 {orderListItem.item.name}
                               </span>
@@ -2995,9 +3003,10 @@ const Pos = () => {
                                 1 &&
                                 orderListItem.variation && (
                                   <span
-                                    className={`xxsm-text text-capitalize d-block ${orderListItemIndex ===
-                                      activeItemInOrder && "text-white"
-                                      }`}
+                                    className={`xxsm-text text-capitalize d-block ${
+                                      orderListItemIndex ===
+                                        activeItemInOrder && "text-white"
+                                    }`}
                                   >
                                     {_t(t("Variation"))}:{" "}
                                     {orderListItem.variation.variation_name}
@@ -3008,7 +3017,7 @@ const Pos = () => {
                               {orderListItem.properties &&
                                 orderListItem.properties.length > 0 &&
                                 selectedPropertyGroup[orderListItemIndex] !==
-                                undefined &&
+                                  undefined &&
                                 selectedPropertyGroup[orderListItemIndex].map(
                                   (thisIsGroup) => {
                                     let theGroup =
@@ -3037,8 +3046,8 @@ const Pos = () => {
                                                     {propertyName.quantity >
                                                       1 &&
                                                       "(" +
-                                                      propertyName.quantity +
-                                                      ")"}
+                                                        propertyName.quantity +
+                                                        ")"}
                                                   </span>
                                                   {orderListItem.properties
                                                     .length -
@@ -3071,9 +3080,10 @@ const Pos = () => {
                                 <input
                                   type="text"
                                   value={orderListItem.quantity}
-                                  className={`fk-qty__input t-bg-clear ${orderListItemIndex === activeItemInOrder &&
+                                  className={`fk-qty__input t-bg-clear ${
+                                    orderListItemIndex === activeItemInOrder &&
                                     "text-white"
-                                    }`}
+                                  }`}
                                   readOnly
                                 />
                                 <span
@@ -3089,12 +3099,13 @@ const Pos = () => {
 
                             <div className="col text-right">
                               <span
-                                className={`t-text-heading text-uppercase sm-text flex-grow-1 ${orderListItemIndex === activeItemInOrder &&
+                                className={`t-text-heading text-uppercase sm-text flex-grow-1 ${
+                                  orderListItemIndex === activeItemInOrder &&
                                   "text-white"
-                                  }`}
+                                }`}
                               >
                                 {parseInt(orderListItem.item.has_variation) ===
-                                  1 ? (
+                                1 ? (
                                   <>
                                     {currencySymbolLeft()}
 
@@ -3170,17 +3181,17 @@ const Pos = () => {
                     <div className="col">
                       <span className="sm-text">
                         {getSystemSettings(generalSettings, "vat_system") ===
-                          "igst"
+                        "igst"
                           ? `vat(${newSettings !== null && newSettings.vat})`
                           : getSystemSettings(generalSettings, "vat_system") ===
                             "cgst"
-                            ? "cgst+sgst" +
+                          ? "cgst+sgst" +
                             "(" +
                             getSystemSettings(generalSettings, "cgst") +
                             "+" +
                             getSystemSettings(generalSettings, "sgst") +
-                            ")" :
-                            `tax(${newSettings !== null && newSettings.tax})`}
+                            ")"
+                          : `tax(${newSettings !== null && newSettings.tax})`}
                         %:
                       </span>
                     </div>
@@ -3348,192 +3359,192 @@ const Pos = () => {
 
                 {getSystemSettings(generalSettings, "sDiscount") ===
                   "percentage" && (
-                    <>
-                      <div className="col-12 mb-2">
-                        <div className="row">
-                          <div className="col">
-                            <span className="text-capitalize sm-text">
-                              {" "}
-                              {_t(t("service"))}
-                              {" %"}
-                            </span>
-                          </div>
-                          <div className="col text-center">:</div>
-                          <div className="col text-right">
-                            <span className="text-capitalize sm-text font-weight-bold">
-                              <input
-                                type="number"
-                                step="0.01"
-                                min="0"
-                                className="text-capitalize xsm-text d-inline-block font-weight-bold form-control rounded-0 text-right"
-                                onChange={(e) => {
-                                  if (e.target.value !== "") {
-                                    setOrderDetails({
-                                      ...orderDetails,
-                                      serviceCharge: parseFloat(e.target.value),
-                                    });
-                                    let totalPayable = 0;
-                                    // let localCurrency = JSON.parse(
-                                    //   localStorage.getItem(
-                                    //     "currency"
-                                    //   )
-                                    // );
-                                    // let usdServiceCharge =
-                                    //   parseFloat(e.target.value) /
-                                    //   localCurrency.rate;
-                                    // console.log("coming");
-                                    let usdServiceCharge =
-                                      theSubTotal *
-                                      (parseFloat(e.target.value) / 100);
+                  <>
+                    <div className="col-12 mb-2">
+                      <div className="row">
+                        <div className="col">
+                          <span className="text-capitalize sm-text">
+                            {" "}
+                            {_t(t("service"))}
+                            {" %"}
+                          </span>
+                        </div>
+                        <div className="col text-center">:</div>
+                        <div className="col text-right">
+                          <span className="text-capitalize sm-text font-weight-bold">
+                            <input
+                              type="number"
+                              step="0.01"
+                              min="0"
+                              className="text-capitalize xsm-text d-inline-block font-weight-bold form-control rounded-0 text-right"
+                              onChange={(e) => {
+                                if (e.target.value !== "") {
+                                  setOrderDetails({
+                                    ...orderDetails,
+                                    serviceCharge: parseFloat(e.target.value),
+                                  });
+                                  let totalPayable = 0;
+                                  // let localCurrency = JSON.parse(
+                                  //   localStorage.getItem(
+                                  //     "currency"
+                                  //   )
+                                  // );
+                                  // let usdServiceCharge =
+                                  //   parseFloat(e.target.value) /
+                                  //   localCurrency.rate;
+                                  // console.log("coming");
+                                  let usdServiceCharge =
+                                    theSubTotal *
+                                    (parseFloat(e.target.value) / 100);
 
-                                    // let usdDiscount =
-                                    //   parseFloat(
-                                    //     orderDetails.discount
-                                    //   ) / localCurrency.rate;
+                                  // let usdDiscount =
+                                  //   parseFloat(
+                                  //     orderDetails.discount
+                                  //   ) / localCurrency.rate;
 
-                                    let usdDiscount =
-                                      theSubTotal *
-                                      (parseFloat(orderDetails.discount) / 100);
+                                  let usdDiscount =
+                                    theSubTotal *
+                                    (parseFloat(orderDetails.discount) / 100);
 
-                                    totalPayable =
-                                      theSubTotal +
-                                      theVat +
-                                      usdServiceCharge -
-                                      usdDiscount;
-                                    setTotalPaybale(totalPayable);
-                                  } else {
-                                    setOrderDetails({
-                                      ...orderDetails,
-                                      serviceCharge: 0,
-                                    });
-                                    let totalPayable = 0;
-                                    // let localCurrency = JSON.parse(
-                                    //   localStorage.getItem(
-                                    //     "currency"
-                                    //   )
-                                    // );
-                                    // let usdServiceCharge =
-                                    //   parseFloat(0) /
-                                    //   localCurrency.rate;
-                                    let usdServiceCharge = 0;
+                                  totalPayable =
+                                    theSubTotal +
+                                    theVat +
+                                    usdServiceCharge -
+                                    usdDiscount;
+                                  setTotalPaybale(totalPayable);
+                                } else {
+                                  setOrderDetails({
+                                    ...orderDetails,
+                                    serviceCharge: 0,
+                                  });
+                                  let totalPayable = 0;
+                                  // let localCurrency = JSON.parse(
+                                  //   localStorage.getItem(
+                                  //     "currency"
+                                  //   )
+                                  // );
+                                  // let usdServiceCharge =
+                                  //   parseFloat(0) /
+                                  //   localCurrency.rate;
+                                  let usdServiceCharge = 0;
 
-                                    // let usdDiscount =
-                                    //   parseFloat(
-                                    //     orderDetails.discount
-                                    //   ) / localCurrency.rate;
+                                  // let usdDiscount =
+                                  //   parseFloat(
+                                  //     orderDetails.discount
+                                  //   ) / localCurrency.rate;
 
-                                    let usdDiscount =
-                                      theSubTotal *
-                                      (parseFloat(orderDetails.discount) / 100);
+                                  let usdDiscount =
+                                    theSubTotal *
+                                    (parseFloat(orderDetails.discount) / 100);
 
-                                    totalPayable =
-                                      theSubTotal +
-                                      theVat +
-                                      usdServiceCharge -
-                                      usdDiscount;
-                                    setTotalPaybale(totalPayable);
-                                  }
-                                }}
-                                value={
-                                  orderDetails.serviceCharge !== 0 &&
-                                  orderDetails.serviceCharge
+                                  totalPayable =
+                                    theSubTotal +
+                                    theVat +
+                                    usdServiceCharge -
+                                    usdDiscount;
+                                  setTotalPaybale(totalPayable);
                                 }
-                              />
-                            </span>
-                          </div>
+                              }}
+                              value={
+                                orderDetails.serviceCharge !== 0 &&
+                                orderDetails.serviceCharge
+                              }
+                            />
+                          </span>
                         </div>
                       </div>
-                      <div className="col-12">
-                        <div className="row">
-                          <div className="col">
-                            <span className="text-capitalize sm-text">
-                              {" "}
-                              {_t(t("discount"))}
-                              {" %"}
-                            </span>
-                          </div>
-                          <div className="col text-center">:</div>
-                          <div className="col text-right">
-                            <span className="text-capitalize sm-text font-weight-bold">
-                              <input
-                                type="number"
-                                step="0.01"
-                                min="0"
-                                className="text-capitalize xsm-text d-inline-block font-weight-bold form-control rounded-0 text-right"
-                                onChange={(e) => {
-                                  if (e.target.value !== "") {
-                                    setOrderDetails({
-                                      ...orderDetails,
-                                      discount: parseFloat(e.target.value),
-                                    });
-                                    let totalPayable = 0;
-                                    // let localCurrency = JSON.parse(
-                                    //   localStorage.getItem(
-                                    //     "currency"
-                                    //   )
-                                    // );
-                                    // let usdServiceCharge =
-                                    //   parseFloat(
-                                    //     orderDetails.serviceCharge
-                                    //   ) / localCurrency.rate;
-                                    let usdServiceCharge =
-                                      theSubTotal *
-                                      (parseFloat(orderDetails.serviceCharge) /
-                                        100);
+                    </div>
+                    <div className="col-12">
+                      <div className="row">
+                        <div className="col">
+                          <span className="text-capitalize sm-text">
+                            {" "}
+                            {_t(t("discount"))}
+                            {" %"}
+                          </span>
+                        </div>
+                        <div className="col text-center">:</div>
+                        <div className="col text-right">
+                          <span className="text-capitalize sm-text font-weight-bold">
+                            <input
+                              type="number"
+                              step="0.01"
+                              min="0"
+                              className="text-capitalize xsm-text d-inline-block font-weight-bold form-control rounded-0 text-right"
+                              onChange={(e) => {
+                                if (e.target.value !== "") {
+                                  setOrderDetails({
+                                    ...orderDetails,
+                                    discount: parseFloat(e.target.value),
+                                  });
+                                  let totalPayable = 0;
+                                  // let localCurrency = JSON.parse(
+                                  //   localStorage.getItem(
+                                  //     "currency"
+                                  //   )
+                                  // );
+                                  // let usdServiceCharge =
+                                  //   parseFloat(
+                                  //     orderDetails.serviceCharge
+                                  //   ) / localCurrency.rate;
+                                  let usdServiceCharge =
+                                    theSubTotal *
+                                    (parseFloat(orderDetails.serviceCharge) /
+                                      100);
 
-                                    // let usdDiscount =
-                                    //   parseFloat(e.target.value) /
-                                    //   localCurrency.rate;
+                                  // let usdDiscount =
+                                  //   parseFloat(e.target.value) /
+                                  //   localCurrency.rate;
 
-                                    let usdDiscount =
-                                      theSubTotal *
-                                      (parseFloat(e.target.value) / 100);
+                                  let usdDiscount =
+                                    theSubTotal *
+                                    (parseFloat(e.target.value) / 100);
 
-                                    totalPayable =
-                                      theSubTotal +
-                                      theVat +
-                                      usdServiceCharge -
-                                      usdDiscount;
+                                  totalPayable =
+                                    theSubTotal +
+                                    theVat +
+                                    usdServiceCharge -
+                                    usdDiscount;
 
-                                    setTotalPaybale(totalPayable);
-                                  } else {
-                                    setOrderDetails({
-                                      ...orderDetails,
-                                      discount: 0,
-                                    });
-                                    let totalPayable = 0;
-                                    // let localCurrency = JSON.parse(
-                                    //   localStorage.getItem(
-                                    //     "currency"
-                                    //   )
-                                    // );
+                                  setTotalPaybale(totalPayable);
+                                } else {
+                                  setOrderDetails({
+                                    ...orderDetails,
+                                    discount: 0,
+                                  });
+                                  let totalPayable = 0;
+                                  // let localCurrency = JSON.parse(
+                                  //   localStorage.getItem(
+                                  //     "currency"
+                                  //   )
+                                  // );
 
-                                    let usdServiceCharge =
-                                      theSubTotal *
-                                      (parseFloat(orderDetails.serviceCharge) /
-                                        100);
+                                  let usdServiceCharge =
+                                    theSubTotal *
+                                    (parseFloat(orderDetails.serviceCharge) /
+                                      100);
 
-                                    let usdDiscount = 0;
+                                  let usdDiscount = 0;
 
-                                    totalPayable =
-                                      theSubTotal +
-                                      theVat +
-                                      usdServiceCharge -
-                                      usdDiscount;
-                                    setTotalPaybale(totalPayable);
-                                  }
-                                }}
-                                value={
-                                  orderDetails.discount !== 0 &&
-                                  orderDetails.discount
+                                  totalPayable =
+                                    theSubTotal +
+                                    theVat +
+                                    usdServiceCharge -
+                                    usdDiscount;
+                                  setTotalPaybale(totalPayable);
                                 }
-                              />
-                            </span>
-                          </div>
+                              }}
+                              value={
+                                orderDetails.discount !== 0 &&
+                                orderDetails.discount
+                              }
+                            />
+                          </span>
                         </div>
                       </div>
-                    </>
-                  )}
+                    </div>
+                  </>
+                )}
               </div>
               <hr />
               <div className="row">
@@ -3647,10 +3658,11 @@ const Pos = () => {
                     {orderDetails.branch !== null && (
                       <>
                         <li
-                          className={`addons-list__item mx-1 ${authUserInfo.details &&
+                          className={`addons-list__item mx-1 ${
+                            authUserInfo.details &&
                             authUserInfo.details.user_type === "staff" &&
                             "mt-1"
-                            }`}
+                          }`}
                         >
                           <Select
                             options={
@@ -3737,8 +3749,9 @@ const Pos = () => {
                           />
                         </li>
                         <li
-                          className={`addons-list__item mx-1 payment-type-parent ${orderDetails.payment_type !== null && "mb-1"
-                            }`}
+                          className={`addons-list__item mx-1 payment-type-parent ${
+                            orderDetails.payment_type !== null && "mb-1"
+                          }`}
                         >
                           <Select
                             options={
@@ -3778,7 +3791,7 @@ const Pos = () => {
                                       value={
                                         orderDetails.payment_amount &&
                                         orderDetails.payment_amount[
-                                        eachPaymentType.id
+                                          eachPaymentType.id
                                         ]
                                       }
                                     />
@@ -3790,7 +3803,7 @@ const Pos = () => {
                         )}
 
                         {getSystemSettings(generalSettings, "table_waiter") ===
-                          "1" ? (
+                        "1" ? (
                           <>
                             <li className="addons-list__item mx-1">
                               <Select
@@ -3858,13 +3871,14 @@ const Pos = () => {
               <div className="fk-left-overlay">
                 <div className="fk-left-overlay__content text-center m-auto">
                   <h5
-                    className={`text-primary text-uppercase ${authUserInfo.details &&
+                    className={`text-primary text-uppercase ${
+                      authUserInfo.details &&
                       authUserInfo.details.user_type !== "staff" &&
                       "mb-0"
-                      }`}
+                    }`}
                   >
                     {authUserInfo.details &&
-                      authUserInfo.details.user_type !== "staff"
+                    authUserInfo.details.user_type !== "staff"
                       ? _t(t("Select branch to active POS"))
                       : _t(t("start workperiod"))}
                   </h5>
@@ -3913,37 +3927,64 @@ const Pos = () => {
                     <ul className="t-list fk-sm-card-list">
                       {tempItems !== null && tempItems.length > 0
                         ? [
-                          tempItems.map((mobileItem, mobileItemIndex) => {
-                            return (
-                              <li
-                                className="fk-sm-card-list__item"
-                                data-toggle={
-                                  handleGetStock(mobileItem.id) === 0
-                                    ? ""
-                                    : "modal"
-                                }
-                                data-target={
-                                  handleGetStock(mobileItem.id) === 0
-                                    ? ""
-                                    : "#menuAddons"
-                                }
-                                key={mobileItemIndex}
-                                onClick={() => {
-                                  // if manage is stock is enable
-                                  if (showManageStock) {
-                                    if (handleGetStock(mobileItem.id) === 0) {
-                                      toast.error(`${_t(t("Out of stock"))}`, {
-                                        position: "bottom-center",
-                                        closeButton: false,
-                                        autoClose: 10000,
-                                        hideProgressBar: false,
-                                        closeOnClick: true,
-                                        pauseOnHover: true,
-                                        className:
-                                          "text-center toast-notification",
-                                      });
+                            tempItems.map((mobileItem, mobileItemIndex) => {
+                              return (
+                                <li
+                                  className="fk-sm-card-list__item"
+                                  data-toggle={
+                                    handleGetStock(mobileItem.id) === 0
+                                      ? ""
+                                      : "modal"
+                                  }
+                                  data-target={
+                                    handleGetStock(mobileItem.id) === 0
+                                      ? ""
+                                      : "#menuAddons"
+                                  }
+                                  key={mobileItemIndex}
+                                  onClick={() => {
+                                    // if manage is stock is enable
+                                    if (showManageStock) {
+                                      if (handleGetStock(mobileItem.id) === 0) {
+                                        toast.error(
+                                          `${_t(t("Out of stock"))}`,
+                                          {
+                                            position: "bottom-center",
+                                            closeButton: false,
+                                            autoClose: 10000,
+                                            hideProgressBar: false,
+                                            closeOnClick: true,
+                                            pauseOnHover: true,
+                                            className:
+                                              "text-center toast-notification",
+                                          }
+                                        );
+                                      } else {
+                                        //set active item in order list
+                                        setActiveItemInOrder(mobileItemIndex);
+                                        // set variations, properties and selected items here
+                                        setFoodItem({
+                                          ...foodItem,
+                                          foodGroup: mobileGroup,
+                                          selectedItem: mobileItem,
+                                          variations:
+                                            mobileItem &&
+                                            parseInt(
+                                              mobileItem.has_variation
+                                            ) === 1
+                                              ? mobileItem.variations
+                                              : null,
+                                          properties:
+                                            mobileItem &&
+                                            parseInt(
+                                              mobileItem.has_property
+                                            ) === 1
+                                              ? mobileItem.properties
+                                              : null,
+                                        });
+                                        handleOrderItem(mobileItem);
+                                      }
                                     } else {
-                                      //set active item in order list
                                       setActiveItemInOrder(mobileItemIndex);
                                       // set variations, properties and selected items here
                                       setFoodItem({
@@ -3952,78 +3993,55 @@ const Pos = () => {
                                         selectedItem: mobileItem,
                                         variations:
                                           mobileItem &&
-                                            parseInt(mobileItem.has_variation) ===
+                                          parseInt(mobileItem.has_variation) ===
                                             1
                                             ? mobileItem.variations
                                             : null,
                                         properties:
                                           mobileItem &&
-                                            parseInt(mobileItem.has_property) ===
+                                          parseInt(mobileItem.has_property) ===
                                             1
                                             ? mobileItem.properties
                                             : null,
                                       });
                                       handleOrderItem(mobileItem);
                                     }
-                                  } else {
-
-                                    setActiveItemInOrder(mobileItemIndex);
-                                    // set variations, properties and selected items here
-                                    setFoodItem({
-                                      ...foodItem,
-                                      foodGroup: mobileGroup,
-                                      selectedItem: mobileItem,
-                                      variations:
-                                        mobileItem &&
-                                          parseInt(mobileItem.has_variation) ===
-                                          1
-                                          ? mobileItem.variations
-                                          : null,
-                                      properties:
-                                        mobileItem &&
-                                          parseInt(mobileItem.has_property) ===
-                                          1
-                                          ? mobileItem.properties
-                                          : null,
-                                    });
-                                    handleOrderItem(mobileItem);
-                                  }
-
-                                }}
-                              >
-                                <div className="fk-sm-card__container align-items-center">
-                                  <div className="fk-sm-card__content">
-                                    <h6 className="text-capitalize fk-sm-card__title">
-                                      {/* {mobileItem.name}, {_t(t("In Stock"))}:{" "}
+                                  }}
+                                >
+                                  <div className="fk-sm-card__container align-items-center">
+                                    <div className="fk-sm-card__content">
+                                      <h6 className="text-capitalize fk-sm-card__title">
+                                        {/* {mobileItem.name}, {_t(t("In Stock"))}:{" "}
                                       {handleGetStock(mobileItem.id)} */}
-                                      stock na thakleo baire theke khuje ene dibo
-                                    </h6>
-                                    {mobileItem.has_variation === "0" && (
-                                      <p className="t-mt-10 mb-0 sm-text text-uppercase t-text-dark--light-20">
-                                        {currencySymbolLeft()}
-                                        {formatPrice(
-                                          parseFloat(mobileItem.price)
-                                        )}
-                                        {currencySymbolRight()}
-                                      </p>
-                                    )}
-                                  </div>
-                                  <div className="fk-sm-card__action">
-                                    <div
-                                      className="fk-sm-card__img fk-sm-card__img--1"
-                                      style={{
-                                        backgroundImage: `url(${mobileItem.image})`,
-                                      }}
-                                    ></div>
-                                    <div className="fk-sm-card__cart">
-                                      <i className="las la-plus"></i>
+                                        stock na thakleo baire theke khuje ene
+                                        dibo
+                                      </h6>
+                                      {mobileItem.has_variation === "0" && (
+                                        <p className="t-mt-10 mb-0 sm-text text-uppercase t-text-dark--light-20">
+                                          {currencySymbolLeft()}
+                                          {formatPrice(
+                                            parseFloat(mobileItem.price)
+                                          )}
+                                          {currencySymbolRight()}
+                                        </p>
+                                      )}
+                                    </div>
+                                    <div className="fk-sm-card__action">
+                                      <div
+                                        className="fk-sm-card__img fk-sm-card__img--1"
+                                        style={{
+                                          backgroundImage: `url(${mobileItem.image})`,
+                                        }}
+                                      ></div>
+                                      <div className="fk-sm-card__cart">
+                                        <i className="las la-plus"></i>
+                                      </div>
                                     </div>
                                   </div>
-                                </div>
-                              </li>
-                            );
-                          }),
-                        ]
+                                </li>
+                              );
+                            }),
+                          ]
                         : ""}
                     </ul>
                   </div>
@@ -4077,13 +4095,14 @@ const Pos = () => {
                       <div className="fk-left-overlay">
                         <div className="fk-left-overlay__content text-center m-auto">
                           <h5
-                            className={`text-primary text-uppercase ${authUserInfo.details &&
+                            className={`text-primary text-uppercase ${
+                              authUserInfo.details &&
                               authUserInfo.details.user_type !== "staff" &&
                               "mb-0"
-                              }`}
+                            }`}
                           >
                             {authUserInfo.details &&
-                              authUserInfo.details.user_type !== "staff"
+                            authUserInfo.details.user_type !== "staff"
                               ? _t(t("Select branch to active POS"))
                               : _t(t("start workperiod"))}
                           </h5>
@@ -4135,7 +4154,7 @@ const Pos = () => {
                         <div className="row align-items-center gx-2">
                           <div className="col">
                             {window.location.pathname ===
-                              "/dashboard/pos/settled" ? (
+                            "/dashboard/pos/settled" ? (
                               <NavLink
                                 to="/refresh"
                                 className="t-link t-pt-8 t-pb-8 t-pl-12 t-pr-12 btn btn-success xsm-text text-uppercase text-center w-100"
@@ -4153,7 +4172,7 @@ const Pos = () => {
                           </div>
                           <div className="col">
                             {window.location.pathname ===
-                              "/dashboard/pos/submitted" ? (
+                            "/dashboard/pos/submitted" ? (
                               <NavLink
                                 to="/refresh"
                                 className="t-link t-pt-8 t-pb-8 t-pl-12 t-pr-12 btn btn-primary xsm-text text-uppercase text-center w-100"
@@ -4187,21 +4206,23 @@ const Pos = () => {
                                     (deptItem, deptItemIndex) => {
                                       return (
                                         <li
-                                          className={`t-mb-10 ${deptItemIndex ===
+                                          className={`t-mb-10 ${
+                                            deptItemIndex ===
                                             deptTagForSearch.length - 1
-                                            ? "t-mb-30"
-                                            : ""
-                                            }`}
+                                              ? "t-mb-30"
+                                              : ""
+                                          }`}
                                         >
                                           <style></style>
                                           <button
-                                            class={`button arrow text-uppercase ${orderDetails &&
+                                            className={`button arrow text-uppercase ${
+                                              orderDetails &&
                                               orderDetails.dept_tag &&
                                               orderDetails.dept_tag.id ===
-                                              deptItem.id
-                                              ? "active"
-                                              : ""
-                                              }`}
+                                                deptItem.id
+                                                ? "active"
+                                                : ""
+                                            }`}
                                             onClick={() => {
                                               handleSetDeptTag(deptItem);
                                             }}
@@ -4250,16 +4271,16 @@ const Pos = () => {
                                                 tempItems && tempItems[0],
                                               variations:
                                                 tempItems &&
-                                                  parseInt(
-                                                    tempItems[0].has_variation
-                                                  ) === 1
+                                                parseInt(
+                                                  tempItems[0].has_variation
+                                                ) === 1
                                                   ? tempItems[0].variations
                                                   : null,
                                               properties:
                                                 tempItems &&
-                                                  parseInt(
-                                                    tempItems[0].has_property
-                                                  ) === 1
+                                                parseInt(
+                                                  tempItems[0].has_property
+                                                ) === 1
                                                   ? tempItems[0].properties
                                                   : null,
                                             });
@@ -4277,11 +4298,12 @@ const Pos = () => {
                                           setActiveItemInOrder(null);
                                         }}
                                         //set active or !
-                                        className={`w-100 t-text-dark t-heading-font btn btn-outline-danger font-weight-bold text-uppercase ${foodItem.foodGroup &&
+                                        className={`w-100 t-text-dark t-heading-font btn btn-outline-danger font-weight-bold text-uppercase ${
+                                          foodItem.foodGroup &&
                                           foodItem.foodGroup.id ===
-                                          groupItem.id &&
+                                            groupItem.id &&
                                           "active"
-                                          }`}
+                                        }`}
                                       >
                                         {groupItem.name}
                                       </button>
@@ -4396,7 +4418,7 @@ const Pos = () => {
                                           {foodItem.properties && (
                                             <>
                                               {foodItem.properties.length >
-                                                0 ? (
+                                              0 ? (
                                                 foodItem.properties.map(
                                                   (propertyItem) => {
                                                     //property group
@@ -4527,22 +4549,22 @@ const Pos = () => {
                                                                           eachItem.allow_multi_quantity
                                                                         ) ===
                                                                           1 && (
-                                                                            <span
-                                                                              className="fk-qty__icon fk-qty__deduct"
-                                                                              onClick={() => {
-                                                                                handlePropertyQty(
-                                                                                  eachItem,
-                                                                                  "-"
-                                                                                );
-                                                                              }}
-                                                                            >
-                                                                              <i className="las la-minus"></i>
-                                                                            </span>
-                                                                          )}
+                                                                          <span
+                                                                            className="fk-qty__icon fk-qty__deduct"
+                                                                            onClick={() => {
+                                                                              handlePropertyQty(
+                                                                                eachItem,
+                                                                                "-"
+                                                                              );
+                                                                            }}
+                                                                          >
+                                                                            <i className="las la-minus"></i>
+                                                                          </span>
+                                                                        )}
                                                                         {parseInt(
                                                                           eachItem.allow_multi_quantity
                                                                         ) ===
-                                                                          1 ? (
+                                                                        1 ? (
                                                                           <input
                                                                             type="text"
                                                                             value={checkCheckedPropertyQuantity(
@@ -4558,18 +4580,18 @@ const Pos = () => {
                                                                           eachItem.allow_multi_quantity
                                                                         ) ===
                                                                           1 && (
-                                                                            <span
-                                                                              className="fk-qty__icon fk-qty__add"
-                                                                              onClick={() => {
-                                                                                handlePropertyQty(
-                                                                                  eachItem,
-                                                                                  "+"
-                                                                                );
-                                                                              }}
-                                                                            >
-                                                                              <i className="las la-plus"></i>
-                                                                            </span>
-                                                                          )}
+                                                                          <span
+                                                                            className="fk-qty__icon fk-qty__add"
+                                                                            onClick={() => {
+                                                                              handlePropertyQty(
+                                                                                eachItem,
+                                                                                "+"
+                                                                              );
+                                                                            }}
+                                                                          >
+                                                                            <i className="las la-plus"></i>
+                                                                          </span>
+                                                                        )}
                                                                       </div>
                                                                     </div>
                                                                     <div className="col-4 text-center">
@@ -4627,9 +4649,12 @@ const Pos = () => {
                                                     ) === 0
                                                   ) {
                                                     toast.error(
-                                                      `${_t(t("Out of stock"))}`,
+                                                      `${_t(
+                                                        t("Out of stock")
+                                                      )}`,
                                                       {
-                                                        position: "bottom-center",
+                                                        position:
+                                                          "bottom-center",
                                                         closeButton: false,
                                                         autoClose: 10000,
                                                         hideProgressBar: false,
@@ -4643,54 +4668,56 @@ const Pos = () => {
                                                     // set variations, properties and selected items here
                                                     setFoodItem({
                                                       ...foodItem,
-                                                      selectedItem: tempFoodItem,
+                                                      selectedItem:
+                                                        tempFoodItem,
                                                       variations:
                                                         tempFoodItem &&
-                                                          parseInt(
-                                                            tempFoodItem.has_variation
-                                                          ) === 1
+                                                        parseInt(
+                                                          tempFoodItem.has_variation
+                                                        ) === 1
                                                           ? tempFoodItem.variations
                                                           : null,
                                                       properties:
                                                         tempFoodItem &&
-                                                          parseInt(
-                                                            tempFoodItem.has_property
-                                                          ) === 1
+                                                        parseInt(
+                                                          tempFoodItem.has_property
+                                                        ) === 1
                                                           ? tempFoodItem.properties
                                                           : null,
                                                     });
-                                                    handleOrderItem(tempFoodItem);
+                                                    handleOrderItem(
+                                                      tempFoodItem
+                                                    );
                                                   }
                                                 } else {
-
                                                   // set variations, properties and selected items here
                                                   setFoodItem({
                                                     ...foodItem,
                                                     selectedItem: tempFoodItem,
                                                     variations:
                                                       tempFoodItem &&
-                                                        parseInt(
-                                                          tempFoodItem.has_variation
-                                                        ) === 1
+                                                      parseInt(
+                                                        tempFoodItem.has_variation
+                                                      ) === 1
                                                         ? tempFoodItem.variations
                                                         : null,
                                                     properties:
                                                       tempFoodItem &&
-                                                        parseInt(
-                                                          tempFoodItem.has_property
-                                                        ) === 1
+                                                      parseInt(
+                                                        tempFoodItem.has_property
+                                                      ) === 1
                                                         ? tempFoodItem.properties
                                                         : null,
                                                   });
                                                   handleOrderItem(tempFoodItem);
                                                 }
-
                                               }}
-                                              className={`fk-dish__link t-mb-10 col-md-6 col-lg-4 col-xl-6 col-xxl-4 t-link border-0 pointer-cursor ${foodItem.selectedItem &&
+                                              className={`fk-dish__link t-mb-10 col-md-6 col-lg-4 col-xl-6 col-xxl-4 t-link border-0 pointer-cursor ${
+                                                foodItem.selectedItem &&
                                                 foodItem.selectedItem.id ===
-                                                tempFoodItem.id &&
+                                                  tempFoodItem.id &&
                                                 "active"
-                                                }`}
+                                              }`}
                                             >
                                               <div className="fk-dish-card w-100">
                                                 <div className="fk-dish-card__img w-100">
@@ -4703,12 +4730,14 @@ const Pos = () => {
                                                 <span className="fk-dish-card__title text-center text-uppercase">
                                                   {tempFoodItem.name} <br />
                                                   {/* check is manage menu is active or not  */}
-                                                  {showManageStock ? <>
-                                                    {_t(t("In Stock"))}:{" "}
-                                                    {handleGetStock(
-                                                      tempFoodItem.id
-                                                    )}
-                                                  </> : null}
+                                                  {showManageStock ? (
+                                                    <>
+                                                      {_t(t("In Stock"))}:{" "}
+                                                      {handleGetStock(
+                                                        tempFoodItem.id
+                                                      )}
+                                                    </>
+                                                  ) : null}
                                                 </span>
                                               </div>
                                             </div>
@@ -4742,7 +4771,7 @@ const Pos = () => {
                               <ul className="t-list addons-list">
                                 {authUserInfo.details &&
                                   authUserInfo.details.user_type !==
-                                  "staff" && (
+                                    "staff" && (
                                     <li className="addons-list__item mt-1 mx-1">
                                       <Select
                                         options={
@@ -4764,16 +4793,17 @@ const Pos = () => {
                                     {orderDetails.branch !== null && (
                                       <>
                                         <li
-                                          className={`addons-list__item mx-1 ${authUserInfo.details &&
+                                          className={`addons-list__item mx-1 ${
+                                            authUserInfo.details &&
                                             authUserInfo.details.user_type ===
-                                            "staff" &&
+                                              "staff" &&
                                             "mt-1"
-                                            }`}
+                                          }`}
                                         >
                                           <Select
                                             options={
                                               orderDetailUsers.theCustomers !==
-                                              null &&
+                                                null &&
                                               orderDetailUsers.theCustomers
                                             }
                                             components={makeAnimated()}
@@ -4858,103 +4888,104 @@ const Pos = () => {
                                           generalSettings,
                                           "pos_screen"
                                         ) === "0" && (
-                                            <>
-                                              <li className="addons-list__item mx-1">
-                                                <Select
-                                                  options={
-                                                    deptTagForSearch &&
-                                                    deptTagForSearch
-                                                  }
-                                                  components={makeAnimated()}
-                                                  getOptionLabel={(option) =>
-                                                    option.name
-                                                  }
-                                                  getOptionValue={(option) =>
-                                                    option.name
-                                                  }
-                                                  classNamePrefix="select"
-                                                  className="xsm-text"
-                                                  onChange={handleSetDeptTag}
-                                                  maxMenuHeight="200px"
-                                                  placeholder={
-                                                    _t(t("Dept tag")) + ".."
-                                                  }
-                                                />
-                                              </li>
+                                          <>
+                                            <li className="addons-list__item mx-1">
+                                              <Select
+                                                options={
+                                                  deptTagForSearch &&
+                                                  deptTagForSearch
+                                                }
+                                                components={makeAnimated()}
+                                                getOptionLabel={(option) =>
+                                                  option.name
+                                                }
+                                                getOptionValue={(option) =>
+                                                  option.name
+                                                }
+                                                classNamePrefix="select"
+                                                className="xsm-text"
+                                                onChange={handleSetDeptTag}
+                                                maxMenuHeight="200px"
+                                                placeholder={
+                                                  _t(t("Dept tag")) + ".."
+                                                }
+                                              />
+                                            </li>
 
-                                              <li
-                                                className={`addons-list__item mx-1 payment-type-parent ${orderDetails.payment_type !==
+                                            <li
+                                              className={`addons-list__item mx-1 payment-type-parent ${
+                                                orderDetails.payment_type !==
                                                   null && "mb-1"
-                                                  }`}
-                                              >
-                                                <Select
-                                                  options={
-                                                    paymentTypeForSearch &&
-                                                    paymentTypeForSearch
+                                              }`}
+                                            >
+                                              <Select
+                                                options={
+                                                  paymentTypeForSearch &&
+                                                  paymentTypeForSearch
+                                                }
+                                                components={makeAnimated()}
+                                                getOptionLabel={(option) =>
+                                                  option.name
+                                                }
+                                                getOptionValue={(option) =>
+                                                  option.name
+                                                }
+                                                classNamePrefix="select"
+                                                className="xsm-text"
+                                                onChange={handleSetpaymentType}
+                                                maxMenuHeight="200px"
+                                                isMulti
+                                                backspaceRemovesValue={false}
+                                                clearIndicator={null}
+                                                placeholder={
+                                                  _t(t("Payments")) + ".."
+                                                }
+                                              />
+                                            </li>
+                                            {orderDetails.payment_type !==
+                                              null && (
+                                              <div className="border mt-0 mb-2 change-background mx-1 rounded-lg">
+                                                <div className="xsm-text text-center text-white pt-1">
+                                                  {_t(t("Amount"))}
+                                                </div>
+                                                {orderDetails.payment_type.map(
+                                                  (
+                                                    eachPaymentType,
+                                                    paymentTypeIndex
+                                                  ) => {
+                                                    return (
+                                                      <li className="addons-list__item mx-1 mb-1">
+                                                        <input
+                                                          type="number"
+                                                          min="0"
+                                                          step="0.01"
+                                                          name={
+                                                            eachPaymentType.id
+                                                          }
+                                                          autoComplete="off"
+                                                          className="form-control xsm-text pl-2"
+                                                          onChange={
+                                                            handlePaymentTypeAmount
+                                                          }
+                                                          placeholder={
+                                                            eachPaymentType.name
+                                                          }
+                                                          value={
+                                                            orderDetails.payment_amount &&
+                                                            orderDetails
+                                                              .payment_amount[
+                                                              eachPaymentType.id
+                                                            ]
+                                                          }
+                                                        />
+                                                      </li>
+                                                    );
                                                   }
-                                                  components={makeAnimated()}
-                                                  getOptionLabel={(option) =>
-                                                    option.name
-                                                  }
-                                                  getOptionValue={(option) =>
-                                                    option.name
-                                                  }
-                                                  classNamePrefix="select"
-                                                  className="xsm-text"
-                                                  onChange={handleSetpaymentType}
-                                                  maxMenuHeight="200px"
-                                                  isMulti
-                                                  backspaceRemovesValue={false}
-                                                  clearIndicator={null}
-                                                  placeholder={
-                                                    _t(t("Payments")) + ".."
-                                                  }
-                                                />
-                                              </li>
-                                              {orderDetails.payment_type !==
-                                                null && (
-                                                  <div className="border mt-0 mb-2 change-background mx-1 rounded-lg">
-                                                    <div className="xsm-text text-center text-white pt-1">
-                                                      {_t(t("Amount"))}
-                                                    </div>
-                                                    {orderDetails.payment_type.map(
-                                                      (
-                                                        eachPaymentType,
-                                                        paymentTypeIndex
-                                                      ) => {
-                                                        return (
-                                                          <li className="addons-list__item mx-1 mb-1">
-                                                            <input
-                                                              type="number"
-                                                              min="0"
-                                                              step="0.01"
-                                                              name={
-                                                                eachPaymentType.id
-                                                              }
-                                                              autoComplete="off"
-                                                              className="form-control xsm-text pl-2"
-                                                              onChange={
-                                                                handlePaymentTypeAmount
-                                                              }
-                                                              placeholder={
-                                                                eachPaymentType.name
-                                                              }
-                                                              value={
-                                                                orderDetails.payment_amount &&
-                                                                orderDetails
-                                                                  .payment_amount[
-                                                                eachPaymentType.id
-                                                                ]
-                                                              }
-                                                            />
-                                                          </li>
-                                                        );
-                                                      }
-                                                    )}
-                                                  </div>
                                                 )}
-                                            </>
-                                          )}
+                                              </div>
+                                            )}
+                                          </>
+                                        )}
 
                                         {getSystemSettings(
                                           generalSettings,
@@ -4965,7 +4996,7 @@ const Pos = () => {
                                               <Select
                                                 options={
                                                   orderDetailUsers.theTables !==
-                                                  null &&
+                                                    null &&
                                                   orderDetailUsers.theTables
                                                 }
                                                 components={makeAnimated()}
@@ -4988,7 +5019,7 @@ const Pos = () => {
                                               <Select
                                                 options={
                                                   orderDetailUsers.theWaiters !==
-                                                  null &&
+                                                    null &&
                                                   orderDetailUsers.theWaiters
                                                 }
                                                 components={makeAnimated()}
@@ -5215,14 +5246,15 @@ const Pos = () => {
                                           generalSettings,
                                           "vat_system"
                                         ) === "igst"
-                                          ? `vat(${newSettings !== null &&
-                                          newSettings.vat
-                                          })`
+                                          ? `vat(${
+                                              newSettings !== null &&
+                                              newSettings.vat
+                                            })`
                                           : getSystemSettings(
-                                            generalSettings,
-                                            "vat_system"
-                                          ) === "cgst"
-                                            ? "cgst+sgst" +
+                                              generalSettings,
+                                              "vat_system"
+                                            ) === "cgst"
+                                          ? "cgst+sgst" +
                                             "(" +
                                             getSystemSettings(
                                               generalSettings,
@@ -5233,9 +5265,10 @@ const Pos = () => {
                                               generalSettings,
                                               "sgst"
                                             ) +
-                                            ")" :
-                                            `tax(${newSettings !== null &&
-                                            newSettings.tax
+                                            ")"
+                                          : `tax(${
+                                              newSettings !== null &&
+                                              newSettings.tax
                                             })`}
                                         %:
                                       </span>
@@ -5387,10 +5420,11 @@ const Pos = () => {
                                             return (
                                               <>
                                                 <div
-                                                  className={`fk-table-container-order ${orderListItemIndex ===
-                                                    activeItemInOrder &&
+                                                  className={`fk-table-container-order ${
+                                                    orderListItemIndex ===
+                                                      activeItemInOrder &&
                                                     "active"
-                                                    } `}
+                                                  } `}
                                                   onClick={(e) => {
                                                     e.preventDefault();
                                                     //orderListItem's group wise all items
@@ -5443,16 +5477,16 @@ const Pos = () => {
                                                         selectedItemTemp,
                                                       variations:
                                                         selectedItemTemp &&
-                                                          parseInt(
-                                                            selectedItemTemp.has_variation
-                                                          ) === 1
+                                                        parseInt(
+                                                          selectedItemTemp.has_variation
+                                                        ) === 1
                                                           ? selectedItemTemp.variations
                                                           : null,
                                                       properties:
                                                         selectedItemTemp &&
-                                                          parseInt(
-                                                            selectedItemTemp.has_property
-                                                          ) === 1
+                                                        parseInt(
+                                                          selectedItemTemp.has_property
+                                                        ) === 1
                                                           ? selectedItemTemp.properties
                                                           : null,
                                                     });
@@ -5487,27 +5521,27 @@ const Pos = () => {
                                                           orderListItem.item
                                                             .has_variation
                                                         ) === 1 && (
-                                                            <div className="col-12">
-                                                              <span className="text-capitalize sm-text d-inline-block font-weight-bold t-pr-5 t-pl-5">
-                                                                variation :
-                                                              </span>
-                                                              <span className="text-capitalize xsm-text d-inline-block badge rounded-pill bg-warning text-dark font-weight-md">
-                                                                {orderListItem.variation
-                                                                  ? orderListItem
+                                                          <div className="col-12">
+                                                            <span className="text-capitalize sm-text d-inline-block font-weight-bold t-pr-5 t-pl-5">
+                                                              variation :
+                                                            </span>
+                                                            <span className="text-capitalize xsm-text d-inline-block badge rounded-pill bg-warning text-dark font-weight-md">
+                                                              {orderListItem.variation
+                                                                ? orderListItem
                                                                     .variation
                                                                     .variation_name
-                                                                  : "-"}
-                                                              </span>
-                                                            </div>
-                                                          )}
+                                                                : "-"}
+                                                            </span>
+                                                          </div>
+                                                        )}
 
                                                         {/* if item has properties show the selected in order list, loop here  */}
                                                         {orderListItem.properties &&
                                                           orderListItem
                                                             .properties.length >
-                                                          0 &&
+                                                            0 &&
                                                           selectedPropertyGroup[
-                                                          orderListItemIndex
+                                                            orderListItemIndex
                                                           ] !== undefined &&
                                                           selectedPropertyGroup[
                                                             orderListItemIndex
@@ -5554,8 +5588,8 @@ const Pos = () => {
                                                                               {propertyName.quantity >
                                                                                 1 &&
                                                                                 "(" +
-                                                                                propertyName.quantity +
-                                                                                ")"}
+                                                                                  propertyName.quantity +
+                                                                                  ")"}
                                                                             </span>
                                                                           </span>
                                                                         );
@@ -5700,14 +5734,15 @@ const Pos = () => {
                                               generalSettings,
                                               "vat_system"
                                             ) === "igst"
-                                              ? `vat(${newSettings !== null &&
-                                              newSettings.vat
-                                              })`
+                                              ? `vat(${
+                                                  newSettings !== null &&
+                                                  newSettings.vat
+                                                })`
                                               : getSystemSettings(
-                                                generalSettings,
-                                                "vat_system"
-                                              ) === "cgst"
-                                                ? "cgst+sgst" +
+                                                  generalSettings,
+                                                  "vat_system"
+                                                ) === "cgst"
+                                              ? "cgst+sgst" +
                                                 "(" +
                                                 getSystemSettings(
                                                   generalSettings,
@@ -5718,9 +5753,10 @@ const Pos = () => {
                                                   generalSettings,
                                                   "sgst"
                                                 ) +
-                                                ")" :
-                                                `tax(${newSettings !== null &&
-                                                newSettings.vat
+                                                ")"
+                                              : `tax(${
+                                                  newSettings !== null &&
+                                                  newSettings.vat
                                                 })`}
                                             %:
                                           </span>
@@ -5751,10 +5787,10 @@ const Pos = () => {
                                             {orderDetails &&
                                               orderDetails.dept_tag &&
                                               " (" +
-                                              orderDetails.dept_tag
-                                                .commission +
-                                              "%" +
-                                              ")"}{" "}
+                                                orderDetails.dept_tag
+                                                  .commission +
+                                                "%" +
+                                                ")"}{" "}
                                             :{" "}
                                             {newOrder ? (
                                               <span className="text-capitalize xsm-text d-inline-block font-weight-bold t-pt-5 t-pb-5">
@@ -5779,380 +5815,380 @@ const Pos = () => {
                                     generalSettings,
                                     "sDiscount"
                                   ) === "flat" && (
-                                      <div className="row g-0 border">
-                                        <div className="col-6 text-center border-right">
-                                          <div className="row g-0">
-                                            <div className="col-6">
-                                              <span className="text-capitalize xsm-text d-inline-block font-weight-bold t-pt-5 t-pb-5">
-                                                {_t(t("service charge"))}
-                                              </span>
-                                            </div>
-                                            <div className="col-6">
-                                              <input
-                                                type="number"
-                                                step="0.01"
-                                                min="0"
-                                                className="text-capitalize xsm-text d-inline-block font-weight-bold t-pt-5 t-pb-5 form-control rounded-0 text-center"
-                                                onChange={(e) => {
-                                                  if (e.target.value !== "") {
-                                                    setOrderDetails({
-                                                      ...orderDetails,
-                                                      serviceCharge: parseFloat(
-                                                        e.target.value
-                                                      ),
-                                                    });
-                                                    let totalPayable = 0;
-                                                    let localCurrency =
-                                                      JSON.parse(
-                                                        localStorage.getItem(
-                                                          "currency"
-                                                        )
-                                                      );
-                                                    let usdServiceCharge =
-                                                      parseFloat(e.target.value) /
-                                                      localCurrency.rate;
-                                                    let usdDiscount =
-                                                      parseFloat(
-                                                        orderDetails.discount
-                                                      ) / localCurrency.rate;
-
-                                                    totalPayable =
-                                                      theSubTotal +
-                                                      theVat +
-                                                      usdServiceCharge -
-                                                      usdDiscount;
-                                                    setTotalPaybale(totalPayable);
-                                                    setReturnMoneyUsd(
-                                                      totalPayable - paidMoney
-                                                    );
-                                                  } else {
-                                                    setOrderDetails({
-                                                      ...orderDetails,
-                                                      serviceCharge: 0,
-                                                    });
-                                                    let totalPayable = 0;
-                                                    let localCurrency =
-                                                      JSON.parse(
-                                                        localStorage.getItem(
-                                                          "currency"
-                                                        )
-                                                      );
-                                                    let usdServiceCharge =
-                                                      parseFloat(0) /
-                                                      localCurrency.rate;
-                                                    let usdDiscount =
-                                                      parseFloat(
-                                                        orderDetails.discount
-                                                      ) / localCurrency.rate;
-
-                                                    totalPayable =
-                                                      theSubTotal +
-                                                      theVat +
-                                                      usdServiceCharge -
-                                                      usdDiscount;
-                                                    setTotalPaybale(totalPayable);
-                                                    setReturnMoneyUsd(
-                                                      totalPayable - paidMoney
-                                                    );
-                                                  }
-                                                }}
-                                                value={
-                                                  orderDetails.serviceCharge !==
-                                                  0 &&
-                                                  orderDetails.serviceCharge
-                                                }
-                                              />
-                                            </div>
+                                    <div className="row g-0 border">
+                                      <div className="col-6 text-center border-right">
+                                        <div className="row g-0">
+                                          <div className="col-6">
+                                            <span className="text-capitalize xsm-text d-inline-block font-weight-bold t-pt-5 t-pb-5">
+                                              {_t(t("service charge"))}
+                                            </span>
                                           </div>
-                                        </div>
-                                        <div className="col-6 text-center">
-                                          <div className="row g-0">
-                                            <div className="col-6">
-                                              <span className="text-capitalize xsm-text d-inline-block font-weight-bold t-pt-5 t-pb-5">
-                                                {_t(t("discount"))}
-                                              </span>
-                                            </div>
-                                            <div className="col-6">
-                                              <input
-                                                type="number"
-                                                step="0.01"
-                                                min="0"
-                                                className="text-capitalize xsm-text d-inline-block font-weight-bold t-pt-5 t-pb-5 form-control rounded-0 text-center"
-                                                onChange={(e) => {
-                                                  if (e.target.value !== "") {
-                                                    setOrderDetails({
-                                                      ...orderDetails,
-                                                      discount: parseFloat(
-                                                        e.target.value
-                                                      ),
-                                                    });
-                                                    let totalPayable = 0;
-                                                    let localCurrency =
-                                                      JSON.parse(
-                                                        localStorage.getItem(
-                                                          "currency"
-                                                        )
-                                                      );
-                                                    let usdServiceCharge =
-                                                      parseFloat(
-                                                        orderDetails.serviceCharge
-                                                      ) / localCurrency.rate;
-                                                    let usdDiscount =
-                                                      parseFloat(e.target.value) /
-                                                      localCurrency.rate;
-
-                                                    totalPayable =
-                                                      theSubTotal +
-                                                      theVat +
-                                                      usdServiceCharge -
-                                                      usdDiscount;
-
-                                                    setTotalPaybale(totalPayable);
-                                                    setReturnMoneyUsd(
-                                                      totalPayable - paidMoney
+                                          <div className="col-6">
+                                            <input
+                                              type="number"
+                                              step="0.01"
+                                              min="0"
+                                              className="text-capitalize xsm-text d-inline-block font-weight-bold t-pt-5 t-pb-5 form-control rounded-0 text-center"
+                                              onChange={(e) => {
+                                                if (e.target.value !== "") {
+                                                  setOrderDetails({
+                                                    ...orderDetails,
+                                                    serviceCharge: parseFloat(
+                                                      e.target.value
+                                                    ),
+                                                  });
+                                                  let totalPayable = 0;
+                                                  let localCurrency =
+                                                    JSON.parse(
+                                                      localStorage.getItem(
+                                                        "currency"
+                                                      )
                                                     );
-                                                  } else {
-                                                    setOrderDetails({
-                                                      ...orderDetails,
-                                                      discount: 0,
-                                                    });
-                                                    let totalPayable = 0;
-                                                    let localCurrency =
-                                                      JSON.parse(
-                                                        localStorage.getItem(
-                                                          "currency"
-                                                        )
-                                                      );
-                                                    let usdServiceCharge =
-                                                      parseFloat(
-                                                        orderDetails.serviceCharge
-                                                      ) / localCurrency.rate;
-                                                    let usdDiscount =
-                                                      parseFloat(0) /
-                                                      localCurrency.rate;
+                                                  let usdServiceCharge =
+                                                    parseFloat(e.target.value) /
+                                                    localCurrency.rate;
+                                                  let usdDiscount =
+                                                    parseFloat(
+                                                      orderDetails.discount
+                                                    ) / localCurrency.rate;
 
-                                                    totalPayable =
-                                                      theSubTotal +
-                                                      theVat +
-                                                      usdServiceCharge -
-                                                      usdDiscount;
-                                                    setTotalPaybale(totalPayable);
-                                                    setReturnMoneyUsd(
-                                                      totalPayable - paidMoney
+                                                  totalPayable =
+                                                    theSubTotal +
+                                                    theVat +
+                                                    usdServiceCharge -
+                                                    usdDiscount;
+                                                  setTotalPaybale(totalPayable);
+                                                  setReturnMoneyUsd(
+                                                    totalPayable - paidMoney
+                                                  );
+                                                } else {
+                                                  setOrderDetails({
+                                                    ...orderDetails,
+                                                    serviceCharge: 0,
+                                                  });
+                                                  let totalPayable = 0;
+                                                  let localCurrency =
+                                                    JSON.parse(
+                                                      localStorage.getItem(
+                                                        "currency"
+                                                      )
                                                     );
-                                                  }
-                                                }}
-                                                value={
-                                                  orderDetails.discount !== 0 &&
-                                                  orderDetails.discount
+                                                  let usdServiceCharge =
+                                                    parseFloat(0) /
+                                                    localCurrency.rate;
+                                                  let usdDiscount =
+                                                    parseFloat(
+                                                      orderDetails.discount
+                                                    ) / localCurrency.rate;
+
+                                                  totalPayable =
+                                                    theSubTotal +
+                                                    theVat +
+                                                    usdServiceCharge -
+                                                    usdDiscount;
+                                                  setTotalPaybale(totalPayable);
+                                                  setReturnMoneyUsd(
+                                                    totalPayable - paidMoney
+                                                  );
                                                 }
-                                              />
-                                            </div>
+                                              }}
+                                              value={
+                                                orderDetails.serviceCharge !==
+                                                  0 &&
+                                                orderDetails.serviceCharge
+                                              }
+                                            />
                                           </div>
                                         </div>
                                       </div>
-                                    )}
+                                      <div className="col-6 text-center">
+                                        <div className="row g-0">
+                                          <div className="col-6">
+                                            <span className="text-capitalize xsm-text d-inline-block font-weight-bold t-pt-5 t-pb-5">
+                                              {_t(t("discount"))}
+                                            </span>
+                                          </div>
+                                          <div className="col-6">
+                                            <input
+                                              type="number"
+                                              step="0.01"
+                                              min="0"
+                                              className="text-capitalize xsm-text d-inline-block font-weight-bold t-pt-5 t-pb-5 form-control rounded-0 text-center"
+                                              onChange={(e) => {
+                                                if (e.target.value !== "") {
+                                                  setOrderDetails({
+                                                    ...orderDetails,
+                                                    discount: parseFloat(
+                                                      e.target.value
+                                                    ),
+                                                  });
+                                                  let totalPayable = 0;
+                                                  let localCurrency =
+                                                    JSON.parse(
+                                                      localStorage.getItem(
+                                                        "currency"
+                                                      )
+                                                    );
+                                                  let usdServiceCharge =
+                                                    parseFloat(
+                                                      orderDetails.serviceCharge
+                                                    ) / localCurrency.rate;
+                                                  let usdDiscount =
+                                                    parseFloat(e.target.value) /
+                                                    localCurrency.rate;
+
+                                                  totalPayable =
+                                                    theSubTotal +
+                                                    theVat +
+                                                    usdServiceCharge -
+                                                    usdDiscount;
+
+                                                  setTotalPaybale(totalPayable);
+                                                  setReturnMoneyUsd(
+                                                    totalPayable - paidMoney
+                                                  );
+                                                } else {
+                                                  setOrderDetails({
+                                                    ...orderDetails,
+                                                    discount: 0,
+                                                  });
+                                                  let totalPayable = 0;
+                                                  let localCurrency =
+                                                    JSON.parse(
+                                                      localStorage.getItem(
+                                                        "currency"
+                                                      )
+                                                    );
+                                                  let usdServiceCharge =
+                                                    parseFloat(
+                                                      orderDetails.serviceCharge
+                                                    ) / localCurrency.rate;
+                                                  let usdDiscount =
+                                                    parseFloat(0) /
+                                                    localCurrency.rate;
+
+                                                  totalPayable =
+                                                    theSubTotal +
+                                                    theVat +
+                                                    usdServiceCharge -
+                                                    usdDiscount;
+                                                  setTotalPaybale(totalPayable);
+                                                  setReturnMoneyUsd(
+                                                    totalPayable - paidMoney
+                                                  );
+                                                }
+                                              }}
+                                              value={
+                                                orderDetails.discount !== 0 &&
+                                                orderDetails.discount
+                                              }
+                                            />
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  )}
                                   {getSystemSettings(
                                     generalSettings,
                                     "sDiscount"
                                   ) === "percentage" && (
-                                      <div className="row g-0 border">
-                                        <div className="col-6 text-center border-right">
-                                          <div className="row g-0">
-                                            <div className="col-6">
-                                              <span className="text-capitalize xsm-text d-inline-block font-weight-bold t-pt-5 t-pb-5">
-                                                {_t(t("service charge"))} %
-                                              </span>
-                                            </div>
-                                            <div className="col-6">
-                                              <input
-                                                type="number"
-                                                step="0.01"
-                                                min="0"
-                                                className="text-capitalize xsm-text d-inline-block font-weight-bold t-pt-5 t-pb-5 form-control rounded-0 text-center"
-                                                onChange={(e) => {
-                                                  if (e.target.value !== "") {
-                                                    setOrderDetails({
-                                                      ...orderDetails,
-                                                      serviceCharge: parseFloat(
-                                                        e.target.value
-                                                      ),
-                                                    });
-                                                    let totalPayable = 0;
-                                                    // let localCurrency = JSON.parse(
-                                                    //   localStorage.getItem(
-                                                    //     "currency"
-                                                    //   )
-                                                    // );
-                                                    // let usdServiceCharge =
-                                                    //   parseFloat(e.target.value) /
-                                                    //   localCurrency.rate;
-                                                    // console.log("coming");
-                                                    let usdServiceCharge =
-                                                      theSubTotal *
-                                                      (parseFloat(
-                                                        e.target.value
-                                                      ) /
-                                                        100);
-
-                                                    // let usdDiscount =
-                                                    //   parseFloat(
-                                                    //     orderDetails.discount
-                                                    //   ) / localCurrency.rate;
-
-                                                    let usdDiscount =
-                                                      theSubTotal *
-                                                      (parseFloat(
-                                                        orderDetails.discount
-                                                      ) /
-                                                        100);
-
-                                                    totalPayable =
-                                                      theSubTotal +
-                                                      theVat +
-                                                      usdServiceCharge -
-                                                      usdDiscount;
-                                                    setTotalPaybale(totalPayable);
-                                                  } else {
-                                                    setOrderDetails({
-                                                      ...orderDetails,
-                                                      serviceCharge: 0,
-                                                    });
-                                                    let totalPayable = 0;
-                                                    // let localCurrency = JSON.parse(
-                                                    //   localStorage.getItem(
-                                                    //     "currency"
-                                                    //   )
-                                                    // );
-                                                    // let usdServiceCharge =
-                                                    //   parseFloat(0) /
-                                                    //   localCurrency.rate;
-                                                    let usdServiceCharge = 0;
-
-                                                    // let usdDiscount =
-                                                    //   parseFloat(
-                                                    //     orderDetails.discount
-                                                    //   ) / localCurrency.rate;
-
-                                                    let usdDiscount =
-                                                      theSubTotal *
-                                                      (parseFloat(
-                                                        orderDetails.discount
-                                                      ) /
-                                                        100);
-
-                                                    totalPayable =
-                                                      theSubTotal +
-                                                      theVat +
-                                                      usdServiceCharge -
-                                                      usdDiscount;
-                                                    setTotalPaybale(totalPayable);
-                                                  }
-                                                }}
-                                                value={
-                                                  orderDetails.serviceCharge !==
-                                                  0 &&
-                                                  orderDetails.serviceCharge
-                                                }
-                                              />
-                                            </div>
+                                    <div className="row g-0 border">
+                                      <div className="col-6 text-center border-right">
+                                        <div className="row g-0">
+                                          <div className="col-6">
+                                            <span className="text-capitalize xsm-text d-inline-block font-weight-bold t-pt-5 t-pb-5">
+                                              {_t(t("service charge"))} %
+                                            </span>
                                           </div>
-                                        </div>
-                                        <div className="col-6 text-center">
-                                          <div className="row g-0">
-                                            <div className="col-6">
-                                              <span className="text-capitalize xsm-text d-inline-block font-weight-bold t-pt-5 t-pb-5">
-                                                {_t(t("discount"))} %
-                                              </span>
-                                            </div>
-                                            <div className="col-6">
-                                              <input
-                                                type="number"
-                                                step="0.01"
-                                                min="0"
-                                                className="text-capitalize xsm-text d-inline-block font-weight-bold t-pt-5 t-pb-5 form-control rounded-0 text-center"
-                                                onChange={(e) => {
-                                                  if (e.target.value !== "") {
-                                                    setOrderDetails({
-                                                      ...orderDetails,
-                                                      discount: parseFloat(
-                                                        e.target.value
-                                                      ),
-                                                    });
-                                                    let totalPayable = 0;
-                                                    // let localCurrency = JSON.parse(
-                                                    //   localStorage.getItem(
-                                                    //     "currency"
-                                                    //   )
-                                                    // );
-                                                    // let usdServiceCharge =
-                                                    //   parseFloat(
-                                                    //     orderDetails.serviceCharge
-                                                    //   ) / localCurrency.rate;
-                                                    let usdServiceCharge =
-                                                      theSubTotal *
-                                                      (parseFloat(
-                                                        orderDetails.serviceCharge
-                                                      ) /
-                                                        100);
+                                          <div className="col-6">
+                                            <input
+                                              type="number"
+                                              step="0.01"
+                                              min="0"
+                                              className="text-capitalize xsm-text d-inline-block font-weight-bold t-pt-5 t-pb-5 form-control rounded-0 text-center"
+                                              onChange={(e) => {
+                                                if (e.target.value !== "") {
+                                                  setOrderDetails({
+                                                    ...orderDetails,
+                                                    serviceCharge: parseFloat(
+                                                      e.target.value
+                                                    ),
+                                                  });
+                                                  let totalPayable = 0;
+                                                  // let localCurrency = JSON.parse(
+                                                  //   localStorage.getItem(
+                                                  //     "currency"
+                                                  //   )
+                                                  // );
+                                                  // let usdServiceCharge =
+                                                  //   parseFloat(e.target.value) /
+                                                  //   localCurrency.rate;
+                                                  // console.log("coming");
+                                                  let usdServiceCharge =
+                                                    theSubTotal *
+                                                    (parseFloat(
+                                                      e.target.value
+                                                    ) /
+                                                      100);
 
-                                                    // let usdDiscount =
-                                                    //   parseFloat(e.target.value) /
-                                                    //   localCurrency.rate;
+                                                  // let usdDiscount =
+                                                  //   parseFloat(
+                                                  //     orderDetails.discount
+                                                  //   ) / localCurrency.rate;
 
-                                                    let usdDiscount =
-                                                      theSubTotal *
-                                                      (parseFloat(
-                                                        e.target.value
-                                                      ) /
-                                                        100);
+                                                  let usdDiscount =
+                                                    theSubTotal *
+                                                    (parseFloat(
+                                                      orderDetails.discount
+                                                    ) /
+                                                      100);
 
-                                                    totalPayable =
-                                                      theSubTotal +
-                                                      theVat +
-                                                      usdServiceCharge -
-                                                      usdDiscount;
+                                                  totalPayable =
+                                                    theSubTotal +
+                                                    theVat +
+                                                    usdServiceCharge -
+                                                    usdDiscount;
+                                                  setTotalPaybale(totalPayable);
+                                                } else {
+                                                  setOrderDetails({
+                                                    ...orderDetails,
+                                                    serviceCharge: 0,
+                                                  });
+                                                  let totalPayable = 0;
+                                                  // let localCurrency = JSON.parse(
+                                                  //   localStorage.getItem(
+                                                  //     "currency"
+                                                  //   )
+                                                  // );
+                                                  // let usdServiceCharge =
+                                                  //   parseFloat(0) /
+                                                  //   localCurrency.rate;
+                                                  let usdServiceCharge = 0;
 
-                                                    setTotalPaybale(totalPayable);
-                                                  } else {
-                                                    setOrderDetails({
-                                                      ...orderDetails,
-                                                      discount: 0,
-                                                    });
-                                                    let totalPayable = 0;
-                                                    // let localCurrency = JSON.parse(
-                                                    //   localStorage.getItem(
-                                                    //     "currency"
-                                                    //   )
-                                                    // );
+                                                  // let usdDiscount =
+                                                  //   parseFloat(
+                                                  //     orderDetails.discount
+                                                  //   ) / localCurrency.rate;
 
-                                                    let usdServiceCharge =
-                                                      theSubTotal *
-                                                      (parseFloat(
-                                                        orderDetails.serviceCharge
-                                                      ) /
-                                                        100);
+                                                  let usdDiscount =
+                                                    theSubTotal *
+                                                    (parseFloat(
+                                                      orderDetails.discount
+                                                    ) /
+                                                      100);
 
-                                                    let usdDiscount = 0;
-
-                                                    totalPayable =
-                                                      theSubTotal +
-                                                      theVat +
-                                                      usdServiceCharge -
-                                                      usdDiscount;
-                                                    setTotalPaybale(totalPayable);
-                                                  }
-                                                }}
-                                                value={
-                                                  orderDetails.discount !== 0 &&
-                                                  orderDetails.discount
+                                                  totalPayable =
+                                                    theSubTotal +
+                                                    theVat +
+                                                    usdServiceCharge -
+                                                    usdDiscount;
+                                                  setTotalPaybale(totalPayable);
                                                 }
-                                              />
-                                            </div>
+                                              }}
+                                              value={
+                                                orderDetails.serviceCharge !==
+                                                  0 &&
+                                                orderDetails.serviceCharge
+                                              }
+                                            />
                                           </div>
                                         </div>
                                       </div>
-                                    )}
+                                      <div className="col-6 text-center">
+                                        <div className="row g-0">
+                                          <div className="col-6">
+                                            <span className="text-capitalize xsm-text d-inline-block font-weight-bold t-pt-5 t-pb-5">
+                                              {_t(t("discount"))} %
+                                            </span>
+                                          </div>
+                                          <div className="col-6">
+                                            <input
+                                              type="number"
+                                              step="0.01"
+                                              min="0"
+                                              className="text-capitalize xsm-text d-inline-block font-weight-bold t-pt-5 t-pb-5 form-control rounded-0 text-center"
+                                              onChange={(e) => {
+                                                if (e.target.value !== "") {
+                                                  setOrderDetails({
+                                                    ...orderDetails,
+                                                    discount: parseFloat(
+                                                      e.target.value
+                                                    ),
+                                                  });
+                                                  let totalPayable = 0;
+                                                  // let localCurrency = JSON.parse(
+                                                  //   localStorage.getItem(
+                                                  //     "currency"
+                                                  //   )
+                                                  // );
+                                                  // let usdServiceCharge =
+                                                  //   parseFloat(
+                                                  //     orderDetails.serviceCharge
+                                                  //   ) / localCurrency.rate;
+                                                  let usdServiceCharge =
+                                                    theSubTotal *
+                                                    (parseFloat(
+                                                      orderDetails.serviceCharge
+                                                    ) /
+                                                      100);
+
+                                                  // let usdDiscount =
+                                                  //   parseFloat(e.target.value) /
+                                                  //   localCurrency.rate;
+
+                                                  let usdDiscount =
+                                                    theSubTotal *
+                                                    (parseFloat(
+                                                      e.target.value
+                                                    ) /
+                                                      100);
+
+                                                  totalPayable =
+                                                    theSubTotal +
+                                                    theVat +
+                                                    usdServiceCharge -
+                                                    usdDiscount;
+
+                                                  setTotalPaybale(totalPayable);
+                                                } else {
+                                                  setOrderDetails({
+                                                    ...orderDetails,
+                                                    discount: 0,
+                                                  });
+                                                  let totalPayable = 0;
+                                                  // let localCurrency = JSON.parse(
+                                                  //   localStorage.getItem(
+                                                  //     "currency"
+                                                  //   )
+                                                  // );
+
+                                                  let usdServiceCharge =
+                                                    theSubTotal *
+                                                    (parseFloat(
+                                                      orderDetails.serviceCharge
+                                                    ) /
+                                                      100);
+
+                                                  let usdDiscount = 0;
+
+                                                  totalPayable =
+                                                    theSubTotal +
+                                                    theVat +
+                                                    usdServiceCharge -
+                                                    usdDiscount;
+                                                  setTotalPaybale(totalPayable);
+                                                }
+                                              }}
+                                              value={
+                                                orderDetails.discount !== 0 &&
+                                                orderDetails.discount
+                                              }
+                                            />
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  )}
                                 </div>
                                 <div className="t-bg-epsilon t-pl-10 t-pr-10">
                                   <div className="row">
@@ -6193,8 +6229,9 @@ const Pos = () => {
                                           <i className="fa fa-calculator"></i>
                                         </button>
                                         <div
-                                          className={`calculator ${calculatorMenu && "active"
-                                            }`}
+                                          className={`calculator ${
+                                            calculatorMenu && "active"
+                                          }`}
                                         >
                                           <Calculator />
                                         </div>
@@ -6205,91 +6242,91 @@ const Pos = () => {
                                     generalSettings,
                                     "pos_screen"
                                   ) === "0" && (
-                                      <div className="col-8">
-                                        <div className="d-flex justify-content-end align-items-center">
-                                          {returnMoneyUsd > 0 && (
-                                            <div className="t-mr-8">
-                                              <span className="text-capitalize font-weight-bold mr-2">
-                                                {_t(t("Return"))}
-                                              </span>
-                                              {totalPayable ? (
-                                                <span className="text-capitalize font-weight-bold t-pt-8 t-pb-10">
-                                                  {currencySymbolLeft()}
-                                                  {formatPrice(returnMoneyUsd)}
-                                                  {currencySymbolRight()}
-                                                </span>
-                                              ) : (
-                                                <span className="text-capitalize font-weight-bold t-pt-8 t-pb-10">
-                                                  {currencySymbolLeft()}
-                                                  {formatPrice(0)}
-                                                  {currencySymbolRight()}
-                                                </span>
-                                              )}
-                                            </div>
-                                          )}
-
+                                    <div className="col-8">
+                                      <div className="d-flex justify-content-end align-items-center">
+                                        {returnMoneyUsd > 0 && (
                                           <div className="t-mr-8">
-                                            <button
-                                              type="button"
-                                              className="btn btn-primary sm-text text-uppercase font-weight-bold"
-                                              onClick={
-                                                !loading && handleSettleOrder
-                                              }
-                                            >
-                                              {!loading
-                                                ? _t(t("settle"))
-                                                : _t(t("Please wait"))}
-                                            </button>
+                                            <span className="text-capitalize font-weight-bold mr-2">
+                                              {_t(t("Return"))}
+                                            </span>
+                                            {totalPayable ? (
+                                              <span className="text-capitalize font-weight-bold t-pt-8 t-pb-10">
+                                                {currencySymbolLeft()}
+                                                {formatPrice(returnMoneyUsd)}
+                                                {currencySymbolRight()}
+                                              </span>
+                                            ) : (
+                                              <span className="text-capitalize font-weight-bold t-pt-8 t-pb-10">
+                                                {currencySymbolLeft()}
+                                                {formatPrice(0)}
+                                                {currencySymbolRight()}
+                                              </span>
+                                            )}
                                           </div>
-                                          <div>
-                                            <button
-                                              type="button"
-                                              className="btn btn-success sm-text text-uppercase font-weight-bold"
-                                              onClick={
-                                                !loading && handleSubmitOrder
-                                              }
-                                            >
-                                              {!loading
-                                                ? _t(t("submit"))
-                                                : _t(t("Please wait"))}
-                                            </button>
-                                          </div>
+                                        )}
+
+                                        <div className="t-mr-8">
+                                          <button
+                                            type="button"
+                                            className="btn btn-primary sm-text text-uppercase font-weight-bold"
+                                            onClick={
+                                              !loading && handleSettleOrder
+                                            }
+                                          >
+                                            {!loading
+                                              ? _t(t("settle"))
+                                              : _t(t("Please wait"))}
+                                          </button>
+                                        </div>
+                                        <div>
+                                          <button
+                                            type="button"
+                                            className="btn btn-success sm-text text-uppercase font-weight-bold"
+                                            onClick={
+                                              !loading && handleSubmitOrder
+                                            }
+                                          >
+                                            {!loading
+                                              ? _t(t("submit"))
+                                              : _t(t("Please wait"))}
+                                          </button>
                                         </div>
                                       </div>
-                                    )}
+                                    </div>
+                                  )}
                                   {getSystemSettings(
                                     generalSettings,
                                     "pos_screen"
                                   ) === "1" && (
-                                      <div className="col-8">
-                                        <div className="d-flex justify-content-end align-items-center">
-                                          <div className="t-mr-8">
-                                            <button
-                                              type="button"
-                                              className="btn btn-primary sm-text text-uppercase font-weight-bold"
-                                              onClick={handleSettleOrderButton}
-                                            >
-                                              {!loading
-                                                ? _t(t("settle"))
-                                                : _t(t("Please wait"))}
-                                            </button>
-                                          </div>
-                                          <div>
-                                            <button
-                                              type="button"
-                                              className="btn btn-success sm-text text-uppercase font-weight-bold"
-                                              onClick={
-                                                !loading && handleSubmitOrder
-                                              }
-                                            >
-                                              {!loading
-                                                ? _t(t("submit"))
-                                                : _t(t("Please wait"))}
-                                            </button>
-                                          </div>
+                                    <div className="col-8">
+                                      <div className="d-flex justify-content-end align-items-center">
+                                        <div className="t-mr-8">
+                                          <button
+                                            type="button"
+                                            className="btn btn-primary sm-text text-uppercase font-weight-bold"
+                                            onClick={handleSettleOrderButton}
+                                          >
+                                            {!loading
+                                              ? _t(t("settle"))
+                                              : _t(t("Please wait"))}
+                                          </button>
+                                        </div>
+                                        <div>
+                                          <button
+                                            type="button"
+                                            className="btn btn-success sm-text text-uppercase font-weight-bold"
+                                            onClick={
+                                              !loading && handleSubmitOrder
+                                            }
+                                          >
+                                            {!loading
+                                              ? _t(t("submit"))
+                                              : _t(t("Please wait"))}
+                                          </button>
                                         </div>
                                       </div>
-                                    )}
+                                    </div>
+                                  )}
                                 </div>
                               </div>
                             </div>
@@ -6310,8 +6347,9 @@ const Pos = () => {
 
       {/* show settle  */}
       <div
-        className={`fk-settle-container d-flex flex-column justify-content-center ${showSettle ? "" : "d-none"
-          }`}
+        className={`fk-settle-container d-flex flex-column justify-content-center ${
+          showSettle ? "" : "d-none"
+        }`}
       >
         <div className="fk-settle">
           <div className="container-fluid">
@@ -6364,9 +6402,10 @@ const Pos = () => {
                                         return (
                                           <>
                                             <div
-                                              className={`fk-table-container-order ${orderListItemIndex ===
-                                                activeItemInOrder && "active"
-                                                } `}
+                                              className={`fk-table-container-order ${
+                                                orderListItemIndex ===
+                                                  activeItemInOrder && "active"
+                                              } `}
                                               onClick={(e) => {
                                                 e.preventDefault();
                                                 //orderListItem's group wise all items
@@ -6418,17 +6457,17 @@ const Pos = () => {
                                                     selectedItemTemp,
                                                   variations:
                                                     selectedItemTemp &&
-                                                      parseInt(
-                                                        selectedItemTemp.has_variation
-                                                      ) === 1
+                                                    parseInt(
+                                                      selectedItemTemp.has_variation
+                                                    ) === 1
                                                       ? selectedItemTemp.variations
                                                       : null,
 
                                                   properties:
                                                     selectedItemTemp &&
-                                                      parseInt(
-                                                        selectedItemTemp.has_property
-                                                      ) === 1
+                                                    parseInt(
+                                                      selectedItemTemp.has_property
+                                                    ) === 1
                                                       ? selectedItemTemp.properties
                                                       : null,
                                                 });
@@ -6460,26 +6499,26 @@ const Pos = () => {
                                                       orderListItem.item
                                                         .has_variation
                                                     ) === 1 && (
-                                                        <div className="col-12">
-                                                          <span className="text-capitalize sm-text d-inline-block font-weight-bold t-pr-5 t-pl-5">
-                                                            variation :
-                                                          </span>
-                                                          <span className="text-capitalize xsm-text d-inline-block badge rounded-pill bg-warning text-dark font-weight-md">
-                                                            {orderListItem.variation
-                                                              ? orderListItem
+                                                      <div className="col-12">
+                                                        <span className="text-capitalize sm-text d-inline-block font-weight-bold t-pr-5 t-pl-5">
+                                                          variation :
+                                                        </span>
+                                                        <span className="text-capitalize xsm-text d-inline-block badge rounded-pill bg-warning text-dark font-weight-md">
+                                                          {orderListItem.variation
+                                                            ? orderListItem
                                                                 .variation
                                                                 .variation_name
-                                                              : "-"}
-                                                          </span>
-                                                        </div>
-                                                      )}
+                                                            : "-"}
+                                                        </span>
+                                                      </div>
+                                                    )}
 
                                                     {/* if item has properties show the selected in order list, loop here  */}
                                                     {orderListItem.properties &&
                                                       orderListItem.properties
                                                         .length > 0 &&
                                                       selectedPropertyGroup[
-                                                      orderListItemIndex
+                                                        orderListItemIndex
                                                       ] !== undefined &&
                                                       selectedPropertyGroup[
                                                         orderListItemIndex
@@ -6525,8 +6564,8 @@ const Pos = () => {
                                                                         {propertyName.quantity >
                                                                           1 &&
                                                                           "(" +
-                                                                          propertyName.quantity +
-                                                                          ")"}
+                                                                            propertyName.quantity +
+                                                                            ")"}
                                                                       </span>
                                                                     </span>
                                                                   );
@@ -6954,14 +6993,15 @@ const Pos = () => {
                                         <button
                                           type="button"
                                           //set active or !
-                                          className={`w-100 t-text-dark t-heading-font btn btn-outline-danger font-weight-bold text-uppercase py-3 ${orderDetails &&
+                                          className={`w-100 t-text-dark t-heading-font btn btn-outline-danger font-weight-bold text-uppercase py-3 ${
+                                            orderDetails &&
                                             orderDetails.payment_type !==
-                                            null &&
+                                              null &&
                                             orderDetails.payment_type[0].id ===
-                                            groupItem.id
-                                            ? "active"
-                                            : ""
-                                            }`}
+                                              groupItem.id
+                                              ? "active"
+                                              : ""
+                                          }`}
                                           onClick={() => {
                                             handleSetpaymentTypeSingle(
                                               groupItem

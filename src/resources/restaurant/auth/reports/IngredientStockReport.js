@@ -1,26 +1,20 @@
 import React, { useEffect, useContext, useState } from "react";
-import { useHistory, NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 //axios and base url
 import axios from "axios";
 import { BASE_URL } from "../../../../BaseUrl";
 
 //functions
-import {
-  _t,
-  getCookie,
-  tableLoading,
-} from "../../../../functions/Functions";
+import { _t, getCookie, tableLoading } from "../../../../functions/Functions";
 import { useTranslation } from "react-i18next";
 
 //3rd party packages
 import { Helmet } from "react-helmet";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import Chart from "react-apexcharts";
 import Moment from "react-moment";
 import Select from "react-select";
-import makeAnimated from "react-select/animated";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
@@ -34,8 +28,7 @@ import { RestaurantContext } from "../../../../contexts/Restaurant";
 const IngredientStockReport = () => {
   const { t } = useTranslation();
   //getting context values here
-  let { loading, setLoading, dataPaginating, generalSettings } =
-    useContext(SettingsContext);
+  let { loading, setLoading, dataPaginating } = useContext(SettingsContext);
   let { branchForSearch } = useContext(RestaurantContext);
 
   //all data
@@ -50,7 +43,7 @@ const IngredientStockReport = () => {
     setTimeout(() => {
       setLoading(false);
     }, 500);
-  }, []);
+  }, [setLoading]);
 
   const handleBranch = (branch) => {
     setBranch(branch);
@@ -193,7 +186,7 @@ const IngredientStockReport = () => {
 
                           <div className="col-4 t-mb-15 mb-md-0 d-none d-md-block text-right">
                             <button
-                              className="btn btn-block btn-primary text-uppercase sm-text py-2"
+                              className="btn btn-block btn-secondary rounded-pill text-uppercase sm-text py-2"
                               onClick={getIngredientStockReportSelected}
                             >
                               {_t(t("Generate Report"))}
@@ -202,7 +195,7 @@ const IngredientStockReport = () => {
 
                           <div className="col-5 t-mb-15 mb-md-0 d-block d-md-none">
                             <button
-                              className="btn btn-block btn-primary text-uppercase sm-text"
+                              className="btn btn-block btn-secondary rounded-pill text-uppercase sm-text"
                               onClick={getIngredientStockReportSelected}
                             >
                               {_t(t("Generate Report"))}
@@ -288,10 +281,11 @@ const IngredientStockReport = () => {
 
                                               <td className="xsm-text align-middle text-center">
                                                 <NavLink
-                                                  className={`btn xxsm-text ${item.ended_at === null
-                                                    ? "btn-success"
-                                                    : "btn-success"
-                                                    } btn-sm p-1`}
+                                                  className={`btn xxsm-text ${
+                                                    item.ended_at === null
+                                                      ? "btn-success"
+                                                      : "btn-success"
+                                                  } btn-sm p-1`}
                                                   to={
                                                     `/dashboard/ingredient-stock/` +
                                                     item.started_at

@@ -323,8 +323,8 @@
       slidesToShow: 1,
       slidesToScroll: 1,
       arrows: true,
-      prevArrow: '<i class="fas fa-reply prev-arrow"></i>',
-      nextArrow: '<i class="fas fa-share next-arrow"></i>',
+      prevArrow: '<i className="fas fa-reply prev-arrow"></i>',
+      nextArrow: '<i className="fas fa-share next-arrow"></i>',
       responsive: [
         {
           breakpoint: 1024,

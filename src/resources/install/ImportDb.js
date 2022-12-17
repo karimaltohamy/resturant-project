@@ -150,29 +150,29 @@ const ImportDb = () => {
                         </div>
 
                         {/* Form starts here */}
-                        <div class="text-center">
-                          <h3 class="text-success font-weight-bold text-uppercase">
+                        <div className="text-center">
+                          <h3 className="text-success font-weight-bold text-uppercase">
                             Import the Database SQL
                           </h3>
                         </div>
-                        <p class="border mx-2 py-5 text-center mt-5">
+                        <p className="border mx-2 py-5 text-center mt-5">
                           To install a fresh system without any demo data, click
                           here..
                           <br />
                           <button
-                            class="btn btn-secondary text-uppercase sm-text mt-3"
+                            className="btn btn-secondary text-uppercase sm-text mt-3"
                             onClick={handleFreshSqlUpload}
                           >
                             Import fresh SQL
                           </button>
                         </p>
 
-                        {/* <p class="border mx-2 py-5 text-center mt-3">
+                        {/* <p className="border mx-2 py-5 text-center mt-3">
                           To install the system including demo data, click
                           here..
                           <br />
                           <button
-                            class="btn btn-primary text-uppercase sm-text mt-3"
+                            className="btn btn-primary text-uppercase sm-text mt-3"
                             onClick={handleDemoSqlUpload}
                           >
                             Import DEMO SQL

@@ -236,32 +236,32 @@ const SupplierHistory = () => {
                 </table>
                 {/* show this if order settle is not true, if true show payment input field */}
                 {!checkOrderDetails.settle ? (
-                  <div class="col-12 filtr-item">
-                    <div class="fk-order-token t-bg-white">
-                      <div class="fk-order-token__body">
-                        <div class="fk-addons-table">
-                          <div class="fk-addons-table__head text-center">
+                  <div className="col-12 filtr-item">
+                    <div className="fk-order-token t-bg-white">
+                      <div className="fk-order-token__body">
+                        <div className="fk-addons-table">
+                          <div className="fk-addons-table__head text-center">
                             {_t(t("purchased items"))}
                           </div>
-                          <div class="fk-addons-table__info">
-                            <div class="row g-0">
-                              <div class="col-2 text-center border-right">
-                                <span class="fk-addons-table__info-text text-capitalize">
+                          <div className="fk-addons-table__info">
+                            <div className="row g-0">
+                              <div className="col-2 text-center border-right">
+                                <span className="fk-addons-table__info-text text-capitalize">
                                   {_t(t("S/L"))}
                                 </span>
                               </div>
-                              <div class="col-3 text-center border-right">
-                                <span class="fk-addons-table__info-text text-capitalize">
+                              <div className="col-3 text-center border-right">
+                                <span className="fk-addons-table__info-text text-capitalize">
                                   {_t(t("name"))}
                                 </span>
                               </div>
-                              <div class="col-4  text-center pl-2 border-right">
-                                <span class="fk-addons-table__info-text text-capitalize">
+                              <div className="col-4  text-center pl-2 border-right">
+                                <span className="fk-addons-table__info-text text-capitalize">
                                   {_t(t("qty"))}
                                 </span>
                               </div>
-                              <div class="col-2 text-center">
-                                <span class="fk-addons-table__info-text text-capitalize">
+                              <div className="col-2 text-center">
+                                <span className="fk-addons-table__info-text text-capitalize">
                                   {_t(t("rate"))}
                                 </span>
                               </div>
@@ -271,27 +271,27 @@ const SupplierHistory = () => {
                             checkOrderDetails.item.items.map(
                               (thisItem, indexThisItem) => {
                                 return (
-                                  <div class="fk-addons-table__body-row">
-                                    <div class="row g-0">
-                                      <div class="col-2 text-center border-right d-flex">
-                                        <span class="fk-addons-table__info-text text-capitalize m-auto">
+                                  <div className="fk-addons-table__body-row">
+                                    <div className="row g-0">
+                                      <div className="col-2 text-center border-right d-flex">
+                                        <span className="fk-addons-table__info-text text-capitalize m-auto">
                                           {indexThisItem + 1}
                                         </span>
                                       </div>
-                                      <div class="col-3 text-center border-right d-flex">
-                                        <span class="fk-addons-table__info-text text-capitalize m-auto">
+                                      <div className="col-3 text-center border-right d-flex">
+                                        <span className="fk-addons-table__info-text text-capitalize m-auto">
                                           {food === "food"
                                             ? thisItem.food_name
                                             : thisItem.ingredient_name}
                                         </span>
                                       </div>
-                                      <div class="col-4 text-center border-right t-pl-10 t-pr-10">
-                                        <span class="fk-addons-table__info-text text-capitalize d-block t-pt-5">
+                                      <div className="col-4 text-center border-right t-pl-10 t-pr-10">
+                                        <span className="fk-addons-table__info-text text-capitalize d-block t-pt-5">
                                           {thisItem.qty}
                                         </span>
                                       </div>
-                                      <div class="col-2 text-center d-flex">
-                                        <span class="fk-addons-table__info-text text-capitalize m-auto">
+                                      <div className="col-2 text-center d-flex">
+                                        <span className="fk-addons-table__info-text text-capitalize m-auto">
                                           {currencySymbolLeft()}
                                           {formatPrice(thisItem.rate)}
                                           {currencySymbolRight()}
@@ -563,7 +563,7 @@ const SupplierHistory = () => {
 
                                               <td className="xsm-text text-capitalize align-middle text-center">
                                                 <span
-                                                  class="btn btn-transparent btn-success xsm-text text-capitalize px-4"
+                                                  className="btn btn-transparent btn-success xsm-text text-capitalize px-4"
                                                   onClick={() => {
                                                     setCheckOrderDetails({
                                                       ...checkOrderDetails,

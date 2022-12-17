@@ -689,8 +689,8 @@ const OnlineCustomerList = () => {
                       </ul>
                     </div>
                     <div className="col-md-6 col-lg-5">
-                      <div className="input-group">
-                        <button className="btn btn-primary" type="button">
+                      <div className="input-group rounded-pill overflow-hidden">
+                        <button className="btn btn-secondary" type="button">
                           <i className="fa fa-search" aria-hidden="true"></i>
                         </button>
                         <div className="form-file">
@@ -703,7 +703,7 @@ const OnlineCustomerList = () => {
                         </div>
                         <NavLink
                           to="/dashboard/customers"
-                          className="btn btn-transparent btn-primary ml-2 sm-text text-uppercase"
+                          className="btn btn-transparent btn-primary ml-2 sm-text text-uppercase rounded-pill"
                         >
                           {_t(t("POS Customers"))}
                         </NavLink>

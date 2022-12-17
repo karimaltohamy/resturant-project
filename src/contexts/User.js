@@ -77,6 +77,7 @@ const UserProvider = ({ children }) => {
       })
       .then((res) => {
         if (res.data[0].is_banned === 0 || res.data[0].is_banned === "0") {
+          console.log(res.data);
           setAuthUserInfo({
             ...authUserInfo,
             details: res.data[0],

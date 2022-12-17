@@ -1,5 +1,5 @@
-import React, { useEffect, useContext, useState } from "react";
-import { NavLink, withRouter, useHistory } from "react-router-dom";
+import React, { useEffect, useContext } from "react";
+import { withRouter } from "react-router-dom";
 import { Helmet } from "react-helmet";
 
 //importing context consumer here
@@ -22,7 +22,6 @@ import Skeleton from "react-loading-skeleton";
 
 const RestaurantHome = () => {
   const { t } = useTranslation();
-  const history = useHistory();
 
   // defult lang
   const defultLang = localStorage.getItem("i18nextLng");
@@ -33,7 +32,7 @@ const RestaurantHome = () => {
   const {
     //common
     loading,
-    setLoading,
+    // setLoading,
     getFoodGroup,
   } = useContext(FoodContext);
 
@@ -55,8 +54,8 @@ const RestaurantHome = () => {
       </Helmet>
       <main>
         <div className="fk-scroll--index t-mt-15 t-mb-15" data-simplebar>
-          <div className="container">
-            <div className="row gx-3">
+          <div className="container container-cards">
+            <div className="row">
               {!loading ? (
                 <>
                   {/* image, imgAltTxt, smallInfoIcon, infoTextColorName, infoText, title, redirectToUrl */}
@@ -155,7 +154,7 @@ const RestaurantHome = () => {
                   {/* image, imgAltTxt, smallInfoIcon, infoTextColorName, infoText, title, redirectToUrl */}
                   {/* {SAAS_APPLICATION == 'YES' ? } */}
 
-                  {SAAS_APPLICATION == "YES"
+                  {SAAS_APPLICATION === "YES"
                     ? [
                         authUserInfo.permissions !== null &&
                         authUserInfo.permissions.includes("Saas profile")
@@ -171,6 +170,48 @@ const RestaurantHome = () => {
                           : null,
                       ]
                     : ""}
+                  <div
+                    className="col-md-4 col-lg-3 mb-3"
+                    style={{ height: "350px" }}
+                  >
+                    <button
+                      onClick={handleLogout}
+                      className="t-link product-card p-0 w-100 border-0"
+                    >
+                      <div className="product-card__head text-center">
+                        <img
+                          src="/assets/img/product-img-6.jpg"
+                          alt={_t(t("Logout"))}
+                          className="img-fluid"
+                        />
+                      </div>
+                      <div className="product-card__body w-100">
+                        {/* <div
+                      className="product-card__add"
+                      style={
+                        defultLang === "ar"
+                          ? { right: "auto", left: "30px" }
+                          : { right: "30px", left: "auto" }
+                      }
+                    >
+                      <span className="product-card__add-icon">
+                        <span className="las la-plus"></span>
+                      </span>
+                    </div> */}
+                        <span
+                          className={`product-card__sub-title t-text-alpha text-uppercase`}
+                        >
+                          <span className="fa fa-clock-o"></span>{" "}
+                          {_t(t("Logout"))}
+                        </span>
+                        <span
+                          className={`product-card__title text-capitalize `}
+                        >
+                          {_t(t("Logout"))}
+                        </span>
+                      </div>
+                    </button>
+                  </div>
 
                   {/* image, imgAltTxt, smallInfoIcon, infoTextColorName, infoText, title, redirectToUrl */}
                   {authUserInfo.permissions !== null &&
@@ -199,52 +240,6 @@ const RestaurantHome = () => {
                         "/dashboard/delivery/delivered-orders"
                       )
                     : null}
-
-                  <div className="col-md-4 col-lg-3 t-mb-15">
-                    <button
-                      onClick={handleLogout}
-                      className="t-link product-card t-bg-white pb-2 border-0 text-left"
-                    >
-                      <div className="product-card__head">
-                        <img
-                          src="/assets/img/product-img-6.jpg"
-                          alt={_t(t("Logout"))}
-                          className="img-fluid"
-                        />
-                      </div>
-                      <div className="product-card__body">
-                        <div
-                          className="product-card__add"
-                          style={
-                            defultLang === "ar"
-                              ? { right: "auto", left: "30px" }
-                              : { right: "30px", left: "auto" }
-                          }
-                        >
-                          <span className="product-card__add-icon">
-                            <span className="las la-plus"></span>
-                          </span>
-                        </div>
-                        <span
-                          className={`product-card__sub-title t-text-alpha text-uppercase ${
-                            defultLang === "ar"
-                              ? "text-right d-block"
-                              : "text-left d-block"
-                          }`}
-                        >
-                          <span className="fa fa-clock-o"></span>{" "}
-                          {_t(t("Logout"))}
-                        </span>
-                        <span
-                          className={`product-card__title text-capitalize ${
-                            defultLang === "ar" ? "text-right" : "text-left"
-                          }`}
-                        >
-                          {_t(t("Logout"))}
-                        </span>
-                      </div>
-                    </button>
-                  </div>
                 </>
               ) : (
                 <>
@@ -305,6 +300,21 @@ const RestaurantHome = () => {
                 </>
               )}
             </div>
+            {/* <div className="row">
+              <div className="col-12">
+                <div
+                  className="img-main-dash w-100"
+                  style={{ height: "300px" }}
+                >
+                  <img
+                    className="w-100 h-100"
+                    src="/assets/img/img-main-dashboard.jpg"
+                    alt="img-main-dash"
+                  />
+                </div>
+              </div>
+            </div> */}
+            <div className=""></div>
           </div>
         </div>
       </main>

@@ -584,34 +584,34 @@ const DeliveredOrders = () => {
                 {!checkOrderDetails.cancel ? (
                   <>
                     {!checkOrderDetails.settle ? (
-                      <div class="col-12 filtr-item">
-                        <div class="fk-order-token t-bg-white">
-                          <div class="fk-order-token__body">
-                            <div class="fk-addons-table">
-                              <div class="fk-addons-table__head text-center">
+                      <div className="col-12 filtr-item">
+                        <div className="fk-order-token t-bg-white">
+                          <div className="fk-order-token__body">
+                            <div className="fk-addons-table">
+                              <div className="fk-addons-table__head text-center">
                                 {_t(t("order token"))}: #
                                 {checkOrderDetails.item &&
                                   checkOrderDetails.item.token}
                               </div>
-                              <div class="fk-addons-table__info">
-                                <div class="row g-0">
-                                  <div class="col-2 text-center border-right">
-                                    <span class="fk-addons-table__info-text text-capitalize">
+                              <div className="fk-addons-table__info">
+                                <div className="row g-0">
+                                  <div className="col-2 text-center border-right">
+                                    <span className="fk-addons-table__info-text text-capitalize">
                                       {_t(t("S/L"))}
                                     </span>
                                   </div>
-                                  <div class="col-4 text-center border-right">
-                                    <span class="fk-addons-table__info-text text-capitalize">
+                                  <div className="col-4 text-center border-right">
+                                    <span className="fk-addons-table__info-text text-capitalize">
                                       {_t(t("food"))}
                                     </span>
                                   </div>
-                                  <div class="col-4 text-left pl-2 border-right">
-                                    <span class="fk-addons-table__info-text text-capitalize">
+                                  <div className="col-4 text-left pl-2 border-right">
+                                    <span className="fk-addons-table__info-text text-capitalize">
                                       {_t(t("Additional Info"))}
                                     </span>
                                   </div>
-                                  <div class="col-2 text-center border-right">
-                                    <span class="fk-addons-table__info-text text-capitalize">
+                                  <div className="col-2 text-center border-right">
+                                    <span className="fk-addons-table__info-text text-capitalize">
                                       {_t(t("QTY"))}
                                     </span>
                                   </div>
@@ -621,23 +621,23 @@ const DeliveredOrders = () => {
                                 checkOrderDetails.item.orderedItems.map(
                                   (thisItem, indexThisItem) => {
                                     return (
-                                      <div class="fk-addons-table__body-row">
-                                        <div class="row g-0">
-                                          <div class="col-2 text-center border-right d-flex">
-                                            <span class="fk-addons-table__info-text text-capitalize m-auto">
+                                      <div className="fk-addons-table__body-row">
+                                        <div className="row g-0">
+                                          <div className="col-2 text-center border-right d-flex">
+                                            <span className="fk-addons-table__info-text text-capitalize m-auto">
                                               {indexThisItem + 1}
                                             </span>
                                           </div>
-                                          <div class="col-4 text-center border-right d-flex">
-                                            <span class="fk-addons-table__info-text text-capitalize m-auto">
+                                          <div className="col-4 text-center border-right d-flex">
+                                            <span className="fk-addons-table__info-text text-capitalize m-auto">
                                               {thisItem.food_item} (
                                               {thisItem.food_group})
                                             </span>
                                           </div>
-                                          <div class="col-4 text-center border-right t-pl-10 t-pr-10">
+                                          <div className="col-4 text-center border-right t-pl-10 t-pr-10">
                                             {thisItem.variation !== null && (
-                                              <span class="fk-addons-table__info-text text-capitalize d-block text-left t-pt-5">
-                                                <span class="font-weight-bold mr-1">
+                                              <span className="fk-addons-table__info-text text-capitalize d-block text-left t-pt-5">
+                                                <span className="font-weight-bold mr-1">
                                                   {_t(t("variation"))}:
                                                 </span>
                                                 {thisItem.variation}
@@ -645,8 +645,8 @@ const DeliveredOrders = () => {
                                             )}
 
                                             {thisItem.properties !== null && (
-                                              <span class="fk-addons-table__info-text text-capitalize d-block text-left t-pb-5">
-                                                <span class="font-weight-bold mr-1">
+                                              <span className="fk-addons-table__info-text text-capitalize d-block text-left t-pb-5">
+                                                <span className="font-weight-bold mr-1">
                                                   {_t(t("properties"))}:
                                                 </span>
                                                 {JSON.parse(
@@ -690,8 +690,8 @@ const DeliveredOrders = () => {
                                               </span>
                                             )}
                                           </div>
-                                          <div class="col-2 text-center border-right d-flex">
-                                            <span class="fk-addons-table__info-text text-capitalize m-auto">
+                                          <div className="col-2 text-center border-right d-flex">
+                                            <span className="fk-addons-table__info-text text-capitalize m-auto">
                                               {thisItem.quantity}
                                             </span>
                                           </div>
@@ -1018,7 +1018,7 @@ const DeliveredOrders = () => {
                                                 {item.user_name}
                                               </td>
 
-                                              <td class="xsm-text text-capitalize align-middle text-center">
+                                              <td className="xsm-text text-capitalize align-middle text-center">
                                                 <span
                                                   className="btn btn-transparent btn-secondary xsm-text text-capitalize px-3"
                                                   onClick={() => {
@@ -1087,7 +1087,7 @@ const DeliveredOrders = () => {
                                               {item.user_name}
                                             </td>
 
-                                            <td class="xsm-text text-capitalize align-middle text-center">
+                                            <td className="xsm-text text-capitalize align-middle text-center">
                                               <span
                                                 className="btn btn-transparent btn-secondary xsm-text text-capitalize px-3"
                                                 onClick={() => {

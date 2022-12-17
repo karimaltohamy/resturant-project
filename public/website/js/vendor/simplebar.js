@@ -5331,8 +5331,10 @@
         };
 
         this.hideScrollbars = function () {
-          _this.axis.x.track.rect = _this.axis.x.track.el.getBoundingClientRect();
-          _this.axis.y.track.rect = _this.axis.y.track.el.getBoundingClientRect();
+          _this.axis.x.track.rect =
+            _this.axis.x.track.el.getBoundingClientRect();
+          _this.axis.y.track.rect =
+            _this.axis.y.track.el.getBoundingClientRect();
 
           if (!_this.isWithinBounds(_this.axis.y.track.rect)) {
             _this.axis.y.scrollbar.el.classList.remove(
@@ -5353,8 +5355,10 @@
 
         this.onPointerEvent = function (e) {
           var isWithinTrackXBounds, isWithinTrackYBounds;
-          _this.axis.x.track.rect = _this.axis.x.track.el.getBoundingClientRect();
-          _this.axis.y.track.rect = _this.axis.y.track.el.getBoundingClientRect();
+          _this.axis.x.track.rect =
+            _this.axis.x.track.el.getBoundingClientRect();
+          _this.axis.y.track.rect =
+            _this.axis.y.track.el.getBoundingClientRect();
 
           if (_this.axis.x.isOverflowing || _this.axis.x.forceVisible) {
             isWithinTrackXBounds = _this.isWithinBounds(
@@ -5377,7 +5381,8 @@
 
             if (e.type === "mousedown") {
               if (isWithinTrackXBounds) {
-                _this.axis.x.scrollbar.rect = _this.axis.x.scrollbar.el.getBoundingClientRect();
+                _this.axis.x.scrollbar.rect =
+                  _this.axis.x.scrollbar.el.getBoundingClientRect();
 
                 if (_this.isWithinBounds(_this.axis.x.scrollbar.rect)) {
                   _this.onDragStart(e, "x");
@@ -5387,7 +5392,8 @@
               }
 
               if (isWithinTrackYBounds) {
-                _this.axis.y.scrollbar.rect = _this.axis.y.scrollbar.el.getBoundingClientRect();
+                _this.axis.y.scrollbar.rect =
+                  _this.axis.y.scrollbar.el.getBoundingClientRect();
 
                 if (_this.isWithinBounds(_this.axis.y.scrollbar.rect)) {
                   _this.onDragStart(e, "y");
@@ -5549,19 +5555,17 @@
       SimpleBar.getRtlHelpers = function getRtlHelpers() {
         var dummyDiv = document.createElement("div");
         dummyDiv.innerHTML =
-          '<div class="hs-dummy-scrollbar-size"><div style="height: 200%; width: 200%; margin: 10px 0;"></div></div>';
+          '<div className="hs-dummy-scrollbar-size"><div style="height: 200%; width: 200%; margin: 10px 0;"></div></div>';
         var scrollbarDummyEl = dummyDiv.firstElementChild;
         document.body.appendChild(scrollbarDummyEl);
         var dummyContainerChild = scrollbarDummyEl.firstElementChild;
         scrollbarDummyEl.scrollLeft = 0;
         var dummyContainerOffset = SimpleBar.getOffset(scrollbarDummyEl);
-        var dummyContainerChildOffset = SimpleBar.getOffset(
-          dummyContainerChild
-        );
+        var dummyContainerChildOffset =
+          SimpleBar.getOffset(dummyContainerChild);
         scrollbarDummyEl.scrollLeft = 999;
-        var dummyContainerScrollOffsetAfterScroll = SimpleBar.getOffset(
-          dummyContainerChild
-        );
+        var dummyContainerScrollOffsetAfterScroll =
+          SimpleBar.getOffset(dummyContainerChild);
         return {
           // determines if the scrolling is responding with negative values
           isRtlScrollingInverted:
@@ -5844,9 +5848,8 @@
         }
 
         var contentSize = this.contentEl[this.axis[axis].scrollSizeAttr];
-        var trackSize = this.axis[axis].track.el[
-          this.axis[axis].offsetSizeAttr
-        ];
+        var trackSize =
+          this.axis[axis].track.el[this.axis[axis].offsetSizeAttr];
         var scrollbarSize;
         var scrollbarRatio = trackSize / contentSize; // Calculate new height/position of drag handle.
 
@@ -5875,14 +5878,12 @@
         }
 
         var contentSize = this.contentWrapperEl[this.axis[axis].scrollSizeAttr];
-        var trackSize = this.axis[axis].track.el[
-          this.axis[axis].offsetSizeAttr
-        ];
+        var trackSize =
+          this.axis[axis].track.el[this.axis[axis].offsetSizeAttr];
         var hostSize = parseInt(this.elStyles[this.axis[axis].sizeAttr], 10);
         var scrollbar = this.axis[axis].scrollbar;
-        var scrollOffset = this.contentWrapperEl[
-          this.axis[axis].scrollOffsetAttr
-        ];
+        var scrollOffset =
+          this.contentWrapperEl[this.axis[axis].scrollOffsetAttr];
         scrollOffset =
           axis === "x" &&
           this.isRtl &&
@@ -5945,12 +5946,10 @@
           axis = "y";
         }
 
-        this.axis[axis].track.rect = this.axis[
-          axis
-        ].track.el.getBoundingClientRect();
-        this.axis[axis].scrollbar.rect = this.axis[
-          axis
-        ].scrollbar.el.getBoundingClientRect();
+        this.axis[axis].track.rect =
+          this.axis[axis].track.el.getBoundingClientRect();
+        this.axis[axis].scrollbar.rect =
+          this.axis[axis].scrollbar.el.getBoundingClientRect();
         var isWithinScrollbarBoundsX = this.isWithinBounds(
           this.axis[axis].scrollbar.rect
         );
@@ -6042,9 +6041,8 @@
 
         if (!this.options.clickOnTrack) return;
         var elWindow = getElementWindow(this.el);
-        this.axis[axis].scrollbar.rect = this.axis[
-          axis
-        ].scrollbar.el.getBoundingClientRect();
+        this.axis[axis].scrollbar.rect =
+          this.axis[axis].scrollbar.el.getBoundingClientRect();
         var scrollbar = this.axis[axis].scrollbar;
         var scrollbarOffset = scrollbar.rect[this.axis[axis].offsetAttr];
         var hostSize = parseInt(this.elStyles[this.axis[axis].sizeAttr], 10);
@@ -6065,9 +6063,8 @@
 
               _this4.contentWrapperEl.scrollTo(
                 ((_this4$contentWrapper = {}),
-                (_this4$contentWrapper[
-                  _this4.axis[axis].offsetAttr
-                ] = scrolled),
+                (_this4$contentWrapper[_this4.axis[axis].offsetAttr] =
+                  scrolled),
                 _this4$contentWrapper)
               );
 
@@ -6081,9 +6078,8 @@
 
               _this4.contentWrapperEl.scrollTo(
                 ((_this4$contentWrapper2 = {}),
-                (_this4$contentWrapper2[
-                  _this4.axis[axis].offsetAttr
-                ] = scrolled),
+                (_this4$contentWrapper2[_this4.axis[axis].offsetAttr] =
+                  scrolled),
                 _this4$contentWrapper2)
               );
 

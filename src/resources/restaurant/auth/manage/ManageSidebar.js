@@ -13,15 +13,10 @@ import {
 import { useTranslation } from "react-i18next";
 import { SettingsContext } from "../../../../contexts/Settings";
 
-
-
 const ManageSidebar = () => {
-
   const { t } = useTranslation();
 
-  const {
-    showManageStock,
-  } = useContext(SettingsContext);
+  const { showManageStock } = useContext(SettingsContext);
 
   useEffect(() => {
     handleJquery();
@@ -175,11 +170,12 @@ const ManageSidebar = () => {
           <ul className="t-list fk-pos-nav">
             {/* Foods */}
             <li
-              className={`fk-pos-nav__list fk-pos-nav__list-has-sub ${window.location.pathname.includes("/food/") ? "active" : ""
-                }`}
+              className={`fk-pos-nav__list fk-pos-nav__list-has-sub ${
+                window.location.pathname.includes("/food/") ? "active" : ""
+              }`}
             >
               <a
-                className="w-100 t-text-dark t-heading-font btn btn-outline-danger font-weight-bold text-uppercase rounded-0 text-left"
+                className="w-100 t-text-dark t-heading-font btn btn-outline-secondary font-weight-bold text-uppercase rounded-0 text-left"
                 rel="noopener noreferrer"
                 href="#"
               >
@@ -221,16 +217,17 @@ const ManageSidebar = () => {
             {/* stock Management */}
             {showManageStock ? (
               <li
-                className={`fk-pos-nav__list fk-pos-nav__list-has-sub ${window.location.pathname.includes("stock") ? "active" : ""
-                  }`}
+                className={`fk-pos-nav__list fk-pos-nav__list-has-sub ${
+                  window.location.pathname.includes("stock") ? "active" : ""
+                }`}
               >
-                <button
-                  className="w-100 t-text-dark t-heading-font btn btn-outline-danger font-weight-bold text-uppercase rounded-0 text-left"
+                <a
+                  className="w-100 t-text-dark t-heading-font btn btn-outline-secondary font-weight-bold text-uppercase rounded-0 text-left"
                   rel="noopener noreferrer"
                   href=""
                 >
                   {_t(t("Manage Stock"))}
-                </button>
+                </a>
                 <ul className="t-list fk-pos-nav__sub t-bg-white list-group">
                   {managePageHrefLink(
                     "/dashboard/manage/stock/food-purchase",
@@ -283,19 +280,21 @@ const ManageSidebar = () => {
      )} */}
                 </ul>
               </li>
-            ) : ''}
-
+            ) : (
+              ""
+            )}
 
             {/* User Management */}
             <li
-              className={`fk-pos-nav__list fk-pos-nav__list-has-sub ${window.location.pathname.includes("/roles") ||
+              className={`fk-pos-nav__list fk-pos-nav__list-has-sub ${
+                window.location.pathname.includes("/roles") ||
                 window.location.pathname.includes("/user/")
-                ? "active"
-                : ""
-                }`}
+                  ? "active"
+                  : ""
+              }`}
             >
               <a
-                className="w-100 t-text-dark t-heading-font btn btn-outline-danger font-weight-bold text-uppercase rounded-0 text-left"
+                className="w-100 t-text-dark t-heading-font btn btn-outline-secondary font-weight-bold text-uppercase rounded-0 text-left"
                 rel="noopener noreferrer"
                 href="#"
               >
@@ -337,11 +336,12 @@ const ManageSidebar = () => {
             {/* Restaurant */}
             <li
               className={`fk-pos-nav__list fk-pos-nav__list-has-sub 
-              ${window.location.pathname.includes("/restaurant") ? "active" : ""
-                }`}
+              ${
+                window.location.pathname.includes("/restaurant") ? "active" : ""
+              }`}
             >
               <a
-                className="w-100 t-text-dark t-heading-font btn btn-outline-danger font-weight-bold text-uppercase rounded-0 text-left"
+                className="w-100 t-text-dark t-heading-font btn btn-outline-secondary font-weight-bold text-uppercase rounded-0 text-left"
                 rel="noopener noreferrer"
                 href="#"
               >
@@ -372,11 +372,12 @@ const ManageSidebar = () => {
 
             {/* website */}
             <li
-              className={`fk-pos-nav__list fk-pos-nav__list-has-sub ${window.location.pathname.includes("/website/") ? "active" : ""
-                }`}
+              className={`fk-pos-nav__list fk-pos-nav__list-has-sub ${
+                window.location.pathname.includes("/website/") ? "active" : ""
+              }`}
             >
               <a
-                className="w-100 t-text-dark t-heading-font btn btn-outline-danger font-weight-bold text-uppercase rounded-0 text-left"
+                className="w-100 t-text-dark t-heading-font btn btn-outline-secondary font-weight-bold text-uppercase rounded-0 text-left"
                 rel="noopener noreferrer"
                 href="#"
               >
@@ -397,11 +398,12 @@ const ManageSidebar = () => {
 
             {/* Settings */}
             <li
-              className={`fk-pos-nav__list fk-pos-nav__list-has-sub ${window.location.pathname.includes("/settings/") ? "active" : ""
-                }`}
+              className={`fk-pos-nav__list fk-pos-nav__list-has-sub ${
+                window.location.pathname.includes("/settings/") ? "active" : ""
+              }`}
             >
               <a
-                className="w-100 t-text-dark t-heading-font btn btn-outline-danger font-weight-bold text-uppercase rounded-0 text-left"
+                className="w-100 t-text-dark t-heading-font btn btn-outline-secondary font-weight-bold text-uppercase rounded-0 text-left"
                 rel="noopener noreferrer"
                 href="#"
               >

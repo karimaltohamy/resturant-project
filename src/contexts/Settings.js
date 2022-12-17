@@ -187,7 +187,8 @@ const SettingsProvider = ({ children }) => {
         setPermissionGroupForSearch(res.data[1]);
         setPermissions(res.data[2]);
         setLoading(false);
-      });
+      })
+      .catch((error) => console.log(error));
   };
 
   // get paginated groups
@@ -204,19 +205,22 @@ const SettingsProvider = ({ children }) => {
         setPermissions(res.data[2]);
         setDataPaginating(false);
       })
-      .catch(() => {});
+      .catch((error) => console.log(error));
   };
 
   //get all currency
   const getCurrency = () => {
     setLoading(true);
     const currencyUrl = BASE_URL + "/settings/get-currency";
-    return axios.get(currencyUrl).then((res) => {
-      setCurrencyList(res.data[0]);
-      setNavCurrencyList(res.data[1]);
-      setCurrencyListForSearch(res.data[1]);
-      setLoading(false);
-    });
+    return axios
+      .get(currencyUrl)
+      .then((res) => {
+        setCurrencyList(res.data[0]);
+        setNavCurrencyList(res.data[1]);
+        setCurrencyListForSearch(res.data[1]);
+        setLoading(false);
+      })
+      .catch((error) => console.log(error));
   };
 
   // get paginated currency
@@ -229,20 +233,23 @@ const SettingsProvider = ({ children }) => {
         setCurrencyList(res.data[0]);
         setDataPaginating(false);
       })
-      .catch((error) => {});
+      .catch((error) => console.log(error));
   };
 
   //get all languages
   const getSettings = () => {
     setLoading(true);
     const url = BASE_URL + "/settings/general-settings";
-    return axios.get(url).then((res) => {
-      console.log(res.data);
-      setGeneralSettings(res.data);
-      const favicon = document.getElementById("favicon");
-      favicon.href = BASE_URL + getSystemSettings(res.data, "favicon");
-      setLoading(false);
-    });
+    return axios
+      .get(url)
+      .then((res) => {
+        console.log(res.data);
+        setGeneralSettings(res.data);
+        const favicon = document.getElementById("favicon");
+        favicon.href = BASE_URL + getSystemSettings(res.data, "favicon");
+        setLoading(false);
+      })
+      .catch((error) => console.log(error));
   };
 
   return (

@@ -301,7 +301,7 @@ const CustomerProfile = () => {
         <script src="/website/js/main.js"></script>
       </Helmet>
 
-      <header class="header3">
+      <header className="header3">
         {/* header-bottom  */}
         <div className="header-bottom home2-header-bottom margin-top-20">
           <div className="container position-relative">

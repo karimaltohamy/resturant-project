@@ -86,7 +86,7 @@ const Submitted = () => {
   });
 
   //useEffect == componentDidMount
-  useEffect(() => { }, []);
+  useEffect(() => {}, []);
 
   //payment type
   const handleSetpaymentType = (payment_type) => {
@@ -107,7 +107,7 @@ const Submitted = () => {
       if (
         theUsdPaid <
         checkOrderDetails.item.total_payable -
-        checkOrderDetails.item.paid_amount
+          checkOrderDetails.item.paid_amount
       ) {
         setReturnMoneyUsd(0);
         toast.error(
@@ -198,7 +198,7 @@ const Submitted = () => {
         paidMoney <
         parseFloat(
           checkOrderDetails.item.total_payable -
-          checkOrderDetails.item.paid_amount
+            checkOrderDetails.item.paid_amount
         )
       ) {
         setLoading(false);
@@ -451,7 +451,7 @@ const Submitted = () => {
               ) : (
                 <div className="modal-body">
                   {checkOrderDetails.item &&
-                    parseInt(checkOrderDetails.item.is_settled) === 0 ? (
+                  parseInt(checkOrderDetails.item.is_settled) === 0 ? (
                     // if this item is not settled then show settle-cancel button
                     <>
                       {checkOrderDetails.item &&
@@ -459,9 +459,9 @@ const Submitted = () => {
                           <div className="text-right">
                             {checkOrderDetails.settle &&
                               paidMoney >
-                              parseFloat(
-                                checkOrderDetails.item.total_payable
-                              ) && (
+                                parseFloat(
+                                  checkOrderDetails.item.total_payable
+                                ) && (
                                 <span className="mr-2 text-secondary font-weight-bold">
                                   Return: {currencySymbolLeft()}
                                   {formatPrice(returnMoneyUsd)}
@@ -624,28 +624,30 @@ const Submitted = () => {
                                                     JSON.parse(
                                                       thisItem.properties
                                                     ).length -
-                                                    1
+                                                      1
                                                   ) {
                                                     return (
                                                       propertyItem.property +
-                                                      `${propertyItem.quantity >
+                                                      `${
+                                                        propertyItem.quantity >
                                                         1
-                                                        ? "(" +
-                                                        propertyItem.quantity +
-                                                        ")"
-                                                        : ""
+                                                          ? "(" +
+                                                            propertyItem.quantity +
+                                                            ")"
+                                                          : ""
                                                       }` +
                                                       ", "
                                                     );
                                                   } else {
                                                     return (
                                                       propertyItem.property +
-                                                      `${propertyItem.quantity >
+                                                      `${
+                                                        propertyItem.quantity >
                                                         1
-                                                        ? "(" +
-                                                        propertyItem.quantity +
-                                                        ")"
-                                                        : ""
+                                                          ? "(" +
+                                                            propertyItem.quantity +
+                                                            ")"
+                                                          : ""
                                                       }`
                                                     );
                                                   }
@@ -664,7 +666,7 @@ const Submitted = () => {
                                           <label className="mx-checkbox mx-checkbox--empty m-auto">
                                             <span className="mx-checkbox__text text-capitalize t-text-heading fk-addons-table__body-text">
                                               {parseInt(thisItem.is_cooking) ===
-                                                1 ? (
+                                              1 ? (
                                                 [
                                                   parseInt(
                                                     thisItem.is_ready
@@ -738,7 +740,7 @@ const Submitted = () => {
                                     value={
                                       checkOrderDetails.payment_amount &&
                                       checkOrderDetails.payment_amount[
-                                      eachPaymentType.id
+                                        eachPaymentType.id
                                       ]
                                     }
                                   />
@@ -836,7 +838,7 @@ const Submitted = () => {
                         </td>
                       </tr>
                       {checkOrderDetails.item &&
-                        checkOrderDetails.item.vat_system === "igst" ? (
+                      checkOrderDetails.item.vat_system === "igst" ? (
                         <tr>
                           <td className="text-capitalized">{_t(t("VAT"))}</td>
                           <td>
@@ -889,86 +891,86 @@ const Submitted = () => {
                       {/* sdiscount */}
                       {getSystemSettings(generalSettings, "sDiscount") ===
                         "flat" && (
-                          <>
-                            <tr>
-                              <td className="text-capitalized">
-                                {_t(t("Service charge"))}
-                              </td>
-                              <td>
-                                {checkOrderDetails.item && (
-                                  <>
-                                    {currencySymbolLeft()}
-                                    {formatPrice(
-                                      checkOrderDetails.item.service_charge
-                                    )}
-                                    {currencySymbolRight()}
-                                  </>
-                                )}
-                              </td>
-                            </tr>
-                            <tr>
-                              <td className="text-capitalized">
-                                {_t(t("Discount"))}
-                              </td>
-                              <td>
-                                {checkOrderDetails.item && (
-                                  <>
-                                    {currencySymbolLeft()}
-                                    {formatPrice(checkOrderDetails.item.discount)}
-                                    {currencySymbolRight()}
-                                  </>
-                                )}
-                              </td>
-                            </tr>
-                          </>
-                        )}
+                        <>
+                          <tr>
+                            <td className="text-capitalized">
+                              {_t(t("Service charge"))}
+                            </td>
+                            <td>
+                              {checkOrderDetails.item && (
+                                <>
+                                  {currencySymbolLeft()}
+                                  {formatPrice(
+                                    checkOrderDetails.item.service_charge
+                                  )}
+                                  {currencySymbolRight()}
+                                </>
+                              )}
+                            </td>
+                          </tr>
+                          <tr>
+                            <td className="text-capitalized">
+                              {_t(t("Discount"))}
+                            </td>
+                            <td>
+                              {checkOrderDetails.item && (
+                                <>
+                                  {currencySymbolLeft()}
+                                  {formatPrice(checkOrderDetails.item.discount)}
+                                  {currencySymbolRight()}
+                                </>
+                              )}
+                            </td>
+                          </tr>
+                        </>
+                      )}
 
                       {getSystemSettings(generalSettings, "sDiscount") ===
                         "percentage" && (
-                          <>
-                            <tr>
-                              <td className="text-capitalized">
-                                {_t(t("Service charge"))}
-                                {checkOrderDetails.item &&
-                                  "(" +
+                        <>
+                          <tr>
+                            <td className="text-capitalized">
+                              {_t(t("Service charge"))}
+                              {checkOrderDetails.item &&
+                                "(" +
                                   checkOrderDetails.item.service_charge +
                                   "%)"}
-                              </td>
-                              <td>
-                                {checkOrderDetails.item && (
-                                  <>
-                                    {currencySymbolLeft()}
-                                    {formatPrice(
-                                      checkOrderDetails.item.order_bill *
+                            </td>
+                            <td>
+                              {checkOrderDetails.item && (
+                                <>
+                                  {currencySymbolLeft()}
+                                  {formatPrice(
+                                    checkOrderDetails.item.order_bill *
                                       (checkOrderDetails.item.service_charge /
                                         100)
-                                    )}
-                                    {currencySymbolRight()}
-                                  </>
-                                )}
-                              </td>
-                            </tr>
-                            <tr>
-                              <td className="text-capitalized">
-                                {_t(t("Discount"))}
-                                {checkOrderDetails.item &&
-                                  "(" + checkOrderDetails.item.discount + "%)"}
-                              </td>
-                              <td>
-                                {checkOrderDetails.item && (
-                                  <>
-                                    {currencySymbolLeft()}
-                                    {formatPrice(
-                                      checkOrderDetails.item.order_bill *
+                                  )}
+                                  {currencySymbolRight()}
+                                </>
+                              )}
+                            </td>
+                          </tr>
+                          <tr>
+                            <td className="text-capitalized">
+                              {_t(t("Discount"))}
+                              {checkOrderDetails.item &&
+                                "(" + checkOrderDetails.item.discount + "%)"}
+                            </td>
+                            <td>
+                              {checkOrderDetails.item && (
+                                <>
+                                  {currencySymbolLeft()}
+                                  {formatPrice(
+                                    checkOrderDetails.item.order_bill *
                                       (checkOrderDetails.item.discount / 100)
-                                    )}
-                                    {currencySymbolRight()}
-                                  </>
-                                )}
-                              </td>
-                            </tr>
-                          </>
-                        )}
+                                  )}
+                                  {currencySymbolRight()}
+                                </>
+                              )}
+                            </td>
+                          </tr>
+                        </>
+                      )}
                       {/* sDiscount */}
                       <tr>
                         <td className="text-capitalized">
@@ -1020,10 +1022,10 @@ const Submitted = () => {
                       </tr>
 
                       {checkOrderDetails.item &&
-                        parseFloat(
-                          checkOrderDetails.item.total_payable -
+                      parseFloat(
+                        checkOrderDetails.item.total_payable -
                           checkOrderDetails.item.paid_amount
-                        ) >= 0 ? (
+                      ) >= 0 ? (
                         <tr>
                           <td className="text-capitalized">
                             {_t(t("Due amount"))}
@@ -1035,7 +1037,7 @@ const Submitted = () => {
                                 {formatPrice(
                                   parseFloat(
                                     checkOrderDetails.item.total_payable -
-                                    checkOrderDetails.item.paid_amount
+                                      checkOrderDetails.item.paid_amount
                                   )
                                 )}
                                 {currencySymbolRight()}
@@ -1055,7 +1057,7 @@ const Submitted = () => {
                                 {formatPrice(
                                   parseFloat(
                                     checkOrderDetails.item.paid_amount -
-                                    checkOrderDetails.item.total_payable
+                                      checkOrderDetails.item.total_payable
                                   )
                                 )}
                                 {currencySymbolRight()}
@@ -1099,7 +1101,7 @@ const Submitted = () => {
                       </div>
                       <div className="col-md-6 col-lg-5 t-mb-15 mb-md-0">
                         <ul className="t-list fk-sort align-items-center">
-                          <div className="input-group col">
+                          <div className="input-group rounded-pill overflow-hidden col">
                             <div className="form-file">
                               <input
                                 type="text"
@@ -1111,7 +1113,7 @@ const Submitted = () => {
                                 onChange={handleSearch}
                               />
                             </div>
-                            <button className="btn btn-primary" type="button">
+                            <button className="btn btn-secondary" type="button">
                               <i
                                 className="fa fa-search"
                                 aria-hidden="true"
@@ -1126,7 +1128,7 @@ const Submitted = () => {
                           <div className="col">
                             <NavLink
                               to="/dashboard/pos"
-                              className="t-link t-pt-8 t-pb-8 t-pl-12 t-pr-12 btn btn-secondary xsm-text text-uppercase text-center w-100"
+                              className="t-link t-pt-8 t-pb-8 t-pl-12 t-pr-12 btn btn-secondary rounded-pill xsm-text text-uppercase text-center w-100"
                             >
                               {_t(t("POS"))}
                             </NavLink>
@@ -1134,7 +1136,7 @@ const Submitted = () => {
                           <div className="col">
                             <NavLink
                               to="/dashboard/pos/settled"
-                              className="t-link t-pt-8 t-pb-8 t-pl-12 t-pr-12 btn btn-success xsm-text text-uppercase text-center w-100"
+                              className="t-link t-pt-8 t-pb-8 t-pl-12 t-pr-12 btn btn-success rounded-pill xsm-text text-uppercase text-center w-100"
                             >
                               {_t(t("Settled"))}
                             </NavLink>
@@ -1207,159 +1209,74 @@ const Submitted = () => {
                               {/* loop here, logic === !search && haveData && haveDataLegnth > 0*/}
                               {!searchedOrder.searched
                                 ? [
-                                  submittedOrders && [
-                                    submittedOrders.data.length === 0 ? (
-                                      <tr className="align-middle">
-                                        <td
-                                          scope="row"
-                                          colSpan="8"
-                                          className="xsm-text align-middle text-center"
-                                        >
-                                          {_t(t("No data available"))}
-                                        </td>
-                                      </tr>
-                                    ) : (
-                                      submittedOrders.data.map(
-                                        (item, index) => {
-                                          return (
-                                            <tr
-                                              className="align-middle"
-                                              key={index}
-                                            >
-                                              <th
-                                                scope="row"
-                                                className="xsm-text text-capitalize align-middle text-center"
+                                    submittedOrders && [
+                                      submittedOrders.data.length === 0 ? (
+                                        <tr className="align-middle">
+                                          <td
+                                            scope="row"
+                                            colSpan="8"
+                                            className="xsm-text align-middle text-center"
+                                          >
+                                            {_t(t("No data available"))}
+                                          </td>
+                                        </tr>
+                                      ) : (
+                                        submittedOrders.data.map(
+                                          (item, index) => {
+                                            return (
+                                              <tr
+                                                className="align-middle"
+                                                key={index}
                                               >
-                                                {index +
-                                                  1 +
-                                                  (submittedOrders.current_page -
-                                                    1) *
-                                                  submittedOrders.per_page}
-                                              </th>
+                                                <th
+                                                  scope="row"
+                                                  className="xsm-text text-capitalize align-middle text-center"
+                                                >
+                                                  {index +
+                                                    1 +
+                                                    (submittedOrders.current_page -
+                                                      1) *
+                                                      submittedOrders.per_page}
+                                                </th>
 
-                                              <td className="xsm-text text-capitalize align-middle text-center text-secondary">
-                                                #{item.token.id}
-                                              </td>
+                                                <td className="xsm-text text-capitalize align-middle text-center text-secondary">
+                                                  #{item.token.id}
+                                                </td>
 
-                                              <td className="xsm-text text-capitalize align-middle text-center">
-                                                <Moment format="LT">
-                                                  {item.token.time}
-                                                </Moment>
-                                              </td>
+                                                <td className="xsm-text text-capitalize align-middle text-center">
+                                                  <Moment format="LT">
+                                                    {item.token.time}
+                                                  </Moment>
+                                                </td>
 
-                                              <td className="xsm-text align-middle text-center">
-                                                {item.customer_name}
-                                              </td>
+                                                <td className="xsm-text align-middle text-center">
+                                                  {item.customer_name}
+                                                </td>
 
-                                              <td className="xsm-text align-middle text-center">
-                                                {item.table_name}
-                                              </td>
+                                                <td className="xsm-text align-middle text-center">
+                                                  {item.table_name}
+                                                </td>
 
-                                              <td className="xsm-text align-middle text-center">
-                                                {item.branch_name || "-"}
-                                              </td>
+                                                <td className="xsm-text align-middle text-center">
+                                                  {item.branch_name || "-"}
+                                                </td>
 
-                                              <td className="xsm-text text-capitalize align-middle text-center">
-                                                {parseInt(
-                                                  item.is_cancelled
-                                                ) === 0 ? (
-                                                  [
-                                                    parseInt(
-                                                      item.is_ready
-                                                    ) === 0 ? (
-                                                      <span
-                                                        className="btn btn-transparent btn-secondary xsm-text text-capitalize"
-                                                        onClick={() => {
-                                                          setCheckOrderDetails(
-                                                            {
-                                                              ...checkOrderDetails,
-                                                              item: item,
-                                                              settle: false,
-                                                            }
-                                                          );
-                                                          setReturnMoneyUsd(
-                                                            0
-                                                          );
-                                                          setPaidMoney(0);
-                                                        }}
-                                                        data-toggle="modal"
-                                                        data-target="#orderDetails"
-                                                      >
-                                                        {_t(t("processing"))}
-                                                      </span>
-                                                    ) : (
-                                                      <span
-                                                        className="btn btn-transparent btn-success xsm-text text-capitalize px-4"
-                                                        onClick={() => {
-                                                          setCheckOrderDetails(
-                                                            {
-                                                              ...checkOrderDetails,
-                                                              item: item,
-                                                              settle: false,
-                                                            }
-                                                          );
-                                                          setReturnMoneyUsd(
-                                                            0
-                                                          );
-                                                          setPaidMoney(0);
-                                                        }}
-                                                        data-toggle="modal"
-                                                        data-target="#orderDetails"
-                                                      >
-                                                        {_t(t("Ready"))}
-                                                      </span>
-                                                    ),
-                                                  ]
-                                                ) : (
-                                                  <span
-                                                    className="btn btn-transparent btn-primary xsm-text text-capitalize px-3"
-                                                    onClick={() => {
-                                                      setCheckOrderDetails({
-                                                        ...checkOrderDetails,
-                                                        item: item,
-                                                        settle: false,
-                                                      });
-                                                      setReturnMoneyUsd(0);
-                                                      setPaidMoney(0);
-                                                    }}
-                                                    data-toggle="modal"
-                                                    data-target="#orderDetails"
-                                                  >
-                                                    {_t(t("Cancelled"))}
-                                                  </span>
-                                                )}
-                                              </td>
-
-                                              <td className="xsm-text align-middle text-center">
-                                                {parseInt(
-                                                  item.is_cancelled
-                                                ) === 0 ? (
-                                                  <div className="dropdown text-capitalize">
-                                                    <button
-                                                      className="btn t-bg-clear t-text-dark--light-40"
-                                                      type="button"
-                                                      data-toggle="dropdown"
-                                                    >
-                                                      <i className="fa fa-ellipsis-h"></i>
-                                                    </button>
-                                                    <div className="dropdown-menu">
-                                                      {getSystemSettings(
-                                                        generalSettings,
-                                                        "pos_screen"
-                                                      ) === "0" ? (
-                                                        <button
-                                                          // send state- order group id
-                                                          className="dropdown-item sm-text text-capitalize"
+                                                <td className="xsm-text text-capitalize align-middle text-center">
+                                                  {parseInt(
+                                                    item.is_cancelled
+                                                  ) === 0 ? (
+                                                    [
+                                                      parseInt(
+                                                        item.is_ready
+                                                      ) === 0 ? (
+                                                        <span
+                                                          className="btn btn-transparent btn-secondary xsm-text text-capitalize"
                                                           onClick={() => {
                                                             setCheckOrderDetails(
                                                               {
                                                                 ...checkOrderDetails,
                                                                 item: item,
-                                                                settle: true,
-                                                                payment_amount:
-                                                                  null,
-                                                                payment_type:
-                                                                  null,
+                                                                settle: false,
                                                               }
                                                             );
                                                             setReturnMoneyUsd(
@@ -1370,50 +1287,135 @@ const Submitted = () => {
                                                           data-toggle="modal"
                                                           data-target="#orderDetails"
                                                         >
-                                                          <span className="t-mr-8">
-                                                            <i className="fa fa-refresh"></i>
-                                                          </span>
-                                                          {_t(
-                                                            t("Settle order")
-                                                          )}
-                                                        </button>
+                                                          {_t(t("processing"))}
+                                                        </span>
                                                       ) : (
-                                                        <button
-                                                          // send state- order group id
-                                                          className="dropdown-item sm-text text-capitalize"
+                                                        <span
+                                                          className="btn btn-transparent btn-success xsm-text text-capitalize px-4"
                                                           onClick={() => {
                                                             setCheckOrderDetails(
                                                               {
                                                                 ...checkOrderDetails,
                                                                 item: item,
-                                                                settle: true,
-                                                                payment_amount:
-                                                                  null,
-                                                                payment_type:
-                                                                  null,
+                                                                settle: false,
                                                               }
                                                             );
                                                             setReturnMoneyUsd(
                                                               0
                                                             );
                                                             setPaidMoney(0);
-                                                            setShowSettle(
-                                                              true
-                                                            );
                                                           }}
+                                                          data-toggle="modal"
+                                                          data-target="#orderDetails"
                                                         >
-                                                          <span className="t-mr-8">
-                                                            <i className="fa fa-refresh"></i>
-                                                          </span>
-                                                          {_t(
-                                                            t("Settle order")
-                                                          )}
-                                                        </button>
-                                                      )}
+                                                          {_t(t("Ready"))}
+                                                        </span>
+                                                      ),
+                                                    ]
+                                                  ) : (
+                                                    <span
+                                                      className="btn btn-transparent btn-primary xsm-text text-capitalize px-3"
+                                                      onClick={() => {
+                                                        setCheckOrderDetails({
+                                                          ...checkOrderDetails,
+                                                          item: item,
+                                                          settle: false,
+                                                        });
+                                                        setReturnMoneyUsd(0);
+                                                        setPaidMoney(0);
+                                                      }}
+                                                      data-toggle="modal"
+                                                      data-target="#orderDetails"
+                                                    >
+                                                      {_t(t("Cancelled"))}
+                                                    </span>
+                                                  )}
+                                                </td>
 
-                                                      {parseInt(
-                                                        item.is_ready
-                                                      ) !== 1 && [
+                                                <td className="xsm-text align-middle text-center">
+                                                  {parseInt(
+                                                    item.is_cancelled
+                                                  ) === 0 ? (
+                                                    <div className="dropdown text-capitalize">
+                                                      <button
+                                                        className="btn t-bg-clear t-text-dark--light-40"
+                                                        type="button"
+                                                        data-toggle="dropdown"
+                                                      >
+                                                        <i className="fa fa-ellipsis-h"></i>
+                                                      </button>
+                                                      <div className="dropdown-menu">
+                                                        {getSystemSettings(
+                                                          generalSettings,
+                                                          "pos_screen"
+                                                        ) === "0" ? (
+                                                          <button
+                                                            // send state- order group id
+                                                            className="dropdown-item sm-text text-capitalize"
+                                                            onClick={() => {
+                                                              setCheckOrderDetails(
+                                                                {
+                                                                  ...checkOrderDetails,
+                                                                  item: item,
+                                                                  settle: true,
+                                                                  payment_amount:
+                                                                    null,
+                                                                  payment_type:
+                                                                    null,
+                                                                }
+                                                              );
+                                                              setReturnMoneyUsd(
+                                                                0
+                                                              );
+                                                              setPaidMoney(0);
+                                                            }}
+                                                            data-toggle="modal"
+                                                            data-target="#orderDetails"
+                                                          >
+                                                            <span className="t-mr-8">
+                                                              <i className="fa fa-refresh"></i>
+                                                            </span>
+                                                            {_t(
+                                                              t("Settle order")
+                                                            )}
+                                                          </button>
+                                                        ) : (
+                                                          <button
+                                                            // send state- order group id
+                                                            className="dropdown-item sm-text text-capitalize"
+                                                            onClick={() => {
+                                                              setCheckOrderDetails(
+                                                                {
+                                                                  ...checkOrderDetails,
+                                                                  item: item,
+                                                                  settle: true,
+                                                                  payment_amount:
+                                                                    null,
+                                                                  payment_type:
+                                                                    null,
+                                                                }
+                                                              );
+                                                              setReturnMoneyUsd(
+                                                                0
+                                                              );
+                                                              setPaidMoney(0);
+                                                              setShowSettle(
+                                                                true
+                                                              );
+                                                            }}
+                                                          >
+                                                            <span className="t-mr-8">
+                                                              <i className="fa fa-refresh"></i>
+                                                            </span>
+                                                            {_t(
+                                                              t("Settle order")
+                                                            )}
+                                                          </button>
+                                                        )}
+
+                                                        {parseInt(
+                                                          item.is_ready
+                                                        ) !== 1 && [
                                                           parseInt(
                                                             item.is_accepted
                                                           ) === 0 ? (
@@ -1470,9 +1472,8 @@ const Submitted = () => {
                                                           ),
                                                         ]}
 
-
-                                                      {/* working on edit order */}
-                                                      {/* {parseInt(
+                                                        {/* working on edit order */}
+                                                        {/* {parseInt(
                                                         item.is_ready
                                                       ) !== 1 && [
                                                           parseInt(
@@ -1527,193 +1528,193 @@ const Submitted = () => {
                                                             </button>
                                                           ),
                                                         ]} */}
+                                                      </div>
                                                     </div>
-                                                  </div>
-                                                ) : (
-                                                  _t(t("Not allowed"))
-                                                )}
-                                              </td>
-                                            </tr>
-                                          );
-                                        }
-                                      )
-                                    ),
-                                  ],
-                                ]
+                                                  ) : (
+                                                    _t(t("Not allowed"))
+                                                  )}
+                                                </td>
+                                              </tr>
+                                            );
+                                          }
+                                        )
+                                      ),
+                                    ],
+                                  ]
                                 : [
-                                  /* searched data, logic === haveData*/
-                                  searchedOrder && [
-                                    searchedOrder.list.length === 0 ? (
-                                      <tr className="align-middle">
-                                        <td
-                                          scope="row"
-                                          colSpan="8"
-                                          className="xsm-text align-middle text-center"
-                                        >
-                                          {_t(t("No data available"))}
-                                        </td>
-                                      </tr>
-                                    ) : (
-                                      searchedOrder.list.map(
-                                        (item, index) => {
-                                          return (
-                                            <tr
-                                              className="align-middle"
-                                              key={index}
-                                            >
-                                              <th
-                                                scope="row"
-                                                className="xsm-text text-capitalize align-middle text-center"
+                                    /* searched data, logic === haveData*/
+                                    searchedOrder && [
+                                      searchedOrder.list.length === 0 ? (
+                                        <tr className="align-middle">
+                                          <td
+                                            scope="row"
+                                            colSpan="8"
+                                            className="xsm-text align-middle text-center"
+                                          >
+                                            {_t(t("No data available"))}
+                                          </td>
+                                        </tr>
+                                      ) : (
+                                        searchedOrder.list.map(
+                                          (item, index) => {
+                                            return (
+                                              <tr
+                                                className="align-middle"
+                                                key={index}
                                               >
-                                                {index +
-                                                  1 +
-                                                  (submittedOrders.current_page -
-                                                    1) *
-                                                  submittedOrders.per_page}
-                                              </th>
+                                                <th
+                                                  scope="row"
+                                                  className="xsm-text text-capitalize align-middle text-center"
+                                                >
+                                                  {index +
+                                                    1 +
+                                                    (submittedOrders.current_page -
+                                                      1) *
+                                                      submittedOrders.per_page}
+                                                </th>
 
-                                              <td className="xsm-text text-capitalize align-middle text-center text-secondary">
-                                                #{item.token.id}
-                                              </td>
+                                                <td className="xsm-text text-capitalize align-middle text-center text-secondary">
+                                                  #{item.token.id}
+                                                </td>
 
-                                              <td className="xsm-text text-capitalize align-middle text-center">
-                                                <Moment format="LT">
-                                                  {item.token.time}
-                                                </Moment>
-                                              </td>
+                                                <td className="xsm-text text-capitalize align-middle text-center">
+                                                  <Moment format="LT">
+                                                    {item.token.time}
+                                                  </Moment>
+                                                </td>
 
-                                              <td className="xsm-text align-middle text-center">
-                                                {item.customer_name}
-                                              </td>
+                                                <td className="xsm-text align-middle text-center">
+                                                  {item.customer_name}
+                                                </td>
 
-                                              <td className="xsm-text align-middle text-center">
-                                                {item.table_name}
-                                              </td>
+                                                <td className="xsm-text align-middle text-center">
+                                                  {item.table_name}
+                                                </td>
 
-                                              <td className="xsm-text align-middle text-center">
-                                                {item.branch_name || "-"}
-                                              </td>
+                                                <td className="xsm-text align-middle text-center">
+                                                  {item.branch_name || "-"}
+                                                </td>
 
-                                              <td className="xsm-text text-capitalize align-middle text-center">
-                                                {parseInt(
-                                                  item.is_cancelled
-                                                ) === 0 ? (
-                                                  [
-                                                    parseInt(
-                                                      item.is_ready
-                                                    ) === 0 ? (
-                                                      <span
-                                                        className="btn btn-transparent btn-secondary xsm-text text-capitalize"
-                                                        onClick={() => {
-                                                          setCheckOrderDetails(
-                                                            {
-                                                              ...checkOrderDetails,
-                                                              item: item,
-                                                              settle: false,
-                                                            }
-                                                          );
-                                                          setReturnMoneyUsd(
-                                                            0
-                                                          );
-                                                          setPaidMoney(0);
-                                                        }}
-                                                        data-toggle="modal"
-                                                        data-target="#orderDetails"
-                                                      >
-                                                        {_t(t("processing"))}
-                                                      </span>
-                                                    ) : (
-                                                      <span
-                                                        className="btn btn-transparent btn-success xsm-text text-capitalize px-4"
-                                                        onClick={() => {
-                                                          setCheckOrderDetails(
-                                                            {
-                                                              ...checkOrderDetails,
-                                                              item: item,
-                                                              settle: false,
-                                                            }
-                                                          );
-                                                          setReturnMoneyUsd(
-                                                            0
-                                                          );
-                                                          setPaidMoney(0);
-                                                        }}
-                                                        data-toggle="modal"
-                                                        data-target="#orderDetails"
-                                                      >
-                                                        {_t(t("Ready"))}
-                                                      </span>
-                                                    ),
-                                                  ]
-                                                ) : (
-                                                  <span
-                                                    className="btn btn-transparent btn-primary xsm-text text-capitalize px-3"
-                                                    onClick={() => {
-                                                      setCheckOrderDetails({
-                                                        ...checkOrderDetails,
-                                                        item: item,
-                                                        settle: false,
-                                                      });
-                                                      setReturnMoneyUsd(0);
-                                                      setPaidMoney(0);
-                                                    }}
-                                                    data-toggle="modal"
-                                                    data-target="#orderDetails"
-                                                  >
-                                                    {_t(t("Cancelled"))}
-                                                  </span>
-                                                )}
-                                              </td>
-
-                                              <td className="xsm-text align-middle text-center">
-                                                {parseInt(
-                                                  item.is_cancelled
-                                                ) === 0 ? (
-                                                  <div className="dropdown text-capitalize">
-                                                    <button
-                                                      className="btn t-bg-clear t-text-dark--light-40"
-                                                      type="button"
-                                                      data-toggle="dropdown"
-                                                    >
-                                                      <i className="fa fa-ellipsis-h"></i>
-                                                    </button>
-                                                    <div className="dropdown-menu">
-                                                      <button
-                                                        // send state- order group id
-                                                        className="dropdown-item sm-text text-capitalize"
-                                                        onClick={() => {
-                                                          setCheckOrderDetails(
-                                                            {
-                                                              ...checkOrderDetails,
-                                                              item: item,
-                                                              settle: true,
-                                                              payment_amount:
-                                                                null,
-                                                              payment_type:
-                                                                null,
-                                                            }
-                                                          );
-                                                          setReturnMoneyUsd(
-                                                            0
-                                                          );
-                                                          setPaidMoney(0);
-                                                        }}
-                                                        data-toggle="modal"
-                                                        data-dismiss="modal"
-                                                        aria-label="Close"
-                                                        data-target="#orderDetails"
-                                                      >
-                                                        <span className="t-mr-8">
-                                                          <i className="fa fa-refresh"></i>
-                                                        </span>
-                                                        {_t(
-                                                          t("Settle order")
-                                                        )}
-                                                      </button>
-
-                                                      {parseInt(
+                                                <td className="xsm-text text-capitalize align-middle text-center">
+                                                  {parseInt(
+                                                    item.is_cancelled
+                                                  ) === 0 ? (
+                                                    [
+                                                      parseInt(
                                                         item.is_ready
-                                                      ) !== 1 && [
+                                                      ) === 0 ? (
+                                                        <span
+                                                          className="btn btn-transparent btn-secondary xsm-text text-capitalize"
+                                                          onClick={() => {
+                                                            setCheckOrderDetails(
+                                                              {
+                                                                ...checkOrderDetails,
+                                                                item: item,
+                                                                settle: false,
+                                                              }
+                                                            );
+                                                            setReturnMoneyUsd(
+                                                              0
+                                                            );
+                                                            setPaidMoney(0);
+                                                          }}
+                                                          data-toggle="modal"
+                                                          data-target="#orderDetails"
+                                                        >
+                                                          {_t(t("processing"))}
+                                                        </span>
+                                                      ) : (
+                                                        <span
+                                                          className="btn btn-transparent btn-success xsm-text text-capitalize px-4"
+                                                          onClick={() => {
+                                                            setCheckOrderDetails(
+                                                              {
+                                                                ...checkOrderDetails,
+                                                                item: item,
+                                                                settle: false,
+                                                              }
+                                                            );
+                                                            setReturnMoneyUsd(
+                                                              0
+                                                            );
+                                                            setPaidMoney(0);
+                                                          }}
+                                                          data-toggle="modal"
+                                                          data-target="#orderDetails"
+                                                        >
+                                                          {_t(t("Ready"))}
+                                                        </span>
+                                                      ),
+                                                    ]
+                                                  ) : (
+                                                    <span
+                                                      className="btn btn-transparent btn-primary xsm-text text-capitalize px-3"
+                                                      onClick={() => {
+                                                        setCheckOrderDetails({
+                                                          ...checkOrderDetails,
+                                                          item: item,
+                                                          settle: false,
+                                                        });
+                                                        setReturnMoneyUsd(0);
+                                                        setPaidMoney(0);
+                                                      }}
+                                                      data-toggle="modal"
+                                                      data-target="#orderDetails"
+                                                    >
+                                                      {_t(t("Cancelled"))}
+                                                    </span>
+                                                  )}
+                                                </td>
+
+                                                <td className="xsm-text align-middle text-center">
+                                                  {parseInt(
+                                                    item.is_cancelled
+                                                  ) === 0 ? (
+                                                    <div className="dropdown text-capitalize">
+                                                      <button
+                                                        className="btn t-bg-clear t-text-dark--light-40"
+                                                        type="button"
+                                                        data-toggle="dropdown"
+                                                      >
+                                                        <i className="fa fa-ellipsis-h"></i>
+                                                      </button>
+                                                      <div className="dropdown-menu">
+                                                        <button
+                                                          // send state- order group id
+                                                          className="dropdown-item sm-text text-capitalize"
+                                                          onClick={() => {
+                                                            setCheckOrderDetails(
+                                                              {
+                                                                ...checkOrderDetails,
+                                                                item: item,
+                                                                settle: true,
+                                                                payment_amount:
+                                                                  null,
+                                                                payment_type:
+                                                                  null,
+                                                              }
+                                                            );
+                                                            setReturnMoneyUsd(
+                                                              0
+                                                            );
+                                                            setPaidMoney(0);
+                                                          }}
+                                                          data-toggle="modal"
+                                                          data-dismiss="modal"
+                                                          aria-label="Close"
+                                                          data-target="#orderDetails"
+                                                        >
+                                                          <span className="t-mr-8">
+                                                            <i className="fa fa-refresh"></i>
+                                                          </span>
+                                                          {_t(
+                                                            t("Settle order")
+                                                          )}
+                                                        </button>
+
+                                                        {parseInt(
+                                                          item.is_ready
+                                                        ) !== 1 && [
                                                           parseInt(
                                                             item.is_accepted
                                                           ) === 0 ? (
@@ -1769,19 +1770,19 @@ const Submitted = () => {
                                                             </button>
                                                           ),
                                                         ]}
+                                                      </div>
                                                     </div>
-                                                  </div>
-                                                ) : (
-                                                  _t(t("Not allowed"))
-                                                )}
-                                              </td>
-                                            </tr>
-                                          );
-                                        }
-                                      )
-                                    ),
-                                  ],
-                                ]}
+                                                  ) : (
+                                                    _t(t("Not allowed"))
+                                                  )}
+                                                </td>
+                                              </tr>
+                                            );
+                                          }
+                                        )
+                                      ),
+                                    ],
+                                  ]}
                             </tbody>
                           </table>
                         </div>
@@ -1793,67 +1794,67 @@ const Submitted = () => {
                 {checkOrderDetails.uploading === true || loading === true
                   ? paginationLoading()
                   : [
-                    // logic === !searched
-                    !searchedOrder.searched ? (
-                      <div key="fragment4">
+                      // logic === !searched
+                      !searchedOrder.searched ? (
+                        <div key="fragment4">
+                          <div className="t-bg-white mt-1 t-pt-5 t-pb-5">
+                            <div className="row align-items-center t-pl-15 t-pr-15">
+                              <div className="col-md-7 t-mb-15 mb-md-0">
+                                {/* pagination function */}
+                                {pagination(
+                                  submittedOrders,
+                                  setPaginatedSubmittedOrders
+                                )}
+                              </div>
+                              <div className="col-md-5">
+                                <ul className="t-list d-flex justify-content-md-end align-items-center">
+                                  <li className="t-list__item">
+                                    <span className="d-inline-block sm-text">
+                                      {showingData(submittedOrders)}
+                                    </span>
+                                  </li>
+                                </ul>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      ) : (
+                        // if searched
                         <div className="t-bg-white mt-1 t-pt-5 t-pb-5">
                           <div className="row align-items-center t-pl-15 t-pr-15">
                             <div className="col-md-7 t-mb-15 mb-md-0">
-                              {/* pagination function */}
-                              {pagination(
-                                submittedOrders,
-                                setPaginatedSubmittedOrders
-                              )}
+                              <ul className="t-list d-flex">
+                                <li className="t-list__item no-pagination-style">
+                                  <button
+                                    className="btn btn-primary btn-sm"
+                                    onClick={() =>
+                                      setSearchedOrder({
+                                        ...searchedOrder,
+                                        searched: false,
+                                      })
+                                    }
+                                  >
+                                    {_t(t("Clear Search"))}
+                                  </button>
+                                </li>
+                              </ul>
                             </div>
                             <div className="col-md-5">
                               <ul className="t-list d-flex justify-content-md-end align-items-center">
                                 <li className="t-list__item">
                                   <span className="d-inline-block sm-text">
-                                    {showingData(submittedOrders)}
+                                    {searchedShowingData(
+                                      searchedOrder,
+                                      submittedOrdersForSearch
+                                    )}
                                   </span>
                                 </li>
                               </ul>
                             </div>
                           </div>
                         </div>
-                      </div>
-                    ) : (
-                      // if searched
-                      <div className="t-bg-white mt-1 t-pt-5 t-pb-5">
-                        <div className="row align-items-center t-pl-15 t-pr-15">
-                          <div className="col-md-7 t-mb-15 mb-md-0">
-                            <ul className="t-list d-flex">
-                              <li className="t-list__item no-pagination-style">
-                                <button
-                                  className="btn btn-primary btn-sm"
-                                  onClick={() =>
-                                    setSearchedOrder({
-                                      ...searchedOrder,
-                                      searched: false,
-                                    })
-                                  }
-                                >
-                                  {_t(t("Clear Search"))}
-                                </button>
-                              </li>
-                            </ul>
-                          </div>
-                          <div className="col-md-5">
-                            <ul className="t-list d-flex justify-content-md-end align-items-center">
-                              <li className="t-list__item">
-                                <span className="d-inline-block sm-text">
-                                  {searchedShowingData(
-                                    searchedOrder,
-                                    submittedOrdersForSearch
-                                  )}
-                                </span>
-                              </li>
-                            </ul>
-                          </div>
-                        </div>
-                      </div>
-                    ),
-                  ]}
+                      ),
+                    ]}
               </div>
             </div>
           </div>
@@ -1862,8 +1863,9 @@ const Submitted = () => {
 
       {/* show settle  */}
       <div
-        className={`fk-settle-container d-flex flex-column justify-content-center ${showSettle ? "" : "d-none"
-          }`}
+        className={`fk-settle-container d-flex flex-column justify-content-center ${
+          showSettle ? "" : "d-none"
+        }`}
       >
         <div className="fk-settle">
           <div className="container">
@@ -1937,65 +1939,67 @@ const Submitted = () => {
                                                     <div className="col-4 text-center border-right t-pl-10 t-pr-10">
                                                       {thisItem.variation !==
                                                         null && (
-                                                          <span className="fk-addons-table__info-text text-capitalize d-block text-left t-pt-5">
-                                                            <span className="font-weight-bold mr-1">
-                                                              {_t(t("variation"))}
-                                                              :
-                                                            </span>
-                                                            {thisItem.variation}
+                                                        <span className="fk-addons-table__info-text text-capitalize d-block text-left t-pt-5">
+                                                          <span className="font-weight-bold mr-1">
+                                                            {_t(t("variation"))}
+                                                            :
                                                           </span>
-                                                        )}
+                                                          {thisItem.variation}
+                                                        </span>
+                                                      )}
 
                                                       {thisItem.properties !==
                                                         null && (
-                                                          <span className="fk-addons-table__info-text text-capitalize d-block text-left t-pb-5">
-                                                            <span className="font-weight-bold mr-1">
-                                                              {_t(
-                                                                t("properties")
-                                                              )}
-                                                              :
-                                                            </span>
-                                                            {JSON.parse(
-                                                              thisItem.properties
-                                                            ).map(
-                                                              (
-                                                                propertyItem,
-                                                                thisIndex
-                                                              ) => {
-                                                                if (
-                                                                  thisIndex !==
-                                                                  JSON.parse(
-                                                                    thisItem.properties
-                                                                  ).length -
-                                                                  1
-                                                                ) {
-                                                                  return (
-                                                                    propertyItem.property +
-                                                                    `${propertyItem.quantity >
-                                                                      1
-                                                                      ? "(" +
-                                                                      propertyItem.quantity +
-                                                                      ")"
-                                                                      : ""
-                                                                    }` +
-                                                                    ", "
-                                                                  );
-                                                                } else {
-                                                                  return (
-                                                                    propertyItem.property +
-                                                                    `${propertyItem.quantity >
-                                                                      1
-                                                                      ? "(" +
-                                                                      propertyItem.quantity +
-                                                                      ")"
-                                                                      : ""
-                                                                    }`
-                                                                  );
-                                                                }
-                                                              }
+                                                        <span className="fk-addons-table__info-text text-capitalize d-block text-left t-pb-5">
+                                                          <span className="font-weight-bold mr-1">
+                                                            {_t(
+                                                              t("properties")
                                                             )}
+                                                            :
                                                           </span>
-                                                        )}
+                                                          {JSON.parse(
+                                                            thisItem.properties
+                                                          ).map(
+                                                            (
+                                                              propertyItem,
+                                                              thisIndex
+                                                            ) => {
+                                                              if (
+                                                                thisIndex !==
+                                                                JSON.parse(
+                                                                  thisItem.properties
+                                                                ).length -
+                                                                  1
+                                                              ) {
+                                                                return (
+                                                                  propertyItem.property +
+                                                                  `${
+                                                                    propertyItem.quantity >
+                                                                    1
+                                                                      ? "(" +
+                                                                        propertyItem.quantity +
+                                                                        ")"
+                                                                      : ""
+                                                                  }` +
+                                                                  ", "
+                                                                );
+                                                              } else {
+                                                                return (
+                                                                  propertyItem.property +
+                                                                  `${
+                                                                    propertyItem.quantity >
+                                                                    1
+                                                                      ? "(" +
+                                                                        propertyItem.quantity +
+                                                                        ")"
+                                                                      : ""
+                                                                  }`
+                                                                );
+                                                              }
+                                                            }
+                                                          )}
+                                                        </span>
+                                                      )}
                                                     </div>
                                                     <div className="col-2 text-center d-flex">
                                                       <span className="fk-addons-table__info-text text-capitalize m-auto">
@@ -2047,7 +2051,7 @@ const Submitted = () => {
                               checkOrderDetails.item &&
                               formatPrice(
                                 checkOrderDetails.item.total_payable -
-                                checkOrderDetails.item.paid_amount
+                                  checkOrderDetails.item.paid_amount
                               )}
                           </div>
                         </div>
@@ -2297,7 +2301,7 @@ const Submitted = () => {
                                           formatPrice(
                                             checkOrderDetails.item
                                               .total_payable -
-                                            checkOrderDetails.item.paid_amount
+                                              checkOrderDetails.item.paid_amount
                                           )
                                         );
                                         setPaidMoney(theP);
@@ -2322,7 +2326,7 @@ const Submitted = () => {
                                                 .total_payable -
                                                 checkOrderDetails.item
                                                   .paid_amount) /
-                                              2
+                                                2
                                             )
                                           );
                                           setPaidMoney(parseFloat(theP));
@@ -2348,7 +2352,7 @@ const Submitted = () => {
                                                 .total_payable -
                                                 checkOrderDetails.item
                                                   .paid_amount) /
-                                              3
+                                                3
                                             )
                                           );
                                           setPaidMoney(parseFloat(theP));
@@ -2404,14 +2408,15 @@ const Submitted = () => {
                                         <button
                                           type="button"
                                           //set active or !
-                                          className={`w-100 t-text-dark t-heading-font btn btn-outline-danger font-weight-bold text-uppercase py-3 ${checkOrderDetails &&
+                                          className={`w-100 t-text-dark t-heading-font btn btn-outline-danger font-weight-bold text-uppercase py-3 ${
+                                            checkOrderDetails &&
                                             checkOrderDetails.payment_type !==
-                                            null &&
+                                              null &&
                                             checkOrderDetails.payment_type[0]
                                               .id === groupItem.id
-                                            ? "active"
-                                            : ""
-                                            }`}
+                                              ? "active"
+                                              : ""
+                                          }`}
                                           onClick={() => {
                                             handleSetpaymentTypeSingle(
                                               groupItem

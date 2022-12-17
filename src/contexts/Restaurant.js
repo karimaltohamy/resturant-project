@@ -100,72 +100,72 @@ const RestaurantProvider = ({ children }) => {
       getDeptTag();
       getPaymentType();
       getWorkPeriod();
-      getDeliveryPendingOrders();
-      getDeliveryDeliveredOrders();
+      // getDeliveryPendingOrders();
+      // getDeliveryDeliveredOrders();
     }
   }, []);
 
-  //get deliveryman pending orders
-  const getDeliveryPendingOrders = () => {
-    setLoading(true);
-    const ordersUrl = BASE_URL + "/settings/get-assigned-orders";
-    return axios
-      .get(ordersUrl, {
-        headers: { Authorization: `Bearer ${getCookie()}` },
-      })
-      .then((res) => {
-        setPendingOrdersDelivery(res.data[0]);
-        setPendingOrdersDeliveryForSearch(res.data[1]);
-        setLoading(false);
-      });
-  };
+  // //get deliveryman pending orders
+  // const getDeliveryPendingOrders = () => {
+  //   setLoading(true);
+  //   const ordersUrl = BASE_URL + "/settings/get-assigned-orders";
+  //   return axios
+  //     .get(ordersUrl, {
+  //       headers: { Authorization: `Bearer ${getCookie()}` },
+  //     })
+  //     .then((res) => {
+  //       setPendingOrdersDelivery(res.data[0]);
+  //       setPendingOrdersDeliveryForSearch(res.data[1]);
+  //       setLoading(false);
+  //     });
+  // };
 
-  // get paginated deliveryman pending orders
-  const setPaginatedDeliveryPendingOrders = (pageNo) => {
-    setDataPaginating(true);
-    const url = BASE_URL + "/settings/get-assigned-orders?page=" + pageNo;
-    return axios
-      .get(url, {
-        headers: { Authorization: `Bearer ${getCookie()}` },
-      })
-      .then((res) => {
-        setPendingOrdersDelivery(res.data[0]);
-        setPendingOrdersDeliveryForSearch(res.data[1]);
-        setDataPaginating(false);
-      })
-      .catch(() => { });
-  };
+  // // get paginated deliveryman pending orders
+  // const setPaginatedDeliveryPendingOrders = (pageNo) => {
+  //   setDataPaginating(true);
+  //   const url = BASE_URL + "/settings/get-assigned-orders?page=" + pageNo;
+  //   return axios
+  //     .get(url, {
+  //       headers: { Authorization: `Bearer ${getCookie()}` },
+  //     })
+  //     .then((res) => {
+  //       setPendingOrdersDelivery(res.data[0]);
+  //       setPendingOrdersDeliveryForSearch(res.data[1]);
+  //       setDataPaginating(false);
+  //     })
+  //     .catch(() => {});
+  // };
 
-  //get deliveryman delivered orders
-  const getDeliveryDeliveredOrders = () => {
-    setLoading(true);
-    const ordersUrl = BASE_URL + "/settings/get-delivered-orders";
-    return axios
-      .get(ordersUrl, {
-        headers: { Authorization: `Bearer ${getCookie()}` },
-      })
-      .then((res) => {
-        setDeliveredOrdersDelivery(res.data[0]);
-        setDeliveredOrdersDeliveryForSearch(res.data[1]);
-        setLoading(false);
-      });
-  };
+  // //get deliveryman delivered orders
+  // const getDeliveryDeliveredOrders = () => {
+  //   setLoading(true);
+  //   const ordersUrl = BASE_URL + "/settings/get-delivered-orders";
+  //   return axios
+  //     .get(ordersUrl, {
+  //       headers: { Authorization: `Bearer ${getCookie()}` },
+  //     })
+  //     .then((res) => {
+  //       setDeliveredOrdersDelivery(res.data[0]);
+  //       setDeliveredOrdersDeliveryForSearch(res.data[1]);
+  //       setLoading(false);
+  //     });
+  // };
 
-  // get paginated deliveryman delivered orders
-  const setPaginatedDeliveryDeliveredOrders = (pageNo) => {
-    setDataPaginating(true);
-    const url = BASE_URL + "/settings/get-delivered-orders?page=" + pageNo;
-    return axios
-      .get(url, {
-        headers: { Authorization: `Bearer ${getCookie()}` },
-      })
-      .then((res) => {
-        setDeliveredOrdersDelivery(res.data[0]);
-        setDeliveredOrdersDeliveryForSearch(res.data[1]);
-        setDataPaginating(false);
-      })
-      .catch(() => { });
-  };
+  // // get paginated deliveryman delivered orders
+  // const setPaginatedDeliveryDeliveredOrders = (pageNo) => {
+  //   setDataPaginating(true);
+  //   const url = BASE_URL + "/settings/get-delivered-orders?page=" + pageNo;
+  //   return axios
+  //     .get(url, {
+  //       headers: { Authorization: `Bearer ${getCookie()}` },
+  //     })
+  //     .then((res) => {
+  //       setDeliveredOrdersDelivery(res.data[0]);
+  //       setDeliveredOrdersDeliveryForSearch(res.data[1]);
+  //       setDataPaginating(false);
+  //     })
+  //     .catch(() => {});
+  // };
 
   //get ingredient group
   const getIngredientGroup = () => {
@@ -179,7 +179,8 @@ const RestaurantProvider = ({ children }) => {
         setIngredientGroupList(res.data[0]);
         setIngredientGroupForSearch(res.data[1]);
         setLoading(false);
-      });
+      })
+      .catch((error) => console.log(error));
   };
 
   // get paginated ingredient group
@@ -195,7 +196,7 @@ const RestaurantProvider = ({ children }) => {
         setIngredientGroupForSearch(res.data[1]);
         setDataPaginating(false);
       })
-      .catch(() => { });
+      .catch((error) => console.log(error));
   };
 
   //get ingredient item
@@ -211,7 +212,8 @@ const RestaurantProvider = ({ children }) => {
         setIngredientItemForSearch(res.data[1]);
         setIngredientItemStock(res.data[2]);
         setLoading(false);
-      });
+      })
+      .catch((error) => console.log(error));
   };
 
   // get paginated ingredient item
@@ -228,17 +230,20 @@ const RestaurantProvider = ({ children }) => {
         setIngredientItemStock(res.data[2]);
         setDataPaginating(false);
       })
-      .catch(() => { });
+      .catch((error) => console.log(error));
   };
 
   //get branchWeb
   const getBranchWeb = () => {
     setLoading(true);
     const branchUrl = BASE_URL + "/website/get-branch-web";
-    return axios.get(branchUrl).then((res) => {
-      setBranchListWeb(res.data);
-      setLoading(false);
-    });
+    return axios
+      .get(branchUrl)
+      .then((res) => {
+        setBranchListWeb(res.data);
+        setLoading(false);
+      })
+      .catch((error) => console.log(error));
   };
 
   //get branch
@@ -253,7 +258,8 @@ const RestaurantProvider = ({ children }) => {
         setBranchList(res.data[0]);
         setBranchforSearch(res.data[1]);
         setLoading(false);
-      });
+      })
+      .catch((error) => console.log(error));
   };
 
   // get paginated branch
@@ -269,7 +275,7 @@ const RestaurantProvider = ({ children }) => {
         setBranchforSearch(res.data[1]);
         setDataPaginating(false);
       })
-      .catch(() => { });
+      .catch((error) => console.log(error));
   };
 
   //get tables
@@ -284,7 +290,8 @@ const RestaurantProvider = ({ children }) => {
         setTableList(res.data[0]);
         setTableforSearch(res.data[1]);
         setLoading(false);
-      });
+      })
+      .catch((error) => console.log(error));
   };
 
   // get paginated tables
@@ -300,7 +307,7 @@ const RestaurantProvider = ({ children }) => {
         setTableforSearch(res.data[1]);
         setDataPaginating(false);
       })
-      .catch(() => { });
+      .catch((error) => console.log(error));
   };
 
   //get payment types
@@ -315,7 +322,8 @@ const RestaurantProvider = ({ children }) => {
         setPaymentTypeList(res.data[0]);
         setPaymentTypeforSearch(res.data[1]);
         setLoading(false);
-      });
+      })
+      .catch((error) => console.log(error));
   };
 
   // get paginated payment types
@@ -331,7 +339,7 @@ const RestaurantProvider = ({ children }) => {
         setPaymentTypeforSearch(res.data[1]);
         setDataPaginating(false);
       })
-      .catch(() => { });
+      .catch((error) => console.log(error));
   };
 
   //get dept Tag
@@ -346,7 +354,8 @@ const RestaurantProvider = ({ children }) => {
         setDeptTagList(res.data[0]);
         setDeptTagForSearch(res.data[1]);
         setLoading(false);
-      });
+      })
+      .catch((error) => console.log(error));
   };
 
   // get paginated dept Tag
@@ -362,7 +371,7 @@ const RestaurantProvider = ({ children }) => {
         setDeptTagForSearch(res.data[1]);
         setDataPaginating(false);
       })
-      .catch(() => { });
+      .catch((error) => console.log(error));
   };
 
   //get work period
@@ -377,7 +386,8 @@ const RestaurantProvider = ({ children }) => {
         setWorkPeriodList(res.data[0]);
         setWorkPeriodListForSearch(res.data[1]);
         setLoading(false);
-      });
+      })
+      .catch((error) => console.log(error));
   };
 
   // get paginated work period
@@ -393,7 +403,7 @@ const RestaurantProvider = ({ children }) => {
         setWorkPeriodListForSearch(res.data[1]);
         setDataPaginating(false);
       })
-      .catch(() => { });
+      .catch((error) => console.log(error));
   };
 
   //get submitted orders- not settled
@@ -408,7 +418,8 @@ const RestaurantProvider = ({ children }) => {
         setSubmittedOrders(res.data[0]);
         setSubmittedOrdersForSearch(res.data[1]);
         setLoading(false);
-      });
+      })
+      .catch((error) => console.log(error));
   };
 
   // get paginated submitted orders- not settled
@@ -424,7 +435,7 @@ const RestaurantProvider = ({ children }) => {
         setSubmittedOrdersForSearch(res.data[1]);
         setDataPaginating(false);
       })
-      .catch(() => { });
+      .catch((error) => console.log(error));
   };
 
   //get settled orders
@@ -439,7 +450,8 @@ const RestaurantProvider = ({ children }) => {
         setSettledOrders(res.data[0]);
         setSettledOrdersForSearch(res.data[1]);
         setLoading(false);
-      });
+      })
+      .catch((error) => console.log(error));
   };
 
   // get paginated settled orders
@@ -455,7 +467,7 @@ const RestaurantProvider = ({ children }) => {
         setSettledOrdersForSearch(res.data[1]);
         setDataPaginating(false);
       })
-      .catch(() => { });
+      .catch((error) => console.log(error));
   };
 
   //get kithcen new orders
@@ -469,7 +481,8 @@ const RestaurantProvider = ({ children }) => {
       .then((res) => {
         setKithcenNewOrders(res.data[0]);
         setLoading(false);
-      });
+      })
+      .catch((error) => console.log(error));
   };
 
   // kitchen online orders
@@ -483,7 +496,8 @@ const RestaurantProvider = ({ children }) => {
       .then((res) => {
         setKithcenNewOrdersOnline(res.data[0]);
         setLoading(false);
-      });
+      })
+      .catch((error) => console.log(error));
   };
 
   //get all orders for order history
@@ -497,7 +511,8 @@ const RestaurantProvider = ({ children }) => {
       .then((res) => {
         setAllOrdersForSearch(res.data);
         setLoading(false);
-      });
+      })
+      .catch((error) => console.log(error));
   };
 
   // get paginated settled orders
@@ -513,7 +528,7 @@ const RestaurantProvider = ({ children }) => {
         setDataPaginating(false);
         setLoading(false);
       })
-      .catch(() => { });
+      .catch((error) => console.log(error));
   };
 
   //get all  online orders for order history
@@ -527,7 +542,8 @@ const RestaurantProvider = ({ children }) => {
       .then((res) => {
         setAllOnlineOrdersForSearch(res.data);
         setLoading(false);
-      });
+      })
+      .catch((error) => console.log(error));
   };
 
   // get paginated online  orders
@@ -543,18 +559,21 @@ const RestaurantProvider = ({ children }) => {
         setDataPaginating(false);
         setLoading(false);
       })
-      .catch(() => { });
+      .catch((error) => console.log(error));
   };
 
   //get food purchases
   const getIngredientPurchase = () => {
     setLoading(true);
     const url = BASE_URL + "/settings/get-ingredient_purchase";
-    return axios.get(url).then((res) => {
-      setIngredientPurchaseHistory(res.data[0]);
-      setIngredientPurchaseHistoryForSearch(res.data[1]);
-      setLoading(false);
-    });
+    return axios
+      .get(url)
+      .then((res) => {
+        setIngredientPurchaseHistory(res.data[0]);
+        setIngredientPurchaseHistoryForSearch(res.data[1]);
+        setLoading(false);
+      })
+      .catch((error) => console.log(error));
   };
 
   // get paginated purchases
@@ -570,7 +589,7 @@ const RestaurantProvider = ({ children }) => {
         setIngredientPurchaseHistoryForSearch(res.data[1]);
         setDataPaginating(false);
       })
-      .catch(() => { });
+      .catch((error) => console.log(error));
   };
 
   return (
@@ -580,20 +599,20 @@ const RestaurantProvider = ({ children }) => {
         loading,
         setLoading,
         //delvery pending
-        getDeliveryPendingOrders,
+        // getDeliveryPendingOrders,
         pendingOrdersDelivery,
         setPendingOrdersDelivery,
         pendingOrdersDeliveryForSearch,
         setPendingOrdersDeliveryForSearch,
-        setPaginatedDeliveryPendingOrders,
+        // setPaginatedDeliveryPendingOrders,
 
         //delivery delivered
-        getDeliveryDeliveredOrders,
+        // getDeliveryDeliveredOrders,
         deliveredOrdersDelivery,
         setDeliveredOrdersDelivery,
         deliveredOrdersDeliveryForSearch,
         setDeliveredOrdersDeliveryForSearch,
-        setPaginatedDeliveryDeliveredOrders,
+        // setPaginatedDeliveryDeliveredOrders,
 
         //ingredient group
         getIngredientGroup,

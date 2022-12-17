@@ -86,7 +86,7 @@ const Settled = () => {
   });
 
   //useEffect == componentDidMount
-  useEffect(() => { }, []);
+  useEffect(() => {}, []);
   //show price of each item in print
   const showPriceOfEachOrderItemPrint = (thisItem) => {
     let price = 0;
@@ -193,7 +193,7 @@ const Settled = () => {
       .get(url, {
         headers: { Authorization: `Bearer ${getCookie()}` },
       })
-      .then((res) => { })
+      .then((res) => {})
       .catch((error) => {
         setSettledOrders(tempSettledOrders);
         setSearchedOrder({
@@ -224,14 +224,14 @@ const Settled = () => {
                     </span>
                     <p className="mb-0 sm-text fk-print-text text-center text-capitalize">
                       {checkOrderDetails.item.theBranch !== null &&
-                        checkOrderDetails.item.theBranch.address
+                      checkOrderDetails.item.theBranch.address
                         ? checkOrderDetails.item.theBranch.address
                         : ""}
                     </p>
                     <p className="mb-0 sm-text fk-print-text text-center text-capitalize">
                       {_t(t("call"))}:{" "}
                       {checkOrderDetails.item.theBranch !== null &&
-                        checkOrderDetails.item.theBranch.phn_no
+                      checkOrderDetails.item.theBranch.phn_no
                         ? checkOrderDetails.item.theBranch.phn_no
                         : ""}
                     </p>
@@ -348,8 +348,8 @@ const Settled = () => {
                                                 <span>
                                                   {formatPrice(
                                                     thisItem.quantity *
-                                                    propertyItem.quantity *
-                                                    propertyItem.price_per_qty
+                                                      propertyItem.quantity *
+                                                      propertyItem.price_per_qty
                                                   )}
                                                   <br />
                                                 </span>
@@ -423,102 +423,102 @@ const Settled = () => {
 
                     {getSystemSettings(generalSettings, "sDiscount") ===
                       "flat" && (
-                        <>
-                          {parseFloat(checkOrderDetails.item.service_charge) >
-                            0 && (
-                              <table className="table mb-0 table-borderless">
-                                <tbody>
-                                  <tr>
-                                    <th className="fk-print-text xsm-text text-capitalize">
-                                      <span className="d-block">
-                                        {_t(t("S.Charge"))}
-                                      </span>
-                                    </th>
+                      <>
+                        {parseFloat(checkOrderDetails.item.service_charge) >
+                          0 && (
+                          <table className="table mb-0 table-borderless">
+                            <tbody>
+                              <tr>
+                                <th className="fk-print-text xsm-text text-capitalize">
+                                  <span className="d-block">
+                                    {_t(t("S.Charge"))}
+                                  </span>
+                                </th>
 
-                                    <td className="fk-print-text xsm-text text-capitalize text-right">
-                                      {formatPrice(
-                                        checkOrderDetails.item.service_charge
-                                      )}
-                                    </td>
-                                  </tr>
-                                </tbody>
-                              </table>
-                            )}
+                                <td className="fk-print-text xsm-text text-capitalize text-right">
+                                  {formatPrice(
+                                    checkOrderDetails.item.service_charge
+                                  )}
+                                </td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        )}
 
-                          {parseFloat(checkOrderDetails.item.discount) > 0 && (
-                            <table className="table mb-0 table-borderless">
-                              <tbody>
-                                <tr>
-                                  <th className="fk-print-text xsm-text text-capitalize">
-                                    <span className="d-block">
-                                      {_t(t("discount"))}
-                                    </span>
-                                  </th>
-                                  <td className="fk-print-text xsm-text text-capitalize text-right">
-                                    {formatPrice(checkOrderDetails.item.discount)}
-                                  </td>
-                                </tr>
-                              </tbody>
-                            </table>
-                          )}
-                        </>
-                      )}
+                        {parseFloat(checkOrderDetails.item.discount) > 0 && (
+                          <table className="table mb-0 table-borderless">
+                            <tbody>
+                              <tr>
+                                <th className="fk-print-text xsm-text text-capitalize">
+                                  <span className="d-block">
+                                    {_t(t("discount"))}
+                                  </span>
+                                </th>
+                                <td className="fk-print-text xsm-text text-capitalize text-right">
+                                  {formatPrice(checkOrderDetails.item.discount)}
+                                </td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        )}
+                      </>
+                    )}
 
                     {getSystemSettings(generalSettings, "sDiscount") ===
                       "percentage" && (
-                        <>
-                          {parseFloat(checkOrderDetails.item.service_charge) >
-                            0 && (
-                              <table className="table mb-0 table-borderless">
-                                <tbody>
-                                  <tr>
-                                    <th className="fk-print-text xsm-text text-capitalize">
-                                      <span className="d-block">
-                                        {_t(t("S.Charge"))}
-                                        {checkOrderDetails.item &&
-                                          "(" +
-                                          checkOrderDetails.item.service_charge +
-                                          "%)"}
-                                      </span>
-                                    </th>
+                      <>
+                        {parseFloat(checkOrderDetails.item.service_charge) >
+                          0 && (
+                          <table className="table mb-0 table-borderless">
+                            <tbody>
+                              <tr>
+                                <th className="fk-print-text xsm-text text-capitalize">
+                                  <span className="d-block">
+                                    {_t(t("S.Charge"))}
+                                    {checkOrderDetails.item &&
+                                      "(" +
+                                        checkOrderDetails.item.service_charge +
+                                        "%)"}
+                                  </span>
+                                </th>
 
-                                    <td className="fk-print-text xsm-text text-capitalize text-right">
-                                      {formatPrice(
-                                        checkOrderDetails.item.order_bill *
-                                        (checkOrderDetails.item.service_charge /
-                                          100)
-                                      )}
-                                    </td>
-                                  </tr>
-                                </tbody>
-                              </table>
-                            )}
+                                <td className="fk-print-text xsm-text text-capitalize text-right">
+                                  {formatPrice(
+                                    checkOrderDetails.item.order_bill *
+                                      (checkOrderDetails.item.service_charge /
+                                        100)
+                                  )}
+                                </td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        )}
 
-                          {parseFloat(checkOrderDetails.item.discount) > 0 && (
-                            <table className="table mb-0 table-borderless">
-                              <tbody>
-                                <tr>
-                                  <th className="fk-print-text xsm-text text-capitalize">
-                                    <span className="d-block">
-                                      {_t(t("discount"))}
-                                      {checkOrderDetails.item &&
-                                        "(" +
+                        {parseFloat(checkOrderDetails.item.discount) > 0 && (
+                          <table className="table mb-0 table-borderless">
+                            <tbody>
+                              <tr>
+                                <th className="fk-print-text xsm-text text-capitalize">
+                                  <span className="d-block">
+                                    {_t(t("discount"))}
+                                    {checkOrderDetails.item &&
+                                      "(" +
                                         checkOrderDetails.item.discount +
                                         "%)"}
-                                    </span>
-                                  </th>
-                                  <td className="fk-print-text xsm-text text-capitalize text-right">
-                                    {formatPrice(
-                                      checkOrderDetails.item.order_bill *
+                                  </span>
+                                </th>
+                                <td className="fk-print-text xsm-text text-capitalize text-right">
+                                  {formatPrice(
+                                    checkOrderDetails.item.order_bill *
                                       (checkOrderDetails.item.discount / 100)
-                                    )}
-                                  </td>
-                                </tr>
-                              </tbody>
-                            </table>
-                          )}
-                        </>
-                      )}
+                                  )}
+                                </td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        )}
+                      </>
+                    )}
 
                     <div className="myBorder"></div>
                     <table className="table mb-0 table-borderless">
@@ -542,13 +542,13 @@ const Settled = () => {
                           <td className="fk-print-text xsm-text text-capitalize text-right">
                             {checkOrderDetails.item.paid_amount -
                               checkOrderDetails.item.total_payable >
-                              0
+                            0
                               ? formatPrice(
-                                parseFloat(
-                                  checkOrderDetails.item.paid_amount -
-                                  checkOrderDetails.item.total_payable
+                                  parseFloat(
+                                    checkOrderDetails.item.paid_amount -
+                                      checkOrderDetails.item.total_payable
+                                  )
                                 )
-                              )
                               : formatPrice(0)}
                           </td>
                         </tr>
@@ -597,7 +597,7 @@ const Settled = () => {
             ) : (
               <div className="modal-body">
                 {checkOrderDetails.item &&
-                  parseInt(checkOrderDetails.item.is_settled) === 0 ? (
+                parseInt(checkOrderDetails.item.is_settled) === 0 ? (
                   // if this item is not settled then show settle-cancel button
                   <>
                     {checkOrderDetails.item &&
@@ -605,9 +605,9 @@ const Settled = () => {
                         <div className="text-right">
                           {checkOrderDetails.settle &&
                             paidMoney >
-                            parseFloat(
-                              checkOrderDetails.item.total_payable
-                            ) && (
+                              parseFloat(
+                                checkOrderDetails.item.total_payable
+                              ) && (
                               <span className="mr-2 text-secondary font-weight-bold">
                                 Return: {currencySymbolLeft()}
                                 {formatPrice(returnMoneyUsd)}
@@ -663,39 +663,39 @@ const Settled = () => {
                   )}
                 {/* show this if order settle is not true, if true show payment input field */}
                 {!checkOrderDetails.settle ? (
-                  <div class="col-12 filtr-item">
-                    <div class="fk-order-token t-bg-white">
-                      <div class="fk-order-token__body">
-                        <div class="fk-addons-table">
-                          <div class="fk-addons-table__head text-center">
+                  <div className="col-12 filtr-item">
+                    <div className="fk-order-token t-bg-white">
+                      <div className="fk-order-token__body">
+                        <div className="fk-addons-table">
+                          <div className="fk-addons-table__head text-center">
                             {_t(t("order token"))}: #
                             {checkOrderDetails.item &&
                               checkOrderDetails.item.token.id}
                           </div>
-                          <div class="fk-addons-table__info">
-                            <div class="row g-0">
-                              <div class="col-2 text-center border-right">
-                                <span class="fk-addons-table__info-text text-capitalize">
+                          <div className="fk-addons-table__info">
+                            <div className="row g-0">
+                              <div className="col-2 text-center border-right">
+                                <span className="fk-addons-table__info-text text-capitalize">
                                   {_t(t("S/L"))}
                                 </span>
                               </div>
-                              <div class="col-3 text-center border-right">
-                                <span class="fk-addons-table__info-text text-capitalize">
+                              <div className="col-3 text-center border-right">
+                                <span className="fk-addons-table__info-text text-capitalize">
                                   {_t(t("food"))}
                                 </span>
                               </div>
-                              <div class="col-4 text-left pl-2 border-right">
-                                <span class="fk-addons-table__info-text text-capitalize">
+                              <div className="col-4 text-left pl-2 border-right">
+                                <span className="fk-addons-table__info-text text-capitalize">
                                   {_t(t("Additional Info"))}
                                 </span>
                               </div>
-                              <div class="col-2 text-center border-right">
-                                <span class="fk-addons-table__info-text text-capitalize">
+                              <div className="col-2 text-center border-right">
+                                <span className="fk-addons-table__info-text text-capitalize">
                                   {_t(t("QTY"))}
                                 </span>
                               </div>
-                              <div class="col-1 text-center">
-                                <span class="fk-addons-table__info-text text-capitalize">
+                              <div className="col-1 text-center">
+                                <span className="fk-addons-table__info-text text-capitalize">
                                   {_t(t("Status"))}
                                 </span>
                               </div>
@@ -705,23 +705,23 @@ const Settled = () => {
                             checkOrderDetails.item.orderedItems.map(
                               (thisItem, indexThisItem) => {
                                 return (
-                                  <div class="fk-addons-table__body-row">
-                                    <div class="row g-0">
-                                      <div class="col-2 text-center border-right d-flex">
-                                        <span class="fk-addons-table__info-text text-capitalize m-auto">
+                                  <div className="fk-addons-table__body-row">
+                                    <div className="row g-0">
+                                      <div className="col-2 text-center border-right d-flex">
+                                        <span className="fk-addons-table__info-text text-capitalize m-auto">
                                           {indexThisItem + 1}
                                         </span>
                                       </div>
-                                      <div class="col-3 text-center border-right d-flex">
-                                        <span class="fk-addons-table__info-text text-capitalize m-auto">
+                                      <div className="col-3 text-center border-right d-flex">
+                                        <span className="fk-addons-table__info-text text-capitalize m-auto">
                                           {thisItem.food_item} (
                                           {thisItem.food_group})
                                         </span>
                                       </div>
-                                      <div class="col-4 text-center border-right t-pl-10 t-pr-10">
+                                      <div className="col-4 text-center border-right t-pl-10 t-pr-10">
                                         {thisItem.variation !== null && (
-                                          <span class="fk-addons-table__info-text text-capitalize d-block text-left t-pt-5">
-                                            <span class="font-weight-bold mr-1">
+                                          <span className="fk-addons-table__info-text text-capitalize d-block text-left t-pt-5">
+                                            <span className="font-weight-bold mr-1">
                                               {_t(t("variation"))}:
                                             </span>
                                             {thisItem.variation}
@@ -729,8 +729,8 @@ const Settled = () => {
                                         )}
 
                                         {thisItem.properties !== null && (
-                                          <span class="fk-addons-table__info-text text-capitalize d-block text-left t-pb-5">
-                                            <span class="font-weight-bold mr-1">
+                                          <span className="fk-addons-table__info-text text-capitalize d-block text-left t-pb-5">
+                                            <span className="font-weight-bold mr-1">
                                               {_t(t("properties"))}:
                                             </span>
                                             {JSON.parse(
@@ -740,26 +740,28 @@ const Settled = () => {
                                                 thisIndex !==
                                                 JSON.parse(thisItem.properties)
                                                   .length -
-                                                1
+                                                  1
                                               ) {
                                                 return (
                                                   propertyItem.property +
-                                                  `${propertyItem.quantity > 1
-                                                    ? "(" +
-                                                    propertyItem.quantity +
-                                                    ")"
-                                                    : ""
+                                                  `${
+                                                    propertyItem.quantity > 1
+                                                      ? "(" +
+                                                        propertyItem.quantity +
+                                                        ")"
+                                                      : ""
                                                   }` +
                                                   ", "
                                                 );
                                               } else {
                                                 return (
                                                   propertyItem.property +
-                                                  `${propertyItem.quantity > 1
-                                                    ? "(" +
-                                                    propertyItem.quantity +
-                                                    ")"
-                                                    : ""
+                                                  `${
+                                                    propertyItem.quantity > 1
+                                                      ? "(" +
+                                                        propertyItem.quantity +
+                                                        ")"
+                                                      : ""
                                                   }`
                                                 );
                                               }
@@ -767,20 +769,20 @@ const Settled = () => {
                                           </span>
                                         )}
                                       </div>
-                                      <div class="col-2 text-center border-right d-flex">
-                                        <span class="fk-addons-table__info-text text-capitalize m-auto">
+                                      <div className="col-2 text-center border-right d-flex">
+                                        <span className="fk-addons-table__info-text text-capitalize m-auto">
                                           {thisItem.quantity}
                                         </span>
                                       </div>
 
-                                      <div class="col-1 text-center d-flex">
-                                        <label class="mx-checkbox mx-checkbox--empty m-auto">
-                                          <span class="mx-checkbox__text text-capitalize t-text-heading fk-addons-table__body-text">
+                                      <div className="col-1 text-center d-flex">
+                                        <label className="mx-checkbox mx-checkbox--empty m-auto">
+                                          <span className="mx-checkbox__text text-capitalize t-text-heading fk-addons-table__body-text">
                                             {parseInt(thisItem.is_cooking) ===
-                                              1 ? (
+                                            1 ? (
                                               [
                                                 parseInt(thisItem.is_ready) ===
-                                                  1 ? (
+                                                1 ? (
                                                   <i
                                                     className="fa fa-check text-success"
                                                     title={_t(t("Ready"))}
@@ -888,7 +890,7 @@ const Settled = () => {
                     </tr>
 
                     {checkOrderDetails.item &&
-                      checkOrderDetails.item.vat_system === "igst" ? (
+                    checkOrderDetails.item.vat_system === "igst" ? (
                       <tr>
                         <td className="text-capitalized">{_t(t("VAT"))}</td>
                         <td>
@@ -937,86 +939,86 @@ const Settled = () => {
                     {/* sdiscount */}
                     {getSystemSettings(generalSettings, "sDiscount") ===
                       "flat" && (
-                        <>
-                          <tr>
-                            <td className="text-capitalized">
-                              {_t(t("Service charge"))}
-                            </td>
-                            <td>
-                              {checkOrderDetails.item && (
-                                <>
-                                  {currencySymbolLeft()}
-                                  {formatPrice(
-                                    checkOrderDetails.item.service_charge
-                                  )}
-                                  {currencySymbolRight()}
-                                </>
-                              )}
-                            </td>
-                          </tr>
-                          <tr>
-                            <td className="text-capitalized">
-                              {_t(t("Discount"))}
-                            </td>
-                            <td>
-                              {checkOrderDetails.item && (
-                                <>
-                                  {currencySymbolLeft()}
-                                  {formatPrice(checkOrderDetails.item.discount)}
-                                  {currencySymbolRight()}
-                                </>
-                              )}
-                            </td>
-                          </tr>
-                        </>
-                      )}
+                      <>
+                        <tr>
+                          <td className="text-capitalized">
+                            {_t(t("Service charge"))}
+                          </td>
+                          <td>
+                            {checkOrderDetails.item && (
+                              <>
+                                {currencySymbolLeft()}
+                                {formatPrice(
+                                  checkOrderDetails.item.service_charge
+                                )}
+                                {currencySymbolRight()}
+                              </>
+                            )}
+                          </td>
+                        </tr>
+                        <tr>
+                          <td className="text-capitalized">
+                            {_t(t("Discount"))}
+                          </td>
+                          <td>
+                            {checkOrderDetails.item && (
+                              <>
+                                {currencySymbolLeft()}
+                                {formatPrice(checkOrderDetails.item.discount)}
+                                {currencySymbolRight()}
+                              </>
+                            )}
+                          </td>
+                        </tr>
+                      </>
+                    )}
 
                     {getSystemSettings(generalSettings, "sDiscount") ===
                       "percentage" && (
-                        <>
-                          <tr>
-                            <td className="text-capitalized">
-                              {_t(t("Service charge"))}
-                              {checkOrderDetails.item &&
-                                "(" +
+                      <>
+                        <tr>
+                          <td className="text-capitalized">
+                            {_t(t("Service charge"))}
+                            {checkOrderDetails.item &&
+                              "(" +
                                 checkOrderDetails.item.service_charge +
                                 "%)"}
-                            </td>
-                            <td>
-                              {checkOrderDetails.item && (
-                                <>
-                                  {currencySymbolLeft()}
-                                  {formatPrice(
-                                    checkOrderDetails.item.order_bill *
+                          </td>
+                          <td>
+                            {checkOrderDetails.item && (
+                              <>
+                                {currencySymbolLeft()}
+                                {formatPrice(
+                                  checkOrderDetails.item.order_bill *
                                     (checkOrderDetails.item.service_charge /
                                       100)
-                                  )}
-                                  {currencySymbolRight()}
-                                </>
-                              )}
-                            </td>
-                          </tr>
-                          <tr>
-                            <td className="text-capitalized">
-                              {_t(t("Discount"))}
-                              {checkOrderDetails.item &&
-                                "(" + checkOrderDetails.item.discount + "%)"}
-                            </td>
-                            <td>
-                              {checkOrderDetails.item && (
-                                <>
-                                  {currencySymbolLeft()}
-                                  {formatPrice(
-                                    checkOrderDetails.item.order_bill *
+                                )}
+                                {currencySymbolRight()}
+                              </>
+                            )}
+                          </td>
+                        </tr>
+                        <tr>
+                          <td className="text-capitalized">
+                            {_t(t("Discount"))}
+                            {checkOrderDetails.item &&
+                              "(" + checkOrderDetails.item.discount + "%)"}
+                          </td>
+                          <td>
+                            {checkOrderDetails.item && (
+                              <>
+                                {currencySymbolLeft()}
+                                {formatPrice(
+                                  checkOrderDetails.item.order_bill *
                                     (checkOrderDetails.item.discount / 100)
-                                  )}
-                                  {currencySymbolRight()}
-                                </>
-                              )}
-                            </td>
-                          </tr>
-                        </>
-                      )}
+                                )}
+                                {currencySymbolRight()}
+                              </>
+                            )}
+                          </td>
+                        </tr>
+                      </>
+                    )}
                     {/* sDiscount */}
                     <tr>
                       <td className="text-capitalized">
@@ -1066,10 +1068,10 @@ const Settled = () => {
                     </tr>
 
                     {checkOrderDetails.item &&
-                      parseFloat(
-                        checkOrderDetails.item.total_payable -
+                    parseFloat(
+                      checkOrderDetails.item.total_payable -
                         checkOrderDetails.item.paid_amount
-                      ) >= 0 ? (
+                    ) >= 0 ? (
                       <tr>
                         <td className="text-capitalized">
                           {_t(t("Due amount"))}
@@ -1081,7 +1083,7 @@ const Settled = () => {
                               {formatPrice(
                                 parseFloat(
                                   checkOrderDetails.item.total_payable -
-                                  checkOrderDetails.item.paid_amount
+                                    checkOrderDetails.item.paid_amount
                                 )
                               )}
                               {currencySymbolRight()}
@@ -1101,7 +1103,7 @@ const Settled = () => {
                               {formatPrice(
                                 parseFloat(
                                   checkOrderDetails.item.paid_amount -
-                                  checkOrderDetails.item.total_payable
+                                    checkOrderDetails.item.total_payable
                                 )
                               )}
                               {currencySymbolRight()}
@@ -1249,134 +1251,134 @@ const Settled = () => {
                             {/* loop here, logic === !search && haveData && haveDataLegnth > 0*/}
                             {!searchedOrder.searched
                               ? [
-                                settledOrders && [
-                                  settledOrders.data.length === 0 ? (
-                                    <tr className="align-middle">
-                                      <td
-                                        scope="row"
-                                        colSpan="8"
-                                        className="xsm-text align-middle text-center"
-                                      >
-                                        {_t(t("No data available"))}
-                                      </td>
-                                    </tr>
-                                  ) : (
-                                    settledOrders.data.map((item, index) => {
-                                      return (
-                                        <tr
-                                          className="align-middle"
-                                          key={index}
+                                  settledOrders && [
+                                    settledOrders.data.length === 0 ? (
+                                      <tr className="align-middle">
+                                        <td
+                                          scope="row"
+                                          colSpan="8"
+                                          className="xsm-text align-middle text-center"
                                         >
-                                          <th
-                                            scope="row"
-                                            className="xsm-text text-capitalize align-middle text-center"
+                                          {_t(t("No data available"))}
+                                        </td>
+                                      </tr>
+                                    ) : (
+                                      settledOrders.data.map((item, index) => {
+                                        return (
+                                          <tr
+                                            className="align-middle"
+                                            key={index}
                                           >
-                                            {index +
-                                              1 +
-                                              (settledOrders.current_page -
-                                                1) *
-                                              settledOrders.per_page}
-                                          </th>
+                                            <th
+                                              scope="row"
+                                              className="xsm-text text-capitalize align-middle text-center"
+                                            >
+                                              {index +
+                                                1 +
+                                                (settledOrders.current_page -
+                                                  1) *
+                                                  settledOrders.per_page}
+                                            </th>
 
-                                          <td className="xsm-text text-capitalize align-middle text-center text-secondary">
-                                            #{item.token.id}
-                                          </td>
+                                            <td className="xsm-text text-capitalize align-middle text-center text-secondary">
+                                              #{item.token.id}
+                                            </td>
 
-                                          <td className="xsm-text text-capitalize align-middle text-center">
-                                            <Moment format="LT">
-                                              {item.token.time}
-                                            </Moment>
-                                          </td>
+                                            <td className="xsm-text text-capitalize align-middle text-center">
+                                              <Moment format="LT">
+                                                {item.token.time}
+                                              </Moment>
+                                            </td>
 
-                                          <td className="xsm-text align-middle text-center">
-                                            {item.customer_name}
-                                          </td>
+                                            <td className="xsm-text align-middle text-center">
+                                              {item.customer_name}
+                                            </td>
 
-                                          <td className="xsm-text align-middle text-center">
-                                            {item.table_name}
-                                          </td>
+                                            <td className="xsm-text align-middle text-center">
+                                              {item.table_name}
+                                            </td>
 
-                                          <td className="xsm-text align-middle text-center">
-                                            {item.branch_name || "-"}
-                                          </td>
+                                            <td className="xsm-text align-middle text-center">
+                                              {item.branch_name || "-"}
+                                            </td>
 
-                                          <td class="xsm-text text-capitalize align-middle text-center">
-                                            {parseInt(item.is_cancelled) ===
+                                            <td className="xsm-text text-capitalize align-middle text-center">
+                                              {parseInt(item.is_cancelled) ===
                                               0 ? (
-                                              [
-                                                parseInt(item.is_ready) ===
+                                                [
+                                                  parseInt(item.is_ready) ===
                                                   0 ? (
-                                                  <span
-                                                    class="btn btn-transparent btn-secondary xsm-text text-capitalize"
-                                                    onClick={() => {
-                                                      setCheckOrderDetails({
-                                                        ...checkOrderDetails,
-                                                        item: item,
-                                                        settle: false,
-                                                      });
-                                                      setReturnMoneyUsd(0);
-                                                      setPaidMoney(0);
-                                                    }}
-                                                    data-toggle="modal"
-                                                    data-target="#orderDetails"
-                                                  >
-                                                    {_t(t("processing"))}
-                                                  </span>
-                                                ) : (
-                                                  <span
-                                                    class="btn btn-transparent btn-success xsm-text text-capitalize px-4"
-                                                    onClick={() => {
-                                                      setCheckOrderDetails({
-                                                        ...checkOrderDetails,
-                                                        item: item,
-                                                        settle: false,
-                                                      });
-                                                      setReturnMoneyUsd(0);
-                                                      setPaidMoney(0);
-                                                    }}
-                                                    data-toggle="modal"
-                                                    data-target="#orderDetails"
-                                                  >
-                                                    {_t(t("Ready"))}
-                                                  </span>
-                                                ),
-                                              ]
-                                            ) : (
-                                              <span
-                                                class="btn btn-transparent btn-primary xsm-text text-capitalize px-3"
+                                                    <span
+                                                      className="btn btn-transparent btn-secondary xsm-text text-capitalize"
+                                                      onClick={() => {
+                                                        setCheckOrderDetails({
+                                                          ...checkOrderDetails,
+                                                          item: item,
+                                                          settle: false,
+                                                        });
+                                                        setReturnMoneyUsd(0);
+                                                        setPaidMoney(0);
+                                                      }}
+                                                      data-toggle="modal"
+                                                      data-target="#orderDetails"
+                                                    >
+                                                      {_t(t("processing"))}
+                                                    </span>
+                                                  ) : (
+                                                    <span
+                                                      className="btn btn-transparent btn-success xsm-text text-capitalize px-4"
+                                                      onClick={() => {
+                                                        setCheckOrderDetails({
+                                                          ...checkOrderDetails,
+                                                          item: item,
+                                                          settle: false,
+                                                        });
+                                                        setReturnMoneyUsd(0);
+                                                        setPaidMoney(0);
+                                                      }}
+                                                      data-toggle="modal"
+                                                      data-target="#orderDetails"
+                                                    >
+                                                      {_t(t("Ready"))}
+                                                    </span>
+                                                  ),
+                                                ]
+                                              ) : (
+                                                <span
+                                                  className="btn btn-transparent btn-primary xsm-text text-capitalize px-3"
+                                                  onClick={() => {
+                                                    setCheckOrderDetails({
+                                                      ...checkOrderDetails,
+                                                      item: item,
+                                                      settle: false,
+                                                    });
+                                                    setReturnMoneyUsd(0);
+                                                    setPaidMoney(0);
+                                                  }}
+                                                  data-toggle="modal"
+                                                  data-target="#orderDetails"
+                                                >
+                                                  {_t(t("Cancelled"))}
+                                                </span>
+                                              )}
+                                            </td>
+                                            <td className="xsm-text align-middle text-center">
+                                              <button
+                                                className="btn btn-secondary btn-sm"
                                                 onClick={() => {
                                                   setCheckOrderDetails({
                                                     ...checkOrderDetails,
                                                     item: item,
                                                     settle: false,
                                                   });
-                                                  setReturnMoneyUsd(0);
-                                                  setPaidMoney(0);
+                                                  handleOnlyPrint();
                                                 }}
-                                                data-toggle="modal"
-                                                data-target="#orderDetails"
                                               >
-                                                {_t(t("Cancelled"))}
-                                              </span>
-                                            )}
-                                          </td>
-                                          <td className="xsm-text align-middle text-center">
-                                            <button
-                                              className="btn btn-secondary btn-sm"
-                                              onClick={() => {
-                                                setCheckOrderDetails({
-                                                  ...checkOrderDetails,
-                                                  item: item,
-                                                  settle: false,
-                                                });
-                                                handleOnlyPrint();
-                                              }}
-                                            >
-                                              <i className="fa fa-print"></i>
-                                            </button>
+                                                <i className="fa fa-print"></i>
+                                              </button>
 
-                                            {parseInt(item.is_ready) ===
-                                              0 && (
+                                              {parseInt(item.is_ready) ===
+                                                0 && (
                                                 <button
                                                   className="btn btn-success btn-sm ml-2"
                                                   title="Served"
@@ -1387,143 +1389,143 @@ const Settled = () => {
                                                   <i className="fa fa-check text-"></i>
                                                 </button>
                                               )}
-                                          </td>
-                                        </tr>
-                                      );
-                                    })
-                                  ),
-                                ],
-                              ]
+                                            </td>
+                                          </tr>
+                                        );
+                                      })
+                                    ),
+                                  ],
+                                ]
                               : [
-                                /* searched data, logic === haveData*/
-                                searchedOrder && [
-                                  searchedOrder.list.length === 0 ? (
-                                    <tr className="align-middle">
-                                      <td
-                                        scope="row"
-                                        colSpan="8"
-                                        className="xsm-text align-middle text-center"
-                                      >
-                                        {_t(t("No data available"))}
-                                      </td>
-                                    </tr>
-                                  ) : (
-                                    searchedOrder.list.map((item, index) => {
-                                      return (
-                                        <tr
-                                          className="align-middle"
-                                          key={index}
+                                  /* searched data, logic === haveData*/
+                                  searchedOrder && [
+                                    searchedOrder.list.length === 0 ? (
+                                      <tr className="align-middle">
+                                        <td
+                                          scope="row"
+                                          colSpan="8"
+                                          className="xsm-text align-middle text-center"
                                         >
-                                          <th
-                                            scope="row"
-                                            className="xsm-text text-capitalize align-middle text-center"
+                                          {_t(t("No data available"))}
+                                        </td>
+                                      </tr>
+                                    ) : (
+                                      searchedOrder.list.map((item, index) => {
+                                        return (
+                                          <tr
+                                            className="align-middle"
+                                            key={index}
                                           >
-                                            {index +
-                                              1 +
-                                              (settledOrders.current_page -
-                                                1) *
-                                              settledOrders.per_page}
-                                          </th>
+                                            <th
+                                              scope="row"
+                                              className="xsm-text text-capitalize align-middle text-center"
+                                            >
+                                              {index +
+                                                1 +
+                                                (settledOrders.current_page -
+                                                  1) *
+                                                  settledOrders.per_page}
+                                            </th>
 
-                                          <td className="xsm-text text-capitalize align-middle text-center text-secondary">
-                                            #{item.token.id}
-                                          </td>
+                                            <td className="xsm-text text-capitalize align-middle text-center text-secondary">
+                                              #{item.token.id}
+                                            </td>
 
-                                          <td className="xsm-text text-capitalize align-middle text-center">
-                                            <Moment format="LT">
-                                              {item.token.time}
-                                            </Moment>
-                                          </td>
+                                            <td className="xsm-text text-capitalize align-middle text-center">
+                                              <Moment format="LT">
+                                                {item.token.time}
+                                              </Moment>
+                                            </td>
 
-                                          <td className="xsm-text align-middle text-center">
-                                            {item.customer_name}
-                                          </td>
+                                            <td className="xsm-text align-middle text-center">
+                                              {item.customer_name}
+                                            </td>
 
-                                          <td className="xsm-text align-middle text-center">
-                                            {item.table_name}
-                                          </td>
+                                            <td className="xsm-text align-middle text-center">
+                                              {item.table_name}
+                                            </td>
 
-                                          <td className="xsm-text align-middle text-center">
-                                            {item.branch_name || "-"}
-                                          </td>
+                                            <td className="xsm-text align-middle text-center">
+                                              {item.branch_name || "-"}
+                                            </td>
 
-                                          <td class="xsm-text text-capitalize align-middle text-center">
-                                            {parseInt(item.is_cancelled) ===
+                                            <td className="xsm-text text-capitalize align-middle text-center">
+                                              {parseInt(item.is_cancelled) ===
                                               0 ? (
-                                              [
-                                                parseInt(item.is_ready) ===
+                                                [
+                                                  parseInt(item.is_ready) ===
                                                   0 ? (
-                                                  <span
-                                                    class="btn btn-transparent btn-secondary xsm-text text-capitalize"
-                                                    onClick={() => {
-                                                      setCheckOrderDetails({
-                                                        ...checkOrderDetails,
-                                                        item: item,
-                                                        settle: false,
-                                                      });
-                                                      setReturnMoneyUsd(0);
-                                                      setPaidMoney(0);
-                                                    }}
-                                                    data-toggle="modal"
-                                                    data-target="#orderDetails"
-                                                  >
-                                                    {_t(t("processing"))}
-                                                  </span>
-                                                ) : (
-                                                  <span
-                                                    class="btn btn-transparent btn-success xsm-text text-capitalize px-4"
-                                                    onClick={() => {
-                                                      setCheckOrderDetails({
-                                                        ...checkOrderDetails,
-                                                        item: item,
-                                                        settle: false,
-                                                      });
-                                                      setReturnMoneyUsd(0);
-                                                      setPaidMoney(0);
-                                                    }}
-                                                    data-toggle="modal"
-                                                    data-target="#orderDetails"
-                                                  >
-                                                    {_t(t("Ready"))}
-                                                  </span>
-                                                ),
-                                              ]
-                                            ) : (
-                                              <span
-                                                class="btn btn-transparent btn-primary xsm-text text-capitalize px-3"
+                                                    <span
+                                                      className="btn btn-transparent btn-secondary xsm-text text-capitalize"
+                                                      onClick={() => {
+                                                        setCheckOrderDetails({
+                                                          ...checkOrderDetails,
+                                                          item: item,
+                                                          settle: false,
+                                                        });
+                                                        setReturnMoneyUsd(0);
+                                                        setPaidMoney(0);
+                                                      }}
+                                                      data-toggle="modal"
+                                                      data-target="#orderDetails"
+                                                    >
+                                                      {_t(t("processing"))}
+                                                    </span>
+                                                  ) : (
+                                                    <span
+                                                      className="btn btn-transparent btn-success xsm-text text-capitalize px-4"
+                                                      onClick={() => {
+                                                        setCheckOrderDetails({
+                                                          ...checkOrderDetails,
+                                                          item: item,
+                                                          settle: false,
+                                                        });
+                                                        setReturnMoneyUsd(0);
+                                                        setPaidMoney(0);
+                                                      }}
+                                                      data-toggle="modal"
+                                                      data-target="#orderDetails"
+                                                    >
+                                                      {_t(t("Ready"))}
+                                                    </span>
+                                                  ),
+                                                ]
+                                              ) : (
+                                                <span
+                                                  className="btn btn-transparent btn-primary xsm-text text-capitalize px-3"
+                                                  onClick={() => {
+                                                    setCheckOrderDetails({
+                                                      ...checkOrderDetails,
+                                                      item: item,
+                                                      settle: false,
+                                                    });
+                                                    setReturnMoneyUsd(0);
+                                                    setPaidMoney(0);
+                                                  }}
+                                                  data-toggle="modal"
+                                                  data-target="#orderDetails"
+                                                >
+                                                  {_t(t("Cancelled"))}
+                                                </span>
+                                              )}
+                                            </td>
+
+                                            <td className="xsm-text align-middle text-center">
+                                              <button
+                                                className="btn btn-secondary btn-sm"
                                                 onClick={() => {
                                                   setCheckOrderDetails({
                                                     ...checkOrderDetails,
                                                     item: item,
                                                     settle: false,
                                                   });
-                                                  setReturnMoneyUsd(0);
-                                                  setPaidMoney(0);
+                                                  handleOnlyPrint();
                                                 }}
-                                                data-toggle="modal"
-                                                data-target="#orderDetails"
                                               >
-                                                {_t(t("Cancelled"))}
-                                              </span>
-                                            )}
-                                          </td>
-
-                                          <td className="xsm-text align-middle text-center">
-                                            <button
-                                              className="btn btn-secondary btn-sm"
-                                              onClick={() => {
-                                                setCheckOrderDetails({
-                                                  ...checkOrderDetails,
-                                                  item: item,
-                                                  settle: false,
-                                                });
-                                                handleOnlyPrint();
-                                              }}
-                                            >
-                                              <i className="fa fa-print"></i>
-                                            </button>
-                                            {parseInt(item.is_ready) ===
-                                              0 && (
+                                                <i className="fa fa-print"></i>
+                                              </button>
+                                              {parseInt(item.is_ready) ===
+                                                0 && (
                                                 <button
                                                   className="btn btn-success btn-sm ml-2"
                                                   title="Served"
@@ -1534,13 +1536,13 @@ const Settled = () => {
                                                   <i className="fa fa-check text-"></i>
                                                 </button>
                                               )}
-                                          </td>
-                                        </tr>
-                                      );
-                                    })
-                                  ),
-                                ],
-                              ]}
+                                            </td>
+                                          </tr>
+                                        );
+                                      })
+                                    ),
+                                  ],
+                                ]}
                           </tbody>
                         </table>
                       </div>
@@ -1552,67 +1554,67 @@ const Settled = () => {
               {checkOrderDetails.uploading === true || loading === true
                 ? paginationLoading()
                 : [
-                  // logic === !searched
-                  !searchedOrder.searched ? (
-                    <div key="fragment4">
+                    // logic === !searched
+                    !searchedOrder.searched ? (
+                      <div key="fragment4">
+                        <div className="t-bg-white mt-1 t-pt-5 t-pb-5">
+                          <div className="row align-items-center t-pl-15 t-pr-15">
+                            <div className="col-md-7 t-mb-15 mb-md-0">
+                              {/* pagination function */}
+                              {pagination(
+                                settledOrders,
+                                setPaginatedSettledOrders
+                              )}
+                            </div>
+                            <div className="col-md-5">
+                              <ul className="t-list d-flex justify-content-md-end align-items-center">
+                                <li className="t-list__item">
+                                  <span className="d-inline-block sm-text">
+                                    {showingData(settledOrders)}
+                                  </span>
+                                </li>
+                              </ul>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    ) : (
+                      // if searched
                       <div className="t-bg-white mt-1 t-pt-5 t-pb-5">
                         <div className="row align-items-center t-pl-15 t-pr-15">
                           <div className="col-md-7 t-mb-15 mb-md-0">
-                            {/* pagination function */}
-                            {pagination(
-                              settledOrders,
-                              setPaginatedSettledOrders
-                            )}
+                            <ul className="t-list d-flex">
+                              <li className="t-list__item no-pagination-style">
+                                <button
+                                  className="btn btn-primary btn-sm"
+                                  onClick={() =>
+                                    setSearchedOrder({
+                                      ...searchedOrder,
+                                      searched: false,
+                                    })
+                                  }
+                                >
+                                  {_t(t("Clear Search"))}
+                                </button>
+                              </li>
+                            </ul>
                           </div>
                           <div className="col-md-5">
                             <ul className="t-list d-flex justify-content-md-end align-items-center">
                               <li className="t-list__item">
                                 <span className="d-inline-block sm-text">
-                                  {showingData(settledOrders)}
+                                  {searchedShowingData(
+                                    searchedOrder,
+                                    settledOrdersForSearch
+                                  )}
                                 </span>
                               </li>
                             </ul>
                           </div>
                         </div>
                       </div>
-                    </div>
-                  ) : (
-                    // if searched
-                    <div className="t-bg-white mt-1 t-pt-5 t-pb-5">
-                      <div className="row align-items-center t-pl-15 t-pr-15">
-                        <div className="col-md-7 t-mb-15 mb-md-0">
-                          <ul className="t-list d-flex">
-                            <li className="t-list__item no-pagination-style">
-                              <button
-                                className="btn btn-primary btn-sm"
-                                onClick={() =>
-                                  setSearchedOrder({
-                                    ...searchedOrder,
-                                    searched: false,
-                                  })
-                                }
-                              >
-                                {_t(t("Clear Search"))}
-                              </button>
-                            </li>
-                          </ul>
-                        </div>
-                        <div className="col-md-5">
-                          <ul className="t-list d-flex justify-content-md-end align-items-center">
-                            <li className="t-list__item">
-                              <span className="d-inline-block sm-text">
-                                {searchedShowingData(
-                                  searchedOrder,
-                                  settledOrdersForSearch
-                                )}
-                              </span>
-                            </li>
-                          </ul>
-                        </div>
-                      </div>
-                    </div>
-                  ),
-                ]}
+                    ),
+                  ]}
             </div>
           </div>
         </div>

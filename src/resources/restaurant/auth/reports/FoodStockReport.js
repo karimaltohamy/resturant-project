@@ -116,7 +116,10 @@ const FoodStockReport = () => {
             {/* left Sidebar ends */}
 
             {/* Rightbar contents */}
-            <div className="col-lg-9 col-xxl-10 t-mb-30 mb-lg-0">
+            <div
+              className="col-lg-9 col-xxl-10 t-mb-30 mb-lg-0"
+              style={{ boxShadow: "0 0 10px #d9d9d9" }}
+            >
               <div className="t-bg-white">
                 <div
                   className="fk-scroll--pos-menu table-bottom-info-hide"
@@ -196,7 +199,7 @@ const FoodStockReport = () => {
 
                           <div className="col-4 t-mb-15 mb-md-0 d-none d-md-block text-right">
                             <button
-                              className="btn btn-block btn-primary text-uppercase sm-text py-2"
+                              className="btn btn-block btn-secondary  rounded-pill text-uppercase sm-text py-2"
                               onClick={getFoodStockReportSelected}
                             >
                               {_t(t("Generate Report"))}
@@ -205,7 +208,7 @@ const FoodStockReport = () => {
 
                           <div className="col-5 t-mb-15 mb-md-0 d-block d-md-none">
                             <button
-                              className="btn btn-block btn-primary text-uppercase sm-text"
+                              className="btn btn-block btn-secondary rounded-pill text-uppercase sm-text"
                               onClick={getFoodStockReportSelected}
                             >
                               {_t(t("Generate Report"))}
@@ -291,10 +294,11 @@ const FoodStockReport = () => {
 
                                               <td className="xsm-text align-middle text-center">
                                                 <NavLink
-                                                  className={`btn xxsm-text ${item.ended_at === null
-                                                    ? "btn-success"
-                                                    : "btn-success"
-                                                    } btn-sm p-1`}
+                                                  className={`btn xxsm-text ${
+                                                    item.ended_at === null
+                                                      ? "btn-success"
+                                                      : "btn-success"
+                                                  } btn-sm p-1`}
                                                   to={
                                                     `/dashboard/food-stock/` +
                                                     item.started_at

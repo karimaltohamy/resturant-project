@@ -19,7 +19,13 @@ import { useTranslation } from "react-i18next";
 
 //axios and base url
 import axios from "axios";
-import { BASE_URL, SAAS_APPLICATION, saas_apiUrl, saas_apiParams, saas_form_data } from "../../../../../BaseUrl";
+import {
+  BASE_URL,
+  SAAS_APPLICATION,
+  saas_apiUrl,
+  saas_apiParams,
+  saas_form_data,
+} from "../../../../../BaseUrl";
 
 //3rd party packages
 import { Helmet } from "react-helmet";
@@ -33,7 +39,6 @@ import { SettingsContext } from "../../../../../contexts/Settings";
 import { RestaurantContext } from "../../../../../contexts/Restaurant";
 
 const BranchCrud = () => {
-
   const { t } = useTranslation();
   const history = useHistory();
   //getting context values here
@@ -72,38 +77,36 @@ const BranchCrud = () => {
     searched: false,
   });
 
-
   // branch limit check
-  let [checkBranchLimitState, setCheckBranchLimitState] = useState('');
+  let [checkBranchLimitState, setCheckBranchLimitState] = useState("");
 
   // check branch limit
   const checkBranchLimit = () => {
-    // check how many orders are left 
-    const url = saas_apiUrl + '/api/user-branch-limit-check?' + saas_apiParams;
-    axios.get(url).then((res) => {
-      setCheckBranchLimitState(res.data);
-    }).catch(() => {
-      return 'NO data'
-    });
-  }
-
+    // check how many orders are left
+    const url = saas_apiUrl + "/api/user-branch-limit-check?" + saas_apiParams;
+    axios
+      .get(url)
+      .then((res) => {
+        setCheckBranchLimitState(res.data);
+      })
+      .catch(() => {
+        return "NO data";
+      });
+  };
 
   //useEffect == componentDidMount
   useEffect(() => {
     // check expiry
-    if (SAAS_APPLICATION == 'YES') {
+    if (SAAS_APPLICATION == "YES") {
       (async () => {
         const saasBranchToken = setInterval(checkBranchLimit, 2000);
         checkBranchLimit();
 
         return () => {
           clearInterval(saasBranchToken);
-        }
+        };
       })();
-
     }
-
-
   }, []);
 
   //set name, phn no, address hook
@@ -128,14 +131,17 @@ const BranchCrud = () => {
         headers: { Authorization: `Bearer ${getCookie()}` },
       })
       .then((res) => {
-        if (SAAS_APPLICATION == 'YES') {
+        if (SAAS_APPLICATION == "YES") {
           // after send api req decremeny by one
-          const url = saas_apiUrl + '/api/user-branch-limit-decrement';// replace with base url (prince.thetestserver.xyz)
-          axios.post(url, saas_form_data).then((res) => {
-            console.log(res);
-          }).catch(() => {
-            return 'NO data'
-          });
+          const url = saas_apiUrl + "/api/user-branch-limit-decrement"; // replace with base url (prince.thetestserver.xyz)
+          axios
+            .post(url, saas_form_data)
+            .then((res) => {
+              console.log(res);
+            })
+            .catch(() => {
+              return "NO data";
+            });
         }
         setNewBranch({
           name: "",
@@ -288,7 +294,7 @@ const BranchCrud = () => {
             <p className="text-center">{_t(t("You want to delete this?"))}</p>
             <div className="d-flex justify-content-center">
               <button
-                className="btn btn-primary"
+                className="btn btn-secondary"
                 onClick={() => {
                   handleDeleteBranch(slug);
                   onClose();
@@ -443,49 +449,61 @@ const BranchCrud = () => {
                     <div className="mt-4">
                       <div className="row">
                         <div className="col-6">
-                          {
-                            SAAS_APPLICATION == "YES" ? [
-                              newBranch.edit ? [
+                          {SAAS_APPLICATION == "YES"
+                            ? [
+                                newBranch.edit
+                                  ? [
+                                      <button
+                                        type="submit"
+                                        className="btn btn-success w-100 xsm-text text-uppercase t-width-max"
+                                      >
+                                        Update
+                                      </button>,
+                                    ]
+                                  : [
+                                      checkBranchLimitState == "HAS-LIMIT" ? (
+                                        <button
+                                          type="submit"
+                                          className="btn btn-success w-100 xsm-text text-uppercase t-width-max"
+                                        >
+                                          {!newBranch.edit
+                                            ? _t(t("Save"))
+                                            : _t(t("Update"))}
+                                        </button>
+                                      ) : (
+                                        <button
+                                          type="button"
+                                          className="btn btn-secondary rounded-pill xsm-text text-uppercase btn-lg btn-block"
+                                          onClick={() => {
+                                            toast.error(
+                                              `${"Your limit has expired"}`,
+                                              {
+                                                position: "bottom-center",
+                                                autoClose: 5000,
+                                                hideProgressBar: false,
+                                                closeOnClick: true,
+                                                pauseOnHover: true,
+                                                className:
+                                                  "text-center toast-notification",
+                                              }
+                                            );
+                                          }}
+                                        >
+                                          {_t(t("disable"))}
+                                        </button>
+                                      ),
+                                    ],
+                              ]
+                            : [
                                 <button
                                   type="submit"
                                   className="btn btn-success w-100 xsm-text text-uppercase t-width-max"
                                 >
-                                  Update
-                                </button>
-                              ] : [
-                                checkBranchLimitState == 'HAS-LIMIT' ? <button
-                                  type="submit"
-                                  className="btn btn-success w-100 xsm-text text-uppercase t-width-max"
-                                >
-                                  {!newBranch.edit ? _t(t("Save")) : _t(t("Update"))}
-                                </button> :
-                                  <button
-                                    type="button"
-                                    className="btn btn-primary xsm-text text-uppercase btn-lg btn-block"
-                                    onClick={() => {
-
-                                      toast.error(`${'Your limit has expired'}`, {
-                                        position: "bottom-center",
-                                        autoClose: 5000,
-                                        hideProgressBar: false,
-                                        closeOnClick: true,
-                                        pauseOnHover: true,
-                                        className: "text-center toast-notification",
-                                      });
-                                    }}
-                                  >
-                                    {_t(t("disable"))}
-                                  </button>
-                              ]
-                            ] : [
-                              <button
-                                type="submit"
-                                className="btn btn-success w-100 xsm-text text-uppercase t-width-max"
-                              >
-                                {!newBranch.edit ? _t(t("Save")) : _t(t("Update"))}
-                              </button>
-                            ]
-                          }
+                                  {!newBranch.edit
+                                    ? _t(t("Save"))
+                                    : _t(t("Update"))}
+                                </button>,
+                              ]}
                         </div>
                         <div className="col-6">
                           <button
@@ -578,7 +596,7 @@ const BranchCrud = () => {
                             <div className="row gx-3 align-items-center">
                               {/* Search group */}
                               <div className="col-md-9 t-mb-15 mb-md-0">
-                                <div className="input-group">
+                                <div className="input-group rounded-pill overflow-hidden">
                                   <div className="form-file">
                                     <input
                                       type="text"
@@ -588,7 +606,7 @@ const BranchCrud = () => {
                                     />
                                   </div>
                                   <button
-                                    className="btn btn-primary"
+                                    className="btn btn-secondary"
                                     type="button"
                                   >
                                     <i
@@ -601,56 +619,65 @@ const BranchCrud = () => {
 
                               {/* Add group modal trigger button */}
                               <div className="col-md-3 text-md-right">
-                                {SAAS_APPLICATION == 'YES' ? [
-                                  checkBranchLimitState == 'HAS-LIMIT' ? <button
-                                    type="button"
-                                    className="btn btn-primary xsm-text text-uppercase btn-lg btn-block"
-                                    data-toggle="modal"
-                                    data-target="#addBranch"
-                                    onClick={() => {
-                                      setNewBranch({
-                                        ...newBranch,
-                                        edit: false,
-                                        uploading: false,
-                                      });
-                                    }}
-                                  >
-                                    {_t(t("add new"))}
-                                  </button> : <button
-                                    type="button"
-                                    className="btn btn-primary xsm-text text-uppercase btn-lg btn-block"
-                                    onClick={() => {
-
-                                      // toast.error(`${_t(t("Please upgrad your plan"))}`, {
-                                      toast.error(`Your limit has expired`, {
-                                        position: "bottom-center",
-                                        autoClose: 10000,
-                                        hideProgressBar: false,
-                                        closeOnClick: true,
-                                        pauseOnHover: true,
-                                        className: "text-center toast-notification",
-                                      });
-                                    }}
-                                  >
-                                    {_t(t("add new"))}
-                                  </button>
-                                ] : [
-                                  <button
-                                    type="button"
-                                    className="btn btn-primary xsm-text text-uppercase btn-lg btn-block"
-                                    data-toggle="modal"
-                                    data-target="#addBranch"
-                                    onClick={() => {
-                                      setNewBranch({
-                                        ...newBranch,
-                                        edit: false,
-                                        uploading: false,
-                                      });
-                                    }}
-                                  >
-                                    {_t(t("add new"))}
-                                  </button>
-                                ]}
+                                {SAAS_APPLICATION == "YES"
+                                  ? [
+                                      checkBranchLimitState == "HAS-LIMIT" ? (
+                                        <button
+                                          type="button"
+                                          className="btn btn-secondary rounded-pill xsm-text text-uppercase btn-lg btn-block"
+                                          data-toggle="modal"
+                                          data-target="#addBranch"
+                                          onClick={() => {
+                                            setNewBranch({
+                                              ...newBranch,
+                                              edit: false,
+                                              uploading: false,
+                                            });
+                                          }}
+                                        >
+                                          {_t(t("add new"))}
+                                        </button>
+                                      ) : (
+                                        <button
+                                          type="button"
+                                          className="btn btn-secondary rounded-pill xsm-text text-uppercase btn-lg btn-block"
+                                          onClick={() => {
+                                            // toast.error(`${_t(t("Please upgrad your plan"))}`, {
+                                            toast.error(
+                                              `Your limit has expired`,
+                                              {
+                                                position: "bottom-center",
+                                                autoClose: 10000,
+                                                hideProgressBar: false,
+                                                closeOnClick: true,
+                                                pauseOnHover: true,
+                                                className:
+                                                  "text-center toast-notification",
+                                              }
+                                            );
+                                          }}
+                                        >
+                                          {_t(t("add new"))}
+                                        </button>
+                                      ),
+                                    ]
+                                  : [
+                                      <button
+                                        type="button"
+                                        className="btn btn-secondary rounded-pill xsm-text text-uppercase btn-lg btn-block"
+                                        data-toggle="modal"
+                                        data-target="#addBranch"
+                                        onClick={() => {
+                                          setNewBranch({
+                                            ...newBranch,
+                                            edit: false,
+                                            uploading: false,
+                                          });
+                                        }}
+                                      >
+                                        {_t(t("add new"))}
+                                      </button>,
+                                    ]}
                               </div>
                             </div>
                           </div>
@@ -699,120 +726,19 @@ const BranchCrud = () => {
                               {/* loop here, logic === !search && haveData && haveDataLegnth > 0*/}
                               {!searchedBranch.searched
                                 ? [
-                                  branchList && [
-                                    branchList.data.length === 0 ? (
-                                      <tr className="align-middle">
-                                        <td
-                                          scope="row"
-                                          colSpan="6"
-                                          className="xsm-text align-middle text-center"
-                                        >
-                                          {_t(t("No data available"))}
-                                        </td>
-                                      </tr>
-                                    ) : (
-                                      branchList.data.map((item, index) => {
-                                        return (
-                                          <tr
-                                            className="align-middle"
-                                            key={index}
+                                    branchList && [
+                                      branchList.data.length === 0 ? (
+                                        <tr className="align-middle">
+                                          <td
+                                            scope="row"
+                                            colSpan="6"
+                                            className="xsm-text align-middle text-center"
                                           >
-                                            <th
-                                              scope="row"
-                                              className="xsm-text text-capitalize align-middle text-center"
-                                            >
-                                              {index +
-                                                1 +
-                                                (branchList.current_page -
-                                                  1) *
-                                                branchList.per_page}
-                                            </th>
-
-                                            <td className="xsm-text text-capitalize align-middle text-center">
-                                              {item.name}
-                                            </td>
-
-                                            <td className="xsm-text text-capitalize align-middle text-center">
-                                              {item.address || "-"}
-                                            </td>
-
-                                            <td className="xsm-text align-middle text-center">
-                                              {item.phn_no ? (
-                                                <a
-                                                  href={`tel:${item.phn_no}`}
-                                                  rel="noopener noreferrer"
-                                                >
-                                                  {item.phn_no}
-                                                </a>
-                                              ) : (
-                                                "-"
-                                              )}
-                                            </td>
-
-                                            <td className="xsm-text text-capitalize align-middle text-center">
-                                              <div className="dropdown">
-                                                <button
-                                                  className="btn t-bg-clear t-text-dark--light-40"
-                                                  type="button"
-                                                  data-toggle="dropdown"
-                                                >
-                                                  <i className="fa fa-ellipsis-h"></i>
-                                                </button>
-                                                <div className="dropdown-menu">
-                                                  <button
-                                                    className="dropdown-item sm-text text-capitalize"
-                                                    onClick={() =>
-                                                      handleSetEdit(item.slug)
-                                                    }
-                                                    data-toggle="modal"
-                                                    data-target="#addBranch"
-                                                  >
-                                                    <span className="t-mr-8">
-                                                      <i className="fa fa-pencil"></i>
-                                                    </span>
-                                                    {_t(t("Edit"))}
-                                                  </button>
-
-                                                  {SAAS_APPLICATION == "YES" ? null : [
-                                                    <button
-                                                      className="dropdown-item sm-text text-capitalize"
-                                                      onClick={() => {
-                                                        handleDeleteConfirmation(
-                                                          item.slug
-                                                        );
-                                                      }}
-                                                    >
-                                                      <span className="t-mr-8">
-                                                        <i className="fa fa-trash"></i>
-                                                      </span>
-                                                      {_t(t("Delete"))}
-                                                    </button>
-                                                  ]}
-                                                </div>
-                                              </div>
-                                            </td>
-                                          </tr>
-                                        );
-                                      })
-                                    ),
-                                  ],
-                                ]
-                                : [
-                                  /* searched data, logic === haveData*/
-                                  searchedBranch && [
-                                    searchedBranch.list.length === 0 ? (
-                                      <tr className="align-middle">
-                                        <td
-                                          scope="row"
-                                          colSpan="6"
-                                          className="xsm-text align-middle text-center"
-                                        >
-                                          {_t(t("No data available"))}
-                                        </td>
-                                      </tr>
-                                    ) : (
-                                      searchedBranch.list.map(
-                                        (item, index) => {
+                                            {_t(t("No data available"))}
+                                          </td>
+                                        </tr>
+                                      ) : (
+                                        branchList.data.map((item, index) => {
                                           return (
                                             <tr
                                               className="align-middle"
@@ -826,7 +752,7 @@ const BranchCrud = () => {
                                                   1 +
                                                   (branchList.current_page -
                                                     1) *
-                                                  branchList.per_page}
+                                                    branchList.per_page}
                                               </th>
 
                                               <td className="xsm-text text-capitalize align-middle text-center">
@@ -863,9 +789,7 @@ const BranchCrud = () => {
                                                     <button
                                                       className="dropdown-item sm-text text-capitalize"
                                                       onClick={() =>
-                                                        handleSetEdit(
-                                                          item.slug
-                                                        )
+                                                        handleSetEdit(item.slug)
                                                       }
                                                       data-toggle="modal"
                                                       data-target="#addBranch"
@@ -876,29 +800,134 @@ const BranchCrud = () => {
                                                       {_t(t("Edit"))}
                                                     </button>
 
-                                                    <button
-                                                      className="dropdown-item sm-text text-capitalize"
-                                                      onClick={() => {
-                                                        handleDeleteConfirmation(
-                                                          item.slug
-                                                        );
-                                                      }}
-                                                    >
-                                                      <span className="t-mr-8">
-                                                        <i className="fa fa-trash"></i>
-                                                      </span>
-                                                      {_t(t("Delete"))}
-                                                    </button>
+                                                    {SAAS_APPLICATION == "YES"
+                                                      ? null
+                                                      : [
+                                                          <button
+                                                            className="dropdown-item sm-text text-capitalize"
+                                                            onClick={() => {
+                                                              handleDeleteConfirmation(
+                                                                item.slug
+                                                              );
+                                                            }}
+                                                          >
+                                                            <span className="t-mr-8">
+                                                              <i className="fa fa-trash"></i>
+                                                            </span>
+                                                            {_t(t("Delete"))}
+                                                          </button>,
+                                                        ]}
                                                   </div>
                                                 </div>
                                               </td>
                                             </tr>
                                           );
-                                        }
-                                      )
-                                    ),
-                                  ],
-                                ]}
+                                        })
+                                      ),
+                                    ],
+                                  ]
+                                : [
+                                    /* searched data, logic === haveData*/
+                                    searchedBranch && [
+                                      searchedBranch.list.length === 0 ? (
+                                        <tr className="align-middle">
+                                          <td
+                                            scope="row"
+                                            colSpan="6"
+                                            className="xsm-text align-middle text-center"
+                                          >
+                                            {_t(t("No data available"))}
+                                          </td>
+                                        </tr>
+                                      ) : (
+                                        searchedBranch.list.map(
+                                          (item, index) => {
+                                            return (
+                                              <tr
+                                                className="align-middle"
+                                                key={index}
+                                              >
+                                                <th
+                                                  scope="row"
+                                                  className="xsm-text text-capitalize align-middle text-center"
+                                                >
+                                                  {index +
+                                                    1 +
+                                                    (branchList.current_page -
+                                                      1) *
+                                                      branchList.per_page}
+                                                </th>
+
+                                                <td className="xsm-text text-capitalize align-middle text-center">
+                                                  {item.name}
+                                                </td>
+
+                                                <td className="xsm-text text-capitalize align-middle text-center">
+                                                  {item.address || "-"}
+                                                </td>
+
+                                                <td className="xsm-text align-middle text-center">
+                                                  {item.phn_no ? (
+                                                    <a
+                                                      href={`tel:${item.phn_no}`}
+                                                      rel="noopener noreferrer"
+                                                    >
+                                                      {item.phn_no}
+                                                    </a>
+                                                  ) : (
+                                                    "-"
+                                                  )}
+                                                </td>
+
+                                                <td className="xsm-text text-capitalize align-middle text-center">
+                                                  <div className="dropdown">
+                                                    <button
+                                                      className="btn t-bg-clear t-text-dark--light-40"
+                                                      type="button"
+                                                      data-toggle="dropdown"
+                                                    >
+                                                      <i className="fa fa-ellipsis-h"></i>
+                                                    </button>
+                                                    <div className="dropdown-menu">
+                                                      <button
+                                                        className="dropdown-item sm-text text-capitalize"
+                                                        onClick={() =>
+                                                          handleSetEdit(
+                                                            item.slug
+                                                          )
+                                                        }
+                                                        data-toggle="modal"
+                                                        data-target="#addBranch"
+                                                      >
+                                                        <span className="t-mr-8">
+                                                          <i className="fa fa-pencil"></i>
+                                                        </span>
+                                                        {_t(t("Edit"))}
+                                                      </button>
+
+                                                      <button
+                                                        className="dropdown-item sm-text text-capitalize"
+                                                        onClick={() => {
+                                                          handleDeleteConfirmation(
+                                                            item.slug
+                                                          );
+                                                        }}
+                                                      >
+                                                        <span className="t-mr-8">
+                                                          <i className="fa fa-trash"></i>
+                                                        </span>
+                                                        {_t(t("Delete"))}
+                                                      </button>
+                                                    </div>
+                                                  </div>
+                                                </td>
+                                              </tr>
+                                            );
+                                          }
+                                        )
+                                      ),
+                                    ],
+                                  ]}
                             </tbody>
                           </table>
                         </div>
@@ -912,64 +941,64 @@ const BranchCrud = () => {
               {newBranch.uploading === true || loading === true
                 ? paginationLoading()
                 : [
-                  // logic === !searched
-                  !searchedBranch.searched ? (
-                    <div key="fragment4">
+                    // logic === !searched
+                    !searchedBranch.searched ? (
+                      <div key="fragment4">
+                        <div className="t-bg-white mt-1 t-pt-5 t-pb-5">
+                          <div className="row align-items-center t-pl-15 t-pr-15">
+                            <div className="col-md-7 t-mb-15 mb-md-0">
+                              {/* pagination function */}
+                              {pagination(branchList, setPaginatedBranch)}
+                            </div>
+                            <div className="col-md-5">
+                              <ul className="t-list d-flex justify-content-md-end align-items-center">
+                                <li className="t-list__item">
+                                  <span className="d-inline-block sm-text">
+                                    {showingData(branchList)}
+                                  </span>
+                                </li>
+                              </ul>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    ) : (
+                      // if searched
                       <div className="t-bg-white mt-1 t-pt-5 t-pb-5">
                         <div className="row align-items-center t-pl-15 t-pr-15">
                           <div className="col-md-7 t-mb-15 mb-md-0">
-                            {/* pagination function */}
-                            {pagination(branchList, setPaginatedBranch)}
+                            <ul className="t-list d-flex">
+                              <li className="t-list__item no-pagination-style">
+                                <button
+                                  className="btn btn-primary btn-sm"
+                                  onClick={() =>
+                                    setSearchedBranch({
+                                      ...searchedBranch,
+                                      searched: false,
+                                    })
+                                  }
+                                >
+                                  {_t(t("Clear Search"))}
+                                </button>
+                              </li>
+                            </ul>
                           </div>
                           <div className="col-md-5">
                             <ul className="t-list d-flex justify-content-md-end align-items-center">
                               <li className="t-list__item">
                                 <span className="d-inline-block sm-text">
-                                  {showingData(branchList)}
+                                  {searchedShowingData(
+                                    searchedBranch,
+                                    branchForSearch
+                                  )}
                                 </span>
                               </li>
                             </ul>
                           </div>
                         </div>
                       </div>
-                    </div>
-                  ) : (
-                    // if searched
-                    <div className="t-bg-white mt-1 t-pt-5 t-pb-5">
-                      <div className="row align-items-center t-pl-15 t-pr-15">
-                        <div className="col-md-7 t-mb-15 mb-md-0">
-                          <ul className="t-list d-flex">
-                            <li className="t-list__item no-pagination-style">
-                              <button
-                                className="btn btn-primary btn-sm"
-                                onClick={() =>
-                                  setSearchedBranch({
-                                    ...searchedBranch,
-                                    searched: false,
-                                  })
-                                }
-                              >
-                                {_t(t("Clear Search"))}
-                              </button>
-                            </li>
-                          </ul>
-                        </div>
-                        <div className="col-md-5">
-                          <ul className="t-list d-flex justify-content-md-end align-items-center">
-                            <li className="t-list__item">
-                              <span className="d-inline-block sm-text">
-                                {searchedShowingData(
-                                  searchedBranch,
-                                  branchForSearch
-                                )}
-                              </span>
-                            </li>
-                          </ul>
-                        </div>
-                      </div>
-                    </div>
-                  ),
-                ]}
+                    ),
+                  ]}
             </div>
             {/* Rightbar contents end*/}
           </div>

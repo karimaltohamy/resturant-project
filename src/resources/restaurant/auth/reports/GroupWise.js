@@ -1,5 +1,4 @@
 import React, { useEffect, useContext, useState } from "react";
-import { useHistory } from "react-router-dom";
 
 //axios and base url
 import axios from "axios";
@@ -9,7 +8,7 @@ import { BASE_URL } from "../../../../BaseUrl";
 import {
   _t,
   getCookie,
-  modalLoading,
+  // modalLoading,
   tableLoading,
   currencySymbolLeft,
   formatPrice,
@@ -23,8 +22,6 @@ import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Chart from "react-apexcharts";
 import Moment from "react-moment";
-import Select from "react-select";
-import makeAnimated from "react-select/animated";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
@@ -36,7 +33,6 @@ import { SettingsContext } from "../../../../contexts/Settings";
 
 const GroupWise = () => {
   const { t } = useTranslation();
-  const history = useHistory();
   //getting context values here
   let { loading, setLoading, dataPaginating } = useContext(SettingsContext);
   // States hook here
@@ -60,19 +56,19 @@ const GroupWise = () => {
   //all data
   const [reportData, setReportData] = useState(null);
 
-  // paidMoney
-  const [paidMoney, setPaidMoney] = useState(0);
-  //return
-  const [returnMoneyUsd, setReturnMoneyUsd] = useState(0);
+  // // paidMoney
+  // const [paidMoney, setPaidMoney] = useState(0);
+  // //return
+  // const [returnMoneyUsd, setReturnMoneyUsd] = useState(0);
 
-  //settle order
-  const [checkOrderDetails, setCheckOrderDetails] = useState({
-    item: null,
-    settle: false,
-    uploading: false,
-    payment_type: null,
-    payment_amount: null,
-  });
+  // //settle order
+  // const [checkOrderDetails, setCheckOrderDetails] = useState({
+  //   item: null,
+  //   settle: false,
+  //   uploading: false,
+  //   payment_type: null,
+  //   payment_amount: null,
+  // });
 
   const [startDate, setStartDate] = useState(null);
   const [endDate, setEndDate] = useState(null);
@@ -84,7 +80,7 @@ const GroupWise = () => {
     setTimeout(() => {
       setLoading(false);
     }, 500);
-  }, []);
+  }, [setLoading]);
 
   //get GroupWise reports filter
   const getGroupWiseSelected = () => {
@@ -211,7 +207,7 @@ const GroupWise = () => {
                           </div>
                           <div className="col-5 col-md-4 t-mb-15 mb-md-0 d-none d-md-block text-right">
                             <button
-                              className="btn btn-block btn-primary text-uppercase sm-text py-2"
+                              className="btn btn-block btn-secondary rounded-pill text-uppercase sm-text py-2"
                               onClick={getGroupWiseSelected}
                             >
                               {_t(t("Generate Report"))}
@@ -220,7 +216,7 @@ const GroupWise = () => {
 
                           <div className="col-5 col-md-8 t-mb-15 mb-md-0 d-block d-md-none">
                             <button
-                              className="btn btn-block btn-primary text-uppercase sm-text"
+                              className="btn btn-block btn-secondary rounded-pill text-uppercase sm-text"
                               onClick={getGroupWiseSelected}
                             >
                               {_t(t("Generate Report"))}

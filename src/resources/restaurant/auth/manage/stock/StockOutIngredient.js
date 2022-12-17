@@ -329,7 +329,7 @@ const StockOutIngredient = () => {
             <p className="text-center">{_t(t("You want to delete this?"))}</p>
             <div className="d-flex justify-content-center">
               <button
-                className="btn btn-primary"
+                className="btn btn-secondary"
                 onClick={() => {
                   handleDeleteCustomer(slug);
                   onClose();
@@ -455,13 +455,14 @@ const StockOutIngredient = () => {
                           <small className="text-primary">*</small>
                         )}
                       </label>
-                      {newCustomer.edit && newCustomer.selectedBranch !== null && (
-                        <ul className="list-group list-group-horizontal-sm row col-12 mb-2 ml-md-1">
-                          <li className="list-group-item col-12 col-md-3 bg-success rounded-sm py-1 px-2 my-1 text-center">
-                            {newCustomer.selectedBranch.name}
-                          </li>
-                        </ul>
-                      )}
+                      {newCustomer.edit &&
+                        newCustomer.selectedBranch !== null && (
+                          <ul className="list-group list-group-horizontal-sm row col-12 mb-2 ml-md-1">
+                            <li className="list-group-item col-12 col-md-3 bg-success rounded-sm py-1 px-2 my-1 text-center">
+                              {newCustomer.selectedBranch.name}
+                            </li>
+                          </ul>
+                        )}
                       <Select
                         options={branchForSearch}
                         components={makeAnimated()}
@@ -622,7 +623,7 @@ const StockOutIngredient = () => {
                             <div className="row gx-3 align-items-center">
                               {/* Search customer */}
                               <div className="col-md-9 t-mb-15 mb-md-0">
-                                <div className="input-group">
+                                <div className="input-group rounded-pill overflow-hidden">
                                   <div className="form-file">
                                     <input
                                       type="text"
@@ -632,7 +633,7 @@ const StockOutIngredient = () => {
                                     />
                                   </div>
                                   <button
-                                    className="btn btn-primary"
+                                    className="btn btn-secondary"
                                     type="button"
                                   >
                                     <i
@@ -647,7 +648,7 @@ const StockOutIngredient = () => {
                               <div className="col-md-3 text-md-right">
                                 <button
                                   type="button"
-                                  className="btn btn-primary xsm-text text-uppercase btn-lg btn-block"
+                                  className="btn btn-secondary rounded-pill xsm-text text-uppercase btn-lg btn-block"
                                   data-toggle="modal"
                                   data-target="#addCustomer"
                                   onClick={() => {

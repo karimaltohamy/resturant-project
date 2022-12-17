@@ -75,7 +75,7 @@ const FoodPurchaseHistory = () => {
   });
 
   //useEffect == componentDidMount
-  useEffect(() => { }, []);
+  useEffect(() => {}, []);
 
   //search purchase here
   const handleSearch = (e) => {
@@ -114,7 +114,7 @@ const FoodPurchaseHistory = () => {
             <p className="text-center">{_t(t("You want to delete this?"))}</p>
             <div className="d-flex justify-content-center">
               <button
-                className="btn btn-primary"
+                className="btn btn-secondary"
                 onClick={() => {
                   handleDeletePurchase(id);
                   onClose();
@@ -216,7 +216,7 @@ const FoodPurchaseHistory = () => {
                             <div className="row gx-3 align-items-center">
                               {/* Search customer */}
                               <div className="col-md-9 t-mb-15 mb-md-0">
-                                <div className="input-group">
+                                <div className="input-group rounded-pill overflow-hidden">
                                   <div className="form-file">
                                     <input
                                       type="text"
@@ -226,7 +226,7 @@ const FoodPurchaseHistory = () => {
                                     />
                                   </div>
                                   <button
-                                    className="btn btn-primary"
+                                    className="btn btn-secondary"
                                     type="button"
                                   >
                                     <i
@@ -241,7 +241,7 @@ const FoodPurchaseHistory = () => {
                               <div className="col-md-3 text-md-right">
                                 <NavLink
                                   to="/dashboard/manage/stock/food-purchase"
-                                  className="btn btn-primary xsm-text text-uppercase btn-lg btn-block"
+                                  className="btn btn-secondary rounded-pill xsm-text text-uppercase btn-lg btn-block"
                                 >
                                   {_t(t("add new"))}
                                 </NavLink>
@@ -308,208 +308,208 @@ const FoodPurchaseHistory = () => {
                               {/* loop here, logic === !search && haveData && haveDataLegnth > 0*/}
                               {!searchedSupplier.searched
                                 ? [
-                                  foodPurchaseHistory && [
-                                    foodPurchaseHistory.data.length === 0 ? (
-                                      <tr className="align-middle">
-                                        <td
-                                          scope="row"
-                                          colSpan="7"
-                                          className="xsm-text align-middle text-center"
-                                        >
-                                          {_t(t("No data available"))}
-                                        </td>
-                                      </tr>
-                                    ) : (
-                                      foodPurchaseHistory.data.map(
-                                        (item, index) => {
-                                          return (
-                                            <tr
-                                              className="align-middle"
-                                              key={index}
-                                            >
-                                              <th
-                                                scope="row"
-                                                className="xsm-text text-capitalize align-middle text-center"
+                                    foodPurchaseHistory && [
+                                      foodPurchaseHistory.data.length === 0 ? (
+                                        <tr className="align-middle">
+                                          <td
+                                            scope="row"
+                                            colSpan="7"
+                                            className="xsm-text align-middle text-center"
+                                          >
+                                            {_t(t("No data available"))}
+                                          </td>
+                                        </tr>
+                                      ) : (
+                                        foodPurchaseHistory.data.map(
+                                          (item, index) => {
+                                            return (
+                                              <tr
+                                                className="align-middle"
+                                                key={index}
                                               >
-                                                {index +
-                                                  1 +
-                                                  (foodPurchaseHistory.current_page -
-                                                    1) *
-                                                  foodPurchaseHistory.per_page}
-                                              </th>
+                                                <th
+                                                  scope="row"
+                                                  className="xsm-text text-capitalize align-middle text-center"
+                                                >
+                                                  {index +
+                                                    1 +
+                                                    (foodPurchaseHistory.current_page -
+                                                      1) *
+                                                      foodPurchaseHistory.per_page}
+                                                </th>
 
-                                              <td className="xsm-text text-capitalize align-middle text-center">
-                                                {item.supplier_name}
-                                              </td>
+                                                <td className="xsm-text text-capitalize align-middle text-center">
+                                                  {item.supplier_name}
+                                                </td>
 
-                                              <td className="xsm-text align-middle text-center">
-                                                {item.invoice_number}
-                                              </td>
+                                                <td className="xsm-text align-middle text-center">
+                                                  {item.invoice_number}
+                                                </td>
 
-                                              <td className="xsm-text text-capitalize align-middle text-center">
-                                                <Moment format="LL">
-                                                  {item.purchase_date}
-                                                </Moment>
-                                              </td>
-                                              <td className="xsm-text text-capitalize align-middle text-center">
-                                                {currencySymbolLeft()}
-                                                {formatPrice(item.total_bill)}
-                                                {currencySymbolRight()}
-                                              </td>
+                                                <td className="xsm-text text-capitalize align-middle text-center">
+                                                  <Moment format="LL">
+                                                    {item.purchase_date}
+                                                  </Moment>
+                                                </td>
+                                                <td className="xsm-text text-capitalize align-middle text-center">
+                                                  {currencySymbolLeft()}
+                                                  {formatPrice(item.total_bill)}
+                                                  {currencySymbolRight()}
+                                                </td>
 
-                                              <td className="xsm-text align-middle text-center">
-                                                {currencySymbolLeft()}
-                                                {formatPrice(
-                                                  item.credit_amount
-                                                )}
-                                                {currencySymbolRight()}
-                                              </td>
+                                                <td className="xsm-text align-middle text-center">
+                                                  {currencySymbolLeft()}
+                                                  {formatPrice(
+                                                    item.credit_amount
+                                                  )}
+                                                  {currencySymbolRight()}
+                                                </td>
 
-                                              <td className="xsm-text text-capitalize align-middle text-center">
-                                                <div className="dropdown">
-                                                  <button
-                                                    className="btn t-bg-clear t-text-dark--light-40"
-                                                    type="button"
-                                                    data-toggle="dropdown"
-                                                  >
-                                                    <i className="fa fa-ellipsis-h"></i>
-                                                  </button>
-                                                  <div className="dropdown-menu">
-                                                    <NavLink
-                                                      to={`/dashboard/manage/stock/purchase-history-food-edit/${item.id}`}
-                                                      className="dropdown-item sm-text text-capitalize"
-                                                    >
-                                                      <span className="t-mr-8">
-                                                        <i className="fa fa-pencil"></i>
-                                                      </span>
-                                                      {_t(t("View/Edit"))}
-                                                    </NavLink>
-
+                                                <td className="xsm-text text-capitalize align-middle text-center">
+                                                  <div className="dropdown">
                                                     <button
-                                                      className="dropdown-item sm-text text-capitalize"
-                                                      onClick={() => {
-                                                        handleDeleteConfirmation(
-                                                          item.id
-                                                        );
-                                                      }}
+                                                      className="btn t-bg-clear t-text-dark--light-40"
+                                                      type="button"
+                                                      data-toggle="dropdown"
                                                     >
-                                                      <span className="t-mr-8">
-                                                        <i className="fa fa-trash"></i>
-                                                      </span>
-                                                      {_t(t("Delete"))}
+                                                      <i className="fa fa-ellipsis-h"></i>
                                                     </button>
+                                                    <div className="dropdown-menu">
+                                                      <NavLink
+                                                        to={`/dashboard/manage/stock/purchase-history-food-edit/${item.id}`}
+                                                        className="dropdown-item sm-text text-capitalize"
+                                                      >
+                                                        <span className="t-mr-8">
+                                                          <i className="fa fa-pencil"></i>
+                                                        </span>
+                                                        {_t(t("View/Edit"))}
+                                                      </NavLink>
+
+                                                      <button
+                                                        className="dropdown-item sm-text text-capitalize"
+                                                        onClick={() => {
+                                                          handleDeleteConfirmation(
+                                                            item.id
+                                                          );
+                                                        }}
+                                                      >
+                                                        <span className="t-mr-8">
+                                                          <i className="fa fa-trash"></i>
+                                                        </span>
+                                                        {_t(t("Delete"))}
+                                                      </button>
+                                                    </div>
                                                   </div>
-                                                </div>
-                                              </td>
-                                            </tr>
-                                          );
-                                        }
-                                      )
-                                    ),
-                                  ],
-                                ]
+                                                </td>
+                                              </tr>
+                                            );
+                                          }
+                                        )
+                                      ),
+                                    ],
+                                  ]
                                 : [
-                                  /* searched data, logic === haveData*/
-                                  searchedSupplier && [
-                                    searchedSupplier.list.length === 0 ? (
-                                      <tr className="align-middle">
-                                        <td
-                                          scope="row"
-                                          colSpan="7"
-                                          className="xsm-text align-middle text-center"
-                                        >
-                                          {_t(t("No data available"))}
-                                        </td>
-                                      </tr>
-                                    ) : (
-                                      searchedSupplier.list.map(
-                                        (item, index) => {
-                                          return (
-                                            <tr
-                                              className="align-middle"
-                                              key={index}
-                                            >
-                                              <th
-                                                scope="row"
-                                                className="xsm-text text-capitalize align-middle text-center"
+                                    /* searched data, logic === haveData*/
+                                    searchedSupplier && [
+                                      searchedSupplier.list.length === 0 ? (
+                                        <tr className="align-middle">
+                                          <td
+                                            scope="row"
+                                            colSpan="7"
+                                            className="xsm-text align-middle text-center"
+                                          >
+                                            {_t(t("No data available"))}
+                                          </td>
+                                        </tr>
+                                      ) : (
+                                        searchedSupplier.list.map(
+                                          (item, index) => {
+                                            return (
+                                              <tr
+                                                className="align-middle"
+                                                key={index}
                                               >
-                                                {index +
-                                                  1 +
-                                                  (foodPurchaseHistory.current_page -
-                                                    1) *
-                                                  foodPurchaseHistory.per_page}
-                                              </th>
+                                                <th
+                                                  scope="row"
+                                                  className="xsm-text text-capitalize align-middle text-center"
+                                                >
+                                                  {index +
+                                                    1 +
+                                                    (foodPurchaseHistory.current_page -
+                                                      1) *
+                                                      foodPurchaseHistory.per_page}
+                                                </th>
 
-                                              <td className="xsm-text text-capitalize align-middle text-center">
-                                                {item.supplier_name}
-                                              </td>
+                                                <td className="xsm-text text-capitalize align-middle text-center">
+                                                  {item.supplier_name}
+                                                </td>
 
-                                              <td className="xsm-text align-middle text-center">
-                                                {item.invoice_number}
-                                              </td>
+                                                <td className="xsm-text align-middle text-center">
+                                                  {item.invoice_number}
+                                                </td>
 
-                                              <td className="xsm-text text-capitalize align-middle text-center">
-                                                <Moment format="LL">
-                                                  {item.purchase_date}
-                                                </Moment>
-                                              </td>
-                                              <td className="xsm-text text-capitalize align-middle text-center">
-                                                {currencySymbolLeft()}
-                                                {formatPrice(item.total_bill)}
-                                                {currencySymbolRight()}
-                                              </td>
+                                                <td className="xsm-text text-capitalize align-middle text-center">
+                                                  <Moment format="LL">
+                                                    {item.purchase_date}
+                                                  </Moment>
+                                                </td>
+                                                <td className="xsm-text text-capitalize align-middle text-center">
+                                                  {currencySymbolLeft()}
+                                                  {formatPrice(item.total_bill)}
+                                                  {currencySymbolRight()}
+                                                </td>
 
-                                              <td className="xsm-text align-middle text-center">
-                                                {currencySymbolLeft()}
-                                                {formatPrice(
-                                                  item.credit_amount
-                                                )}
-                                                {currencySymbolRight()}
-                                              </td>
+                                                <td className="xsm-text align-middle text-center">
+                                                  {currencySymbolLeft()}
+                                                  {formatPrice(
+                                                    item.credit_amount
+                                                  )}
+                                                  {currencySymbolRight()}
+                                                </td>
 
-                                              <td className="xsm-text text-capitalize align-middle text-center">
-                                                <div className="dropdown">
-                                                  <button
-                                                    className="btn t-bg-clear t-text-dark--light-40"
-                                                    type="button"
-                                                    data-toggle="dropdown"
-                                                  >
-                                                    <i className="fa fa-ellipsis-h"></i>
-                                                  </button>
-                                                  <div className="dropdown-menu">
-                                                    <NavLink
-                                                      to={`/dashboard/manage/stock/purchase-history-food-edit/${item.id}`}
-                                                      className="dropdown-item sm-text text-capitalize"
-                                                    >
-                                                      <span className="t-mr-8">
-                                                        <i className="fa fa-pencil"></i>
-                                                      </span>
-                                                      {_t(t("View/Edit"))}
-                                                    </NavLink>
-
+                                                <td className="xsm-text text-capitalize align-middle text-center">
+                                                  <div className="dropdown">
                                                     <button
-                                                      className="dropdown-item sm-text text-capitalize"
-                                                      onClick={() => {
-                                                        handleDeleteConfirmation(
-                                                          item.id
-                                                        );
-                                                      }}
+                                                      className="btn t-bg-clear t-text-dark--light-40"
+                                                      type="button"
+                                                      data-toggle="dropdown"
                                                     >
-                                                      <span className="t-mr-8">
-                                                        <i className="fa fa-trash"></i>
-                                                      </span>
-                                                      {_t(t("Delete"))}
+                                                      <i className="fa fa-ellipsis-h"></i>
                                                     </button>
+                                                    <div className="dropdown-menu">
+                                                      <NavLink
+                                                        to={`/dashboard/manage/stock/purchase-history-food-edit/${item.id}`}
+                                                        className="dropdown-item sm-text text-capitalize"
+                                                      >
+                                                        <span className="t-mr-8">
+                                                          <i className="fa fa-pencil"></i>
+                                                        </span>
+                                                        {_t(t("View/Edit"))}
+                                                      </NavLink>
+
+                                                      <button
+                                                        className="dropdown-item sm-text text-capitalize"
+                                                        onClick={() => {
+                                                          handleDeleteConfirmation(
+                                                            item.id
+                                                          );
+                                                        }}
+                                                      >
+                                                        <span className="t-mr-8">
+                                                          <i className="fa fa-trash"></i>
+                                                        </span>
+                                                        {_t(t("Delete"))}
+                                                      </button>
+                                                    </div>
                                                   </div>
-                                                </div>
-                                              </td>
-                                            </tr>
-                                          );
-                                        }
-                                      )
-                                    ),
-                                  ],
-                                ]}
+                                                </td>
+                                              </tr>
+                                            );
+                                          }
+                                        )
+                                      ),
+                                    ],
+                                  ]}
                             </tbody>
                           </table>
                         </div>
@@ -523,67 +523,67 @@ const FoodPurchaseHistory = () => {
               {newSupplier.uploading === true || loading === true
                 ? paginationLoading()
                 : [
-                  // logic === !searched
-                  !searchedSupplier.searched ? (
-                    <div key="fragment4">
+                    // logic === !searched
+                    !searchedSupplier.searched ? (
+                      <div key="fragment4">
+                        <div className="t-bg-white mt-1 t-pt-5 t-pb-5">
+                          <div className="row align-items-center t-pl-15 t-pr-15">
+                            <div className="col-md-7 t-mb-15 mb-md-0">
+                              {/* pagination function */}
+                              {pagination(
+                                foodPurchaseHistory,
+                                setPaginatedFoodPurchase
+                              )}
+                            </div>
+                            <div className="col-md-5">
+                              <ul className="t-list d-flex justify-content-md-end align-items-center">
+                                <li className="t-list__item">
+                                  <span className="d-inline-block sm-text">
+                                    {showingData(foodPurchaseHistory)}
+                                  </span>
+                                </li>
+                              </ul>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    ) : (
+                      // if searched
                       <div className="t-bg-white mt-1 t-pt-5 t-pb-5">
                         <div className="row align-items-center t-pl-15 t-pr-15">
                           <div className="col-md-7 t-mb-15 mb-md-0">
-                            {/* pagination function */}
-                            {pagination(
-                              foodPurchaseHistory,
-                              setPaginatedFoodPurchase
-                            )}
+                            <ul className="t-list d-flex">
+                              <li className="t-list__item no-pagination-style">
+                                <button
+                                  className="btn btn-primary btn-sm"
+                                  onClick={() =>
+                                    setSearchedSupplier({
+                                      ...searchedSupplier,
+                                      searched: false,
+                                    })
+                                  }
+                                >
+                                  {_t(t("Clear Search"))}
+                                </button>
+                              </li>
+                            </ul>
                           </div>
                           <div className="col-md-5">
                             <ul className="t-list d-flex justify-content-md-end align-items-center">
                               <li className="t-list__item">
                                 <span className="d-inline-block sm-text">
-                                  {showingData(foodPurchaseHistory)}
+                                  {searchedShowingData(
+                                    searchedSupplier,
+                                    foodPurchaseHistoryForSearch
+                                  )}
                                 </span>
                               </li>
                             </ul>
                           </div>
                         </div>
                       </div>
-                    </div>
-                  ) : (
-                    // if searched
-                    <div className="t-bg-white mt-1 t-pt-5 t-pb-5">
-                      <div className="row align-items-center t-pl-15 t-pr-15">
-                        <div className="col-md-7 t-mb-15 mb-md-0">
-                          <ul className="t-list d-flex">
-                            <li className="t-list__item no-pagination-style">
-                              <button
-                                className="btn btn-primary btn-sm"
-                                onClick={() =>
-                                  setSearchedSupplier({
-                                    ...searchedSupplier,
-                                    searched: false,
-                                  })
-                                }
-                              >
-                                {_t(t("Clear Search"))}
-                              </button>
-                            </li>
-                          </ul>
-                        </div>
-                        <div className="col-md-5">
-                          <ul className="t-list d-flex justify-content-md-end align-items-center">
-                            <li className="t-list__item">
-                              <span className="d-inline-block sm-text">
-                                {searchedShowingData(
-                                  searchedSupplier,
-                                  foodPurchaseHistoryForSearch
-                                )}
-                              </span>
-                            </li>
-                          </ul>
-                        </div>
-                      </div>
-                    </div>
-                  ),
-                ]}
+                    ),
+                  ]}
             </div>
             {/* Rightbar contents end*/}
           </div>

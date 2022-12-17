@@ -694,8 +694,8 @@ const Customers = () => {
                       </ul>
                     </div>
                     <div className="col-md-6 col-lg-5">
-                      <div className="input-group">
-                        <button className="btn btn-primary" type="button">
+                      <div className="input-group rounded-pill overflow-hidden">
+                        <button className="btn btn-secondary" type="button">
                           <i className="fa fa-search" aria-hidden="true"></i>
                         </button>
                         <div className="form-file">
@@ -708,7 +708,7 @@ const Customers = () => {
                         </div>
                         <NavLink
                           to="/dashboard/online-customers"
-                          className={`btn btn-transparent btn-primary ml-2 mr-2 sm-text text-uppercase`}
+                          className={`btn btn-transparent btn-primary ml-2 mr-2 sm-text text-uppercase rounded-pill`}
                         >
                           {_t(t("Online Customers"))}
                         </NavLink>
@@ -720,7 +720,7 @@ const Customers = () => {
                           <ul className="t-list fk-sort align-items-center justify-content-center">
                             <li className="fk-sort__list mb-0 flex-grow-1">
                               <button
-                                className="w-100 btn btn-secondary sm-text text-uppercase"
+                                className="w-100 btn btn-secondary sm-text text-uppercase rounded-pill"
                                 data-toggle="modal"
                                 data-target="#addCustomer"
                                 onClick={() => {

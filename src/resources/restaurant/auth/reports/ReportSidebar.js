@@ -18,9 +18,7 @@ const ReportSidebar = () => {
     handleJquery();
   }, []);
 
-  const {
-    showManageStock,
-  } = useContext(SettingsContext);
+  const { showManageStock } = useContext(SettingsContext);
 
   //jQuery goes here
   const handleJquery = () => {
@@ -132,11 +130,13 @@ const ReportSidebar = () => {
           <ul className="t-list fk-pos-nav">
             {/* Sales */}
             <li
-              className={`fk-pos-nav__list fk-pos-nav__list-has-sub ${window.location.pathname.includes("reports") ? "active" : ""
-                }`}
+              className={`fk-pos-nav__list fk-pos-nav__list-has-sub ${
+                window.location.pathname.includes("reports") ? "active" : ""
+              }`}
+              style={{ boxShadow: "-1px 4px 10px #0000002e" }}
             >
               <a
-                className="w-100 t-text-dark t-heading-font btn btn-outline-danger font-weight-bold text-uppercase rounded-0 text-left"
+                className="w-100 t-text-dark t-heading-font btn btn-outline-secondary font-weight-bold text-uppercase rounded-0 text-left"
                 rel="noopener noreferrer"
                 href="#"
               >
@@ -206,12 +206,14 @@ const ReportSidebar = () => {
             </li>
             {/* Stock */}
             {showManageStock ? (
-              < li
-                className={`fk-pos-nav__list fk-pos-nav__list-has-sub ${window.location.pathname.includes("stock") ? "active" : ""
-                  }`}
+              <li
+                className={`fk-pos-nav__list fk-pos-nav__list-has-sub ${
+                  window.location.pathname.includes("stock") ? "active" : ""
+                }`}
+                style={{ boxShadow: "-1px 4px 10px #0000002e" }}
               >
                 <a
-                  className="w-100 t-text-dark t-heading-font btn btn-outline-danger font-weight-bold text-uppercase rounded-0 text-left"
+                  className="w-100 t-text-dark t-heading-font btn btn-outline-secondary font-weight-bold text-uppercase rounded-0 text-left"
                   rel="noopener noreferrer"
                   href="#"
                 >
@@ -229,8 +231,9 @@ const ReportSidebar = () => {
                   )}
                 </ul>
               </li>
-
-            ) : ''}
+            ) : (
+              ""
+            )}
           </ul>
         </div>
       </div>

@@ -1148,7 +1148,7 @@ const NewDeliveryMen = () => {
                             <div className="row gx-3 align-items-center">
                               {/* Search group */}
                               <div className="col-12 t-mb-15 mb-md-0">
-                                <div className="input-group">
+                                <div className="input-group rounded-pill overflow-hidden">
                                   <div className="form-file">
                                     <input
                                       type="text"
@@ -1158,7 +1158,7 @@ const NewDeliveryMen = () => {
                                     />
                                   </div>
                                   <button
-                                    className="btn btn-primary"
+                                    className="btn btn-secondary"
                                     type="button"
                                   >
                                     <i

@@ -32,9 +32,9 @@
         slidesToShow: 2,
         variableWidth: true,
         prevArrow:
-          '<button type="button" class="fk-slick-arrow fk-slick-arrow__prev"><span class="fa fa-angle-left"></span></button>',
+          '<button type="button" className="fk-slick-arrow fk-slick-arrow__prev"><span className="fa fa-angle-left"></span></button>',
         nextArrow:
-          '<button type="button" class="fk-slick-arrow fk-slick-arrow__next"><span class="fa fa-angle-right"></span></button>',
+          '<button type="button" className="fk-slick-arrow fk-slick-arrow__next"><span className="fa fa-angle-right"></span></button>',
       });
     }
     /*--------Nav Slider End----------*/

@@ -1,5 +1,5 @@
 import React, { useState, useContext, useEffect } from "react";
-import { useHistory, NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 //pages & includes
 import ManageSidebar from "../ManageSidebar";
@@ -38,7 +38,6 @@ import { FoodContext } from "../../../../../contexts/Food";
 
 const AllItemList = () => {
   const { t } = useTranslation();
-  const history = useHistory();
 
   //getting context values here
   let {
@@ -53,7 +52,6 @@ const AllItemList = () => {
     propertyGroupForSearch,
 
     //food
-    getFood,
     foodList,
     setFoodList,
     setPaginatedFood,
@@ -202,10 +200,12 @@ const AllItemList = () => {
         let selectedGroups = [];
         if (tempItem.property_groups) {
           tempItem.property_groups.map((grpItem) => {
-            propertyGroupForSearch.map((singlePropertyGroup) => {
+            return propertyGroupForSearch.map((singlePropertyGroup) => {
               if (singlePropertyGroup.id === grpItem) {
                 selectedGroups.push(singlePropertyGroup);
               }
+
+              return null;
             });
           });
         }
@@ -411,15 +411,15 @@ const AllItemList = () => {
         //converting variations and prices to array
         let slugArray = [];
         newVariation.variations.map((newVarItem) => {
-          slugArray.push(newVarItem.slug);
+          return slugArray.push(newVarItem.slug);
         });
         slugArray.map((slugItem) => {
-          formData.append("slugOfVariations[]", slugItem);
+          return formData.append("slugOfVariations[]", slugItem);
         });
 
         let tempData = Object.entries(priceForVariations);
         tempData.map((item) => {
-          formData.append("variations[]", item);
+          return formData.append("variations[]", item);
         });
 
         const url = BASE_URL + "/settings/new-food-item-variation";
@@ -488,7 +488,7 @@ const AllItemList = () => {
             <p className="text-center">{_t(t("You want to delete this?"))}</p>
             <div className="d-flex justify-content-center">
               <button
-                className="btn btn-primary"
+                className="btn btn-secondary"
                 onClick={() => {
                   handleDeleteFood(slug);
                   onClose();
@@ -723,7 +723,8 @@ const AllItemList = () => {
                                 onChange={() => {
                                   setFoodItemEdit({
                                     ...foodItemEdit,
-                                    deleteProperty: !foodItemEdit.deleteProperty,
+                                    deleteProperty:
+                                      !foodItemEdit.deleteProperty,
                                   });
                                 }}
                               />
@@ -911,8 +912,9 @@ const AllItemList = () => {
                           variations.list.map((item, index) => {
                             return (
                               <tr
-                                scope="row"
-                                className="xsm-text align-middle text-center"
+                                // scope="row"
+                                className="row xsm-text align-middle text-center"
+                                key={index}
                               >
                                 <td className="xsm-text text-capitalize align-middle text-center">
                                   {index + 1}
@@ -932,9 +934,9 @@ const AllItemList = () => {
                       ) : (
                         <tr className="align-middle">
                           <td
-                            scope="row"
+                            // scope="row"
                             colSpan="6"
-                            className="xsm-text align-middle text-center"
+                            className=" row xsm-text align-middle text-center"
                           >
                             {_t(t("No data available"))}
                           </td>
@@ -999,8 +1001,8 @@ const AllItemList = () => {
                             variations.list.map((item, index) => {
                               return (
                                 <tr
-                                  scope="row"
-                                  className={`xsm-text align-middle text-center ${
+                                  // scope="row"
+                                  className={`row xsm-text align-middle text-center ${
                                     //text deleted css if food_with_variation id exist is array of variations to delete
                                     variations.deletedVariations &&
                                     variations.deletedVariations.includes(
@@ -1067,19 +1069,20 @@ const AllItemList = () => {
                                             //Pushing all old items to an empty array
                                             variations.deletedVariations.map(
                                               (deletedItem) => {
-                                                deletedArray.push(deletedItem);
+                                                return deletedArray.push(
+                                                  deletedItem
+                                                );
                                               }
                                             );
                                           }
                                           //removing the item from new array
-                                          let tempDeletedArray = deletedArray.filter(
-                                            (undoItem) => {
+                                          let tempDeletedArray =
+                                            deletedArray.filter((undoItem) => {
                                               return (
                                                 undoItem !==
                                                 item.food_with_variation_id
                                               );
-                                            }
-                                          );
+                                            });
                                           //set new array as array of variation items to delete-->(which will be sent to server to delete)
                                           setVariations({
                                             ...variations,
@@ -1101,7 +1104,9 @@ const AllItemList = () => {
                                             //Pushing all old items to an empty array
                                             variations.deletedVariations.map(
                                               (deletedItem) => {
-                                                deletedArray.push(deletedItem);
+                                                return deletedArray.push(
+                                                  deletedItem
+                                                );
                                               }
                                             );
                                           }
@@ -1344,11 +1349,11 @@ const AllItemList = () => {
                             <div className="row gx-3 align-items-center">
                               {/* Search group */}
                               <div className="col-md-9 t-mb-15 mb-md-0">
-                                <div className="input-group">
+                                <div className="input-group rounded-pill overflow-hidden">
                                   <div className="form-file">
                                     <input
                                       type="text"
-                                      className="form-control border-0 form-control--light-1 rounded-0"
+                                      className="form-control border-0 form-control--light-1"
                                       placeholder={
                                         _t(t("Search by name, group")) + ".."
                                       }
@@ -1356,7 +1361,7 @@ const AllItemList = () => {
                                     />
                                   </div>
                                   <button
-                                    className="btn btn-primary"
+                                    className="btn btn-secondary"
                                     type="button"
                                   >
                                     <i
@@ -1371,7 +1376,7 @@ const AllItemList = () => {
                               <div className="col-md-3 text-md-right">
                                 <NavLink
                                   to="/dashboard/manage/food/add-new"
-                                  className="btn btn-primary xsm-text text-uppercase btn-lg btn-block"
+                                  className="btn btn-secondary xsm-text text-uppercase btn-lg btn-block rounded-pill"
                                 >
                                   {_t(t("add new"))}
                                 </NavLink>
@@ -1435,9 +1440,9 @@ const AllItemList = () => {
                                       foodList.data.length === 0 ? (
                                         <tr className="align-middle">
                                           <td
-                                            scope="row"
+                                            // scope="row"
                                             colSpan="6"
-                                            className="xsm-text align-middle text-center"
+                                            className="row xsm-text align-middle text-center"
                                           >
                                             {_t(t("No data available"))}
                                           </td>
@@ -1559,7 +1564,7 @@ const AllItemList = () => {
                                                         ) {
                                                           item.property_groups.map(
                                                             (grpItem) => {
-                                                              propertyGroupForSearch.map(
+                                                              return propertyGroupForSearch.map(
                                                                 (
                                                                   singlePropertyGroup
                                                                 ) => {
@@ -1571,6 +1576,7 @@ const AllItemList = () => {
                                                                       singlePropertyGroup
                                                                     );
                                                                   }
+                                                                  return null;
                                                                 }
                                                               );
                                                             }
@@ -1580,10 +1586,12 @@ const AllItemList = () => {
                                                           ...foodItemEdit,
                                                           editItem: item,
                                                           item,
-                                                          propertyGroup: item.property_groups
-                                                            ? selectedGroups
-                                                            : null,
-                                                          newPropertyGroups: null,
+                                                          propertyGroup:
+                                                            item.property_groups
+                                                              ? selectedGroups
+                                                              : null,
+                                                          newPropertyGroups:
+                                                            null,
                                                           newFoodGroup: null,
                                                           deleteProperty: false,
                                                           isSpecial:
@@ -1672,9 +1680,9 @@ const AllItemList = () => {
                                       searchedFoodItem.list.length === 0 ? (
                                         <tr className="align-middle">
                                           <td
-                                            scope="row"
+                                            // scope="row"
                                             colSpan="6"
-                                            className="xsm-text align-middle text-center"
+                                            className="row xsm-text align-middle text-center"
                                           >
                                             {_t(t("No data available"))}
                                           </td>
@@ -1736,7 +1744,8 @@ const AllItemList = () => {
                                                           edit: false,
                                                           item: item,
                                                           list: item.variations,
-                                                          deletedVariations: null,
+                                                          deletedVariations:
+                                                            null,
                                                           newPrice: null,
                                                           uploading: false,
                                                           priceAfterAllVariationDelete:
@@ -1794,13 +1803,14 @@ const AllItemList = () => {
                                                             uploading: true,
                                                           });
                                                           //property groups
-                                                          let selectedGroups = [];
+                                                          let selectedGroups =
+                                                            [];
                                                           if (
                                                             item.property_groups
                                                           ) {
                                                             item.property_groups.map(
                                                               (grpItem) => {
-                                                                propertyGroupForSearch.map(
+                                                                return propertyGroupForSearch.map(
                                                                   (
                                                                     singlePropertyGroup
                                                                   ) => {
@@ -1812,6 +1822,8 @@ const AllItemList = () => {
                                                                         singlePropertyGroup
                                                                       );
                                                                     }
+
+                                                                    return null;
                                                                   }
                                                                 );
                                                               }
@@ -1821,10 +1833,12 @@ const AllItemList = () => {
                                                             ...foodItemEdit,
                                                             editItem: item,
                                                             item,
-                                                            propertyGroup: item.property_groups
-                                                              ? selectedGroups
-                                                              : null,
-                                                            newPropertyGroups: null,
+                                                            propertyGroup:
+                                                              item.property_groups
+                                                                ? selectedGroups
+                                                                : null,
+                                                            newPropertyGroups:
+                                                              null,
                                                             newFoodGroup: null,
                                                             deleteProperty: false,
 

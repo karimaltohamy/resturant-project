@@ -197,7 +197,7 @@ const ItemWise = () => {
                           </div>
                           <div className="col-5 col-md-4 t-mb-15 mb-md-0 d-none d-md-block text-right">
                             <button
-                              className="btn btn-block btn-primary text-uppercase sm-text py-2"
+                              className="btn btn-block btn-secondary rounded-pill text-uppercase sm-text py-2"
                               onClick={getItemWiseSelected}
                             >
                               {_t(t("Generate Report"))}
@@ -206,7 +206,7 @@ const ItemWise = () => {
 
                           <div className="col-5 col-md-8 t-mb-15 mb-md-0 d-block d-md-none">
                             <button
-                              className="btn btn-block btn-primary text-uppercase sm-text"
+                              className="btn btn-block btn-secondary rounded-pill text-uppercase sm-text"
                               onClick={getItemWiseSelected}
                             >
                               {_t(t("Generate Report"))}
