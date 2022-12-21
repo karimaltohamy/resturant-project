@@ -411,8 +411,7 @@ const OrderHistories = () => {
                                           (propertyItem, thisIndex) => {
                                             return (
                                               <div
-                                                className="d-block"
-                                                className={`text-capitalize xsm-text`}
+                                                className={`text-capitalize xsm-text d-block`}
                                               >
                                                 <span>
                                                   {formatPrice(
@@ -878,7 +877,7 @@ const OrderHistories = () => {
 
                     <div className="col-md-4 col-lg-3">
                       <div className="input-group rounded-pill overflow-hidden">
-                        <button className="btn btn-primary" type="button">
+                        <button className="btn btn-secondary" type="button">
                           <i className="fa fa-search" aria-hidden="true"></i>
                         </button>
                         <div className="form-file">
@@ -895,7 +894,7 @@ const OrderHistories = () => {
                     </div>
                     {/* large screen  */}
                     <div className="col-md-8 col-lg-9 t-mb-15 mb-md-0 d-none d-md-block">
-                      <ul className="t-list fk-sort align-items-center justify-content-end">
+                      <ul className="t-list fk-sort align-items-center justify-content-center justify-lg-content-end ">
                         <li className="fk-sort__list">
                           <NavLink
                             to="/dashboard/orders"
@@ -969,7 +968,7 @@ const OrderHistories = () => {
                     </div>
 
                     {/* mobile screen  */}
-                    <div className="col-md-8 col-lg-9 t-mb-15 mb-md-0 d-block d-md-none">
+                    <div className="col-md-8 col-lg-9 t-mb-15 mb-md-0 d-block d-md-none mt-3 mt-md-0">
                       <ul className="t-list fk-sort align-items-center justify-content-end">
                         <li className="fk-sort__list w-100">
                           <NavLink
@@ -1456,15 +1455,15 @@ const OrderHistories = () => {
                       <div key="fragment4">
                         <div className="t-bg-white mt-1 t-pt-5 t-pb-5">
                           <div className="row align-items-center t-pl-15 t-pr-15">
-                            <div className="col-md-7 t-mb-15 mb-md-0">
+                            <div className="col-6 col-md-7 mb-md-0">
                               {/* pagination function */}
                               {paginationOrderHistory(
                                 allOnlineOrders,
                                 setPaginatedAllOnlineOrders
                               )}
                             </div>
-                            <div className="col-md-5">
-                              <ul className="t-list d-flex justify-content-md-end align-items-center">
+                            <div className="col-6 col-md-5">
+                              <ul className="t-list d-flex justify-content-end align-items-center">
                                 <li className="t-list__item">
                                   <span className="d-inline-block sm-text">
                                     {showingDataOrderHistory(allOnlineOrders)}
@@ -1479,7 +1478,7 @@ const OrderHistories = () => {
                       // if searched
                       <div className="t-bg-white mt-1 t-pt-5 t-pb-5">
                         <div className="row align-items-center t-pl-15 t-pr-15">
-                          <div className="col-md-7 t-mb-15 mb-md-0">
+                          <div className="col-6 col-md-7 mb-md-0">
                             <ul className="t-list d-flex">
                               <li className="t-list__item no-pagination-style">
                                 <button

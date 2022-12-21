@@ -100,72 +100,72 @@ const RestaurantProvider = ({ children }) => {
       getDeptTag();
       getPaymentType();
       getWorkPeriod();
-      // getDeliveryPendingOrders();
-      // getDeliveryDeliveredOrders();
+      getDeliveryPendingOrders();
+      getDeliveryDeliveredOrders();
     }
   }, []);
 
-  // //get deliveryman pending orders
-  // const getDeliveryPendingOrders = () => {
-  //   setLoading(true);
-  //   const ordersUrl = BASE_URL + "/settings/get-assigned-orders";
-  //   return axios
-  //     .get(ordersUrl, {
-  //       headers: { Authorization: `Bearer ${getCookie()}` },
-  //     })
-  //     .then((res) => {
-  //       setPendingOrdersDelivery(res.data[0]);
-  //       setPendingOrdersDeliveryForSearch(res.data[1]);
-  //       setLoading(false);
-  //     });
-  // };
+  //get deliveryman pending orders
+  const getDeliveryPendingOrders = () => {
+    setLoading(true);
+    const ordersUrl = BASE_URL + "/settings/get-assigned-orders";
+    return axios
+      .get(ordersUrl, {
+        headers: { Authorization: `Bearer ${getCookie()}` },
+      })
+      .then((res) => {
+        setPendingOrdersDelivery(res.data[0]);
+        setPendingOrdersDeliveryForSearch(res.data[1]);
+        setLoading(false);
+      });
+  };
 
-  // // get paginated deliveryman pending orders
-  // const setPaginatedDeliveryPendingOrders = (pageNo) => {
-  //   setDataPaginating(true);
-  //   const url = BASE_URL + "/settings/get-assigned-orders?page=" + pageNo;
-  //   return axios
-  //     .get(url, {
-  //       headers: { Authorization: `Bearer ${getCookie()}` },
-  //     })
-  //     .then((res) => {
-  //       setPendingOrdersDelivery(res.data[0]);
-  //       setPendingOrdersDeliveryForSearch(res.data[1]);
-  //       setDataPaginating(false);
-  //     })
-  //     .catch(() => {});
-  // };
+  // get paginated deliveryman pending orders
+  const setPaginatedDeliveryPendingOrders = (pageNo) => {
+    setDataPaginating(true);
+    const url = BASE_URL + "/settings/get-assigned-orders?page=" + pageNo;
+    return axios
+      .get(url, {
+        headers: { Authorization: `Bearer ${getCookie()}` },
+      })
+      .then((res) => {
+        setPendingOrdersDelivery(res.data[0]);
+        setPendingOrdersDeliveryForSearch(res.data[1]);
+        setDataPaginating(false);
+      })
+      .catch(() => {});
+  };
 
-  // //get deliveryman delivered orders
-  // const getDeliveryDeliveredOrders = () => {
-  //   setLoading(true);
-  //   const ordersUrl = BASE_URL + "/settings/get-delivered-orders";
-  //   return axios
-  //     .get(ordersUrl, {
-  //       headers: { Authorization: `Bearer ${getCookie()}` },
-  //     })
-  //     .then((res) => {
-  //       setDeliveredOrdersDelivery(res.data[0]);
-  //       setDeliveredOrdersDeliveryForSearch(res.data[1]);
-  //       setLoading(false);
-  //     });
-  // };
+  //get deliveryman delivered orders
+  const getDeliveryDeliveredOrders = () => {
+    setLoading(true);
+    const ordersUrl = BASE_URL + "/settings/get-delivered-orders";
+    return axios
+      .get(ordersUrl, {
+        headers: { Authorization: `Bearer ${getCookie()}` },
+      })
+      .then((res) => {
+        setDeliveredOrdersDelivery(res.data[0]);
+        setDeliveredOrdersDeliveryForSearch(res.data[1]);
+        setLoading(false);
+      });
+  };
 
-  // // get paginated deliveryman delivered orders
-  // const setPaginatedDeliveryDeliveredOrders = (pageNo) => {
-  //   setDataPaginating(true);
-  //   const url = BASE_URL + "/settings/get-delivered-orders?page=" + pageNo;
-  //   return axios
-  //     .get(url, {
-  //       headers: { Authorization: `Bearer ${getCookie()}` },
-  //     })
-  //     .then((res) => {
-  //       setDeliveredOrdersDelivery(res.data[0]);
-  //       setDeliveredOrdersDeliveryForSearch(res.data[1]);
-  //       setDataPaginating(false);
-  //     })
-  //     .catch(() => {});
-  // };
+  // get paginated deliveryman delivered orders
+  const setPaginatedDeliveryDeliveredOrders = (pageNo) => {
+    setDataPaginating(true);
+    const url = BASE_URL + "/settings/get-delivered-orders?page=" + pageNo;
+    return axios
+      .get(url, {
+        headers: { Authorization: `Bearer ${getCookie()}` },
+      })
+      .then((res) => {
+        setDeliveredOrdersDelivery(res.data[0]);
+        setDeliveredOrdersDeliveryForSearch(res.data[1]);
+        setDataPaginating(false);
+      })
+      .catch(() => {});
+  };
 
   //get ingredient group
   const getIngredientGroup = () => {
@@ -599,20 +599,20 @@ const RestaurantProvider = ({ children }) => {
         loading,
         setLoading,
         //delvery pending
-        // getDeliveryPendingOrders,
+        getDeliveryPendingOrders,
         pendingOrdersDelivery,
         setPendingOrdersDelivery,
         pendingOrdersDeliveryForSearch,
         setPendingOrdersDeliveryForSearch,
-        // setPaginatedDeliveryPendingOrders,
+        setPaginatedDeliveryPendingOrders,
 
         //delivery delivered
-        // getDeliveryDeliveredOrders,
+        getDeliveryDeliveredOrders,
         deliveredOrdersDelivery,
         setDeliveredOrdersDelivery,
         deliveredOrdersDeliveryForSearch,
         setDeliveredOrdersDeliveryForSearch,
-        // setPaginatedDeliveryDeliveredOrders,
+        setPaginatedDeliveryDeliveredOrders,
 
         //ingredient group
         getIngredientGroup,

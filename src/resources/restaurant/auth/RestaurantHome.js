@@ -52,8 +52,8 @@ const RestaurantHome = () => {
           {generalSettings && getSystemSettings(generalSettings, "siteName")}
         </title>
       </Helmet>
-      <main>
-        <div className="fk-scroll--index t-mt-15 t-mb-15" data-simplebar>
+      <main className="main-boxs">
+        <div className="fk-scroll--index t-mt-15 t-mb-15">
           <div className="container container-cards">
             <div className="row">
               {!loading ? (
@@ -170,10 +170,7 @@ const RestaurantHome = () => {
                           : null,
                       ]
                     : ""}
-                  <div
-                    className="col-md-4 col-lg-3 mb-3"
-                    style={{ height: "350px" }}
-                  >
+                  <div className="col-6 col-md-4 col-lg-3 mb-3 col-product">
                     <button
                       onClick={handleLogout}
                       className="t-link product-card p-0 w-100 border-0"

@@ -29,6 +29,9 @@ import { UserContext } from "../../contexts/User";
 import { RestaurantContext } from "../../contexts/Restaurant";
 import { FoodContext } from "../../contexts/Food";
 
+// images
+import loginImg from "../../saasHelper/img/login-img.svg";
+
 const cookies = new Cookies();
 
 const SignUp = () => {
@@ -46,24 +49,13 @@ const SignUp = () => {
     getCurrency,
     getSettings,
   } = useContext(SettingsContext);
-  let {
-    getAuthUser,
-    authUserInfo,
-    getCustomer,
-    getWaiter,
-    getAdminStaff,
-  } = useContext(UserContext);
-  let {
-    getBranch,
-    getTable,
-    getDeptTag,
-    getPaymentType,
-    getWorkPeriod,
-  } = useContext(RestaurantContext);
+  let { getAuthUser, authUserInfo, getCustomer, getWaiter, getAdminStaff } =
+    useContext(UserContext);
+  let { getBranch, getTable, getDeptTag, getPaymentType, getWorkPeriod } =
+    useContext(RestaurantContext);
 
-  let { getFood, getFoodGroup, getPropertyGroup, getVariation } = useContext(
-    FoodContext
-  );
+  let { getFood, getFoodGroup, getPropertyGroup, getVariation } =
+    useContext(FoodContext);
 
   //state hooks here
   const [credentials, setCredentials] = useState({
@@ -243,212 +235,190 @@ const SignUp = () => {
         <title>{_t(t("Sign Up"))}</title>
       </Helmet>
       <main>
-        <div className="fk-global-access">
-          <div className="d-none d-lg-block">
-            <div className="fk-global-img text-center">
-              <img
-                src="/assets/img/verifiy-img.png"
-                alt="khadyo"
-                className="img-fluid mx-auto fk-global-img__is"
-              />
-              <img
-                src="/assets/img/obj-1.png"
-                alt="khadyo"
-                className="img-fluid fk-global-img__obj fk-global-img__obj-1"
-              />
-              <img
-                src="/assets/img/obj-8.png"
-                alt="khadyo"
-                className="img-fluid fk-global-img__obj fk-global-img__obj-2"
-              />
-              <img
-                src="/assets/img/obj-7.png"
-                alt="khadyo"
-                className="img-fluid fk-global-img__obj fk-global-img__obj-6"
-              />
-              <img
-                src="/assets/img/obj-9.png"
-                alt="khadyo"
-                className="img-fluid fk-global-img__obj fk-global-img__obj-8"
-              />
-            </div>
-          </div>
-          <div className="container my-md-auto">
-            {credentials.install_no ? (
-              <div className="row">
-                <div className="col-md-6">
-                  <div className="fk-brand fk-brand--sr-lg">
-                    {window.location.pathname === "/" ? (
-                      <NavLink
-                        to={{ pathname: "/refresh", state: "/" }}
-                        exact
-                        className="t-link w-100"
-                      >
-                        <span className="fk-brand__img fk-brand__img--fk login-page-background"></span>
-                      </NavLink>
-                    ) : (
-                      <NavLink to="/" className="t-link w-100">
-                        <span className="fk-brand__img fk-brand__img--fk login-page-background"></span>
-                      </NavLink>
-                    )}
-                  </div>
-                </div>
-              </div>
-            ) : (
-              <div className="row">
-                <div className="col-md-6">
-                  <div className="fk-brand fk-brand--sr-lg">
-                    {window.location.pathname === "/" ? (
-                      <NavLink
-                        to={{ pathname: "/refresh", state: "/" }}
-                        exact
-                        className="t-link w-100"
-                      >
-                        <span
-                          className="fk-brand__img fk-brand__img--fk"
-                          style={style.logo}
-                        ></span>
-                      </NavLink>
-                    ) : (
-                      <NavLink to="/" className="t-link w-100">
-                        <span
-                          className="fk-brand__img fk-brand__img--fk"
-                          style={style.logo}
-                        ></span>
-                      </NavLink>
-                    )}
-                  </div>
-                </div>
-              </div>
-            )}
-
-            <div className="row">
-              <div className="col-md-8 col-lg-6 col-xl-4 t-mt-50">
-                <div className="fk-global-form">
-                  {loading ? (
-                    <div key="login-form">
-                      <h3 className="mt-0 text-capitalize font-weight-bold">
-                        {_t(t("waiting for response"))}
-                      </h3>
-                      <form onSubmit={handleSubmit}>
-                        <div className="row">
-                          {modalLoading(3)}
-                          <div className="col-12">
-                            <div className="d-flex align-items-center">
-                              <div className="t-mr-8">
-                                <button
-                                  type="button"
-                                  className="btn btn-primary sm-text text-uppercase"
-                                >
-                                  {_t(t("Please wait"))}
-                                </button>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </form>
+        <div className="fk-global-access d-flex justify-content-center align-items-center">
+          <div className="container-form my-md-auto">
+            <div className="row h-100 m-0">
+              <div className="col-12 col-md-6 bg-white form-inputs">
+                {credentials.install_no ? (
+                  <div className="row">
+                    <div className="col-12 mt-3">
+                      <div className="fk-brand fk-brand--sr-lg logo-form">
+                        {window.location.pathname === "/" ? (
+                          <NavLink
+                            to={{ pathname: "/refresh", state: "/" }}
+                            exact
+                            className="t-link w-100"
+                          >
+                            <span className="fk-brand__img fk-brand__img--fk login-page-background"></span>
+                          </NavLink>
+                        ) : (
+                          <NavLink to="/" className="t-link w-100">
+                            <span className="fk-brand__img fk-brand__img--fk login-page-background"></span>
+                          </NavLink>
+                        )}
+                      </div>
                     </div>
-                  ) : (
-                    <div key="loading">
-                      {!credentials.install_check_reload ? (
-                        <>
+                  </div>
+                ) : (
+                  <div className="row m-0">
+                    <div className="col-12 mt-3">
+                      <div className="fk-brand fk-brand--sr-lg logo-form">
+                        {window.location.pathname === "/" ? (
+                          <NavLink
+                            to={{ pathname: "/refresh", state: "/" }}
+                            exact
+                            className="t-link w-100"
+                          >
+                            <span
+                              className="fk-brand__img fk-brand__img--fk"
+                              style={style.logo}
+                            ></span>
+                          </NavLink>
+                        ) : (
+                          <NavLink to="/" className="t-link w-100">
+                            <span
+                              className="fk-brand__img fk-brand__img--fk"
+                              style={style.logo}
+                            ></span>
+                          </NavLink>
+                        )}
+                      </div>
+                    </div>
+                  </div>
+                )}
+
+                <div className="row m-0">
+                  <div className="col-12 t-mt-50">
+                    <div className="fk-global-form">
+                      {loading ? (
+                        <div key="login-form">
                           <h3 className="mt-0 text-capitalize font-weight-bold">
-                            {_t(t("sign Up"))}
+                            {_t(t("waiting for response"))}
                           </h3>
                           <form onSubmit={handleSubmit}>
                             <div className="row">
-                              <div className="col-12 t-mb-15">
-                                <input
-                                  onChange={handleChange}
-                                  type="text"
-                                  name="name"
-                                  placeholder="Name"
-                                  value={credentials.name}
-                                  required
-                                  autoComplete="off"
-                                  className="form-control border-0 rounded-1"
-                                />
-                              </div>
-
-                              <div className="col-12 t-mb-15">
-                                <input
-                                  onChange={handleChange}
-                                  type="email"
-                                  name="email"
-                                  placeholder="Email"
-                                  value={credentials.email}
-                                  required
-                                  autoComplete="off"
-                                  className="form-control border-0 rounded-1"
-                                />
-                              </div>
-                              <div className="col-12 t-mb-15">
-                                <input
-                                  onChange={handleChange}
-                                  type="text"
-                                  name="phn_no"
-                                  placeholder="Phone number"
-                                  value={credentials.phn_no}
-                                  required
-                                  autoComplete="off"
-                                  className="form-control border-0 rounded-1"
-                                />
-                              </div>
-                              <div className="col-12 t-mb-15">
-                                <input
-                                  onChange={handleChange}
-                                  name="password"
-                                  type="password"
-                                  placeholder="Password"
-                                  value={credentials.password}
-                                  required
-                                  autoComplete="off"
-                                  className="form-control border-0 rounded-1"
-                                />
-                              </div>
-                              <div className="col-12 t-mb-15">
-                                <input
-                                  onChange={handleChange}
-                                  name="password_confirmation"
-                                  type="password"
-                                  placeholder="Confirm Password"
-                                  value={credentials.password_confirmation}
-                                  required
-                                  autoComplete="off"
-                                  className="form-control border-0 rounded-1"
-                                />
-                              </div>
+                              {modalLoading(3)}
                               <div className="col-12">
                                 <div className="d-flex align-items-center">
                                   <div className="t-mr-8">
                                     <button
-                                      type="submit"
-                                      className="btn btn-success sm-text text-uppercase"
+                                      type="button"
+                                      className="btn btn-primary sm-text text-uppercase"
                                     >
-                                      {_t(t("sign Up"))}
+                                      {_t(t("Please wait"))}
                                     </button>
                                   </div>
                                 </div>
                               </div>
-                              <div className="col-12 t-mt-15 t-mb-15">
-                                <span className="mx-checkbox__text t-text-heading">
-                                  {_t(t("Already have an account?"))}
-                                  <NavLink
-                                    to="/login"
-                                    className="t-link t-text-heading ml-2"
-                                  >
-                                    {_t(t("Sign In"))}
-                                  </NavLink>
-                                </span>
-                              </div>
                             </div>
                           </form>
-                        </>
+                        </div>
                       ) : (
-                        modalLoading(5)
+                        <div key="loading">
+                          {!credentials.install_check_reload ? (
+                            <>
+                              <h3 className="mt-0 text-capitalize title-form">
+                                {_t(t("sign Up"))}
+                              </h3>
+                              <form onSubmit={handleSubmit}>
+                                <div className="row">
+                                  <div className="col-12 t-mb-15">
+                                    <input
+                                      onChange={handleChange}
+                                      type="text"
+                                      name="name"
+                                      placeholder="Name"
+                                      value={credentials.name}
+                                      required
+                                      autoComplete="off"
+                                      className="form-control rounded-1"
+                                    />
+                                  </div>
+
+                                  <div className="col-12 t-mb-15">
+                                    <input
+                                      onChange={handleChange}
+                                      type="email"
+                                      name="email"
+                                      placeholder="Email"
+                                      value={credentials.email}
+                                      required
+                                      autoComplete="off"
+                                      className="form-control rounded-1"
+                                    />
+                                  </div>
+                                  <div className="col-12 t-mb-15">
+                                    <input
+                                      onChange={handleChange}
+                                      type="text"
+                                      name="phn_no"
+                                      placeholder="Phone number"
+                                      value={credentials.phn_no}
+                                      required
+                                      autoComplete="off"
+                                      className="form-control rounded-1"
+                                    />
+                                  </div>
+                                  <div className="col-12 t-mb-15">
+                                    <input
+                                      onChange={handleChange}
+                                      name="password"
+                                      type="password"
+                                      placeholder="Password"
+                                      value={credentials.password}
+                                      required
+                                      autoComplete="off"
+                                      className="form-control rounded-1"
+                                    />
+                                  </div>
+                                  <div className="col-12 t-mb-15">
+                                    <input
+                                      onChange={handleChange}
+                                      name="password_confirmation"
+                                      type="password"
+                                      placeholder="Confirm Password"
+                                      value={credentials.password_confirmation}
+                                      required
+                                      autoComplete="off"
+                                      className="form-control rounded-1"
+                                    />
+                                  </div>
+                                  <div className="col-12">
+                                    <div className="">
+                                      <div className="t-mr-8">
+                                        <button
+                                          type="submit"
+                                          className="btn text-uppercase btn-main-form"
+                                        >
+                                          {_t(t("sign Up"))}
+                                        </button>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <p className="footer-form-text text-center">
+                                    {_t(t("Already have an account?"))}{" "}
+                                    <NavLink
+                                      to="/login"
+                                      className="text-uppercase"
+                                    >
+                                      {_t(t("Sign In"))}
+                                    </NavLink>
+                                  </p>
+                                </div>
+                              </form>
+                            </>
+                          ) : (
+                            modalLoading(5)
+                          )}
+                        </div>
                       )}
                     </div>
-                  )}
+                  </div>
+                </div>
+              </div>
+              <div className="col-12 col-md-6 container-img-form p-3 d-flex align-items-center justofy-content-center d-none d-md-flex">
+                <div className="image">
+                  <img className="img-fluid" src={loginImg} alt="login-img" />
                 </div>
               </div>
             </div>

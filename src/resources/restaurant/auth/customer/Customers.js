@@ -693,30 +693,39 @@ const Customers = () => {
                         </li>
                       </ul>
                     </div>
-                    <div className="col-md-6 col-lg-5">
-                      <div className="input-group rounded-pill overflow-hidden">
-                        <button className="btn btn-secondary" type="button">
-                          <i className="fa fa-search" aria-hidden="true"></i>
-                        </button>
-                        <div className="form-file">
-                          <input
-                            type="text"
-                            className="form-control border-0 form-control--light-1 rounded-0"
-                            placeholder={_t(t("Search")) + ".."}
-                            onChange={handleSearch}
-                          />
+                    <div className="col-md-9">
+                      <div className="row">
+                        <div className="col-12 col-md-6">
+                          <div className="input-group rounded-pill overflow-hidden">
+                            <button className="btn btn-secondary" type="button">
+                              <i
+                                className="fa fa-search"
+                                aria-hidden="true"
+                              ></i>
+                            </button>
+                            <div className="form-file">
+                              <input
+                                type="text"
+                                className="form-control border-0 form-control--light-1 rounded-0"
+                                placeholder={_t(t("Search")) + ".."}
+                                onChange={handleSearch}
+                              />
+                            </div>
+                          </div>
                         </div>
-                        <NavLink
-                          to="/dashboard/online-customers"
-                          className={`btn btn-transparent btn-primary ml-2 mr-2 sm-text text-uppercase rounded-pill`}
-                        >
-                          {_t(t("Online Customers"))}
-                        </NavLink>
+                        <div className="col-12 col-md-6">
+                          <NavLink
+                            to="/dashboard/online-customers"
+                            className={`btn btn-transparent w-100 w-md-auto btn-secondary mt-2 mt-md-0 sm-text text-uppercase rounded-pill`}
+                          >
+                            {_t(t("Online Customers"))}
+                          </NavLink>
+                        </div>
                       </div>
                     </div>
-                    <div className="col-md-6 col-lg-7 t-mb-15 mb-md-0">
+                    <div className="col-md-3  t-mb-15 mb-md-0">
                       <div className="row gx-2 align-items-center">
-                        <div className="col-12 col-md-5 ml-auto mt-2 mt-md-0">
+                        <div className="col-12 ml-auto mt-2 mt-md-0">
                           <ul className="t-list fk-sort align-items-center justify-content-center">
                             <li className="fk-sort__list mb-0 flex-grow-1">
                               <button
@@ -839,6 +848,7 @@ const Customers = () => {
                                                 <a
                                                   href={`tel:${item.phn_no}`}
                                                   rel="noopener noreferrer"
+                                                  className="text-dark"
                                                 >
                                                   {item.phn_no}
                                                 </a>
@@ -1033,12 +1043,12 @@ const Customers = () => {
                       <div key="fragment4">
                         <div className="t-bg-white mt-1 t-pt-5 t-pb-5">
                           <div className="row align-items-center t-pl-15 t-pr-15">
-                            <div className="col-md-7 t-mb-15 mb-md-0">
+                            <div className="col-6 col-md-7 mb-md-0">
                               {/* pagination function */}
                               {pagination(customerList, setPaginatedCustomer)}
                             </div>
-                            <div className="col-md-5">
-                              <ul className="t-list d-flex justify-content-md-end align-items-center">
+                            <div className="col-6 col-md-5">
+                              <ul className="t-list d-flex justify-content-end align-items-center">
                                 <li className="t-list__item">
                                   <span className="d-inline-block sm-text">
                                     {showingData(customerList)}
@@ -1053,7 +1063,7 @@ const Customers = () => {
                       // if searched
                       <div className="t-bg-white mt-1 t-pt-5 t-pb-5">
                         <div className="row align-items-center t-pl-15 t-pr-15">
-                          <div className="col-md-7 t-mb-15 mb-md-0">
+                          <div className="col-6 col-md-7 mb-md-0">
                             <ul className="t-list d-flex">
                               <li className="t-list__item no-pagination-style">
                                 <button

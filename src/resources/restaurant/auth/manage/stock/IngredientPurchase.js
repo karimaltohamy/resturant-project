@@ -307,7 +307,7 @@ const IngredientPurchase = () => {
                     ) : (
                       <div key="smtp-form">
                         <div className="row gx-2 align-items-center t-pt-15 t-pb-15">
-                          <div className="col-md-6 col-lg-5 t-mb-15 mb-md-0">
+                          <div className="col-md-3 col-lg-4 t-mb-15 mb-md-0">
                             <ul className="t-list fk-breadcrumb">
                               <li className="fk-breadcrumb__list">
                                 <span className="t-link fk-breadcrumb__link text-capitalize">
@@ -316,7 +316,7 @@ const IngredientPurchase = () => {
                               </li>
                             </ul>
                           </div>
-                          <div className="col-md-6 col-lg-7">
+                          <div className="col-md-9 col-lg-8">
                             <div className="row gx-3 align-items-center"></div>
                           </div>
                         </div>

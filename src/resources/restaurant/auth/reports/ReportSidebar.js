@@ -126,7 +126,7 @@ const ReportSidebar = () => {
 
       {/* Navigation for large Screen  */}
       <div className="d-none d-lg-block">
-        <div className="fk-scroll--pos-menu" data-simplebar>
+        <div className="fk-scroll--pos-menu">
           <ul className="t-list fk-pos-nav">
             {/* Sales */}
             <li

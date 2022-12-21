@@ -1559,15 +1559,15 @@ const Settled = () => {
                       <div key="fragment4">
                         <div className="t-bg-white mt-1 t-pt-5 t-pb-5">
                           <div className="row align-items-center t-pl-15 t-pr-15">
-                            <div className="col-md-7 t-mb-15 mb-md-0">
+                            <div className="col-6 col-md-7 mb-md-0">
                               {/* pagination function */}
                               {pagination(
                                 settledOrders,
                                 setPaginatedSettledOrders
                               )}
                             </div>
-                            <div className="col-md-5">
-                              <ul className="t-list d-flex justify-content-md-end align-items-center">
+                            <div className="col-6 col-md-5">
+                              <ul className="t-list d-flex justify-content-end align-items-center">
                                 <li className="t-list__item">
                                   <span className="d-inline-block sm-text">
                                     {showingData(settledOrders)}
@@ -1582,7 +1582,7 @@ const Settled = () => {
                       // if searched
                       <div className="t-bg-white mt-1 t-pt-5 t-pb-5">
                         <div className="row align-items-center t-pl-15 t-pr-15">
-                          <div className="col-md-7 t-mb-15 mb-md-0">
+                          <div className="col-6 col-md-7 mb-md-0">
                             <ul className="t-list d-flex">
                               <li className="t-list__item no-pagination-style">
                                 <button

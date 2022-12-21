@@ -64,21 +64,25 @@ const Promotions = () => {
   });
 
   //useEffect == componentDidMount()
-  useEffect(() => {
-    setNewSettings({
-      ...newSettings,
-      heading1: getSystemSettings(generalSettings, "banner_heading_1"),
-      subHeading1: getSystemSettings(generalSettings, "banner_sub_heading_1"),
-      heading6: getSystemSettings(generalSettings, "banner_heading_6"),
-      subHeading6: getSystemSettings(generalSettings, "banner_sub_heading_6"),
-      //
-      heading2: getSystemSettings(generalSettings, "banner_heading_2"),
-      heading3: getSystemSettings(generalSettings, "banner_heading_3"),
-      heading4: getSystemSettings(generalSettings, "banner_heading_4"),
-      heading5: getSystemSettings(generalSettings, "banner_heading_5"),
-    });
-    _t();
-  }, [generalSettings], _t);
+  useEffect(
+    () => {
+      setNewSettings({
+        ...newSettings,
+        heading1: getSystemSettings(generalSettings, "banner_heading_1"),
+        subHeading1: getSystemSettings(generalSettings, "banner_sub_heading_1"),
+        heading6: getSystemSettings(generalSettings, "banner_heading_6"),
+        subHeading6: getSystemSettings(generalSettings, "banner_sub_heading_6"),
+        //
+        heading2: getSystemSettings(generalSettings, "banner_heading_2"),
+        heading3: getSystemSettings(generalSettings, "banner_heading_3"),
+        heading4: getSystemSettings(generalSettings, "banner_heading_4"),
+        heading5: getSystemSettings(generalSettings, "banner_heading_5"),
+      });
+      _t();
+    },
+    [generalSettings],
+    _t
+  );
 
   //on change input field
   const handleChange = (e) => {
@@ -325,7 +329,7 @@ const Promotions = () => {
                     ) : (
                       <div key="smtp-form">
                         <div className="row gx-2 align-items-center t-pt-15 t-pb-15">
-                          <div className="col-md-6 col-lg-5 t-mb-15 mb-md-0">
+                          <div className="col-md-3 col-lg-4 t-mb-15 mb-md-0">
                             <ul className="t-list fk-breadcrumb">
                               <li className="fk-breadcrumb__list">
                                 <span className="t-link fk-breadcrumb__link text-capitalize">
@@ -334,7 +338,7 @@ const Promotions = () => {
                               </li>
                             </ul>
                           </div>
-                          <div className="col-md-6 col-lg-7">
+                          <div className="col-md-9 col-lg-8">
                             <div className="row gx-3 align-items-center"></div>
                           </div>
                         </div>

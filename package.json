@@ -36,6 +36,7 @@
     "react-switch": "^7.0.0",
     "react-to-print": "^2.14.10",
     "react-toastify": "^9.1.1",
+    "remixicon": "^2.5.0",
     "universal-cookie": "^4.0.4",
     "web-vitals": "^2.1.4"
   },

@@ -359,7 +359,7 @@ const Kitchen = () => {
               {/* spin loading ends */}
               <div className="row gx-2 align-items-center">
                 <div className="col-md-3 t-mb-15 mb-md-0">
-                  <ul className="t-list fk-breadcrumb">
+                  <ul className="t-list fk-breadcrumb justify-content-center justify-md-content-start">
                     <li className="fk-breadcrumb__list">
                       <span className="t-link fk-breadcrumb__link text-uppercase">
                         <span className="mr-2">

@@ -293,12 +293,6 @@ const OrderHistories = () => {
     content: () => componentRef.current,
   });
 
-  useEffect(() => {
-    if (checkOrderDetails) {
-      console.log(checkOrderDetails);
-    }
-  }, []);
-
   return (
     <>
       <Helmet>
@@ -306,7 +300,7 @@ const OrderHistories = () => {
       </Helmet>
       {/* Print bill */}
       <div className="d-none">
-        <div ref={componentRef}>
+        <div ref={componentRef} className="d-flex justify-content-center">
           {checkOrderDetails && checkOrderDetails.item && (
             // <div className="fk-print px-3">
             //   <div className="container">
@@ -691,7 +685,10 @@ const OrderHistories = () => {
             //     </div>
             //   </div>
             // </div>
-            <div className="content px-2 py-3" style={{ width: "270px" }}>
+            <div
+              className="content px-2 py-3 m-auto"
+              style={{ width: "270px" }}
+            >
               <h4
                 className="text-center py-2"
                 style={{
@@ -847,9 +844,11 @@ const OrderHistories = () => {
                   <div className="items pt-3 ps-3 pl-3">
                     <div className="item d-flex align-items-center justify-content-between mb-1">
                       <p className="mb-0 fw-bold" style={{ fontSize: "13px" }}>
-                        {checkOrderDetails.item.order_bill}
+                        Sub Total
                       </p>
-                      <span style={{ fontSize: "12px" }}>122.00</span>
+                      <span style={{ fontSize: "12px" }}>
+                        {checkOrderDetails.item.order_bill}
+                      </span>
                     </div>
                     <div className="item d-flex align-items-center justify-content-between mb-1">
                       <p className="mb-0 fw-bold" style={{ fontSize: "13px" }}>
@@ -1437,7 +1436,7 @@ const OrderHistories = () => {
                     </div>
                     {/* large screen  */}
                     <div className="col-md-8 col-lg-9 t-mb-15 mb-md-0 d-none d-md-block">
-                      <ul className="t-list fk-sort align-items-center justify-content-end">
+                      <ul className="t-list fk-sort align-items-center justify-content-center justify-lg-content-end ">
                         <li className="fk-sort__list">
                           <NavLink
                             to="/dashboard/online-orders"
@@ -1501,7 +1500,7 @@ const OrderHistories = () => {
                           }`}
                         >
                           <button
-                            className="btn btn-transparent btn-danger rounded xsm-text text-uppercase py-2"
+                            className="btn btn-transparent btn-danger rounded xsm-text text-uppercase mt-2 mt-lg-0 py-2"
                             onClick={handleDateFilter}
                           >
                             {_t(t("Filter"))}
@@ -1511,7 +1510,7 @@ const OrderHistories = () => {
                     </div>
 
                     {/* mobile screen  */}
-                    <div className="col-md-8 col-lg-9 t-mb-15 mb-md-0 d-block d-md-none">
+                    <div className="col-md-8 col-lg-9 t-mb-15 mb-md-0 d-block d-md-none mt-3 mt-md-0">
                       <ul className="t-list fk-sort align-items-center justify-content-end">
                         <li className="fk-sort__list w-100">
                           <NavLink
@@ -2003,15 +2002,15 @@ const OrderHistories = () => {
                       <div key="fragment4">
                         <div className="t-bg-white mt-1 t-pt-5 t-pb-5">
                           <div className="row align-items-center t-pl-15 t-pr-15">
-                            <div className="col-md-7 t-mb-15 mb-md-0">
+                            <div className="col-6 col-md-7 mb-md-0">
                               {/* pagination function */}
                               {paginationOrderHistory(
                                 allOrders,
                                 setPaginatedAllOrders
                               )}
                             </div>
-                            <div className="col-md-5">
-                              <ul className="t-list d-flex justify-content-md-end align-items-center">
+                            <div className="col-6 col-md-5">
+                              <ul className="t-list d-flex justify-content-end align-items-center">
                                 <li className="t-list__item">
                                   <span className="d-inline-block sm-text">
                                     {showingDataOrderHistory(allOrders)}
@@ -2026,7 +2025,7 @@ const OrderHistories = () => {
                       // if searched
                       <div className="t-bg-white mt-1 t-pt-5 t-pb-5">
                         <div className="row align-items-center t-pl-15 t-pr-15">
-                          <div className="col-md-7 t-mb-15 mb-md-0">
+                          <div className="col-6 col-md-7 mb-md-0">
                             <ul className="t-list d-flex">
                               <li className="t-list__item no-pagination-style">
                                 <button

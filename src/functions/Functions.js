@@ -162,7 +162,7 @@ const restaurantMenuLink = (
   redirectTo
 ) => {
   return (
-    <div className="col-md-4 col-lg-3 mb-3" style={{ height: "350px" }}>
+    <div className="col-6 col-md-4 col-lg-3 mb-3 col-product">
       <NavLink to={redirectTo} className="t-link product-card w-100">
         <div className="product-card__head w-100 text-center">
           <img src={img} alt={imgAlt} className="img-fluid" />

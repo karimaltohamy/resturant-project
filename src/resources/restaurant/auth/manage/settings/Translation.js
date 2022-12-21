@@ -30,12 +30,8 @@ const Translation = () => {
   const { t } = useTranslation();
   const history = useHistory();
   //getting context values here
-  let {
-    loading,
-    languageListForSearch,
-    dataPaginating,
-    setDataPaginating,
-  } = useContext(SettingsContext);
+  let { loading, languageListForSearch, dataPaginating, setDataPaginating } =
+    useContext(SettingsContext);
 
   //getting url parameter
   let { code } = useParams();
@@ -268,7 +264,7 @@ const Translation = () => {
               {/* pagination loading effect removed */}
               <div className="t-bg-white mt-1 t-pt-5 t-pb-5">
                 <div className="row align-items-center t-pl-15 t-pr-15">
-                  <div className="col-md-7 t-mb-15 mb-md-0">
+                  <div className="col-6 col-md-7 mb-md-0">
                     <ul className="t-list d-flex justify-content-center justify-content-md-start">
                       <li className="t-list__item no-pagination-style">
                         <NavLink

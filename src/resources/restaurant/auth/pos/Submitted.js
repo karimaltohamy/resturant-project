@@ -1078,8 +1078,8 @@ const Submitted = () => {
         {/* main body */}
         <main id="main" data-simplebar>
           <div className="container">
-            <div className="row t-mt-10 gx-2">
-              <div className="col-12 t-mb-30 mb-lg-0">
+            <div className="row t-mt-10 t-mb-10 gx-2">
+              <div className="col-12 mb-lg-0">
                 {checkOrderDetails.uploading === true || loading === true ? (
                   pageLoading()
                 ) : (
@@ -1799,15 +1799,15 @@ const Submitted = () => {
                         <div key="fragment4">
                           <div className="t-bg-white mt-1 t-pt-5 t-pb-5">
                             <div className="row align-items-center t-pl-15 t-pr-15">
-                              <div className="col-md-7 t-mb-15 mb-md-0">
+                              <div className="col-6 col-md-7 mb-md-0">
                                 {/* pagination function */}
                                 {pagination(
                                   submittedOrders,
                                   setPaginatedSubmittedOrders
                                 )}
                               </div>
-                              <div className="col-md-5">
-                                <ul className="t-list d-flex justify-content-md-end align-items-center">
+                              <div className="col-6 col-md-5">
+                                <ul className="t-list d-flex justify-content-end align-items-center">
                                   <li className="t-list__item">
                                     <span className="d-inline-block sm-text">
                                       {showingData(submittedOrders)}
@@ -1822,7 +1822,7 @@ const Submitted = () => {
                         // if searched
                         <div className="t-bg-white mt-1 t-pt-5 t-pb-5">
                           <div className="row align-items-center t-pl-15 t-pr-15">
-                            <div className="col-md-7 t-mb-15 mb-md-0">
+                            <div className="col-6 col-md-7 mb-md-0">
                               <ul className="t-list d-flex">
                                 <li className="t-list__item no-pagination-style">
                                   <button
@@ -1839,8 +1839,8 @@ const Submitted = () => {
                                 </li>
                               </ul>
                             </div>
-                            <div className="col-md-5">
-                              <ul className="t-list d-flex justify-content-md-end align-items-center">
+                            <div className="col-6 col-md-5">
+                              <ul className="t-list d-flex justify-content-end align-items-center">
                                 <li className="t-list__item">
                                   <span className="d-inline-block sm-text">
                                     {searchedShowingData(

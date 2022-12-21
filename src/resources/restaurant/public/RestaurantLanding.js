@@ -64,47 +64,41 @@ const RestaurantLanding = () => {
   // defult lang
   const defultLang = localStorage.getItem("i18nextLng");
 
+  const { t, i18n } = useTranslation();
+
   // data box digital
   const boxDigitalInfor = [
     {
       id: 1,
-      title: "Digital Management",
-      desc1: `Those days are over when people used to manage their cafe
-      manually.Now it's the era of digital technology, everyone
-      has their own smart technology on their hands. Thus
-      expects the same advanced and technical service from
-      everyone.`,
-      desc2: `And to catch this digital pace, your restaurant must adopt
-      digital management technology. Restora POS offers exactly
-      what your want:`,
-      item1: `User-friendly interface`,
-      item2: `Straightforward management system`,
-      item3: `Smooth and fast billing system`,
+      title: _t(t("Digital Management")),
+      desc1: _t(t("desc_col_Management")),
+      desc2: _t(t("desc2_col_Management")),
+      item1: _t(t("item1_management")),
+      item2: _t(t("item2_management")),
+      item3: _t(t("item3_management")),
       img: digitalImg,
     },
     {
       id: 2,
-      title: "Take Control On Your Own Hand",
-      desc1: `You can eliminate all the stress and tension of “not having a strong control and management system” in your cafe. Now you can not only monitor but also control and record all the data.`,
-      desc2: `With Restora POS, you can get all-in one solution for all your management related operations in your cafe, no matter what size and type your cafe is. Easy managerial system for your cafe.:`,
-      item1: `Better control on the operational cost`,
-      item2: `Eliminate the possibilities of theft`,
-      item3: `Heads-up about monthly/yearly sales; with graphical presentation`,
+      title: _t(t("Take Control On Your Own Hand")),
+      desc1: _t(t("desc_col_control")),
+      desc2: _t(t("desc2_col_control")),
+      item1: _t(t("item1_control")),
+      item2: _t(t("item2_control")),
+      item3: _t(t("item3_control")),
       img: controlImg,
     },
     {
       id: 3,
-      title: "Integration",
-      desc1: `5Code, quite strongly integrated with Website, App and Third party delivery companies. Moreover with this powerful integration your cafe can enrich the online visibility, establish the brand, and of course higher customer reach.`,
-      desc2: `This integration system opens up the opportunity to manage, record and control all the synchronization of the payment data ,order data, customer data, accounts data and optimize a chronological workflow at no-time.`,
-      item1: `Powerful integration with website, app and third party`,
-      item2: `Raise-up the customer engagement`,
-      item3: `Make your website globally ranked`,
+      title: _t(t("Integration")),
+      desc1: _t(t("desc_Integration")),
+      desc2: _t(t("desc2_Integration")),
+      item1: _t(t("item_Integration")),
+      item2: _t(t("item2_Integration")),
+      item3: _t(t("item3_Integration")),
       img: IntegrationImg,
     },
   ];
-
-  const { t, i18n } = useTranslation();
 
   // toggle menu mobil
   const [activeMenu, setActiveMenu] = useState(false);
@@ -286,14 +280,16 @@ const RestaurantLanding = () => {
   };
 
   //change language to selected
-  const handleDefaultLang = (e) => {
-    let lang =
-      navLanguageList &&
-      navLanguageList.find((theItem) => {
-        return theItem.id === parseInt(e.target.value);
-      });
+  const handleDefaultLang = (lang) => {
     i18n.changeLanguage(lang.code);
     setDefaultLang(lang);
+    if (defultLang === "ar") {
+      window.location.reload();
+      document.body.style.direction = "rtl";
+    } else {
+      window.location.reload();
+      document.body.style.direction = "ltr";
+    }
     toast.success(`${_t(t("Language has been switched!"))}`, {
       position: "bottom-center",
       autoClose: 5000,
@@ -469,29 +465,114 @@ const RestaurantLanding = () => {
                   </div>
                 </div>
                 <div
-                  className={`col-md-7 d-md-block container-menu ${
+                  className={`col-md-8 d-md-block container-menu ${
                     activeMenu ? "active-menu" : null
                   }`}
                 >
                   <nav id="mobile-menu d-block">
-                    <ul className="main-menu main-menu2">
+                    <ul className="main-menu">
                       {/* {SAAS_APPLICATION == 'YES' ? <li> <Link to='#'>{_t(t("from saas"))}</Link></li> : <li> <Link to='#'>{_t(t("normal app"))}</Link></li>} */}
+                      <div
+                        className="close-menu"
+                        onClick={() => setActiveMenu(false)}
+                      >
+                        <i class="ri-close-fill"></i>
+                      </div>
                       <li>
-                        <a href="#home">home</a>
+                        <a
+                          className={`${defultLang === "ar" && "fs-ar"}`}
+                          href="#home"
+                        >
+                          {_t(t("home"))}
+                        </a>
                       </li>
                       <li>
-                        <a href="#services">Services</a>
+                        <a
+                          className={`${defultLang === "ar" && "fs-ar"}`}
+                          href="#services"
+                        >
+                          {_t(t("service"))}
+                        </a>
                       </li>
                       <li>
-                        <a href="#informations">Informations</a>
+                        <a
+                          className={`${defultLang === "ar" && "fs-ar"}`}
+                          href="#informations"
+                        >
+                          {_t(t("informations"))}
+                        </a>
                       </li>
                       <li>
-                        <a href="#features">Features</a>
+                        <a
+                          className={`${defultLang === "ar" && "fs-ar"}`}
+                          href="#features"
+                        >
+                          {_t(t("features"))}
+                        </a>
                       </li>
-                      <li>
-                        <a href="#language">{_t(t("Language"))}</a>
+                      <li className="dropdown">
+                        <a
+                          href="#language"
+                          className={`dropdown-toggle ${
+                            defultLang === "ar" && "fs-ar"
+                          }`}
+                          data-toggle="dropdown"
+                          aria-expanded="false"
+                          rel="noopener noreferrer"
+                        >
+                          {_t(t("Languages"))}
+                        </a>
+
+                        <ul className="dropdown-menu">
+                          {navLanguageList &&
+                            navLanguageList.map((item, index) => {
+                              return (
+                                <li key={index}>
+                                  <button
+                                    type="button"
+                                    className={`dropdown-item sm-text text-capitalize ${
+                                      defaultLang &&
+                                      item.code === defaultLang.code
+                                        ? "active"
+                                        : ""
+                                    }`}
+                                    onClick={() => handleDefaultLang(item)}
+                                  >
+                                    {item.name}
+                                  </button>
+                                </li>
+                              );
+                            })}
+                        </ul>
                       </li>
-                      <li onClick={handleDarkMode}>
+                      <li className="btn-menu-mobil">
+                        {getCookie() === undefined ? (
+                          <NavLink to="/login" className="btn btn-secondary">
+                            {_t(t("Login"))}
+                          </NavLink>
+                        ) : (
+                          <>
+                            {authUserInfo &&
+                            authUserInfo.details &&
+                            authUserInfo.details.user_type !== "customer" ? (
+                              <NavLink
+                                to="/dashboard"
+                                className="btn btn-secondary"
+                              >
+                                {_t(t("dashboard"))}
+                              </NavLink>
+                            ) : (
+                              <button
+                                className="btn btn-secondary"
+                                onClick={handleLogout}
+                              >
+                                {_t(t("Logout"))}
+                              </button>
+                            )}
+                          </>
+                        )}
+                      </li>
+                      <li onClick={handleDarkMode} className="mode">
                         {darkMode ? (
                           <i className="ri-sun-fill"></i>
                         ) : (
@@ -501,10 +582,10 @@ const RestaurantLanding = () => {
                     </ul>
                   </nav>
                 </div>
-                <div className=" col-md-3 col-5 px-0">
+                <div className=" col-md-2 col-2 px-0">
                   <div className="customer-area2 d-flex align-items-center justify-content-center">
                     {getCookie() === undefined ? (
-                      <NavLink to="/login" className=" btn-secondary">
+                      <NavLink to="/login" className="btn btn-secondary">
                         {_t(t("Login"))}
                       </NavLink>
                     ) : (
@@ -516,7 +597,7 @@ const RestaurantLanding = () => {
                             to="/dashboard"
                             className="btn btn-secondary"
                           >
-                            {_t(t("Dashboard"))}
+                            {_t(t("dashboard"))}
                           </NavLink>
                         ) : (
                           <button
@@ -528,10 +609,14 @@ const RestaurantLanding = () => {
                         )}
                       </>
                     )}
-                    <div
-                      className="icon-menu d-block d-md-none mx-3 cursor-pointer"
-                      onClick={() => setActiveMenu(!activeMenu)}
-                    >
+                    <div onClick={handleDarkMode} className="mode-mobil">
+                      {darkMode ? (
+                        <i className="ri-sun-fill"></i>
+                      ) : (
+                        <i className="ri-moon-fill"></i>
+                      )}
+                    </div>
+                    <div className="icon-menu d-block d-md-none mx-3 cursor-pointer">
                       <svg
                         width="30"
                         xmlns="http://www.w3.org/2000/svg"
@@ -540,6 +625,7 @@ const RestaurantLanding = () => {
                         strokeWidth={1.5}
                         stroke="currentColor"
                         className="w-6 h-6"
+                        onClick={() => setActiveMenu(!activeMenu)}
                       >
                         <path
                           strokeLinecap="round"
@@ -563,13 +649,11 @@ const RestaurantLanding = () => {
                   className={`text-hero ${defultLang === "ar" && "text-right"}`}
                 >
                   <h1 className="title-hero">
-                    5Code Serves You <br /> <span>Coffe Pos System</span>
+                    {_t(t("title-hero1"))} <br />{" "}
+                    <span>{_t(t("title-hero2"))}</span>
                   </h1>
-                  <p className="desc-hero">
-                    You pillar up your Coffe with bricks & concrete and we
-                    polish it up with technological intelligence.
-                  </p>
-                  <a className="btn btn-hero">Start Your Journey</a>
+                  <p className="desc-hero">{_t(t("desc-hero"))}</p>
+                  <a className="btn btn-hero">{_t(t("btn-hero"))}</a>
                 </div>
               </div>
               <div className="col-12 col-md-6">
@@ -586,18 +670,15 @@ const RestaurantLanding = () => {
         <div id="services" className="services-section">
           <div className="container">
             <div className="content-services">
-              <h3 className="title-services">Smart. Simple. Secure.</h3>
-              <p className="desc-services">
-                Elevate your Café guests experience and business operations with
-                5Code
-              </p>
+              <h3 className="title-services">{_t(t("title-services"))}</h3>
+              <p className="desc-services">{_t(t("desc-services"))}</p>
               <div className="boxs-servicses row pt-3 pt-lg-5">
                 <div className="box-services col-6 col-md-4 col-lg-2">
                   <div className="image text-center">
                     <i className="ri-cloud-line"></i>
                   </div>
                   <p className="text-white fs-2 text-center">
-                    Secure <br /> Cloud
+                    {_t(t("secure"))} <br /> {_t(t("cloud"))}
                   </p>
                 </div>
                 <div className="box-services col-6 col-md-4 col-lg-2">
@@ -605,7 +686,7 @@ const RestaurantLanding = () => {
                     <i className="ri-wifi-off-line"></i>
                   </div>
                   <p className="text-white fs-2 text-center">
-                    Works <br /> Offline
+                    {_t(t("works"))} <br /> {_t(t("Offline"))}
                   </p>
                 </div>
                 <div className="box-services col-6 col-md-4 col-lg-2">
@@ -613,7 +694,7 @@ const RestaurantLanding = () => {
                     <i className="ri-database-line"></i>
                   </div>
                   <p className="text-white fs-2 text-center">
-                    Real-time Reporting <br /> & Analytics
+                    {_t(t("Real-time Reporting"))} <br /> {_t(t("Analytics"))}
                   </p>
                 </div>
                 <div className="box-services col-6 col-md-4 col-lg-2">
@@ -621,7 +702,7 @@ const RestaurantLanding = () => {
                     <i className="ri-settings-2-line"></i>
                   </div>
                   <p className="text-white fs-2 text-center">
-                    Limitless <br /> Integrations
+                    {_t(t("Limitless"))} <br /> {_t(t("Integrations"))}
                   </p>
                 </div>
                 <div className="box-services col-6 col-md-4 col-lg-2">
@@ -629,7 +710,7 @@ const RestaurantLanding = () => {
                     <i className="ri-shield-flash-line"></i>
                   </div>
                   <p className="text-white fs-2 text-center">
-                    Advanced Role <br /> Authorization
+                    {_t(t("Advanced Role"))} <br /> {_t(t("Authorization"))}
                   </p>
                 </div>
                 <div className="box-services col-6 col-md-4 col-lg-2">
@@ -637,7 +718,7 @@ const RestaurantLanding = () => {
                     <i className="ri-phone-line"></i>
                   </div>
                   <p className="text-white fs-2 text-center">
-                    Live <br /> Support
+                    {_t(t("live"))} <br /> {_t(t("support"))}
                   </p>
                 </div>
               </div>
@@ -655,13 +736,8 @@ const RestaurantLanding = () => {
                   defultLang === "ar" && "text-md-right"
                 }`}
               >
-                <h3 className="title-elementor">
-                  Point of Sale & Cafe Management Solution
-                </h3>
-                <p className="desc-elementor">
-                  Manage your front of house with ease, flexibility, and
-                  precision.
-                </p>
+                <h3 className="title-elementor">{_t(t("title-elementor"))}</h3>
+                <p className="desc-elementor">{_t(t("desc-elementor"))}</p>
               </div>
               <div className="col-12 col-md-6">
                 <div className="image-elementor">
@@ -683,11 +759,10 @@ const RestaurantLanding = () => {
             <div className="content">
               <div className="text-top m-auto text-center flex-column d-flex align-items-center">
                 <span className="subTitle-infor text-center d-block">
-                  Don't Worry!!!
+                  {_t(t("subTitle-infor"))}
                 </span>
                 <h4 className="title-infor text-center">
-                  As Long as You Are With 5Code Your Cafe Business is on Safe
-                  Hand
+                  {_t(t("title-infor"))}
                 </h4>
               </div>
               <div className="boxs-infor row">
@@ -703,7 +778,7 @@ const RestaurantLanding = () => {
                     </div>
                     <div className="text">
                       <h5 className={`${defultLang === "ar" && "text-right"}`}>
-                        Digital Management
+                        {_t(t("Digital Management"))}
                       </h5>
                     </div>
                   </div>
@@ -720,7 +795,7 @@ const RestaurantLanding = () => {
                     </div>
                     <div className="text">
                       <h5 className={`${defultLang === "ar" && "text-right"}`}>
-                        Take Control On Your Own Hand
+                        {_t(t("Take Control On Your Own Hand"))}
                       </h5>
                     </div>
                   </div>
@@ -737,7 +812,7 @@ const RestaurantLanding = () => {
                     </div>
                     <div className="text">
                       <h5 className={`${defultLang === "ar" && "text-right"}`}>
-                        Integration
+                        {_t(t("Integration"))}
                       </h5>
                     </div>
                   </div>
@@ -803,69 +878,81 @@ const RestaurantLanding = () => {
         <div id="features" className="features-section">
           <div className="container">
             <div className="content-features">
-              <h4 className="title-features">
-                Bake Your Cafe With Our Raw Features
-              </h4>
+              <h4 className="title-features">{_t(t("title-features"))}</h4>
               <div className="boxs-Features">
                 <div className="box-Feature">
                   <div className="image">
                     <img src={DashboardImg} alt="dashboard-img" />
                   </div>
-                  <p className="desc-box">Efficacious Dashboard</p>
+                  <p className="desc-box">{_t(t("Efficacious Dashboard"))}</p>
                 </div>
                 <div className="box-Feature">
                   <div className="image">
                     <img src={billImg} alt="bill-img" />
                   </div>
-                  <p className="desc-box">POS Billing System</p>
+                  <p className="desc-box">{_t(t("POS Billing System"))}</p>
                 </div>
                 <div className="box-Feature">
                   <div className="image">
                     <img src={onlineOrderImg} alt="ovlineOrder-img" />
                   </div>
-                  <p className="desc-box">Online/Offline Order Management</p>
+                  <p className="desc-box">
+                    {_t(t("Online/Offline Order Management"))}
+                  </p>
                 </div>
                 <div className="box-Feature">
                   <div className="image">
                     <img src={websiteImg} alt="website-img" />
                   </div>
-                  <p className="desc-box">Website & App Integration</p>
+                  <p className="desc-box">
+                    {_t(t("Website & App Integration"))}
+                  </p>
                 </div>
                 <div className="box-Feature">
                   <div className="image">
                     <img src={TableImg} alt="table-img" />
                   </div>
-                  <p className="desc-box">Table Reservation System</p>
+                  <p className="desc-box">
+                    {_t(t("Table Reservation System"))}
+                  </p>
                 </div>
                 <div className="box-Feature">
                   <div className="image">
                     <img src={phoneScannerImg} alt="table-img" />
                   </div>
-                  <p className="desc-box">QR Scanner or Contactless Payment</p>
+                  <p className="desc-box">
+                    {_t(t("QR Scanner or Contactless Payment"))}
+                  </p>
                 </div>
                 <div className="box-Feature">
                   <div className="image">
                     <img src={accountImg} alt="table-img" />
                   </div>
-                  <p className="desc-box">Account Management</p>
+                  <p className="desc-box">{_t(t("Account Management"))}</p>
                 </div>
                 <div className="box-Feature">
                   <div className="image">
                     <img src={delivaryImg} alt="table-img" />
                   </div>
-                  <p className="desc-box">Multiple Delivery Method</p>
+                  <p className="desc-box">
+                    {_t(t("Multiple Delivery Method"))}
+                  </p>
                 </div>
                 <div className="box-Feature">
                   <div className="image">
                     <img src={humanImg} alt="table-img" />
                   </div>
-                  <p className="desc-box">Human Resource Management System</p>
+                  <p className="desc-box">
+                    {_t(t("Human Resource Management System"))}
+                  </p>
                 </div>
                 <div className="box-Feature">
                   <div className="image">
                     <img src={paymentImg} alt="table-img" />
                   </div>
-                  <p className="desc-box">Multiple Payment Gateway</p>
+                  <p className="desc-box">
+                    {_t(t("Multiple Payment Gateway"))}
+                  </p>
                 </div>
               </div>
             </div>
@@ -882,11 +969,8 @@ const RestaurantLanding = () => {
                   defultLang === "ar" && "text-md-right"
                 }`}
               >
-                <h3 className="title-elementor">Payment Solution</h3>
-                <p className="desc-elementor">
-                  MGive your customers a fast and secure checkout experience by
-                  your Cashier App.
-                </p>
+                <h3 className="title-elementor">{_t(t("title-elementor1"))}</h3>
+                <p className="desc-elementor">{_t(t("desc-elementor2"))}</p>
               </div>
               <div className="col-12 col-md-6">
                 <div className="image-elementor">
@@ -914,7 +998,7 @@ const RestaurantLanding = () => {
                       defultLang === "ar" && "text-right"
                     }`}
                   >
-                    Your Dream, Our Responsibility
+                    {_t(t("title-responsibility"))}
                   </h4>
                   <ul
                     className="list-responsibility"
@@ -926,10 +1010,7 @@ const RestaurantLanding = () => {
                       }`}
                     >
                       <i className="ri-check-line"></i>
-                      <span>
-                        Interactive dashboard to compare your sales or cost,
-                        with graphical presentation
-                      </span>
+                      <span>{_t(t("item1_responsibility"))}</span>
                     </li>
                     <li
                       className={`item-list ${
@@ -937,9 +1018,7 @@ const RestaurantLanding = () => {
                       }`}
                     >
                       <i className="ri-check-line"></i>
-                      <span>
-                        Secure transaction with multiple payment gateways
-                      </span>
+                      <span>{_t(t("item2_responsibility"))}</span>
                     </li>
                     <li
                       className={`item-list ${
@@ -947,7 +1026,7 @@ const RestaurantLanding = () => {
                       }`}
                     >
                       <i className="ri-check-line"></i>
-                      <span>Smooth and fast POS billing system for cafe</span>
+                      <span>{_t(t("item3_responsibility"))}</span>
                     </li>
                     <li
                       className={`item-list ${
@@ -955,7 +1034,7 @@ const RestaurantLanding = () => {
                       }`}
                     >
                       <i className="ri-check-line"></i>
-                      <span>Contactless or QR scanner payment</span>
+                      <span>{_t(t("item4_responsibility"))}</span>
                     </li>
                     <li
                       className={`item-list ${
@@ -963,11 +1042,11 @@ const RestaurantLanding = () => {
                       }`}
                     >
                       <i className="ri-check-line"></i>
-                      <span>Better control of human resourse</span>
+                      <span>{_t(t("item5_responsibility"))}</span>
                     </li>
                     <li className="item-list">
                       <i className="ri-check-line"></i>
-                      <span>Online/offline-order management</span>
+                      <span>{_t(t("item6_responsibility"))}</span>
                     </li>
                   </ul>
                 </div>
@@ -999,32 +1078,20 @@ const RestaurantLanding = () => {
                       : "border-ra-en"
                   } `}
                 >
-                  <h4 className="title-contact">Request a free </h4>
-                  <p className="desc-contact">
-                    Let us help you get started with the right tools for your
-                    business.
-                  </p>
+                  <h4 className="title-contact">{_t(t("Request A Free"))}</h4>
+                  <p className="desc-contact">{_t(t("desc_request"))}</p>
                   <ul className="list-contact" style={{ listStyle: "none" }}>
                     <li className="item-list">
                       <i className="ri-check-line"></i>
-                      <span>
-                        Fill out the form and a 5Code specialist will reach out
-                        to you within 24 hours to schedule your demo.
-                      </span>
+                      <span>{_t(t("item_request"))}</span>
                     </li>
                     <li className="item-list">
                       <i className="ri-check-line"></i>
-                      <span>
-                        Your demo will include a customized walkthrough of 5Code
-                        catered to your cafe's unique needs.
-                      </span>
+                      <span>{_t(t("item2_request"))}</span>
                     </li>
                     <li className="item-list">
                       <i className="ri-check-line"></i>
-                      <span>
-                        We’ll follow up with a price quote built just for you
-                        based on your ideal hardware and software.
-                      </span>
+                      <span>{_t(t("item3_request"))}</span>
                     </li>
                   </ul>
                 </div>
@@ -1038,7 +1105,7 @@ const RestaurantLanding = () => {
                   }`}
                 >
                   <div className="input-item col-12 col-md-6 px-0">
-                    <label htmlFor="f-name">First name</label>
+                    <label htmlFor="f-name">{_t(t("First name"))}</label>
                     <input
                       className={`${defultLang === "ar" ? "ml-2" : "mr-2"}`}
                       id="f-name"
@@ -1046,26 +1113,26 @@ const RestaurantLanding = () => {
                     />
                   </div>
                   <div className="input-item col-12 col-md-6 px-0">
-                    <label htmlFor="l-name">Last name</label>
+                    <label htmlFor="l-name">{_t(t("Last name"))}</label>
                     <input type="text" />
                   </div>
                   <div className="input-item col-12 px-0">
-                    <label htmlFor="email">Email</label>
+                    <label htmlFor="email">{_t(t("Email"))}</label>
                     <input id="email" type="text" />
                   </div>
                   <div className="input-item col-12 px-0">
-                    <label htmlFor="Phone">Phone number</label>
+                    <label htmlFor="Phone">{_t(t("Phone number"))}</label>
                     <input id="Phone" type="text" />
                   </div>
                   <div className="input-item col-12 px-0">
-                    <label htmlFor="Company">Company name</label>
+                    <label htmlFor="Company">{_t(t("Company name"))}</label>
                     <input id="Company" type="text" />
                   </div>
                   <div className="input-item col-12 px-0">
-                    <label htmlFor="Country">Country Name</label>
+                    <label htmlFor="Country">{_t(t("Country Name"))}</label>
                     <input id="Country" type="text" />
                   </div>
-                  <button className="btn-contact">submit</button>
+                  <button className="btn-contact">{_t(t("submit"))}</button>
                 </form>
               </div>
             </div>
@@ -1076,14 +1143,16 @@ const RestaurantLanding = () => {
         {/* start footer */}
         <footer>
           <div className="container">
-            <div className="row">
+            <div className="row d-flex align-items-center">
               <div
-                className={`col-12 col-md-6 col-lg-3 mb-4 mb-md-0 ${
+                className={`col-12 col-md-9 mb-4 mb-md-0 ${
                   defultLang === "ar" && "text-right"
                 }`}
               >
-                <div className="content-about">
-                  <div className="logo">
+                <div className="content-about d-flex align-items-center gap-3">
+                  <div
+                    className={`logo ${defultLang === "ar" ? "border-r" : ""}`}
+                  >
                     {window.location.pathname === "/" ? (
                       <NavLink
                         to={{ pathname: "/refresh", state: "/" }}
@@ -1110,91 +1179,38 @@ const RestaurantLanding = () => {
                       </NavLink>
                     )}
                   </div>
-                  <p className="address">Mannan Plaza, Khilkhet,</p>
-                  <p className="address">Dhaka-1229, Bangladesh</p>
-                  <span className="info-about">
-                    Email: <p>info@exampil.com</p>
-                  </span>
-                  <span className="info-about">
-                    Phone: <p>01004632317</p>
-                  </span>
-                  <div className="social-content">
-                    <h5>Stay In Touch</h5>
-                    <div className="social">
-                      <a href="#">
-                        <i className="ri-twitter-fill twitter"></i>
-                      </a>
-                      <a href="#">
-                        <i className="ri-facebook-fill facebook"></i>
-                      </a>
-                      <a href="#">
-                        <i className="ri-instagram-line instagram"></i>
-                      </a>
-                      <a href="#">
-                        <i className="ri-linkedin-box-line linkedin"></i>
-                      </a>
-                    </div>
+                  <div>
+                    <ul className="list-footer d-flex align-itens-center gap-3">
+                      <li className="item-footer">{_t(t("About"))}</li>
+                      <li className="item-footer">{_t(t("Contact us"))} </li>
+                      <li className="item-footer">{_t(t("Career"))}</li>
+                      <li className="item-footer">{_t(t("Support"))}</li>
+                    </ul>
+                    <p className="copy-right">
+                      {" "}
+                      &copy;{" "}
+                      {generalSettings &&
+                        getSystemSettings(generalSettings, "type_footer")}
+                    </p>
                   </div>
                 </div>
               </div>
               <div
-                className={`col-12 col-md-6 col-lg-3 mb-4 mb-md-0 ${
+                className={`col-12 col-md-3 mb-4 mb-md-0 ${
                   defultLang === "ar" && "text-right"
                 }`}
               >
-                <ul className="list-footer">
-                  <h5 className="title-list">Product</h5>
-                  <h6>Automation</h6>
-                  <li>Cafe Management Software</li>
-                  <li>Cafe Inventory Management Software</li>
-                  <h6>Dynamism</h6>
-                  <li>Cafe POS Software</li>
-                  <li>Cafe Reservation System</li>
-                  <h6>Enrichment</h6>
-                  <li>Online Food Ordering System</li>
-                  <li>Cloud Kitchen Software</li>
-                </ul>
-              </div>
-              <div
-                className={`col-12 col-md-6 col-lg-3 mb-4 mb-md-0 ${
-                  defultLang === "ar" && "text-right"
-                }`}
-              >
-                <ul className="list-footer">
-                  <h5 className="title-list">Business Types</h5>
-                  <li>Bakery & Confectioneries</li>
-                  <li>Food Courts</li>
-                  <li>Burger & Sandwich Shop</li>
-                  <li>Pizza Restaurant</li>
-                  <li>Cloud Kitchen</li>
-                  <li>Fine Dine Restaurant</li>
-                  <li>Cafe / Coffee Shop</li>
-                  <li>Seafood Restaurant</li>
-                  <li>Food Truck</li>
-                  <li>Franchise management</li>
-                  <li>Quick Service Restaurant</li>
-                </ul>
-              </div>
-              <div
-                className={`col-12 col-md-6 col-lg-3 mb-4 mb-md-0 ${
-                  defultLang === "ar" && "text-right"
-                }`}
-              >
-                <ul className="list-footer">
-                  <h5 className="title-list">Quick Links</h5>
-                  <li>Who We Are</li>
-                  <li>Pricing</li>
-                  <li>Terms & Conditions</li>
-                  <li>Privacy Policies</li>
-                  <li>Contact Us</li>
-                </ul>
+                <div>
+                  <div className="social-list">
+                    <i class="ri-facebook-fill"></i>
+                    <i class="ri-twitter-fill"></i>
+                    <i class="ri-linkedin-box-fill"></i>
+                    <i class="ri-instagram-line"></i>
+                  </div>
+                  <p className="email">Example@example.com</p>
+                </div>
               </div>
             </div>
-            <p className="copy-right text-white fs-2 text-center mt-5">
-              &copy;{" "}
-              {generalSettings &&
-                getSystemSettings(generalSettings, "type_footer")}
-            </p>
           </div>
         </footer>
         {/* end footr */}

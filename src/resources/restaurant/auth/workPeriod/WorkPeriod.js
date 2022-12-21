@@ -407,7 +407,7 @@ const WorkPeriod = () => {
                         </li>
                       </ul>
                     </div>
-                    <div className="col-md-6 col-lg-5">
+                    <div className="col-md-4 col-lg-5">
                       <div className="input-group rounded-pill overflow-hidden">
                         <button className="btn btn-secondary" type="button">
                           <i className="fa fa-search" aria-hidden="true"></i>
@@ -424,12 +424,12 @@ const WorkPeriod = () => {
                         </div>
                       </div>
                     </div>
-                    <div className="col-md-6 col-lg-7 t-mb-15 mb-md-0">
+                    <div className="col-md-8 col-lg-7 t-mb-15 mb-md-0">
                       <div className="row gx-2 align-items-center">
                         {authUserInfo.details !== null &&
                         authUserInfo.details.user_type !== "staff" ? (
                           <>
-                            <div className="col-md-7 t-mb-15 mb-md-0 mt-3 mt-md-0">
+                            <div className="col-12 col-md-7 mb-md-0 mt-2 mb-2 mb-md-0 mt-md-0">
                               <Select
                                 options={branchForSearch && branchForSearch}
                                 components={makeAnimated()}
@@ -775,15 +775,15 @@ const WorkPeriod = () => {
                       <div key="fragment4">
                         <div className="t-bg-white mt-1 t-pt-5 t-pb-5">
                           <div className="row align-items-center t-pl-15 t-pr-15">
-                            <div className="col-md-7 t-mb-15 mb-md-0">
+                            <div className="col-6 col-md-7 mb-md-0">
                               {/* pagination function */}
                               {pagination(
                                 workPeriodList,
                                 setPaginatedWorkPeriod
                               )}
                             </div>
-                            <div className="col-md-5">
-                              <ul className="t-list d-flex justify-content-md-end align-items-center">
+                            <div className="col-6 col-md-5">
+                              <ul className="t-list d-flex justify-content-end align-items-center">
                                 <li className="t-list__item">
                                   <span className="d-inline-block sm-text">
                                     {showingData(workPeriodList)}
@@ -798,7 +798,7 @@ const WorkPeriod = () => {
                       // if searched
                       <div className="t-bg-white mt-1 t-pt-5 t-pb-5">
                         <div className="row align-items-center t-pl-15 t-pr-15">
-                          <div className="col-md-7 t-mb-15 mb-md-0">
+                          <div className="col-6 col-md-7 mb-md-0">
                             <ul className="t-list d-flex">
                               <li className="t-list__item no-pagination-style">
                                 <button

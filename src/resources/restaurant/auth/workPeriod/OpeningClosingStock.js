@@ -219,146 +219,146 @@ const OpeningClosingStock = () => {
                           <tbody className="align-middle">
                             {!searchedWorkPeriod.searched
                               ? [
-                                items &&
-                                theGroups && [
-                                  items.length === 0 ? (
-                                    <tr className="align-middle">
-                                      <td
-                                        scope="row"
-                                        colSpan="8"
-                                        className="xsm-text align-middle text-center"
-                                      >
-                                        {_t(t("No data available"))}
-                                      </td>
-                                    </tr>
-                                  ) : (
-                                    theGroups.map(
-                                      (grpItem, grpItemIndex) => {
-                                        return (
-                                          <>
-                                            <tr className="align-middle alert-success">
-                                              <td
-                                                scope="row"
-                                                colSpan="8"
-                                                className="xsm-text align-middle text-left ml-5 text-uppercase"
-                                              >
-                                                {grpItem.name}
-                                              </td>
-                                            </tr>
-                                            {items.map((item, index) => {
-                                              if (
-                                                parseInt(
-                                                  item.ingredient_group_id
-                                                ) === grpItem.id
-                                              ) {
-                                                return (
-                                                  <tr
-                                                    className="align-middle"
-                                                    key={index}
+                                  items &&
+                                    theGroups && [
+                                      items.length === 0 ? (
+                                        <tr className="align-middle">
+                                          <td
+                                            scope="row"
+                                            colSpan="8"
+                                            className="xsm-text align-middle text-center"
+                                          >
+                                            {_t(t("No data available"))}
+                                          </td>
+                                        </tr>
+                                      ) : (
+                                        theGroups.map(
+                                          (grpItem, grpItemIndex) => {
+                                            return (
+                                              <>
+                                                <tr className="align-middle alert-success">
+                                                  <td
+                                                    scope="row"
+                                                    colSpan="8"
+                                                    className="xsm-text align-middle text-left ml-5 text-uppercase"
                                                   >
-                                                    <th
-                                                      scope="row"
-                                                      className="xsm-text text-capitalize align-middle text-center"
-                                                    >
-                                                      {index + 1}
-                                                    </th>
+                                                    {grpItem.name}
+                                                  </td>
+                                                </tr>
+                                                {items.map((item, index) => {
+                                                  if (
+                                                    parseInt(
+                                                      item.ingredient_group_id
+                                                    ) === grpItem.id
+                                                  ) {
+                                                    return (
+                                                      <tr
+                                                        className="align-middle"
+                                                        key={index}
+                                                      >
+                                                        <th
+                                                          scope="row"
+                                                          className="xsm-text text-capitalize align-middle text-center"
+                                                        >
+                                                          {index + 1}
+                                                        </th>
 
-                                                    <td className="xsm-text align-middle text-center text-secondary">
-                                                      {item.ingredient_name +
-                                                        " / " +
-                                                        item.ingredient_unit}
-                                                    </td>
+                                                        <td className="xsm-text align-middle text-center text-secondary">
+                                                          {item.ingredient_name +
+                                                            " / " +
+                                                            item.ingredient_unit}
+                                                        </td>
 
-                                                    <td className="xsm-text align-middle text-center">
-                                                      {item.opening_stock}
-                                                    </td>
+                                                        <td className="xsm-text align-middle text-center">
+                                                          {item.opening_stock}
+                                                        </td>
 
-                                                    <td className="xsm-text align-middle text-center">
-                                                      {item.addition_to_opening ===
-                                                        null
-                                                        ? 0
-                                                        : item.addition_to_opening}
-                                                    </td>
-
-                                                    <td className="xsm-text align-middle text-center">
-                                                      {item.subtraction_from_opening ===
-                                                        null
-                                                        ? 0
-                                                        : item.subtraction_from_opening}
-                                                    </td>
-                                                    <td className="xsm-text align-middle text-center">
-                                                      <input
-                                                        type="number"
-                                                        className="form-control"
-                                                        name={item.id}
-                                                        placeholder={_t(
-                                                          t(
-                                                            "Keep fields blank to calculate auto"
-                                                          )
-                                                        )}
-                                                        max={hadnleMax(
-                                                          item
-                                                        )}
-                                                        value={
-                                                          item.closing_stock ||
+                                                        <td className="xsm-text align-middle text-center">
+                                                          {item.addition_to_opening ===
                                                           null
-                                                        }
-                                                        onChange={(e) => {
-                                                          let tempArray =
-                                                            [];
-                                                          items.map(
-                                                            (pushThis) => {
-                                                              if (
-                                                                pushThis.id !==
-                                                                item.id
-                                                              ) {
-                                                                tempArray.push(
-                                                                  pushThis
-                                                                );
-                                                              } else {
-                                                                if (
-                                                                  e.target
-                                                                    .value !==
-                                                                  "" &&
-                                                                  e.target
-                                                                    .value !==
-                                                                  null
-                                                                ) {
-                                                                  pushThis.closing_stock =
-                                                                    parseFloat(
-                                                                      e
-                                                                        .target
-                                                                        .value
-                                                                    );
-                                                                } else {
-                                                                  pushThis.closing_stock =
-                                                                    null;
-                                                                }
-                                                                tempArray.push(
-                                                                  pushThis
-                                                                );
-                                                              }
+                                                            ? 0
+                                                            : item.addition_to_opening}
+                                                        </td>
+
+                                                        <td className="xsm-text align-middle text-center">
+                                                          {item.subtraction_from_opening ===
+                                                          null
+                                                            ? 0
+                                                            : item.subtraction_from_opening}
+                                                        </td>
+                                                        <td className="xsm-text align-middle text-center">
+                                                          <input
+                                                            type="number"
+                                                            className="form-control"
+                                                            name={item.id}
+                                                            placeholder={_t(
+                                                              t(
+                                                                "Keep fields blank to calculate auto"
+                                                              )
+                                                            )}
+                                                            max={hadnleMax(
+                                                              item
+                                                            )}
+                                                            value={
+                                                              item.closing_stock ||
+                                                              null
                                                             }
-                                                          );
-                                                          setItems(
-                                                            tempArray
-                                                          );
-                                                        }}
-                                                      />
-                                                    </td>
-                                                  </tr>
-                                                );
-                                              } else {
-                                                return false;
-                                              }
-                                            })}
-                                          </>
-                                        );
-                                      }
-                                    )
-                                  ),
-                                ],
-                              ]
+                                                            onChange={(e) => {
+                                                              let tempArray =
+                                                                [];
+                                                              items.map(
+                                                                (pushThis) => {
+                                                                  if (
+                                                                    pushThis.id !==
+                                                                    item.id
+                                                                  ) {
+                                                                    tempArray.push(
+                                                                      pushThis
+                                                                    );
+                                                                  } else {
+                                                                    if (
+                                                                      e.target
+                                                                        .value !==
+                                                                        "" &&
+                                                                      e.target
+                                                                        .value !==
+                                                                        null
+                                                                    ) {
+                                                                      pushThis.closing_stock =
+                                                                        parseFloat(
+                                                                          e
+                                                                            .target
+                                                                            .value
+                                                                        );
+                                                                    } else {
+                                                                      pushThis.closing_stock =
+                                                                        null;
+                                                                    }
+                                                                    tempArray.push(
+                                                                      pushThis
+                                                                    );
+                                                                  }
+                                                                }
+                                                              );
+                                                              setItems(
+                                                                tempArray
+                                                              );
+                                                            }}
+                                                          />
+                                                        </td>
+                                                      </tr>
+                                                    );
+                                                  } else {
+                                                    return false;
+                                                  }
+                                                })}
+                                              </>
+                                            );
+                                          }
+                                        )
+                                      ),
+                                    ],
+                                ]
                               : ""}
                           </tbody>
                         </table>
@@ -379,67 +379,67 @@ const OpeningClosingStock = () => {
               {newWorkPeriod.uploading === true || loading === true
                 ? paginationLoading()
                 : [
-                  // logic === !searched
-                  !searchedWorkPeriod.searched ? (
-                    <div key="fragment4">
+                    // logic === !searched
+                    !searchedWorkPeriod.searched ? (
+                      <div key="fragment4">
+                        <div className="t-bg-white mt-1 t-pt-5 t-pb-5">
+                          <div className="row align-items-center t-pl-15 t-pr-15">
+                            <div className="col-6 col-md-7 mb-md-0">
+                              {/* pagination function */}
+                              {pagination(
+                                workPeriodList,
+                                setPaginatedWorkPeriod
+                              )}
+                            </div>
+                            <div className="col-6 col-md-5">
+                              <ul className="t-list d-flex justify-content-end align-items-center">
+                                <li className="t-list__item">
+                                  <span className="d-inline-block sm-text">
+                                    {/* {showingData(workPeriodList)} */}
+                                  </span>
+                                </li>
+                              </ul>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    ) : (
+                      // if searched
                       <div className="t-bg-white mt-1 t-pt-5 t-pb-5">
                         <div className="row align-items-center t-pl-15 t-pr-15">
-                          <div className="col-md-7 t-mb-15 mb-md-0">
-                            {/* pagination function */}
-                            {pagination(
-                              workPeriodList,
-                              setPaginatedWorkPeriod
-                            )}
+                          <div className="col-6 col-md-7 mb-md-0">
+                            <ul className="t-list d-flex">
+                              <li className="t-list__item no-pagination-style">
+                                <button
+                                  className="btn btn-primary btn-sm"
+                                  onClick={() =>
+                                    setSearchedWorkPeriod({
+                                      ...searchedWorkPeriod,
+                                      searched: false,
+                                    })
+                                  }
+                                >
+                                  {_t(t("Clear Search"))}
+                                </button>
+                              </li>
+                            </ul>
                           </div>
                           <div className="col-md-5">
                             <ul className="t-list d-flex justify-content-md-end align-items-center">
                               <li className="t-list__item">
                                 <span className="d-inline-block sm-text">
-                                  {/* {showingData(workPeriodList)} */}
+                                  {/* {searchedShowingData(
+                                    searchedWorkPeriod,
+                                    workPeriodForSearch
+                                  )} */}
                                 </span>
                               </li>
                             </ul>
                           </div>
                         </div>
                       </div>
-                    </div>
-                  ) : (
-                    // if searched
-                    <div className="t-bg-white mt-1 t-pt-5 t-pb-5">
-                      <div className="row align-items-center t-pl-15 t-pr-15">
-                        <div className="col-md-7 t-mb-15 mb-md-0">
-                          <ul className="t-list d-flex">
-                            <li className="t-list__item no-pagination-style">
-                              <button
-                                className="btn btn-primary btn-sm"
-                                onClick={() =>
-                                  setSearchedWorkPeriod({
-                                    ...searchedWorkPeriod,
-                                    searched: false,
-                                  })
-                                }
-                              >
-                                {_t(t("Clear Search"))}
-                              </button>
-                            </li>
-                          </ul>
-                        </div>
-                        <div className="col-md-5">
-                          <ul className="t-list d-flex justify-content-md-end align-items-center">
-                            <li className="t-list__item">
-                              <span className="d-inline-block sm-text">
-                                {/* {searchedShowingData(
-                                    searchedWorkPeriod,
-                                    workPeriodForSearch
-                                  )} */}
-                              </span>
-                            </li>
-                          </ul>
-                        </div>
-                      </div>
-                    </div>
-                  ),
-                ]}
+                    ),
+                  ]}
             </div>
           </div>
         </div>

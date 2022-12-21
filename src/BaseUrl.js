@@ -23,7 +23,7 @@ if (production === "YES") {
   //       : `${!window.location.href.includes(".test") ? "/public" : ""}`
   //   }`;
 
-  BASE_URL = "http://coffe.constructorqfe.com/public";
+  BASE_URL = "https://coffe.constructorqfe.com/public";
 
   // saas config
   saas_apiParams = `saas_key=${saas_key}&domain=${BASE_URL}`;

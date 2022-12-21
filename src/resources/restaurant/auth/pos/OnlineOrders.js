@@ -202,7 +202,7 @@ const OnlineOrders = () => {
       .get(url, {
         headers: { Authorization: `Bearer ${getCookie()}` },
       })
-      .then((res) => { })
+      .then((res) => {})
       .catch((error) => {
         setOnlineOrdersAdmin(tempSettledOrders);
         setSearchedOrder({
@@ -243,7 +243,7 @@ const OnlineOrders = () => {
         handleOnlyPrint();
         setLoading(false);
       })
-      .catch((err) => { });
+      .catch((err) => {});
   };
 
   //submit cancel order request
@@ -273,7 +273,7 @@ const OnlineOrders = () => {
         });
         setLoading(false);
       })
-      .catch((err) => { });
+      .catch((err) => {});
   };
 
   return (
@@ -297,14 +297,14 @@ const OnlineOrders = () => {
                     </span>
                     <p className="mb-0 sm-text fk-print-text text-center text-capitalize">
                       {checkOrderDetails.item.theBranch !== null &&
-                        checkOrderDetails.item.theBranch.address
+                      checkOrderDetails.item.theBranch.address
                         ? checkOrderDetails.item.theBranch.address
                         : ""}
                     </p>
                     <p className="mb-0 sm-text fk-print-text text-center text-capitalize">
                       {_t(t("call"))}:{" "}
                       {checkOrderDetails.item.theBranch !== null &&
-                        checkOrderDetails.item.theBranch.phn_no
+                      checkOrderDetails.item.theBranch.phn_no
                         ? checkOrderDetails.item.theBranch.phn_no
                         : ""}
                     </p>
@@ -411,8 +411,8 @@ const OnlineOrders = () => {
                                                 <span>
                                                   {formatPrice(
                                                     thisItem.quantity *
-                                                    propertyItem.quantity *
-                                                    propertyItem.price_per_qty
+                                                      propertyItem.quantity *
+                                                      propertyItem.price_per_qty
                                                   )}
                                                   <br />
                                                 </span>
@@ -616,12 +616,12 @@ const OnlineOrders = () => {
                   // if this item is not settled then show settle-cancel button
                   <>
                     {checkOrderDetails.item &&
-                      parseInt(checkOrderDetails.item.is_cancelled) !== 1 ? (
+                    parseInt(checkOrderDetails.item.is_cancelled) !== 1 ? (
                       <div className="text-right">
                         {!checkOrderDetails.settle &&
                           !checkOrderDetails.cancel &&
                           parseInt(checkOrderDetails.item.is_accepted) !==
-                          1 && (
+                            1 && (
                             <button
                               className="btn btn-primary px-3 rounded-md text-uppercase mr-2"
                               onClick={() => {
@@ -634,20 +634,21 @@ const OnlineOrders = () => {
                               {_t(t("Cancel"))}
                             </button>
                           )}
-                        {!checkOrderDetails.settle && checkOrderDetails.cancel && (
-                          <button
-                            className="btn btn-outline-primary px-3 rounded-md text-uppercase mr-2"
-                            onClick={() => {
-                              setCheckOrderDetails({
-                                ...checkOrderDetails,
-                                cancel: false,
-                                reason_of_cancel: null,
-                              });
-                            }}
-                          >
-                            {_t(t("Back"))}
-                          </button>
-                        )}
+                        {!checkOrderDetails.settle &&
+                          checkOrderDetails.cancel && (
+                            <button
+                              className="btn btn-outline-primary px-3 rounded-md text-uppercase mr-2"
+                              onClick={() => {
+                                setCheckOrderDetails({
+                                  ...checkOrderDetails,
+                                  cancel: false,
+                                  reason_of_cancel: null,
+                                });
+                              }}
+                            >
+                              {_t(t("Back"))}
+                            </button>
+                          )}
                         {checkOrderDetails.settle ? (
                           <button
                             className="btn btn-outline-primary px-3 rounded-md text-uppercase"
@@ -664,7 +665,7 @@ const OnlineOrders = () => {
                         ) : (
                           <>
                             {parseInt(checkOrderDetails.item.is_accepted) !==
-                              1 ? (
+                            1 ? (
                               <>
                                 {!checkOrderDetails.cancel && (
                                   <button
@@ -780,28 +781,30 @@ const OnlineOrders = () => {
                                                       JSON.parse(
                                                         thisItem.properties
                                                       ).length -
-                                                      1
+                                                        1
                                                     ) {
                                                       return (
                                                         propertyItem.property +
-                                                        `${propertyItem.quantity >
+                                                        `${
+                                                          propertyItem.quantity >
                                                           1
-                                                          ? "(" +
-                                                          propertyItem.quantity +
-                                                          ")"
-                                                          : ""
+                                                            ? "(" +
+                                                              propertyItem.quantity +
+                                                              ")"
+                                                            : ""
                                                         }` +
                                                         ", "
                                                       );
                                                     } else {
                                                       return (
                                                         propertyItem.property +
-                                                        `${propertyItem.quantity >
+                                                        `${
+                                                          propertyItem.quantity >
                                                           1
-                                                          ? "(" +
-                                                          propertyItem.quantity +
-                                                          ")"
-                                                          : ""
+                                                            ? "(" +
+                                                              propertyItem.quantity +
+                                                              ")"
+                                                            : ""
                                                         }`
                                                       );
                                                     }
@@ -1011,7 +1014,8 @@ const OnlineOrders = () => {
                         {_t(t("Payment Method"))}
                       </td>
                       <td>
-                        {checkOrderDetails.item && checkOrderDetails.item.payment_method}
+                        {checkOrderDetails.item &&
+                          checkOrderDetails.item.payment_method}
                       </td>
                     </tr>
 
@@ -1021,7 +1025,7 @@ const OnlineOrders = () => {
                       </td>
                       <td>
                         {checkOrderDetails.item &&
-                          checkOrderDetails.item.time_to_deliver !== null
+                        checkOrderDetails.item.time_to_deliver !== null
                           ? checkOrderDetails.item.time_to_deliver + " min(s)"
                           : ""}
                       </td>
@@ -1049,7 +1053,7 @@ const OnlineOrders = () => {
                     </tr>
 
                     {checkOrderDetails.item &&
-                      checkOrderDetails.item.vat_system === "igst" ? (
+                    checkOrderDetails.item.vat_system === "igst" ? (
                       <tr>
                         <td className="text-capitalized">{_t(t("Igst"))}</td>
                         <td>
@@ -1125,7 +1129,7 @@ const OnlineOrders = () => {
                       </td>
                       <td className="text-uppercase">
                         {checkOrderDetails.item &&
-                          checkOrderDetails.item.delivery_status !== null
+                        checkOrderDetails.item.delivery_status !== null
                           ? checkOrderDetails.item.delivery_status
                           : _t(t("Not Assigned"))}
                       </td>
@@ -1264,20 +1268,163 @@ const OnlineOrders = () => {
                             {/* loop here, logic === !search && haveData && haveDataLegnth > 0*/}
                             {!searchedOrder.searched
                               ? [
-                                onlineOrdersAdmin && [
-                                  onlineOrdersAdmin.data.length === 0 ? (
-                                    <tr className="align-middle">
-                                      <td
-                                        scope="row"
-                                        colSpan="8"
-                                        className="xsm-text align-middle text-center"
-                                      >
-                                        {_t(t("No data available"))}
-                                      </td>
-                                    </tr>
-                                  ) : (
-                                    onlineOrdersAdmin.data.map(
-                                      (item, index) => {
+                                  onlineOrdersAdmin && [
+                                    onlineOrdersAdmin.data.length === 0 ? (
+                                      <tr className="align-middle">
+                                        <td
+                                          scope="row"
+                                          colSpan="8"
+                                          className="xsm-text align-middle text-center"
+                                        >
+                                          {_t(t("No data available"))}
+                                        </td>
+                                      </tr>
+                                    ) : (
+                                      onlineOrdersAdmin.data.map(
+                                        (item, index) => {
+                                          return (
+                                            <tr
+                                              className="align-middle"
+                                              key={index}
+                                            >
+                                              <th
+                                                scope="row"
+                                                className="xsm-text text-capitalize align-middle text-center"
+                                              >
+                                                {index +
+                                                  1 +
+                                                  (onlineOrdersAdmin.current_page -
+                                                    1) *
+                                                    onlineOrdersAdmin.per_page}
+                                              </th>
+
+                                              <td className="xsm-text text-capitalize align-middle text-center text-secondary">
+                                                #{item.token}
+                                              </td>
+
+                                              <td className="xsm-text text-capitalize align-middle text-center text-secondary">
+                                                <Moment format="LLL">
+                                                  {item.created_at}
+                                                </Moment>
+                                              </td>
+
+                                              <td className="xsm-text align-middle text-center">
+                                                {item.user_name}
+                                              </td>
+
+                                              <td className="xsm-text align-middle text-center">
+                                                {item.branch_name || "-"}
+                                              </td>
+
+                                              <td className="xsm-text text-capitalize align-middle text-center">
+                                                {parseInt(item.is_cancelled) ===
+                                                0 ? (
+                                                  [
+                                                    parseInt(
+                                                      item.is_accepted
+                                                    ) === 0 ? (
+                                                      <span
+                                                        className="btn btn-transparent btn-warning xsm-text text-capitalize"
+                                                        onClick={() => {
+                                                          setCheckOrderDetails({
+                                                            ...checkOrderDetails,
+                                                            item: item,
+                                                            settle: false,
+                                                            cancel: false,
+                                                          });
+                                                        }}
+                                                        data-toggle="modal"
+                                                        data-target="#orderDetails"
+                                                      >
+                                                        {_t(t("Accept"))}
+                                                      </span>
+                                                    ) : (
+                                                      <span
+                                                        className="btn btn-transparent btn-success xsm-text text-capitalize"
+                                                        onClick={() => {
+                                                          setCheckOrderDetails({
+                                                            ...checkOrderDetails,
+                                                            item: item,
+                                                            settle: false,
+                                                            cancel: false,
+                                                          });
+                                                        }}
+                                                        data-toggle="modal"
+                                                        data-target="#orderDetails"
+                                                      >
+                                                        {_t(t("Accepted"))}
+                                                      </span>
+                                                    ),
+                                                  ]
+                                                ) : (
+                                                  <span
+                                                    className="btn btn-transparent btn-primary xsm-text text-capitalize px-3"
+                                                    onClick={() => {
+                                                      setCheckOrderDetails({
+                                                        ...checkOrderDetails,
+                                                        item: item,
+                                                        settle: false,
+                                                        cancel: false,
+                                                      });
+                                                    }}
+                                                    data-toggle="modal"
+                                                    data-target="#orderDetails"
+                                                  >
+                                                    {_t(t("Cancelled"))}
+                                                  </span>
+                                                )}
+                                              </td>
+                                              <td className="xsm-text align-middle text-center">
+                                                <button
+                                                  className="btn btn-secondary btn-sm"
+                                                  onClick={() => {
+                                                    setCheckOrderDetails({
+                                                      ...checkOrderDetails,
+                                                      item: item,
+                                                      settle: false,
+                                                    });
+                                                    handleOnlyPrint();
+                                                  }}
+                                                >
+                                                  <i className="fa fa-print"></i>
+                                                </button>
+
+                                                {/* is_delivered */}
+                                                {/* {parseInt(item.is_ready) ===
+                                                  0 && (
+                                                  <button
+                                                    className="btn btn-success btn-sm ml-2"
+                                                    title="Served"
+                                                    onClick={() => {
+                                                      handleReadyOrder(item.id);
+                                                    }}
+                                                  >
+                                                    <i className="fa fa-check"></i>
+                                                  </button>
+                                                )} */}
+                                              </td>
+                                            </tr>
+                                          );
+                                        }
+                                      )
+                                    ),
+                                  ],
+                                ]
+                              : [
+                                  /* searched data, logic === haveData*/
+                                  searchedOrder && [
+                                    searchedOrder.list.length === 0 ? (
+                                      <tr className="align-middle">
+                                        <td
+                                          scope="row"
+                                          colSpan="8"
+                                          className="xsm-text align-middle text-center"
+                                        >
+                                          {_t(t("No data available"))}
+                                        </td>
+                                      </tr>
+                                    ) : (
+                                      searchedOrder.list.map((item, index) => {
                                         return (
                                           <tr
                                             className="align-middle"
@@ -1291,7 +1438,7 @@ const OnlineOrders = () => {
                                                 1 +
                                                 (onlineOrdersAdmin.current_page -
                                                   1) *
-                                                onlineOrdersAdmin.per_page}
+                                                  onlineOrdersAdmin.per_page}
                                             </th>
 
                                             <td className="xsm-text text-capitalize align-middle text-center text-secondary">
@@ -1314,11 +1461,10 @@ const OnlineOrders = () => {
 
                                             <td className="xsm-text text-capitalize align-middle text-center">
                                               {parseInt(item.is_cancelled) ===
-                                                0 ? (
+                                              0 ? (
                                                 [
-                                                  parseInt(
-                                                    item.is_accepted
-                                                  ) === 0 ? (
+                                                  parseInt(item.is_accepted) ===
+                                                  0 ? (
                                                     <span
                                                       className="btn btn-transparent btn-warning xsm-text text-capitalize"
                                                       onClick={() => {
@@ -1385,150 +1531,8 @@ const OnlineOrders = () => {
                                                 <i className="fa fa-print"></i>
                                               </button>
 
-                                              {/* is_delivered */}
-                                              {/* {parseInt(item.is_ready) ===
-                                                  0 && (
-                                                  <button
-                                                    className="btn btn-success btn-sm ml-2"
-                                                    title="Served"
-                                                    onClick={() => {
-                                                      handleReadyOrder(item.id);
-                                                    }}
-                                                  >
-                                                    <i className="fa fa-check"></i>
-                                                  </button>
-                                                )} */}
-                                            </td>
-                                          </tr>
-                                        );
-                                      }
-                                    )
-                                  ),
-                                ],
-                              ]
-                              : [
-                                /* searched data, logic === haveData*/
-                                searchedOrder && [
-                                  searchedOrder.list.length === 0 ? (
-                                    <tr className="align-middle">
-                                      <td
-                                        scope="row"
-                                        colSpan="8"
-                                        className="xsm-text align-middle text-center"
-                                      >
-                                        {_t(t("No data available"))}
-                                      </td>
-                                    </tr>
-                                  ) : (
-                                    searchedOrder.list.map((item, index) => {
-                                      return (
-                                        <tr
-                                          className="align-middle"
-                                          key={index}
-                                        >
-                                          <th
-                                            scope="row"
-                                            className="xsm-text text-capitalize align-middle text-center"
-                                          >
-                                            {index +
-                                              1 +
-                                              (onlineOrdersAdmin.current_page -
-                                                1) *
-                                              onlineOrdersAdmin.per_page}
-                                          </th>
-
-                                          <td className="xsm-text text-capitalize align-middle text-center text-secondary">
-                                            #{item.token}
-                                          </td>
-
-                                          <td className="xsm-text text-capitalize align-middle text-center text-secondary">
-                                            <Moment format="LLL">
-                                              {item.created_at}
-                                            </Moment>
-                                          </td>
-
-                                          <td className="xsm-text align-middle text-center">
-                                            {item.user_name}
-                                          </td>
-
-                                          <td className="xsm-text align-middle text-center">
-                                            {item.branch_name || "-"}
-                                          </td>
-
-                                          <td className="xsm-text text-capitalize align-middle text-center">
-                                            {parseInt(item.is_cancelled) ===
-                                              0 ? (
-                                              [
-                                                parseInt(item.is_accepted) ===
-                                                  0 ? (
-                                                  <span
-                                                    className="btn btn-transparent btn-warning xsm-text text-capitalize"
-                                                    onClick={() => {
-                                                      setCheckOrderDetails({
-                                                        ...checkOrderDetails,
-                                                        item: item,
-                                                        settle: false,
-                                                        cancel: false,
-                                                      });
-                                                    }}
-                                                    data-toggle="modal"
-                                                    data-target="#orderDetails"
-                                                  >
-                                                    {_t(t("Accept"))}
-                                                  </span>
-                                                ) : (
-                                                  <span
-                                                    className="btn btn-transparent btn-success xsm-text text-capitalize"
-                                                    onClick={() => {
-                                                      setCheckOrderDetails({
-                                                        ...checkOrderDetails,
-                                                        item: item,
-                                                        settle: false,
-                                                        cancel: false,
-                                                      });
-                                                    }}
-                                                    data-toggle="modal"
-                                                    data-target="#orderDetails"
-                                                  >
-                                                    {_t(t("Accepted"))}
-                                                  </span>
-                                                ),
-                                              ]
-                                            ) : (
-                                              <span
-                                                className="btn btn-transparent btn-primary xsm-text text-capitalize px-3"
-                                                onClick={() => {
-                                                  setCheckOrderDetails({
-                                                    ...checkOrderDetails,
-                                                    item: item,
-                                                    settle: false,
-                                                    cancel: false,
-                                                  });
-                                                }}
-                                                data-toggle="modal"
-                                                data-target="#orderDetails"
-                                              >
-                                                {_t(t("Cancelled"))}
-                                              </span>
-                                            )}
-                                          </td>
-                                          <td className="xsm-text align-middle text-center">
-                                            <button
-                                              className="btn btn-secondary btn-sm"
-                                              onClick={() => {
-                                                setCheckOrderDetails({
-                                                  ...checkOrderDetails,
-                                                  item: item,
-                                                  settle: false,
-                                                });
-                                                handleOnlyPrint();
-                                              }}
-                                            >
-                                              <i className="fa fa-print"></i>
-                                            </button>
-
-                                            {parseInt(item.is_ready) ===
-                                              0 && (
+                                              {parseInt(item.is_ready) ===
+                                                0 && (
                                                 <button
                                                   className="btn btn-success btn-sm ml-2"
                                                   title="Served"
@@ -1539,13 +1543,13 @@ const OnlineOrders = () => {
                                                   <i className="fa fa-check"></i>
                                                 </button>
                                               )}
-                                          </td>
-                                        </tr>
-                                      );
-                                    })
-                                  ),
-                                ],
-                              ]}
+                                            </td>
+                                          </tr>
+                                        );
+                                      })
+                                    ),
+                                  ],
+                                ]}
                           </tbody>
                         </table>
                       </div>
@@ -1557,67 +1561,67 @@ const OnlineOrders = () => {
               {checkOrderDetails.uploading === true || loading === true
                 ? paginationLoading()
                 : [
-                  // logic === !searched
-                  !searchedOrder.searched ? (
-                    <div key="fragment4">
+                    // logic === !searched
+                    !searchedOrder.searched ? (
+                      <div key="fragment4">
+                        <div className="t-bg-white mt-1 t-pt-5 t-pb-5">
+                          <div className="row align-items-center t-pl-15 t-pr-15">
+                            <div className="col-6 col-md-7 mb-md-0">
+                              {/* pagination function */}
+                              {pagination(
+                                onlineOrdersAdmin,
+                                setPaginatedOnlineOrders
+                              )}
+                            </div>
+                            <div className="col-6 col-md-5">
+                              <ul className="t-list d-flex justify-content-end align-items-center">
+                                <li className="t-list__item">
+                                  <span className="d-inline-block sm-text">
+                                    {showingData(onlineOrdersAdmin)}
+                                  </span>
+                                </li>
+                              </ul>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    ) : (
+                      // if searched
                       <div className="t-bg-white mt-1 t-pt-5 t-pb-5">
                         <div className="row align-items-center t-pl-15 t-pr-15">
-                          <div className="col-md-7 t-mb-15 mb-md-0">
-                            {/* pagination function */}
-                            {pagination(
-                              onlineOrdersAdmin,
-                              setPaginatedOnlineOrders
-                            )}
+                          <div className="col-6 col-md-7 mb-md-0">
+                            <ul className="t-list d-flex">
+                              <li className="t-list__item no-pagination-style">
+                                <button
+                                  className="btn btn-primary btn-sm"
+                                  onClick={() =>
+                                    setSearchedOrder({
+                                      ...searchedOrder,
+                                      searched: false,
+                                    })
+                                  }
+                                >
+                                  {_t(t("Clear Search"))}
+                                </button>
+                              </li>
+                            </ul>
                           </div>
                           <div className="col-md-5">
                             <ul className="t-list d-flex justify-content-md-end align-items-center">
                               <li className="t-list__item">
                                 <span className="d-inline-block sm-text">
-                                  {showingData(onlineOrdersAdmin)}
+                                  {searchedShowingData(
+                                    searchedOrder,
+                                    onlineOrdersAdminForSearch
+                                  )}
                                 </span>
                               </li>
                             </ul>
                           </div>
                         </div>
                       </div>
-                    </div>
-                  ) : (
-                    // if searched
-                    <div className="t-bg-white mt-1 t-pt-5 t-pb-5">
-                      <div className="row align-items-center t-pl-15 t-pr-15">
-                        <div className="col-md-7 t-mb-15 mb-md-0">
-                          <ul className="t-list d-flex">
-                            <li className="t-list__item no-pagination-style">
-                              <button
-                                className="btn btn-primary btn-sm"
-                                onClick={() =>
-                                  setSearchedOrder({
-                                    ...searchedOrder,
-                                    searched: false,
-                                  })
-                                }
-                              >
-                                {_t(t("Clear Search"))}
-                              </button>
-                            </li>
-                          </ul>
-                        </div>
-                        <div className="col-md-5">
-                          <ul className="t-list d-flex justify-content-md-end align-items-center">
-                            <li className="t-list__item">
-                              <span className="d-inline-block sm-text">
-                                {searchedShowingData(
-                                  searchedOrder,
-                                  onlineOrdersAdminForSearch
-                                )}
-                              </span>
-                            </li>
-                          </ul>
-                        </div>
-                      </div>
-                    </div>
-                  ),
-                ]}
+                    ),
+                  ]}
             </div>
           </div>
         </div>

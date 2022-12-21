@@ -31,11 +31,7 @@ const ShowManageStock = () => {
   const history = useHistory();
 
   //getting context values here
-  let {
-    loading,
-    setLoading,
-    dataPaginating,
-  } = useContext(SettingsContext);
+  let { loading, setLoading, dataPaginating } = useContext(SettingsContext);
 
   // States hook here
   const [checked, setChecked] = useState(true);
@@ -48,7 +44,7 @@ const ShowManageStock = () => {
     e.preventDefault();
     const url = BASE_URL + `/settings/show-manage-stock-settings`;
     let formData = new FormData();
-    formData.append('checked', checked);
+    formData.append("checked", checked);
 
     return axios
       .post(url, formData, {
@@ -63,31 +59,29 @@ const ShowManageStock = () => {
           pauseOnHover: true,
           className: "text-center toast-notification",
         });
-      })
-  }
+      });
+  };
 
   // update
   const updateCheckValue = () => {
     const url = BASE_URL + `/settings/show-manage-stock-menu-info`;
-    axios.get(url, {
-      headers: { Authorization: `Bearer ${getCookie()}` },
-    }).then((res) => {
-
-      if (res.data.length == 0 || res.data[0].value == 1) {
-        setChecked(true);
-      } else {
-        setChecked(false);
-      }
-    });
-
-  }
+    axios
+      .get(url, {
+        headers: { Authorization: `Bearer ${getCookie()}` },
+      })
+      .then((res) => {
+        if (res.data.length == 0 || res.data[0].value == 1) {
+          setChecked(true);
+        } else {
+          setChecked(false);
+        }
+      });
+  };
 
   // useEffect == componentDidMount()
   useEffect(() => {
     updateCheckValue();
-
   }, []);
-
 
   return (
     <>
@@ -123,7 +117,7 @@ const ShowManageStock = () => {
                     ) : (
                       <div key="smtp-form">
                         <div className="row gx-2 align-items-center t-pt-15 t-pb-15">
-                          <div className="col-md-6 col-lg-5 t-mb-15 mb-md-0">
+                          <div className="col-md-3 col-lg-4 t-mb-15 mb-md-0">
                             <ul className="t-list fk-breadcrumb">
                               <li className="fk-breadcrumb__list">
                                 <span className="t-link fk-breadcrumb__link text-capitalize">
@@ -132,18 +126,14 @@ const ShowManageStock = () => {
                               </li>
                             </ul>
                           </div>
-                          <div className="col-md-6 col-lg-7">
+                          <div className="col-md-9 col-lg-8">
                             <div className="row gx-3 align-items-center"></div>
                           </div>
                         </div>
 
                         {/* Form starts here */}
-                        <div
-                          className="row card p-2 mx-3 sm-text my-2"
-
-                        >
+                        <div className="row card p-2 mx-3 sm-text my-2">
                           <div className="col-12">
-
                             <div className="table-responsive">
                               <table className="table table-bordered table-hover min-table-height">
                                 <thead className="align-middle">
@@ -165,18 +155,29 @@ const ShowManageStock = () => {
                                 </thead>
                                 <tbody className="align-middle">
                                   <tr>
-                                    <th scope="col"
-                                      className="sm-text text-capitalize align-middle text-center border-1 border">Manage stock</th>
-                                    <th scope="col"
-                                      className="sm-text text-capitalize align-middle text-center border-1 border">
+                                    <th
+                                      scope="col"
+                                      className="sm-text text-capitalize align-middle text-center border-1 border"
+                                    >
+                                      Manage stock
+                                    </th>
+                                    <th
+                                      scope="col"
+                                      className="sm-text text-capitalize align-middle text-center border-1 border"
+                                    >
                                       <div>
-                                        <form onSubmit={handleSubmit} className="d-flex justify-content-around">
+                                        <form
+                                          onSubmit={handleSubmit}
+                                          className="d-flex justify-content-around"
+                                        >
                                           <Switch
                                             onChange={handleChange}
                                             checked={checked}
                                             className="react-switch"
                                           />
-                                          <button className="btn btn-danger">Update</button>
+                                          <button className="btn btn-danger">
+                                            Update
+                                          </button>
                                         </form>
                                       </div>
                                     </th>
@@ -185,10 +186,22 @@ const ShowManageStock = () => {
                               </table>
                               <div className="mt-4">
                                 <h5>Key points to note :</h5>
-                                <p className="text-danger mt-4">Disabling the manage stock will allow you to get <strong className="text-uppercase">unlimited quantity</strong> of order from POS and Landing page and hide the <strong className="text-uppercase">MANAGE STOCK</strong> menu from sidebar. Refresh the page after enabling manage stock if needed</p>
+                                <p className="text-danger mt-4">
+                                  Disabling the manage stock will allow you to
+                                  get{" "}
+                                  <strong className="text-uppercase">
+                                    unlimited quantity
+                                  </strong>{" "}
+                                  of order from POS and Landing page and hide
+                                  the{" "}
+                                  <strong className="text-uppercase">
+                                    MANAGE STOCK
+                                  </strong>{" "}
+                                  menu from sidebar. Refresh the page after
+                                  enabling manage stock if needed
+                                </p>
                               </div>
                             </div>
-
                           </div>
                         </div>
                       </div>

@@ -41,7 +41,7 @@
         2.11 Breadcrumb
         2.12 Main
         2.13 Phone Nav
-        2.14 Button
+        2.14 fk-pos-nav 
         2.15 Button with Image
         2.16 Scroll
         2.17 POS Nave
@@ -133,9 +133,22 @@ body {
   font-weight: 400;
   line-height: 1.5;
   color: #212529;
-  background-color: #FFFBEB !important;
+  background-color: #858bcc59 !important;
   -webkit-text-size-adjust: 100%;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+body::-webkit-scrollbar {
+  width: 10px;
+}
+
+body::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.212);
+  border-radius: 20px;
+}
+
+body::-webkit-scrollbar-track {
+  background-color: rgb(235, 235, 235);
 }
 
 [tabindex="-1"]:focus:not(:focus-visible) {
@@ -2203,6 +2216,20 @@ progress {
   -webkit-overflow-scrolling: touch;
 }
 
+.table-responsive::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+.table-responsive::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.212);
+  border-radius: 20px;
+}
+
+.table-responsive::-webkit-scrollbar-track {
+  background-color: rgb(235, 235, 235);
+}
+
 @media (max-width: 575.98px) {
   .table-responsive-sm {
     overflow-x: auto;
@@ -4027,6 +4054,13 @@ progress {
   text-decoration: none;
   -webkit-transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out;
   transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out;
+  color: white;
+}
+
+@media(max-width: 991px) {
+  .nav-link {
+    color: #263159;
+  }
 }
 @media (prefers-reduced-motion: reduce) {
   .nav-link {
@@ -5531,7 +5565,8 @@ progress {
   font-size: 15px;
 }
 
-.modal-header h5 {
+.modal-header h5,
+.modal-header h3  {
   margin: 0 ;
   color: white;
 }
@@ -5546,7 +5581,7 @@ progress {
   -webkit-box-flex: 1;
       -ms-flex: 1 1 auto;
           flex: 1 1 auto;
-  padding: 0.7rem 1rem;
+  padding: 0.7rem 1rem 1.5rem;
 }
 
 .modal-body form {
@@ -26893,10 +26928,6 @@ input:focus {
   outline: none;
 }
 
-.form-control {
-  border-color: rgba(0, 0, 0, 0.1);
-}
-
 .form-control:focus {
   border-color: rgba(0, 0, 0, 0.1);
   outline: none;
@@ -27190,10 +27221,37 @@ button.btn.t-bg-clear.t-text-dark--light-40.show {
 /*---------------------------------------
     2.10 Product Card
 -----------------------------------------*/
+.main-boxs {
+  overflow: auto;
+}
+
+.main-boxs::-webkit-scrollbar {
+  width: 10px;
+}
+
+.main-boxs::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.212);
+  border-radius: 20px;
+}
+
+.main-boxs::-webkit-scrollbar-track {
+  background-color: rgb(235, 235, 235);
+}
+
 .container-cards {
   height: calc(100vh - 130px);
   display: flex;
-  align-items: center;
+}
+
+@media(max-width: 991px) {
+  .container-cards {
+    align-items: flex-start;
+  }
+
+}
+
+.col-product {
+  height: 350px
 }
 
 .product-card {
@@ -27305,6 +27363,34 @@ button.btn.t-bg-clear.t-text-dark--light-40.show {
   color: #263159;
 }
 
+@media(max-width: 991px) {
+  .col-product {
+    height: 235px !important;
+  }
+
+  .product-card__head img  {
+    height: 160px !important;
+  }
+
+  .product-card__title {
+    font-size: 19px !important;
+  }
+
+  .product-card__sub-title {
+    font-size: 12px !important;
+  }
+}
+
+@media(max-width: 430px) {
+  .col-product {
+    height: 210px !important;
+  }
+
+  .product-card__head img  {
+    height: 135px !important;
+  }
+}
+
 /*---------------------------------------
     img dashboard
 -----------------------------------------*/
@@ -27401,10 +27487,13 @@ button.btn.t-bg-clear.t-text-dark--light-40.show {
 }
 .fk-phn-nav__menu {
   padding: 15px 15px;
-  width: 100%;
+  width: 90%;
   background: #f7f7f7;
+  box-shadow: 0 0 10px #00000054;
+  border-radius: 7px;
   position: absolute;
-  left: 0;
+  left: 50%;
+  transform: translateX(-50%);
   top: 100%;
   z-index: -9999;
   opacity: 0;
@@ -27416,7 +27505,6 @@ button.btn.t-bg-clear.t-text-dark--light-40.show {
   .fk-phn-nav__menu {
     padding: 0;
     position: relative;
-    left: auto;
     background: transparent;
     -webkit-box-shadow: none;
             box-shadow: none;
@@ -27976,6 +28064,13 @@ button.btn.t-bg-clear.t-text-dark--light-40.show {
   color: #f64e60;
 }
 
+/* pos-nav */
+.pos-nav li button {
+  max-width: 100%;
+  width: 100%
+}
+/* pos-nav */
+
 /*---------------------------------------
     2.18 Navigation for Small Screen 
 -----------------------------------------*/
@@ -28035,6 +28130,8 @@ button.btn.t-bg-clear.t-text-dark--light-40.show {
   font-size: 12px;
   letter-spacing: 0.2px;
   text-transform: uppercase;
+  font-weight: 600;
+  color: #263159;
 }
 
 /*---------------------------------------
@@ -28709,6 +28806,27 @@ button.btn.t-bg-clear.t-text-dark--light-40.show {
 /*---------------------------------------
     2.26 Dish
 -----------------------------------------*/
+.container-boxs-pos {
+  overflow-y: auto;
+}
+
+.container-boxs-pos::-webkit-scrollbar {
+  width: 5px;
+}
+
+.container-boxs-pos::-webkit-scrollbar-thumb {
+  background-color: transparent;
+  border-radius: 20px;
+}
+
+.container-boxs-pos:hover::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.212);
+}
+
+.container-boxs-pos::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+
 .fk-dish {
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
@@ -30188,7 +30306,7 @@ div.equal:active {
 -----------------------------------------*/
 @media screen and (min-width: 768px) {
   #main {
-    height: calc(100vh - 50px);
+    height: calc(100vh - 100px);
   }
 }
 @media screen and (min-width: 1200px) {
@@ -30203,9 +30321,96 @@ div.equal:active {
 #footer {
   background: #263159;
   -webkit-box-shadow: 0 -5px 15px rgba(34, 39, 54, 0.05);
-          box-shadow: 0 -5px 15px rgba(34, 39, 54, 0.05);
+  box-shadow: 0 -5px 15px rgba(34, 39, 54, 0.05);
+  position: relative;
+  z-index: 999;
 }
 
 #footer p {
   color: white;
 }
+
+/* start login  */
+.container-form {
+  width: 1000px;
+  max-width: 90%;
+  height: 600px;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 0 10px #0000003b;
+}
+
+.form-inputs {
+  padding-bottom: 50px;
+}
+
+.logo-form a {
+  background-color: #263159 !important;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.title-form {
+  margin-bottom: 50px;
+  font-weight: 600;
+}
+
+.forget-pas {
+  color: #263159;
+}
+
+.btn-main-form {
+  width: 100%;
+  border-radius: 5px;
+  padding: 7px;
+  font-size: 17px;
+  background-color: #263159;
+  color: white;
+}
+
+.btn-main-form:hover {
+  background-color: white;
+  border: 1px solid  #263159;
+  color:  #263159;
+}
+
+.footer-form-text {
+  margin-top: 20px;
+  color: gray;
+  font-size: 17px;
+}
+
+.footer-form-text a {
+  font-weight: 600;
+  color: #263159;
+  text-decoration: none;
+}
+
+.container-img-form {
+  background-color: rgb(144, 19, 254);
+}
+
+@media(max-width: 767px) {
+  .container-form {
+    height: auto !important;
+  }
+  .title-form {
+    margin-bottom: 25px !important;
+  }
+  .btn-main-form {
+    padding: 4px !important;
+    font-size: 14px !important;
+  }
+  .footer-form-text {
+    margin-top: 15px !important;
+    font-size: 15px !important;
+  }
+}
+/* end login */
+
+
+/* full screen */
+.icon-fullScreen i {
+  cursor: pointer;
+}
+/* full scren  */

@@ -110,14 +110,14 @@ const FoodStockReport = () => {
         <div className="container">
           <div className="row t-mt-10 gx-2">
             {/* left Sidebar */}
-            <div className="col-lg-3 col-xxl-2 t-mb-30 mb-lg-0">
+            <div className="col-lg-3 col-xxl-2 t-mb-15 mb-lg-0">
               <ReportSidebar />
             </div>
             {/* left Sidebar ends */}
 
             {/* Rightbar contents */}
             <div
-              className="col-lg-9 col-xxl-10 t-mb-30 mb-lg-0"
+              className="col-lg-9 col-xxl-10 t-mb-15 mb-lg-0"
               style={{ boxShadow: "0 0 10px #d9d9d9" }}
             >
               <div className="t-bg-white">

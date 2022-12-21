@@ -1823,6 +1823,7 @@ const Pos = () => {
       localCurrency: localCurrency,
       workPeriod: newSettings.workPeriod,
     };
+
     setLoading(true);
     axios
       .post(url, formData, {
@@ -2032,466 +2033,671 @@ const Pos = () => {
       <div className="d-none">
         <div ref={componentRef}>
           {newOrder && (
-            <div className="fk-print">
-              <div className="container">
-                <div className="row">
-                  <div className="col-12">
-                    <span className="d-block fk-print-text font-weight-bold text-uppercase text-center sm-text">
-                      {getSystemSettings(generalSettings, "siteName")}
-                      {","}
-                      {orderDetails &&
-                        orderDetails.branch !== null &&
-                        orderDetails.branch.name}
-                    </span>
-                    <p className="mb-0 sm-text fk-print-text text-center text-capitalize">
-                      {orderDetails &&
-                        orderDetails.branch !== null &&
-                        orderDetails.branch.address}
+            // <div className="fk-print">
+            //   <div className="container">
+            //     <div className="row">
+            //       <div className="col-12">
+            //         <span className="d-block fk-print-text font-weight-bold text-uppercase text-center sm-text">
+            //           {getSystemSettings(generalSettings, "siteName")}
+            //           {","}
+            //           {orderDetails &&
+            //             orderDetails.branch !== null &&
+            //             orderDetails.branch.name}
+            //         </span>
+            //         <p className="mb-0 sm-text fk-print-text text-center text-capitalize">
+            //           {orderDetails &&
+            //             orderDetails.branch !== null &&
+            //             orderDetails.branch.address}
+            //         </p>
+            //         <p className="mb-0 sm-text fk-print-text text-center text-capitalize">
+            //           {_t(t("call"))}:{" "}
+            //           {orderDetails &&
+            //           orderDetails.branch !== null &&
+            //           orderDetails.branch.phn_no
+            //             ? orderDetails.branch.phn_no
+            //             : ""}
+            //         </p>
+            //         <p className="mb-0 sm-text fk-print-text text-center text-capitalize">
+            //           {getSystemSettings(generalSettings, "type_print_heading")}
+            //         </p>
+            //         <span className="d-block fk-print-text text-uppercase text-center lg-text myBorderTopCustomer">
+            //           {_t(t("Token No"))}-
+            //           {orderDetails && orderDetails.token.id}
+            //         </span>
+            //         <p className="mb-0 fk-print-text text-capitalize lg-text">
+            //           {orderDetails &&
+            //             orderDetails.dept_tag &&
+            //             orderDetails.dept_tag.name}
+            //         </p>
+            //         <p className="mb-0 mt-0 sm-text fk-print-text text-capitalize text-center">
+            //           {_t(t("Customer Copy"))}
+            //         </p>
+            //         {/* <p className="mb-0 xsm-text fk-print-text text-capitalize">
+            //           {_t(t("Vat reg"))}: {_t(t("Applied"))}
+            //         </p> */}
+            //         <p className="mb-0 xsm-text fk-print-text text-capitalize">
+            //           {_t(t("date"))}: <Moment format="LL">{new Date()}</Moment>
+            //           {", "}
+            //           {orderDetails && (
+            //             <Moment format="LT">{orderDetails.token.time}</Moment>
+            //           )}
+            //         </p>
+            //         <p className="mb-0 xsm-text fk-print-text text-capitalize">
+            //           {_t(t("Total guests"))}:{" "}
+            //           {orderDetails && orderDetails.total_guest}
+            //         </p>
+
+            //         {orderDetails && orderDetails.waiter !== null ? (
+            //           <p className="mb-0 xsm-text fk-print-text text-capitalize">
+            //             {_t(t("waiter name"))}: {orderDetails.waiter.name}
+            //           </p>
+            //         ) : (
+            //           ""
+            //         )}
+
+            //         <p className="mb-0 sm-text fk-print-text text-capitalize lg-text">
+            //           PAID
+            //         </p>
+
+            //         <table className="table mb-0 table-borderless akash-table-for-print-padding">
+            //           <thead>
+            //             <tr>
+            //               <th
+            //                 scope="col"
+            //                 className="fk-print-text xsm-text text-capitalize"
+            //               >
+            //                 {_t(t("qty"))} {_t(t("item"))}
+            //               </th>
+            //               <th
+            //                 scope="col"
+            //                 className="fk-print-text xsm-text text-capitalize text-right"
+            //               >
+            //                 {_t(t("T"))}.{_t(t("price"))}
+            //               </th>
+            //             </tr>
+            //           </thead>
+            //           <tbody>
+            //             {newOrder.map((printItem, printItemIndex) => {
+            //               return (
+            //                 <tr>
+            //                   <td className="fk-print-text xsm-text text-capitalize">
+            //                     <div className="d-flex flex-wrap">
+            //                       <span className="d-inline-block xsm-text">
+            //                         -{printItem.quantity} {printItem.item.name}
+            //                         {parseInt(printItem.item.has_variation) ===
+            //                           1 &&
+            //                           printItem.variation &&
+            //                           "(" +
+            //                             printItem.variation.variation_name +
+            //                             ")"}
+            //                       </span>
+            //                     </div>
+
+            //                     {/* properties */}
+            //                     {printItem.properties &&
+            //                       printItem.properties.length > 0 &&
+            //                       selectedPropertyGroup[printItemIndex] !==
+            //                         undefined &&
+            //                       selectedPropertyGroup[printItemIndex].map(
+            //                         (thisIsGroup) => {
+            //                           let theGroup =
+            //                             propertyGroupForSearch &&
+            //                             propertyGroupForSearch.find(
+            //                               (theItem) => {
+            //                                 return theItem.id === thisIsGroup;
+            //                               }
+            //                             );
+            //                           return (
+            //                             <div className="d-block">
+            //                               {printItem.properties.map(
+            //                                 (propertyName, propertyIndex) => {
+            //                                   if (
+            //                                     parseInt(
+            //                                       propertyName.item
+            //                                         .property_group_id
+            //                                     ) === theGroup.id
+            //                                   ) {
+            //                                     return (
+            //                                       <span className="text-capitalize xsm-text d-inline-block mr-1">
+            //                                         -{printItem.quantity}
+            //                                         {propertyName.quantity > 1
+            //                                           ? "*" +
+            //                                             propertyName.quantity
+            //                                           : ""}{" "}
+            //                                         {propertyName.item.name}
+            //                                         <br />
+            //                                       </span>
+            //                                     );
+            //                                   } else {
+            //                                     return true;
+            //                                   }
+            //                                 }
+            //                               )}
+            //                             </div>
+            //                           );
+            //                         }
+            //                       )}
+            //                   </td>
+            //                   <td className="fk-print-text xsm-text text-capitalize text-right">
+            //                     <div className="d-block xsm-text">
+            //                       {showPriceOfEachOrderItemPrint(
+            //                         printItemIndex
+            //                       )}
+            //                     </div>
+
+            //                     {printItem.properties &&
+            //                       printItem.properties.length > 0 &&
+            //                       selectedPropertyGroup[printItemIndex] !==
+            //                         undefined &&
+            //                       selectedPropertyGroup[printItemIndex].map(
+            //                         (
+            //                           thisIsGroup,
+            //                           thisIsGroupPaddingTopIndex
+            //                         ) => {
+            //                           let theGroup =
+            //                             propertyGroupForSearch &&
+            //                             propertyGroupForSearch.find(
+            //                               (theItem) => {
+            //                                 return theItem.id === thisIsGroup;
+            //                               }
+            //                             );
+            //                           return (
+            //                             <div
+            //                               className={`text-capitalize d-block xsm-text ${
+            //                                 thisIsGroupPaddingTopIndex === 0
+            //                                   ? [
+            //                                       parseInt(
+            //                                         printItem.item.has_variation
+            //                                       ) === 1
+            //                                         ? [
+            //                                             printItem.properties &&
+            //                                             printItem.properties
+            //                                               .length > 0
+            //                                               ? "addonPadding35"
+            //                                               : "addonPadding24",
+            //                                           ]
+            //                                         : [
+            //                                             printItem.properties &&
+            //                                             printItem.properties
+            //                                               .length > 0
+            //                                               ? "addonPadding24"
+            //                                               : "",
+            //                                           ],
+            //                                     ]
+            //                                   : ""
+            //                               }`}
+            //                             >
+            //                               {printItem.properties.map(
+            //                                 (propertyName, propertyIndex) => {
+            //                                   if (
+            //                                     parseInt(
+            //                                       propertyName.item
+            //                                         .property_group_id
+            //                                     ) === theGroup.id
+            //                                   ) {
+            //                                     return (
+            //                                       <span>
+            //                                         {formatPrice(
+            //                                           printItem.quantity *
+            //                                             propertyName.quantity *
+            //                                             propertyName.item
+            //                                               .extra_price
+            //                                         )}
+            //                                         <br />
+            //                                       </span>
+            //                                     );
+            //                                   } else {
+            //                                     return true;
+            //                                   }
+            //                                 }
+            //                               )}
+            //                             </div>
+            //                           );
+            //                         }
+            //                       )}
+            //                   </td>
+            //                 </tr>
+            //               );
+            //             })}
+            //           </tbody>
+            //         </table>
+            //         <div className="myBorder"></div>
+            //         <table className="table mb-0 table-borderless">
+            //           <tbody>
+            //             <tr>
+            //               <th className="fk-print-text xsm-text text-capitalize">
+            //                 <span className="d-block">{_t(t("total"))}</span>
+            //               </th>
+            //               <td className="fk-print-text xsm-text text-capitalize text-right">
+            //                 {formatPrice(theSubTotal)}
+            //               </td>
+            //             </tr>
+            //           </tbody>
+            //         </table>
+
+            //         {theVat > 0 && (
+            //           <table className="table mb-0 table-borderless">
+            //             <tbody>
+            //               {getSystemSettings(generalSettings, "vat_system") ===
+            //               "igst" ? (
+            //                 <tr>
+            //                   <th className="fk-print-text xsm-text">
+            //                     <span className="d-block xsm-text">
+            //                       VAT({newSettings !== null && newSettings.vat}
+            //                       %)
+            //                     </span>
+            //                   </th>
+            //                   <td className="fk-print-text xsm-text text-capitalize text-right">
+            //                     {formatPrice(theVat)}
+            //                   </td>
+            //                 </tr>
+            //               ) : getSystemSettings(
+            //                   generalSettings,
+            //                   "vat_system"
+            //                 ) === "cgst" ? (
+            //                 <>
+            //                   <tr>
+            //                     <th className="fk-print-text xsm-text">
+            //                       <span className="d-block xsm-text">
+            //                         CGST(
+            //                         {getSystemSettings(generalSettings, "cgst")}
+            //                         %)
+            //                       </span>
+            //                     </th>
+            //                     <td className="fk-print-text xsm-text text-capitalize text-right">
+            //                       {formatPrice(
+            //                         theSubTotal *
+            //                           (parseFloat(
+            //                             getSystemSettings(
+            //                               generalSettings,
+            //                               "cgst"
+            //                             )
+            //                           ) /
+            //                             100)
+            //                       )}
+            //                     </td>
+            //                   </tr>
+            //                   <tr>
+            //                     <th className="fk-print-text xsm-text">
+            //                       <span className="d-block xsm-text">
+            //                         SGST(
+            //                         {getSystemSettings(generalSettings, "sgst")}
+            //                         %)
+            //                       </span>
+            //                     </th>
+            //                     <td className="fk-print-text xsm-text text-capitalize text-right">
+            //                       {formatPrice(
+            //                         theSubTotal *
+            //                           (parseFloat(
+            //                             getSystemSettings(
+            //                               generalSettings,
+            //                               "sgst"
+            //                             )
+            //                           ) /
+            //                             100)
+            //                       )}
+            //                     </td>
+            //                   </tr>
+            //                 </>
+            //               ) : (
+            //                 <tr>
+            //                   <th className="fk-print-text xsm-text">
+            //                     <span className="d-block xsm-text">
+            //                       TAX({newSettings !== null && newSettings.tax}
+            //                       %)
+            //                     </span>
+            //                   </th>
+            //                   <td className="fk-print-text xsm-text text-capitalize text-right">
+            //                     {formatPrice(theVat)}
+            //                   </td>
+            //                 </tr>
+            //               )}
+            //             </tbody>
+            //           </table>
+            //         )}
+
+            //         {getSystemSettings(generalSettings, "sDiscount") ===
+            //           "flat" && (
+            //           <>
+            //             {orderDetails.serviceCharge > 0 && (
+            //               <table className="table mb-0 table-borderless">
+            //                 <tbody>
+            //                   <tr>
+            //                     <th className="fk-print-text xsm-text text-capitalize">
+            //                       <span className="d-block">
+            //                         {_t(t("S.Charge"))}
+            //                       </span>
+            //                     </th>
+
+            //                     {orderDetails && (
+            //                       <td className="fk-print-text xsm-text text-capitalize text-right">
+            //                         {formatPrice(orderDetails.serviceCharge)}
+            //                       </td>
+            //                     )}
+            //                   </tr>
+            //                 </tbody>
+            //               </table>
+            //             )}
+
+            //             {orderDetails.discount > 0 && (
+            //               <table className="table mb-0 table-borderless">
+            //                 <tbody>
+            //                   <tr>
+            //                     <th className="fk-print-text xsm-text text-capitalize">
+            //                       <span className="d-block">
+            //                         {_t(t("discount"))}
+            //                       </span>
+            //                     </th>
+            //                     {orderDetails && (
+            //                       <td className="fk-print-text xsm-text text-capitalize text-right">
+            //                         {formatPrice(orderDetails.discount)}
+            //                       </td>
+            //                     )}
+            //                   </tr>
+            //                 </tbody>
+            //               </table>
+            //             )}
+            //           </>
+            //         )}
+
+            //         {getSystemSettings(generalSettings, "sDiscount") ===
+            //           "percentage" && (
+            //           <>
+            //             {orderDetails.serviceCharge > 0 && (
+            //               <table className="table mb-0 table-borderless">
+            //                 <tbody>
+            //                   <tr>
+            //                     <th className="fk-print-text xsm-text text-capitalize">
+            //                       <span className="d-block">
+            //                         {_t(t("S.Charge"))}
+            //                         {orderDetails &&
+            //                           "(" + orderDetails.serviceCharge + "%)"}
+            //                       </span>
+            //                     </th>
+
+            //                     {orderDetails && (
+            //                       <td className="fk-print-text xsm-text text-capitalize text-right">
+            //                         {formatPrice(
+            //                           theSubTotal *
+            //                             (orderDetails.serviceCharge / 100)
+            //                         )}
+            //                       </td>
+            //                     )}
+            //                   </tr>
+            //                 </tbody>
+            //               </table>
+            //             )}
+
+            //             {orderDetails.discount > 0 && (
+            //               <table className="table mb-0 table-borderless">
+            //                 <tbody>
+            //                   <tr>
+            //                     <th className="fk-print-text xsm-text text-capitalize">
+            //                       <span className="d-block">
+            //                         {_t(t("discount"))}
+            //                         {orderDetails &&
+            //                           "(" + orderDetails.discount + "%)"}
+            //                       </span>
+            //                     </th>
+            //                     {orderDetails && (
+            //                       <td className="fk-print-text xsm-text text-capitalize text-right">
+            //                         {formatPrice(
+            //                           theSubTotal *
+            //                             (orderDetails.discount / 100)
+            //                         )}
+            //                       </td>
+            //                     )}
+            //                   </tr>
+            //                 </tbody>
+            //               </table>
+            //             )}
+            //           </>
+            //         )}
+
+            //         <div className="myBorder"></div>
+            //         <table className="table mb-0 table-borderless">
+            //           <tbody>
+            //             <tr>
+            //               <th className="fk-print-text xsm-text text-capitalize">
+            //                 <span className="d-block">
+            //                   {_t(t("grand total"))}
+            //                 </span>
+            //               </th>
+            //               <td className="fk-print-text xsm-text text-capitalize text-right">
+            //                 {formatPrice(totalPayable)}
+            //               </td>
+            //             </tr>
+            //             <tr>
+            //               <th className="fk-print-text xsm-text text-capitalize">
+            //                 <span className="d-block">
+            //                   {_t(t("Return Amount"))}
+            //                 </span>
+            //               </th>
+            //               <td className="fk-print-text xsm-text text-capitalize text-right">
+            //                 {formatPrice(returnMoneyUsd)}
+            //               </td>
+            //             </tr>
+            //           </tbody>
+            //         </table>
+
+            //         <div className="myBorder"></div>
+            //         <p className="mb-0 xsm-text fk-print-text text-center text-capitalize">
+            //           {getSystemSettings(generalSettings, "type_print_footer")}
+            //         </p>
+            //         <p className="mb-0 xsm-text fk-print-text text-capitalize text-center">
+            //           {_t(t("bill prepared by"))}:{" "}
+            //           {authUserInfo &&
+            //             authUserInfo.details &&
+            //             authUserInfo.details.name}
+            //         </p>
+            //       </div>
+            //     </div>
+            //   </div>
+            // </div>
+
+            <div
+              className="content px-2 py-3 m-auto"
+              style={{ width: "270px" }}
+            >
+              <h4
+                className="text-center py-2"
+                style={{
+                  backgroundColor: "rgb(212, 212, 212)",
+                  boxShadow: "2px 3px 0px black",
+                }}
+              >
+                {getSystemSettings(generalSettings, "siteName")} <br />{" "}
+                <span className="fs-6">
+                  {orderDetails &&
+                    orderDetails.branch !== null &&
+                    orderDetails.branch.name}
+                </span>
+              </h4>
+
+              <span
+                className="ms-3 px-4 mt-4"
+                style={{
+                  backgroundColor: "rgb(150, 150, 150)",
+                  fontSize: "12px",
+                }}
+              >
+                {orderDetails && orderDetails.token.id}
+              </span>
+              <div className="text-center">
+                <span
+                  className="text-center px-1  mb-0 w-fit-content"
+                  style={{
+                    backgroundColor: "rgb(212, 212, 212)",
+                    fontSize: "12px",
+                  }}
+                >
+                  {orderDetails.branch.id}
+                </span>
+              </div>
+              <div
+                className="row px-0 mx-0 mt-2"
+                style={{ borderBottom: "3px solid" }}
+              >
+                <div className="col-6 p-0">
+                  <div className="list px-2">
+                    <p className="mb-1 fw-bold" style={{ fontSize: "11px" }}>
+                      Date:{" "}
+                      <span>
+                        {
+                          <Moment format="LL">
+                            {/* {checkOrderDetails.item.created_at} */}
+                          </Moment>
+                        }
+                      </span>
                     </p>
-                    <p className="mb-0 sm-text fk-print-text text-center text-capitalize">
-                      {_t(t("call"))}:{" "}
-                      {orderDetails &&
-                      orderDetails.branch !== null &&
-                      orderDetails.branch.phn_no
-                        ? orderDetails.branch.phn_no
-                        : ""}
+                    <p className="mb-1 fw-bold" style={{ fontSize: "11px" }}>
+                      Time In:{" "}
+                      <span>
+                        <Moment format="LT">
+                          {/* {checkOrderDetails.item.token.created_at} */}
+                        </Moment>
+                      </span>
                     </p>
-                    <p className="mb-0 sm-text fk-print-text text-center text-capitalize">
-                      {getSystemSettings(generalSettings, "type_print_heading")}
+                    <p className="mb-1 fw-bold" style={{ fontSize: "11px" }}>
+                      Waiter: <span>{orderDetails.waiter}</span>
                     </p>
-                    <span className="d-block fk-print-text text-uppercase text-center lg-text myBorderTopCustomer">
-                      {_t(t("Token No"))}-
-                      {orderDetails && orderDetails.token.id}
-                    </span>
-                    <p className="mb-0 fk-print-text text-capitalize lg-text">
-                      {orderDetails &&
-                        orderDetails.dept_tag &&
-                        orderDetails.dept_tag.name}
+                    <p className="mb-1 fw-bold" style={{ fontSize: "11px" }}>
+                      Table: <span>17</span>
                     </p>
-                    <p className="mb-0 mt-0 sm-text fk-print-text text-capitalize text-center">
-                      {_t(t("Customer Copy"))}
+                  </div>
+                </div>
+                <div className="col-6 p-0">
+                  <div className="list px-2">
+                    <p className="mb-1 fw-bold" style={{ fontSize: "11px" }}>
+                      Shift: <span>morning</span>
                     </p>
-                    {/* <p className="mb-0 xsm-text fk-print-text text-capitalize">
-                      {_t(t("Vat reg"))}: {_t(t("Applied"))}
-                    </p> */}
-                    <p className="mb-0 xsm-text fk-print-text text-capitalize">
-                      {_t(t("date"))}: <Moment format="LL">{new Date()}</Moment>
-                      {", "}
-                      {orderDetails && (
+                    <p className="mb-1 fw-bold" style={{ fontSize: "11px" }}>
+                      Time Out:{" "}
+                      <span>
                         <Moment format="LT">{orderDetails.token.time}</Moment>
-                      )}
+                      </span>
                     </p>
-                    <p className="mb-0 xsm-text fk-print-text text-capitalize">
-                      {_t(t("Total guests"))}:{" "}
-                      {orderDetails && orderDetails.total_guest}
+                    <p className="mb-1 fw-bold" style={{ fontSize: "11px" }}>
+                      Casheir: <span>{orderDetails.waiter}</span>
                     </p>
-
-                    {orderDetails && orderDetails.waiter !== null ? (
-                      <p className="mb-0 xsm-text fk-print-text text-capitalize">
-                        {_t(t("waiter name"))}: {orderDetails.waiter.name}
-                      </p>
-                    ) : (
-                      ""
-                    )}
-
-                    <p className="mb-0 sm-text fk-print-text text-capitalize lg-text">
-                      PAID
-                    </p>
-
-                    <table className="table mb-0 table-borderless akash-table-for-print-padding">
-                      <thead>
-                        <tr>
-                          <th
-                            scope="col"
-                            className="fk-print-text xsm-text text-capitalize"
-                          >
-                            {_t(t("qty"))} {_t(t("item"))}
-                          </th>
-                          <th
-                            scope="col"
-                            className="fk-print-text xsm-text text-capitalize text-right"
-                          >
-                            {_t(t("T"))}.{_t(t("price"))}
-                          </th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        {newOrder.map((printItem, printItemIndex) => {
-                          return (
-                            <tr>
-                              <td className="fk-print-text xsm-text text-capitalize">
-                                <div className="d-flex flex-wrap">
-                                  <span className="d-inline-block xsm-text">
-                                    -{printItem.quantity} {printItem.item.name}
-                                    {parseInt(printItem.item.has_variation) ===
-                                      1 &&
-                                      printItem.variation &&
-                                      "(" +
-                                        printItem.variation.variation_name +
-                                        ")"}
-                                  </span>
-                                </div>
-
-                                {/* properties */}
-                                {printItem.properties &&
-                                  printItem.properties.length > 0 &&
-                                  selectedPropertyGroup[printItemIndex] !==
-                                    undefined &&
-                                  selectedPropertyGroup[printItemIndex].map(
-                                    (thisIsGroup) => {
-                                      let theGroup =
-                                        propertyGroupForSearch &&
-                                        propertyGroupForSearch.find(
-                                          (theItem) => {
-                                            return theItem.id === thisIsGroup;
-                                          }
-                                        );
-                                      return (
-                                        <div className="d-block">
-                                          {printItem.properties.map(
-                                            (propertyName, propertyIndex) => {
-                                              if (
-                                                parseInt(
-                                                  propertyName.item
-                                                    .property_group_id
-                                                ) === theGroup.id
-                                              ) {
-                                                return (
-                                                  <span className="text-capitalize xsm-text d-inline-block mr-1">
-                                                    -{printItem.quantity}
-                                                    {propertyName.quantity > 1
-                                                      ? "*" +
-                                                        propertyName.quantity
-                                                      : ""}{" "}
-                                                    {propertyName.item.name}
-                                                    <br />
-                                                  </span>
-                                                );
-                                              } else {
-                                                return true;
-                                              }
-                                            }
-                                          )}
-                                        </div>
-                                      );
-                                    }
-                                  )}
-                              </td>
-                              <td className="fk-print-text xsm-text text-capitalize text-right">
-                                <div className="d-block xsm-text">
-                                  {showPriceOfEachOrderItemPrint(
-                                    printItemIndex
-                                  )}
-                                </div>
-
-                                {printItem.properties &&
-                                  printItem.properties.length > 0 &&
-                                  selectedPropertyGroup[printItemIndex] !==
-                                    undefined &&
-                                  selectedPropertyGroup[printItemIndex].map(
-                                    (
-                                      thisIsGroup,
-                                      thisIsGroupPaddingTopIndex
-                                    ) => {
-                                      let theGroup =
-                                        propertyGroupForSearch &&
-                                        propertyGroupForSearch.find(
-                                          (theItem) => {
-                                            return theItem.id === thisIsGroup;
-                                          }
-                                        );
-                                      return (
-                                        <div
-                                          className={`text-capitalize d-block xsm-text ${
-                                            thisIsGroupPaddingTopIndex === 0
-                                              ? [
-                                                  parseInt(
-                                                    printItem.item.has_variation
-                                                  ) === 1
-                                                    ? [
-                                                        printItem.properties &&
-                                                        printItem.properties
-                                                          .length > 0
-                                                          ? "addonPadding35"
-                                                          : "addonPadding24",
-                                                      ]
-                                                    : [
-                                                        printItem.properties &&
-                                                        printItem.properties
-                                                          .length > 0
-                                                          ? "addonPadding24"
-                                                          : "",
-                                                      ],
-                                                ]
-                                              : ""
-                                          }`}
-                                        >
-                                          {printItem.properties.map(
-                                            (propertyName, propertyIndex) => {
-                                              if (
-                                                parseInt(
-                                                  propertyName.item
-                                                    .property_group_id
-                                                ) === theGroup.id
-                                              ) {
-                                                return (
-                                                  <span>
-                                                    {formatPrice(
-                                                      printItem.quantity *
-                                                        propertyName.quantity *
-                                                        propertyName.item
-                                                          .extra_price
-                                                    )}
-                                                    <br />
-                                                  </span>
-                                                );
-                                              } else {
-                                                return true;
-                                              }
-                                            }
-                                          )}
-                                        </div>
-                                      );
-                                    }
-                                  )}
-                              </td>
-                            </tr>
-                          );
-                        })}
-                      </tbody>
-                    </table>
-                    <div className="myBorder"></div>
-                    <table className="table mb-0 table-borderless">
-                      <tbody>
-                        <tr>
-                          <th className="fk-print-text xsm-text text-capitalize">
-                            <span className="d-block">{_t(t("total"))}</span>
-                          </th>
-                          <td className="fk-print-text xsm-text text-capitalize text-right">
-                            {formatPrice(theSubTotal)}
-                          </td>
-                        </tr>
-                      </tbody>
-                    </table>
-
-                    {theVat > 0 && (
-                      <table className="table mb-0 table-borderless">
-                        <tbody>
-                          {getSystemSettings(generalSettings, "vat_system") ===
-                          "igst" ? (
-                            <tr>
-                              <th className="fk-print-text xsm-text">
-                                <span className="d-block xsm-text">
-                                  VAT({newSettings !== null && newSettings.vat}
-                                  %)
-                                </span>
-                              </th>
-                              <td className="fk-print-text xsm-text text-capitalize text-right">
-                                {formatPrice(theVat)}
-                              </td>
-                            </tr>
-                          ) : getSystemSettings(
-                              generalSettings,
-                              "vat_system"
-                            ) === "cgst" ? (
-                            <>
-                              <tr>
-                                <th className="fk-print-text xsm-text">
-                                  <span className="d-block xsm-text">
-                                    CGST(
-                                    {getSystemSettings(generalSettings, "cgst")}
-                                    %)
-                                  </span>
-                                </th>
-                                <td className="fk-print-text xsm-text text-capitalize text-right">
-                                  {formatPrice(
-                                    theSubTotal *
-                                      (parseFloat(
-                                        getSystemSettings(
-                                          generalSettings,
-                                          "cgst"
-                                        )
-                                      ) /
-                                        100)
-                                  )}
-                                </td>
-                              </tr>
-                              <tr>
-                                <th className="fk-print-text xsm-text">
-                                  <span className="d-block xsm-text">
-                                    SGST(
-                                    {getSystemSettings(generalSettings, "sgst")}
-                                    %)
-                                  </span>
-                                </th>
-                                <td className="fk-print-text xsm-text text-capitalize text-right">
-                                  {formatPrice(
-                                    theSubTotal *
-                                      (parseFloat(
-                                        getSystemSettings(
-                                          generalSettings,
-                                          "sgst"
-                                        )
-                                      ) /
-                                        100)
-                                  )}
-                                </td>
-                              </tr>
-                            </>
-                          ) : (
-                            <tr>
-                              <th className="fk-print-text xsm-text">
-                                <span className="d-block xsm-text">
-                                  TAX({newSettings !== null && newSettings.tax}
-                                  %)
-                                </span>
-                              </th>
-                              <td className="fk-print-text xsm-text text-capitalize text-right">
-                                {formatPrice(theVat)}
-                              </td>
-                            </tr>
-                          )}
-                        </tbody>
-                      </table>
-                    )}
-
-                    {getSystemSettings(generalSettings, "sDiscount") ===
-                      "flat" && (
-                      <>
-                        {orderDetails.serviceCharge > 0 && (
-                          <table className="table mb-0 table-borderless">
-                            <tbody>
-                              <tr>
-                                <th className="fk-print-text xsm-text text-capitalize">
-                                  <span className="d-block">
-                                    {_t(t("S.Charge"))}
-                                  </span>
-                                </th>
-
-                                {orderDetails && (
-                                  <td className="fk-print-text xsm-text text-capitalize text-right">
-                                    {formatPrice(orderDetails.serviceCharge)}
-                                  </td>
-                                )}
-                              </tr>
-                            </tbody>
-                          </table>
-                        )}
-
-                        {orderDetails.discount > 0 && (
-                          <table className="table mb-0 table-borderless">
-                            <tbody>
-                              <tr>
-                                <th className="fk-print-text xsm-text text-capitalize">
-                                  <span className="d-block">
-                                    {_t(t("discount"))}
-                                  </span>
-                                </th>
-                                {orderDetails && (
-                                  <td className="fk-print-text xsm-text text-capitalize text-right">
-                                    {formatPrice(orderDetails.discount)}
-                                  </td>
-                                )}
-                              </tr>
-                            </tbody>
-                          </table>
-                        )}
-                      </>
-                    )}
-
-                    {getSystemSettings(generalSettings, "sDiscount") ===
-                      "percentage" && (
-                      <>
-                        {orderDetails.serviceCharge > 0 && (
-                          <table className="table mb-0 table-borderless">
-                            <tbody>
-                              <tr>
-                                <th className="fk-print-text xsm-text text-capitalize">
-                                  <span className="d-block">
-                                    {_t(t("S.Charge"))}
-                                    {orderDetails &&
-                                      "(" + orderDetails.serviceCharge + "%)"}
-                                  </span>
-                                </th>
-
-                                {orderDetails && (
-                                  <td className="fk-print-text xsm-text text-capitalize text-right">
-                                    {formatPrice(
-                                      theSubTotal *
-                                        (orderDetails.serviceCharge / 100)
-                                    )}
-                                  </td>
-                                )}
-                              </tr>
-                            </tbody>
-                          </table>
-                        )}
-
-                        {orderDetails.discount > 0 && (
-                          <table className="table mb-0 table-borderless">
-                            <tbody>
-                              <tr>
-                                <th className="fk-print-text xsm-text text-capitalize">
-                                  <span className="d-block">
-                                    {_t(t("discount"))}
-                                    {orderDetails &&
-                                      "(" + orderDetails.discount + "%)"}
-                                  </span>
-                                </th>
-                                {orderDetails && (
-                                  <td className="fk-print-text xsm-text text-capitalize text-right">
-                                    {formatPrice(
-                                      theSubTotal *
-                                        (orderDetails.discount / 100)
-                                    )}
-                                  </td>
-                                )}
-                              </tr>
-                            </tbody>
-                          </table>
-                        )}
-                      </>
-                    )}
-
-                    <div className="myBorder"></div>
-                    <table className="table mb-0 table-borderless">
-                      <tbody>
-                        <tr>
-                          <th className="fk-print-text xsm-text text-capitalize">
-                            <span className="d-block">
-                              {_t(t("grand total"))}
-                            </span>
-                          </th>
-                          <td className="fk-print-text xsm-text text-capitalize text-right">
-                            {formatPrice(totalPayable)}
-                          </td>
-                        </tr>
-                        <tr>
-                          <th className="fk-print-text xsm-text text-capitalize">
-                            <span className="d-block">
-                              {_t(t("Return Amount"))}
-                            </span>
-                          </th>
-                          <td className="fk-print-text xsm-text text-capitalize text-right">
-                            {formatPrice(returnMoneyUsd)}
-                          </td>
-                        </tr>
-                      </tbody>
-                    </table>
-
-                    <div className="myBorder"></div>
-                    <p className="mb-0 xsm-text fk-print-text text-center text-capitalize">
-                      {getSystemSettings(generalSettings, "type_print_footer")}
-                    </p>
-                    <p className="mb-0 xsm-text fk-print-text text-capitalize text-center">
-                      {_t(t("bill prepared by"))}:{" "}
-                      {authUserInfo &&
-                        authUserInfo.details &&
-                        authUserInfo.details.name}
+                    <p className="mb-1 fw-bold" style={{ fontSize: "11px" }}>
+                      GuesNo:{" "}
+                      <span>{orderDetails && orderDetails.total_guest}</span>
                     </p>
                   </div>
                 </div>
               </div>
+
+              <table className="table w-100">
+                <thead>
+                  <tr>
+                    <th className="fw-bold" style={{ fontSize: "12px" }}>
+                      Qty
+                    </th>
+                    <th className="fw-bold" style={{ fontSize: "12px" }}>
+                      Description
+                    </th>
+                    <th className="fw-bold" style={{ fontSize: "12px" }}>
+                      Price
+                    </th>
+                    <th className="fw-bold" style={{ fontSize: "12px" }}>
+                      Total
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {newOrder.map((item, index) => {
+                    return (
+                      <tr key={index}>
+                        <th
+                          className="fw-normal p-1"
+                          style={{ fontSize: "11px" }}
+                        >
+                          {item.quantity}
+                        </th>
+                        <th
+                          className="fw-normal p-1"
+                          style={{ fontSize: "11px" }}
+                        >
+                          {item.item.name}
+                        </th>
+                        <th
+                          className="fw-normal p-1"
+                          style={{ fontSize: "11px" }}
+                        >
+                          {showPriceOfEachOrderItemPrint(index)}
+                        </th>
+                        <th
+                          className="fw-normal p-1"
+                          style={{ fontSize: "11px" }}
+                        >
+                          {showPriceOfEachOrderItemPrint(index)}
+                        </th>
+                      </tr>
+                    );
+                  })}
+                </tbody>
+              </table>
+              <div
+                className="row mx-0"
+                style={{ borderTop: "3px solid", borderBottom: "3px solid" }}
+              >
+                <div className="col-4 p-0" style={{ borderRight: "2px solid" }}>
+                  <div className="pt-3 ps-3">
+                    <p className="fw-bold">DISC:</p>
+                    <span>
+                      {formatPrice(theSubTotal * (orderDetails.discount / 100))}
+                    </span>
+                  </div>
+                </div>
+                <div className="col-8 p-0">
+                  <div className="items pt-3 ps-3 pl-3">
+                    <div className="item d-flex align-items-center justify-content-between mb-1">
+                      <p className="mb-0 fw-bold" style={{ fontSize: "13px" }}>
+                        Sub Total
+                      </p>
+                      <span style={{ fontSize: "12px" }}>
+                        {formatPrice(theSubTotal)}
+                      </span>
+                    </div>
+                    <div className="item d-flex align-items-center justify-content-between mb-1">
+                      <p className="mb-0 fw-bold" style={{ fontSize: "13px" }}>
+                        Service
+                      </p>
+                      <span style={{ fontSize: "12px" }}>
+                        {formatPrice(orderDetails.serviceCharge)}
+                      </span>
+                    </div>
+                    <div className="item d-flex align-items-center justify-content-between mb-1">
+                      <p className="mb-0 fw-bold" style={{ fontSize: "13px" }}>
+                        Tax
+                      </p>
+                      <span style={{ fontSize: "12px" }}>12.54</span>
+                    </div>
+                    <div className="item d-flex align-items-center justify-content-between mb-1">
+                      <p className="mb-0 fw-bold" style={{ fontSize: "13px" }}>
+                        M.Ch.
+                      </p>
+                      <span style={{ fontSize: "12px" }}>
+                        {formatPrice(orderDetails.serviceCharge)}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div
+                className="text-center py-2"
+                style={{ borderBottom: "3px solid" }}
+              >
+                <h4 className="fs-5 mb-1">FINAL TOTAL</h4>
+                <span className="fw-bold">{formatPrice(totalPayable)}</span>
+              </div>
+              <p
+                className="text-center pt-2 fw-bold "
+                style={{ fontSize: "13px" }}
+              >
+                Thank You, love to serve you soon
+              </p>
             </div>
           )}
         </div>
@@ -2501,161 +2707,366 @@ const Pos = () => {
       <div className="d-none">
         <div ref={component2Ref}>
           {newOrder && (
-            <div className="fk-print">
-              <div className="container">
-                <div className="row">
-                  <div className="col-12">
-                    <span className="d-block fk-print-text fk-print-text--bold text-uppercase text-center lg-text">
-                      {_t(t("Token No"))}-
-                      {orderDetails && orderDetails.token.id}
+            // <div className="fk-print">
+            //   <div className="container">
+            //     <div className="row">
+            //       <div className="col-12">
+            //         <span className="d-block fk-print-text fk-print-text--bold text-uppercase text-center lg-text">
+            //           {_t(t("Token No"))}-
+            //           {orderDetails && orderDetails.token.id}
+            //         </span>
+            //         <p className="mb-0 fk-print-text text-capitalize lg-text fk-print-text--bold">
+            //           {orderDetails &&
+            //             orderDetails.dept_tag &&
+            //             orderDetails.dept_tag.name}
+            //         </p>
+            //         <p className="mb-0 mt-0 fk-print-text text-capitalize text-center">
+            //           {_t(t("kitchen orders"))}
+            //         </p>
+
+            //         <table className="table mb-0 table-borderless">
+            //           <tbody>
+            //             {orderFoodGroups &&
+            //               orderFoodGroups.map((theGrp, grpIndex) => {
+            //                 return (
+            //                   <>
+            //                     <tr>
+            //                       <td className="text-center">
+            //                         <div
+            //                           className={`${
+            //                             grpIndex === 0
+            //                               ? "myBorder"
+            //                               : "myBorderBottom"
+            //                           } lg-text fk-print-text--bold fk-print-text`}
+            //                         >
+            //                           {theGrp.name}
+            //                         </div>
+            //                       </td>
+            //                     </tr>
+
+            //                     {newOrder.map((printItem, printItemIndex) => {
+            //                       if (
+            //                         theGrp.id ===
+            //                         parseInt(printItem.item.food_group_id)
+            //                       ) {
+            //                         return (
+            //                           <>
+            //                             <tr className="myBorderBottom">
+            //                               <th className="fk-print-text text-capitalize">
+            //                                 <div className="d-flex flex-wrap">
+            //                                   <span className="d-inline-block lg-text fk-print-text--bold fk-print-text">
+            //                                     {printItem.item.name}
+            //                                   </span>
+            //                                   {parseInt(
+            //                                     printItem.item.has_variation
+            //                                   ) === 1 &&
+            //                                     printItem.variation && (
+            //                                       <span className="d-inline-block lg-text fk-print-text--bold fk-print-text">
+            //                                         (
+            //                                         {
+            //                                           printItem.variation
+            //                                             .variation_name
+            //                                         }
+            //                                         )
+            //                                       </span>
+            //                                     )}
+            //                                   :-{printItem.quantity}
+            //                                 </div>
+
+            //                                 {/* properties */}
+            //                                 {printItem.properties &&
+            //                                   printItem.properties.length > 0 &&
+            //                                   selectedPropertyGroup[
+            //                                     printItemIndex
+            //                                   ] !== undefined &&
+            //                                   selectedPropertyGroup[
+            //                                     printItemIndex
+            //                                   ].map((thisIsGroup) => {
+            //                                     let theGroup =
+            //                                       propertyGroupForSearch &&
+            //                                       propertyGroupForSearch.find(
+            //                                         (theItem) => {
+            //                                           return (
+            //                                             theItem.id ===
+            //                                             thisIsGroup
+            //                                           );
+            //                                         }
+            //                                       );
+            //                                     return (
+            //                                       <div className="d-flex flex-wrap">
+            //                                         {printItem.properties.map(
+            //                                           (
+            //                                             propertyName,
+            //                                             propertyIndex
+            //                                           ) => {
+            //                                             if (
+            //                                               parseInt(
+            //                                                 propertyName.item
+            //                                                   .property_group_id
+            //                                               ) === theGroup.id
+            //                                             ) {
+            //                                               return (
+            //                                                 <span className="text-capitalize d-inline-block mr-1 fk-print-text lg-text fk-print-text--bold">
+            //                                                   {
+            //                                                     propertyName
+            //                                                       .item.name
+            //                                                   }{" "}
+            //                                                   <span>
+            //                                                     {" "}
+            //                                                     {propertyName.quantity >
+            //                                                       1 &&
+            //                                                       "(" +
+            //                                                         propertyName.quantity +
+            //                                                         ")"}
+            //                                                   </span>
+            //                                                   {printItem
+            //                                                     .properties
+            //                                                     .length -
+            //                                                     1 !==
+            //                                                     propertyIndex &&
+            //                                                     ","}
+            //                                                 </span>
+            //                                               );
+            //                                             } else {
+            //                                               return true;
+            //                                             }
+            //                                           }
+            //                                         )}
+            //                                       </div>
+            //                                     );
+            //                                   })}
+            //                               </th>
+            //                             </tr>
+            //                           </>
+            //                         );
+            //                       }
+            //                     })}
+            //                   </>
+            //                 );
+            //               })}
+            //           </tbody>
+            //         </table>
+
+            //         <div className="">
+            //           <p className="mb-0 xsm-text fk-print-text text-capitalize lg-text fk-print-text--bold">
+            //             {_t(t("date"))}:{" "}
+            //             <Moment format="LL">{new Date()}</Moment>
+            //           </p>
+            //           <p className="mb-0 xsm-text fk-print-text text-capitalize lg-text fk-print-text--bold">
+            //             {_t(t("Time"))}:
+            //             {orderDetails && (
+            //               <Moment format="LT">{orderDetails.token.time}</Moment>
+            //             )}
+            //           </p>
+            //         </div>
+            //       </div>
+            //     </div>
+            //   </div>
+            // </div>
+
+            <div
+              className="content px-2 py-3 m-auto"
+              style={{ width: "270px" }}
+            >
+              <h4
+                className="text-center py-2"
+                style={{
+                  backgroundColor: "rgb(212, 212, 212)",
+                  boxShadow: "2px 3px 0px black",
+                }}
+              >
+                {getSystemSettings(generalSettings, "siteName")} <br />{" "}
+                <span className="fs-6">
+                  {orderDetails &&
+                    orderDetails.branch !== null &&
+                    orderDetails.branch.name}
+                </span>
+              </h4>
+
+              <span
+                className="ms-3 px-4 mt-4"
+                style={{
+                  backgroundColor: "rgb(150, 150, 150)",
+                  fontSize: "12px",
+                }}
+              >
+                {orderDetails && orderDetails.token.id}
+              </span>
+              <div className="text-center">
+                <span
+                  className="text-center px-1  mb-0 w-fit-content"
+                  style={{
+                    backgroundColor: "rgb(212, 212, 212)",
+                    fontSize: "12px",
+                  }}
+                >
+                  {orderDetails.branch.id}
+                </span>
+              </div>
+              <div
+                className="row px-0 mx-0 mt-2"
+                style={{ borderBottom: "3px solid" }}
+              >
+                <div className="col-6 p-0">
+                  <div className="list px-2">
+                    <p className="mb-1 fw-bold" style={{ fontSize: "11px" }}>
+                      Date:{" "}
+                      <span>
+                        {
+                          <Moment format="LL">
+                            {/* {checkOrderDetails.item.created_at} */}
+                          </Moment>
+                        }
+                      </span>
+                    </p>
+                    <p className="mb-1 fw-bold" style={{ fontSize: "11px" }}>
+                      Time In:{" "}
+                      <span>
+                        <Moment format="LT">
+                          {/* {checkOrderDetails.item.token.created_at} */}
+                        </Moment>
+                      </span>
+                    </p>
+                    <p className="mb-1 fw-bold" style={{ fontSize: "11px" }}>
+                      Waiter: <span>{orderDetails.waiter}</span>
+                    </p>
+                    <p className="mb-1 fw-bold" style={{ fontSize: "11px" }}>
+                      Table: <span>17</span>
+                    </p>
+                  </div>
+                </div>
+                <div className="col-6 p-0">
+                  <div className="list px-2">
+                    <p className="mb-1 fw-bold" style={{ fontSize: "11px" }}>
+                      Shift: <span>morning</span>
+                    </p>
+                    <p className="mb-1 fw-bold" style={{ fontSize: "11px" }}>
+                      Time Out:{" "}
+                      <span>
+                        <Moment format="LT">{orderDetails.token.time}</Moment>
+                      </span>
+                    </p>
+                    <p className="mb-1 fw-bold" style={{ fontSize: "11px" }}>
+                      Casheir: <span>{orderDetails.waiter}</span>
+                    </p>
+                    <p className="mb-1 fw-bold" style={{ fontSize: "11px" }}>
+                      GuesNo:{" "}
+                      <span>{orderDetails && orderDetails.total_guest}</span>
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <table className="table w-100">
+                <thead>
+                  <tr>
+                    <th className="fw-bold" style={{ fontSize: "12px" }}>
+                      Qty
+                    </th>
+                    <th className="fw-bold" style={{ fontSize: "12px" }}>
+                      Description
+                    </th>
+                    <th className="fw-bold" style={{ fontSize: "12px" }}>
+                      Price
+                    </th>
+                    <th className="fw-bold" style={{ fontSize: "12px" }}>
+                      Total
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {newOrder.map((item, index) => {
+                    return (
+                      <tr key={index}>
+                        <th
+                          className="fw-normal p-1"
+                          style={{ fontSize: "11px" }}
+                        >
+                          {item.quantity}
+                        </th>
+                        <th
+                          className="fw-normal p-1"
+                          style={{ fontSize: "11px" }}
+                        >
+                          {item.item.name}
+                        </th>
+                        <th
+                          className="fw-normal p-1"
+                          style={{ fontSize: "11px" }}
+                        >
+                          {showPriceOfEachOrderItemPrint(index)}
+                        </th>
+                        <th
+                          className="fw-normal p-1"
+                          style={{ fontSize: "11px" }}
+                        >
+                          {showPriceOfEachOrderItemPrint(index)}
+                        </th>
+                      </tr>
+                    );
+                  })}
+                </tbody>
+              </table>
+              <div
+                className="row mx-0"
+                style={{ borderTop: "3px solid", borderBottom: "3px solid" }}
+              >
+                <div className="col-4 p-0" style={{ borderRight: "2px solid" }}>
+                  <div className="pt-3 ps-3">
+                    <p className="fw-bold">DISC:</p>
+                    <span>
+                      {formatPrice(theSubTotal * (orderDetails.discount / 100))}
                     </span>
-                    <p className="mb-0 fk-print-text text-capitalize lg-text fk-print-text--bold">
-                      {orderDetails &&
-                        orderDetails.dept_tag &&
-                        orderDetails.dept_tag.name}
-                    </p>
-                    <p className="mb-0 mt-0 fk-print-text text-capitalize text-center">
-                      {_t(t("kitchen orders"))}
-                    </p>
-
-                    <table className="table mb-0 table-borderless">
-                      <tbody>
-                        {orderFoodGroups &&
-                          orderFoodGroups.map((theGrp, grpIndex) => {
-                            return (
-                              <>
-                                <tr>
-                                  <td className="text-center">
-                                    <div
-                                      className={`${
-                                        grpIndex === 0
-                                          ? "myBorder"
-                                          : "myBorderBottom"
-                                      } lg-text fk-print-text--bold fk-print-text`}
-                                    >
-                                      {theGrp.name}
-                                    </div>
-                                  </td>
-                                </tr>
-
-                                {newOrder.map((printItem, printItemIndex) => {
-                                  if (
-                                    theGrp.id ===
-                                    parseInt(printItem.item.food_group_id)
-                                  ) {
-                                    return (
-                                      <>
-                                        <tr className="myBorderBottom">
-                                          <th className="fk-print-text text-capitalize">
-                                            <div className="d-flex flex-wrap">
-                                              <span className="d-inline-block lg-text fk-print-text--bold fk-print-text">
-                                                {printItem.item.name}
-                                              </span>
-                                              {parseInt(
-                                                printItem.item.has_variation
-                                              ) === 1 &&
-                                                printItem.variation && (
-                                                  <span className="d-inline-block lg-text fk-print-text--bold fk-print-text">
-                                                    (
-                                                    {
-                                                      printItem.variation
-                                                        .variation_name
-                                                    }
-                                                    )
-                                                  </span>
-                                                )}
-                                              :-{printItem.quantity}
-                                            </div>
-
-                                            {/* properties */}
-                                            {printItem.properties &&
-                                              printItem.properties.length > 0 &&
-                                              selectedPropertyGroup[
-                                                printItemIndex
-                                              ] !== undefined &&
-                                              selectedPropertyGroup[
-                                                printItemIndex
-                                              ].map((thisIsGroup) => {
-                                                let theGroup =
-                                                  propertyGroupForSearch &&
-                                                  propertyGroupForSearch.find(
-                                                    (theItem) => {
-                                                      return (
-                                                        theItem.id ===
-                                                        thisIsGroup
-                                                      );
-                                                    }
-                                                  );
-                                                return (
-                                                  <div className="d-flex flex-wrap">
-                                                    {printItem.properties.map(
-                                                      (
-                                                        propertyName,
-                                                        propertyIndex
-                                                      ) => {
-                                                        if (
-                                                          parseInt(
-                                                            propertyName.item
-                                                              .property_group_id
-                                                          ) === theGroup.id
-                                                        ) {
-                                                          return (
-                                                            <span className="text-capitalize d-inline-block mr-1 fk-print-text lg-text fk-print-text--bold">
-                                                              {
-                                                                propertyName
-                                                                  .item.name
-                                                              }{" "}
-                                                              <span>
-                                                                {" "}
-                                                                {propertyName.quantity >
-                                                                  1 &&
-                                                                  "(" +
-                                                                    propertyName.quantity +
-                                                                    ")"}
-                                                              </span>
-                                                              {printItem
-                                                                .properties
-                                                                .length -
-                                                                1 !==
-                                                                propertyIndex &&
-                                                                ","}
-                                                            </span>
-                                                          );
-                                                        } else {
-                                                          return true;
-                                                        }
-                                                      }
-                                                    )}
-                                                  </div>
-                                                );
-                                              })}
-                                          </th>
-                                        </tr>
-                                      </>
-                                    );
-                                  }
-                                })}
-                              </>
-                            );
-                          })}
-                      </tbody>
-                    </table>
-
-                    <div className="">
-                      <p className="mb-0 xsm-text fk-print-text text-capitalize lg-text fk-print-text--bold">
-                        {_t(t("date"))}:{" "}
-                        <Moment format="LL">{new Date()}</Moment>
+                  </div>
+                </div>
+                <div className="col-8 p-0">
+                  <div className="items pt-3 ps-3 pl-3">
+                    <div className="item d-flex align-items-center justify-content-between mb-1">
+                      <p className="mb-0 fw-bold" style={{ fontSize: "13px" }}>
+                        Sub Total
                       </p>
-                      <p className="mb-0 xsm-text fk-print-text text-capitalize lg-text fk-print-text--bold">
-                        {_t(t("Time"))}:
-                        {orderDetails && (
-                          <Moment format="LT">{orderDetails.token.time}</Moment>
-                        )}
+                      <span style={{ fontSize: "12px" }}>
+                        {formatPrice(theSubTotal)}
+                      </span>
+                    </div>
+                    <div className="item d-flex align-items-center justify-content-between mb-1">
+                      <p className="mb-0 fw-bold" style={{ fontSize: "13px" }}>
+                        Service
                       </p>
+                      <span style={{ fontSize: "12px" }}>
+                        {formatPrice(orderDetails.serviceCharge)}
+                      </span>
+                    </div>
+                    <div className="item d-flex align-items-center justify-content-between mb-1">
+                      <p className="mb-0 fw-bold" style={{ fontSize: "13px" }}>
+                        Tax
+                      </p>
+                      <span style={{ fontSize: "12px" }}>12.54</span>
+                    </div>
+                    <div className="item d-flex align-items-center justify-content-between mb-1">
+                      <p className="mb-0 fw-bold" style={{ fontSize: "13px" }}>
+                        M.Ch.
+                      </p>
+                      <span style={{ fontSize: "12px" }}>
+                        {formatPrice(orderDetails.serviceCharge)}
+                      </span>
                     </div>
                   </div>
                 </div>
               </div>
+              <div
+                className="text-center py-2"
+                style={{ borderBottom: "3px solid" }}
+              >
+                <h4 className="fs-5 mb-1">FINAL TOTAL</h4>
+                <span className="fw-bold">{formatPrice(totalPayable)}</span>
+              </div>
+              <p
+                className="text-center pt-2 fw-bold "
+                style={{ fontSize: "13px" }}
+              >
+                Thank You, love to serve you soon
+              </p>
             </div>
           )}
         </div>
@@ -2663,7 +3074,7 @@ const Pos = () => {
 
       {/* Menu Addons  */}
       <div className="modal fade" id="menuAddons" aria-hidden="true">
-        <div className="modal-dialog modal-fullscreen">
+        <div className="modal-dialog">
           <div className="modal-content">
             <div className="modal-header align-items-start">
               <div className="fk-sm-card__content">
@@ -2924,10 +3335,12 @@ const Pos = () => {
 
       {/* Show Cart  */}
       <div className="modal fade" id="showCart" aria-hidden="true">
-        <div className="modal-dialog modal-fullscreen">
+        <div className="modal-dialog">
           <div className="modal-content">
             <div className="modal-header align-items-center">
-              <h3>{_t(t("Order details"))}</h3>
+              <h3 className="text-capitalize fk-sm-card__title m-0">
+                {_t(t("Order details"))}
+              </h3>
               <button
                 type="button"
                 className="btn-close"
@@ -3196,13 +3609,13 @@ const Pos = () => {
                     <div className="col text-right">
                       <span className="text-capitalize sm-text font-weight-bold">
                         {newOrder ? (
-                          <span className="text-capitalize sm-text d-inline-block font-weight-bold t-pt-5 t-pb-5">
+                          <span className="text-capitalize xsm-text sm-lg-text d-inline-block font-weight-bold t-pt-5 t-pb-5">
                             {currencySymbolLeft()}
                             {formatPrice(theSubTotal)}
                             {currencySymbolRight()}
                           </span>
                         ) : (
-                          <span className="text-capitalize sm-text d-inline-block font-weight-bold t-pt-5 t-pb-5">
+                          <span className="text-capitalize xsm-text sm-lg-text d-inline-block font-weight-bold t-pt-5 t-pb-5">
                             {currencySymbolLeft()}
                             {formatPrice(0)}
                             {currencySymbolRight()}
@@ -3656,7 +4069,7 @@ const Pos = () => {
 
       {/* Extra Info  */}
       <div className="modal fade" id="extraInfo" aria-hidden="true">
-        <div className="modal-dialog modal-fullscreen">
+        <div className="modal-dialog">
           <div className="modal-content">
             <div className="modal-header align-items-center">
               <div className="fk-sm-card__content">
@@ -4176,7 +4589,7 @@ const Pos = () => {
                       <div className="col-md-4 col-lg-5 col-xl-6 col-xxl-7">
                         <NavLink
                           to="/dashboard/pos/online-orders"
-                          className="t-link t-pt-8 t-pb-8 t-pl-12 t-pr-12 btn btn-outline-secondary xsm-text text-uppercase text-center w-100"
+                          className="t-link py-1 t-pl-12 t-pr-12 btn btn-outline-secondary xsm-text text-uppercase text-center w-100 flex-row"
                         >
                           {_t(t("Online Orders"))}{" "}
                           {onlineCounter > 0 && (
@@ -4231,7 +4644,7 @@ const Pos = () => {
                       {/* Left Menu   */}
                       <div className="col-md-4 col-xl-3">
                         <div className="fk-scroll--pos-menu" data-simplebar>
-                          <ul className="t-list fk-pos-nav list-group">
+                          <ul className="t-list fk-pos-nav pos-nav list-group">
                             {getSystemSettings(
                               generalSettings,
                               "pos_screen"
@@ -4674,8 +5087,8 @@ const Pos = () => {
                                 </div>
                               </div>
                               <div className="col-xl-6 col-xxl-7 order-xl-1">
-                                <div className="fk-dish--scroll" data-simplebar>
-                                  <div className="list-group fk-dish row gx-2">
+                                <div className="fk-dish--scroll container-boxs-pos">
+                                  <div className="list-group fk-dish row gx-2 m-0">
                                     {foodItem.items &&
                                       foodItem.items.map(
                                         (tempFoodItem, tempFoodItemIndex) => {
@@ -5865,8 +6278,8 @@ const Pos = () => {
                                     "sDiscount"
                                   ) === "flat" && (
                                     <div className="row g-0 border">
-                                      <div className="col-6 text-center border-right">
-                                        <div className="row g-0">
+                                      <div className="col-12 col-lg-6 text-center border-right">
+                                        <div className="row g-0 align-items-center">
                                           <div className="col-6">
                                             <span className="text-capitalize xsm-text d-inline-block font-weight-bold t-pt-5 t-pb-5">
                                               {_t(t("service charge"))}
@@ -5950,8 +6363,8 @@ const Pos = () => {
                                           </div>
                                         </div>
                                       </div>
-                                      <div className="col-6 text-center">
-                                        <div className="row g-0">
+                                      <div className="col-12 col-lg-6 text-center">
+                                        <div className="row g-0 align-items-center">
                                           <div className="col-6">
                                             <span className="text-capitalize xsm-text d-inline-block font-weight-bold t-pt-5 t-pb-5">
                                               {_t(t("discount"))}
@@ -6424,22 +6837,22 @@ const Pos = () => {
                               >
                                 <div className="row g-0 border">
                                   <div className="col-1 text-center border-right">
-                                    <span className="text-capitalize sm-text d-inline-block font-weight-bold t-pt-5 t-pb-5">
+                                    <span className="text-capitalize xsm-text sm-lg-text d-inline-block font-weight-bold t-pt-5 t-pb-5">
                                       {_t(t("S/L"))}
                                     </span>
                                   </div>
                                   <div className="col-6 text-center border-right">
-                                    <span className="text-capitalize sm-text d-inline-block font-weight-bold t-pt-5 t-pb-5">
+                                    <span className="text-capitalize xsm-text sm-lg-text d-inline-block font-weight-bold t-pt-5 t-pb-5">
                                       {_t(t("food item"))}
                                     </span>
                                   </div>
                                   <div className="col-2 text-center border-right">
-                                    <span className="text-capitalize sm-text d-inline-block font-weight-bold t-pt-5 t-pb-5">
+                                    <span className="text-capitalize xsm-text sm-lg-text d-inline-block font-weight-bold t-pt-5 t-pb-5">
                                       {_t(t("QTY"))}
                                     </span>
                                   </div>
                                   <div className="col-3 text-center">
-                                    <span className="text-capitalize sm-text d-inline-block font-weight-bold t-pt-5 t-pb-5">
+                                    <span className="text-capitalize xsm-text sm-lg-text d-inline-block font-weight-bold t-pt-5 t-pb-5">
                                       {_t(t("price"))}
                                     </span>
                                   </div>

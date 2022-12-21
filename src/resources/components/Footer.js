@@ -101,8 +101,8 @@ const Footer = () => {
                 : "container"
             }`}
           >
-            <div className="row align-items-lg-center">
-              <div className="col-lg-2 t-mb-30 mb-lg-0">
+            <div className="row align-items-center justify-content-between">
+              <div className="col-2 mb-lg-0">
                 <div
                   className={`fk-brand--footer fk-brand--footer-sqr mx-auto ${
                     defultLang === "ar"
@@ -160,14 +160,18 @@ const Footer = () => {
                       ]}
                 </div>
               </div>
-              <div className="col-lg-6 col-xl-7 t-mb-30 mb-lg-0">
-                <p className="mb-0 text-center sm-text">
+              <div className="col-10 col-md-6  mb-lg-0">
+                <p
+                  className={`mb-0 ${
+                    defultLang === "ar" ? "text-left" : "text-right"
+                  }  text-lg-center sm-text`}
+                >
                   &copy;{" "}
                   {generalSettings &&
                     getSystemSettings(generalSettings, "type_footer")}
                 </p>
               </div>
-              <div className="col-lg-4 col-xl-3">
+              <div className="col-md-4 d-none d-lg-block col-xl-3">
                 <div className="clock" style={style.clock}>
                   <div
                     className={`clock__icon ${
@@ -209,10 +213,14 @@ const Footer = () => {
             window.location.pathname !== "/profile" &&
             window.location.pathname !== "/my-orders" &&
             window.location.pathname !== "/delivery-man-registration" && (
-              <footer id="footer" className="sicky-bottom mb-5 mb-md-0">
+              <footer
+                id="footer"
+                className="sicky-bottom mb-md-0"
+                style={{ marginBottom: "35px" }}
+              >
                 <div className="container-fluid">
-                  <div className="row align-items-lg-center">
-                    <div className="col-lg-2 t-mb-30 mb-lg-0">
+                  <div className="row align-items-center justify-content-between">
+                    <div className="col-2 mb-lg-0">
                       <div
                         className={`fk-brand--footer fk-brand--footer-sqr mx-auto ${
                           defultLang === "ar"
@@ -273,14 +281,14 @@ const Footer = () => {
                             ]}
                       </div>
                     </div>
-                    <div className="col-lg-6 col-xl-7 t-mb-30 mb-lg-0">
+                    <div className="col-10 col-md-6  mb-lg-0">
                       <p className="mb-0 text-center sm-text">
                         &copy;{" "}
                         {generalSettings &&
                           getSystemSettings(generalSettings, "type_footer")}
                       </p>
                     </div>
-                    <div className="col-lg-4 col-xl-3">
+                    <div className="col-md-4 d-none d-lg-block col-xl-3">
                       <div className="clock" style={style.clock}>
                         <div
                           className={`clock__icon ${

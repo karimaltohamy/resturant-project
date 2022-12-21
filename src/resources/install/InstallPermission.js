@@ -26,7 +26,7 @@ const InstallPermission = () => {
     php_version: null,
     curl_status: null,
     env_status: null,
-    pdo_status: null
+    pdo_status: null,
   });
 
   //useEffect == componentDidMount()
@@ -40,7 +40,6 @@ const InstallPermission = () => {
 
   //check permission
   const handleCheckPermission = () => {
-
     const url = BASE_URL + "/check-permission";
     return axios
       .get(url)
@@ -49,10 +48,10 @@ const InstallPermission = () => {
           php_version: res.data[0],
           curl_status: res.data[1],
           env_status: res.data[2],
-          pdo_status: res.data[3]
+          pdo_status: res.data[3],
         });
       })
-      .catch((err) => { });
+      .catch((err) => {});
   };
 
   return (
@@ -80,12 +79,12 @@ const InstallPermission = () => {
                     ) : (
                       <div key="smtp-form">
                         <div className="row gx-2 align-items-center t-pt-15 t-pb-15">
-                          <div className="col-md-6 col-lg-5 t-mb-15 mb-md-0">
+                          <div className="col-md-3 col-lg-4 t-mb-15 mb-md-0">
                             <ul className="t-list fk-breadcrumb">
                               <li className="fk-breadcrumb__list"></li>
                             </ul>
                           </div>
-                          <div className="col-md-6 col-lg-7">
+                          <div className="col-md-9 col-lg-8">
                             <div className="row gx-3 align-items-center"></div>
                           </div>
                         </div>
@@ -107,7 +106,7 @@ const InstallPermission = () => {
                             <li className="list-group-item text-semibold">
                               Php version 8+
                               {theData.php_version !== null &&
-                                theData.php_version > 7.3 ? (
+                              theData.php_version > 7.3 ? (
                                 <i className="fa fa-check text-success pull-right"></i>
                               ) : (
                                 <i className="fa fa-close text-danger pull-right"></i>
@@ -116,7 +115,7 @@ const InstallPermission = () => {
                             <li className="list-group-item text-semibold">
                               Curl Enabled
                               {theData.curl_status !== null &&
-                                theData.curl_status === true ? (
+                              theData.curl_status === true ? (
                                 <i className="fa fa-check text-success pull-right"></i>
                               ) : (
                                 <i className="fa fa-close text-danger pull-right"></i>
@@ -125,7 +124,7 @@ const InstallPermission = () => {
                             <li className="list-group-item text-semibold">
                               <b>.env</b> File Writeable Permission
                               {theData.env_status !== null &&
-                                theData.env_status === true ? (
+                              theData.env_status === true ? (
                                 <i className="fa fa-check text-success pull-right"></i>
                               ) : (
                                 <i className="fa fa-close text-danger pull-right"></i>
@@ -134,7 +133,7 @@ const InstallPermission = () => {
                             <li className="list-group-item text-semibold">
                               <b>.env</b> Check PDO
                               {theData.pdo_status !== null &&
-                                theData.pdo_status === true ? (
+                              theData.pdo_status === true ? (
                                 <i className="fa fa-check text-success pull-right"></i>
                               ) : (
                                 <i className="fa fa-close text-danger pull-right"></i>
@@ -146,12 +145,12 @@ const InstallPermission = () => {
                         <p className="my-2 mx-5">
                           <div className="text-center text-uppercase col-4 offset-4 mt-4 mb-3">
                             {theData.php_version !== null &&
-                              theData.php_version > 7.3 &&
-                              theData.curl_status !== null &&
-                              theData.pdo_status === true &&
-                              (theData.curl_status === true &&
-                                theData.env_status) !== null &&
-                              theData.env_status === true ? (
+                            theData.php_version > 7.3 &&
+                            theData.curl_status !== null &&
+                            theData.pdo_status === true &&
+                            (theData.curl_status === true &&
+                              theData.env_status) !== null &&
+                            theData.env_status === true ? (
                               <NavLink
                                 to="/installation/database-setup"
                                 className="btn btn-secondary btn-block"

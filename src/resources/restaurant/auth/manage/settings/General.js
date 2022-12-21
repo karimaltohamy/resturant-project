@@ -86,10 +86,11 @@ const General = () => {
     //     ? true
     //     : false,
     onlyVat:
-      getSystemSettings(generalSettings, "vat_system") === "igst" ? 1
-        : getSystemSettings(generalSettings, "vat_system") === "cgst" ? 2
-          : 3
-
+      getSystemSettings(generalSettings, "vat_system") === "igst"
+        ? 1
+        : getSystemSettings(generalSettings, "vat_system") === "cgst"
+        ? 2
+        : 3,
   });
 
   //useEffect == componentDidMount()
@@ -139,9 +140,11 @@ const General = () => {
       //     ? true
       //     : false,
       onlyVat:
-        getSystemSettings(generalSettings, "vat_system") === "igst" ? 1
-          : getSystemSettings(generalSettings, "vat_system") === "cgst" ? 2
-            : 3
+        getSystemSettings(generalSettings, "vat_system") === "igst"
+          ? 1
+          : getSystemSettings(generalSettings, "vat_system") === "cgst"
+          ? 2
+          : 3,
     });
   }, [generalSettings]);
 
@@ -237,9 +240,11 @@ const General = () => {
     formData.append("table_waiter", newSettings.table_waiter);
     formData.append(
       "vat_system",
-      newSettings.onlyVat === 1 ? "igst"
-        : newSettings.onlyVat === 2 ? "cgst"
-          : 'tax'
+      newSettings.onlyVat === 1
+        ? "igst"
+        : newSettings.onlyVat === 2
+        ? "cgst"
+        : "tax"
     );
     if (newSettings.onlyVat === 1) {
       formData.append("type_vat", newSettings.vat);
@@ -282,8 +287,10 @@ const General = () => {
             getSystemSettings(res.data, "table_waiter") === "1" ? 1 : 0,
           onlyVat:
             getSystemSettings(generalSettings, "vat_system") === "igst"
-              ? 1 : getSystemSettings(generalSettings, "vat_system") === "cgst" ? 2
-                : 3,
+              ? 1
+              : getSystemSettings(generalSettings, "vat_system") === "cgst"
+              ? 2
+              : 3,
         });
         setLoading(false);
         toast.success(`${_t(t("Settings has been updated"))}`, {
@@ -423,7 +430,7 @@ const General = () => {
                     ) : (
                       <div key="smtp-form">
                         <div className="row gx-2 align-items-center t-pt-15 t-pb-15">
-                          <div className="col-md-6 col-lg-5 t-mb-15 mb-md-0">
+                          <div className="col-md-3 col-lg-4 t-mb-15 mb-md-0">
                             <ul className="t-list fk-breadcrumb">
                               <li className="fk-breadcrumb__list">
                                 <span className="t-link fk-breadcrumb__link text-capitalize">
@@ -432,7 +439,7 @@ const General = () => {
                               </li>
                             </ul>
                           </div>
-                          <div className="col-md-6 col-lg-7">
+                          <div className="col-md-9 col-lg-8">
                             <div className="row gx-3 align-items-center"></div>
                           </div>
                         </div>
@@ -734,7 +741,8 @@ const General = () => {
                                   >
                                     {_t(t("cgst + sgst"))}
                                   </option>
-                                  <option value='tax'
+                                  <option
+                                    value="tax"
                                     defaultValue={newSettings.onlyVat === 3}
                                   >
                                     {_t(t("Tax"))}
@@ -769,74 +777,18 @@ const General = () => {
                                   />
                                 </div>
                               </div>
-                            )
-                              : newSettings.onlyVat === 2 ? (
-                                <div className="alert ml-3 alert-info">
-                                  <div className="form-group mt-2">
-                                    <div className="mb-2">
-                                      <label
-                                        htmlFor="cgst"
-                                        className="control-label"
-                                      >
-                                        {_t(t("CGST"))} (%)
-                                        <span className="text-danger">
-                                          *
-                                        </span>{" "}
-                                      </label>
-                                    </div>
-                                    <div className="mb-2">
-                                      <input
-                                        type="number"
-                                        step="0.01"
-                                        min="0"
-                                        className="form-control sm-text"
-                                        id="cgst"
-                                        name="cgst"
-                                        onChange={handleChange}
-                                        value={newSettings.cgst}
-                                        placeholder="e.g. Type cgst %"
-                                        required
-                                      />
-                                    </div>
-                                  </div>
-
-                                  <div className="form-group mt-2">
-                                    <div className="mb-2">
-                                      <label
-                                        htmlFor="sgst"
-                                        className="control-label"
-                                      >
-                                        {_t(t("SGST"))} (%)
-                                        <span className="text-danger">
-                                          *
-                                        </span>{" "}
-                                      </label>
-                                    </div>
-                                    <div className="mb-2">
-                                      <input
-                                        type="number"
-                                        step="0.01"
-                                        min="0"
-                                        className="form-control sm-text"
-                                        id="sgst"
-                                        name="sgst"
-                                        onChange={handleChange}
-                                        value={newSettings.sgst}
-                                        placeholder="e.g. Type sgst %"
-                                        required
-                                      />
-                                    </div>
-                                  </div>
-                                </div>
-                              ) : (
-                                <div className="form-group mt-0 ml-3 alert alert-info">
+                            ) : newSettings.onlyVat === 2 ? (
+                              <div className="alert ml-3 alert-info">
+                                <div className="form-group mt-2">
                                   <div className="mb-2">
                                     <label
-                                      htmlFor="tax"
+                                      htmlFor="cgst"
                                       className="control-label"
                                     >
-                                      {_t(t("Tax"))} (%)
-                                      <span className="text-danger">*</span>{" "}
+                                      {_t(t("CGST"))} (%)
+                                      <span className="text-danger">
+                                        *
+                                      </span>{" "}
                                     </label>
                                   </div>
                                   <div className="mb-2">
@@ -845,16 +797,71 @@ const General = () => {
                                       step="0.01"
                                       min="0"
                                       className="form-control sm-text"
-                                      id="tax"
-                                      name="tax"
+                                      id="cgst"
+                                      name="cgst"
                                       onChange={handleChange}
-                                      value={newSettings.tax}
-                                      placeholder="e.g. Type tax %"
+                                      value={newSettings.cgst}
+                                      placeholder="e.g. Type cgst %"
                                       required
                                     />
                                   </div>
                                 </div>
-                              )}
+
+                                <div className="form-group mt-2">
+                                  <div className="mb-2">
+                                    <label
+                                      htmlFor="sgst"
+                                      className="control-label"
+                                    >
+                                      {_t(t("SGST"))} (%)
+                                      <span className="text-danger">
+                                        *
+                                      </span>{" "}
+                                    </label>
+                                  </div>
+                                  <div className="mb-2">
+                                    <input
+                                      type="number"
+                                      step="0.01"
+                                      min="0"
+                                      className="form-control sm-text"
+                                      id="sgst"
+                                      name="sgst"
+                                      onChange={handleChange}
+                                      value={newSettings.sgst}
+                                      placeholder="e.g. Type sgst %"
+                                      required
+                                    />
+                                  </div>
+                                </div>
+                              </div>
+                            ) : (
+                              <div className="form-group mt-0 ml-3 alert alert-info">
+                                <div className="mb-2">
+                                  <label
+                                    htmlFor="tax"
+                                    className="control-label"
+                                  >
+                                    {_t(t("Tax"))} (%)
+                                    <span className="text-danger">*</span>{" "}
+                                  </label>
+                                </div>
+                                <div className="mb-2">
+                                  <input
+                                    type="number"
+                                    step="0.01"
+                                    min="0"
+                                    className="form-control sm-text"
+                                    id="tax"
+                                    name="tax"
+                                    onChange={handleChange}
+                                    value={newSettings.tax}
+                                    placeholder="e.g. Type tax %"
+                                    required
+                                  />
+                                </div>
+                              </div>
+                            )}
 
                             <div className="form-group mt-4">
                               <div className="mb-2">

@@ -40,6 +40,35 @@ const Navbar = (props) => {
     propertyGroupForSearch,
   } = useContext(FoodContext);
 
+  // btn full screen
+  const [fullScreen, setFullScreen] = useState(false);
+
+  const handleFullScreen = () => {
+    const myDocument = document.documentElement;
+    setFullScreen(!fullScreen);
+    if (!fullScreen) {
+      if (myDocument.requestFullscreen) {
+        myDocument.requestFullscreen();
+      } else if (myDocument.msRequestFullscreen) {
+        myDocument.msRequestFullscreen();
+      } else if (myDocument.mozRequestFullscreen) {
+        myDocument.mozRequestFullscreen();
+      } else if (myDocument.webkitRequestFullscreen) {
+        myDocument.webkitRequestFullscreen();
+      }
+    } else {
+      if (document.exitFullscreen) {
+        document.exitFullscreen();
+      } else if (document.msexitFullscreen) {
+        document.msexitFullscreen();
+      } else if (document.mozexitFullscreen) {
+        document.mozexitFullscreen();
+      } else if (document.webkitexitFullscreen) {
+        document.webkitexitFullscreen();
+      }
+    }
+  };
+
   // States hook  here
   const [defaultLang, setDefaultLang] = useState(null);
   const [defaultCurrency, setDefaultCurrency] = useState(null);
@@ -282,6 +311,18 @@ const Navbar = (props) => {
                 </div>
                 <div className="fk-phn-nav__menu">
                   <ul className="t-list config-list d-flex flex-column flex-md-row align-items-md-center flex-wrap justify-content-md-center justify-content-lg-between justify-content-xl-end">
+                    <li className="config-list__item">
+                      <div
+                        className="icon-fullScreen cursor-pointer"
+                        onClick={handleFullScreen}
+                      >
+                        {fullScreen ? (
+                          <i class="ri-fullscreen-exit-line cursor-pointer"></i>
+                        ) : (
+                          <i class="ri-fullscreen-line cursor-pointer"></i>
+                        )}
+                      </div>
+                    </li>
                     <li className="config-list__item">
                       <NavLink
                         to="/"
@@ -736,7 +777,7 @@ const Navbar = (props) => {
                   </div>
                   <div className="d-md-none">
                     <div className="row">
-                      <div className="col-12">
+                      <div className="col-12 px-0">
                         <div className="fk-sm-nav" data-simplebar>
                           <ul className="t-list fk-sm-nav__bar">
                             {foodGroupForSearch &&
